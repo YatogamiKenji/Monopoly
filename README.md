@@ -1,17 +1,19 @@
 # Project Lập Trình Trực Quan
+<a name="top"><a>
+## Mục lục
 
-**Mục lục:**
+[Thông tin nhóm](#info)\
+[Đề tài](#topic)\
+[Mô tả project](#project)\
+&nbsp;&nbsp;&nbsp; [Công nghệ sử dụng](#use)\
+&nbsp;&nbsp;&nbsp; [Tính năng chính](#main-feature)\
+[Demo](#demo)
 
-[TOC]
+## Thông tin nhóm <a name="info"></a>
 
-## Thông tin nhóm
-
-Lớp: **IT008.M11**
-
-Mã nhóm: **15**
-
+Lớp: **IT008.M11** \
+Mã nhóm: **15** \
 Thành viên:
-
 | STT  | Tên                | MSSV      | Ghi chú     |
 |:-----|:-------------------|:----------|:------------|
 |  1   |  Vũ Xuân Hoàng Lâm | 20520609  |  Trưởng nhóm|
@@ -20,21 +22,23 @@ Thành viên:
 |  4   |  Trần Trọng Hoàng  |  20520521 |             |
 |  5   | Huỳnh Tuấn Anh     | 20520383  |             |
 
-## Đề tài
+[Lên đầu trang](#top)
+## Đề tài <a name="topic"></a>
 
 Xây dựng game cờ tỷ phú trên wpf bằng ngôn ngữ c#
 
-## Mô tả Project
+## Mô tả Project <a name="project"></a>
 
-### Công nghệ sử dụng
+### Công nghệ sử dụng <a name="use"></a>
 
 - Ngôn ngữ: C#
+- Farmework: WPF 
 
-- Farmework: WPF
+[Lên đầu trang](#top)
+### Tính năng chính <a name="main-feature"></a>
 
-### Tính năng chính
 
 ### Cấu trúc
 
-## Demo
-
+## Demo <a name="demo"></a>
+[Lên đầu trang](#top)
