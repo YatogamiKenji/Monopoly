@@ -1,0 +1,392 @@
+﻿<Window x:Class="DESIGN.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DESIGN"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" AllowsTransparency="True" Background="Transparent" WindowStyle="None" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="Brown"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="Brown"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="playerButton" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="7" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.MouseOver.Background2" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background2" Color="#FFC4E5F6"/>
+        <Style x:Key="postionStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background2}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background2}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.MouseOver.Background3" Color="Azure"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background3" Color="Azure"/>
+        <Style x:Key="diceButton" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background3}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background3}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border Background="Brown" CornerRadius="20" BorderThickness="0">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="550"/>
+            </Grid.ColumnDefinitions>
+            <Border Background="White" Height="430" Width="220" CornerRadius="20" Grid.Column="0">
+                
+                <Grid x:Name="leftInfor">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Grid Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Margin="0,10,0,64" Grid.RowSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Height="70" Width="45"   Background="Red"  CornerRadius="7" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid>
+                                <TextBlock Text="player1" ></TextBlock>
+                                <Button x:Name="player1" Background="Transparent" Style="{DynamicResource playerButton}">
+
+                                </Button>
+                            </Grid>
+                        </Border>
+                        <Border Height="70" Width="45"   Background="Red" CornerRadius="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid>
+                                <TextBlock Text="player2" ></TextBlock>
+                                <Button x:Name="player2" Background="Transparent" Style="{DynamicResource playerButton}">
+
+                                </Button>
+                            </Grid>
+                        </Border>
+                        <Border Height="70" Width="45"  Background="Red" CornerRadius="7" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid>
+                                <TextBlock Text="player3" ></TextBlock>
+                                <Button x:Name="player3" Background="Transparent" Style="{DynamicResource playerButton}">
+
+                                </Button>
+                            </Grid>
+                        </Border>
+                        <Border Height="70" Width="45"  Background="Red" CornerRadius="7" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid>
+                                <TextBlock Text="player4" ></TextBlock>
+                                <Button x:Name="player4" Background="Transparent" Style="{DynamicResource playerButton}">
+
+                                </Button>
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+
+
+                    <Grid Grid.Row="1">
+                        <Border Height="50" Width="194" Background="Red" CornerRadius="5">
+                            <TextBlock Text="Money" FontSize="20"></TextBlock>
+                        </Border>
+                    </Grid>
+
+
+
+                    <Grid Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Height="70" Width="45"   Background="Red"  CornerRadius="7" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid>
+                                <TextBlock Text="QN1" ></TextBlock>
+                                <Button x:Name="QN1" Background="Transparent" Style="{DynamicResource playerButton}">
+
+                                </Button>
+                            </Grid>
+                        </Border>
+                        <Border Height="70" Width="45"   Background="Red" CornerRadius="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid>
+                                <TextBlock Text="QN2" ></TextBlock>
+                                <Button x:Name="QN2" Background="Transparent" Style="{DynamicResource playerButton}">
+
+                                </Button>
+                            </Grid>
+                        </Border>
+                        <Border Height="70" Width="45"  Background="Red" CornerRadius="7" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid>
+                                <TextBlock Text="QN3" ></TextBlock>
+                                <Button x:Name="QN3" Background="Transparent" Style="{DynamicResource playerButton}">
+
+                                </Button>
+                            </Grid>
+                        </Border>
+                        <Border Height="70" Width="45"  Background="Red" CornerRadius="7" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid>
+                                <TextBlock Text="QN4" ></TextBlock>
+                                <Button x:Name="QN4" Background="Transparent" Style="{DynamicResource playerButton}">
+
+                                </Button>
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+
+
+                    <Grid Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Border Height="200" Width="190" Background="Red" CornerRadius="10">
+                            <TextBlock Text="Home , hotel" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                            </TextBlock>
+                        </Border>
+                    </Grid>
+
+
+
+
+
+
+                </Grid>
+
+            </Border>
+
+            <Border Background="White" Height="430" CornerRadius="20" Grid.Column="1" Margin="10 0 10 0">
+                <Grid x:Name="map">
+                    <Border Background="Yellow" Height="410" Width="410" CornerRadius="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid>
+
+                            <Button Width="70" Height="70" Background="Blue" Margin="0,340,340,0" Click="Button_Click" x:Name="postionStart" Style="{DynamicResource postionStyle}"></Button>
+                            <Button Width="70" Height="70" Background="Blue" Margin="0,0,340,340" Click="Button_Click" x:Name="postionPrison" Style="{DynamicResource postionStyle}"></Button>
+                            <Button Width="70" Height="70" Background="Blue" Margin="340,0,0,340" Click="Button_Click" x:Name="postionPanking" Style="{DynamicResource postionStyle}"></Button>
+                            <Button Width="70" Height="70" Background="Blue" Margin="340,340,0,0" Click="Button_Click" x:Name="postionGoPrison" Style="{DynamicResource postionStyle}"></Button>
+
+                            <Grid Margin="0 70 340 70" HorizontalAlignment="center" VerticalAlignment="center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="33"/>
+                                </Grid.RowDefinitions>
+
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="0" Click="Button_Click" x:Name="postion1" Style="{DynamicResource postionStyle}"></Button>
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="1" Click="Button_Click" x:Name="postion2" Style="{DynamicResource postionStyle}"></Button>
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="2" Click="Button_Click" x:Name="postion3" Style="{DynamicResource postionStyle}"></Button>
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="3" Click="Button_Click" x:Name="postion4" Style="{DynamicResource postionStyle}"></Button>
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="4" Click="Button_Click" x:Name="postion5" Style="{DynamicResource postionStyle}"></Button>
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="5" Click="Button_Click" x:Name="postion6" Style="{DynamicResource postionStyle}"></Button>
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="6" Click="Button_Click" x:Name="postion7" Style="{DynamicResource postionStyle}"></Button>
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="7" Click="Button_Click" x:Name="postion8" Style="{DynamicResource postionStyle}"></Button>
+
+                            </Grid>
+
+                            <Grid Margin="340 70 70 70" HorizontalAlignment="center" VerticalAlignment="center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="33"/>
+                                    <RowDefinition Height="33"/>
+                                </Grid.RowDefinitions>
+
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="0" Click="Button_Click" x:Name="postion17" Style="{DynamicResource postionStyle}" Margin="0,0,-70,0" VerticalAlignment="Bottom"></Button>
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="1" Click="Button_Click" x:Name="postion18" Style="{DynamicResource postionStyle}" Margin="0,0,-70,0" VerticalAlignment="Bottom"></Button>
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="2" Click="Button_Click" x:Name="postion19" Style="{DynamicResource postionStyle}" Margin="0,0,-70,0" VerticalAlignment="Bottom"></Button>
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="3" Click="Button_Click" x:Name="postion20" Style="{DynamicResource postionStyle}" Margin="0,0,-70,0" VerticalAlignment="Bottom"></Button>
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="4" Click="Button_Click" x:Name="postion21" Style="{DynamicResource postionStyle}" Margin="0,0,-70,0" VerticalAlignment="Bottom"></Button>
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="5" Click="Button_Click" x:Name="postion22" Style="{DynamicResource postionStyle}" Margin="0,0,-70,0" VerticalAlignment="Bottom"></Button>
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="6" Click="Button_Click" x:Name="postion23" Style="{DynamicResource postionStyle}" Margin="0,0,-70,0" VerticalAlignment="Bottom"></Button>
+                                <Button Width="70" Height="33" Background="Blue" Grid.Row="7" Click="Button_Click" x:Name="postion24" Style="{DynamicResource postionStyle}" Margin="0,0,-70,0" VerticalAlignment="Bottom"></Button>
+
+                            </Grid>
+
+                            <Grid Margin="70 0 70 340" HorizontalAlignment="center" VerticalAlignment="center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="33"/>
+                                    <ColumnDefinition Width="33"/>
+                                    <ColumnDefinition Width="33"/>
+                                    <ColumnDefinition Width="33"/>
+                                    <ColumnDefinition Width="33"/>
+                                    <ColumnDefinition Width="33"/>
+                                    <ColumnDefinition Width="33"/>
+                                    <ColumnDefinition Width="33"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="0" Click="Button_Click" x:Name="postion9" Style="{DynamicResource postionStyle}" VerticalAlignment="Top"/>
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="1" Click="Button_Click" x:Name="postion10" Style="{DynamicResource postionStyle}"  VerticalAlignment="Top"></Button>
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="2" Click="Button_Click" x:Name="postion11" Style="{DynamicResource postionStyle}"  VerticalAlignment="Top"></Button>
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="3" Click="Button_Click" x:Name="postion12" Style="{DynamicResource postionStyle}"  VerticalAlignment="Top"></Button>
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="4" Click="Button_Click" x:Name="postion13" Style="{DynamicResource postionStyle}"  VerticalAlignment="Top"></Button>
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="5" Click="Button_Click" x:Name="postion14" Style="{DynamicResource postionStyle}"  VerticalAlignment="Top"></Button>
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="6" Click="Button_Click" x:Name="postion15" Style="{DynamicResource postionStyle}"  VerticalAlignment="Top"></Button>
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="7" Click="Button_Click" x:Name="postion16" Style="{DynamicResource postionStyle}"  VerticalAlignment="Top"/>
+
+                            </Grid>
+
+                            <Grid Margin="70 340 70 0" HorizontalAlignment="center" VerticalAlignment="center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="33"/>
+                                    <ColumnDefinition Width="33"/>
+                                    <ColumnDefinition Width="33"/>
+                                    <ColumnDefinition Width="33"/>
+                                    <ColumnDefinition Width="33"/>
+                                    <ColumnDefinition Width="33"/>
+                                    <ColumnDefinition Width="33"/>
+                                    <ColumnDefinition Width="33"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="0" Click="Button_Click" x:Name="postion25" Style="{DynamicResource postionStyle}" VerticalAlignment="Top"/>
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="1" Click="Button_Click" x:Name="postion26" Style="{DynamicResource postionStyle}"  VerticalAlignment="Top"></Button>
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="2" Click="Button_Click" x:Name="postion27" Style="{DynamicResource postionStyle}"  VerticalAlignment="Top"></Button>
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="3" Click="Button_Click" x:Name="postion28" Style="{DynamicResource postionStyle}"  VerticalAlignment="Top"></Button>
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="4" Click="Button_Click" x:Name="postion29" Style="{DynamicResource postionStyle}"  VerticalAlignment="Top"></Button>
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="5" Click="Button_Click" x:Name="postion30" Style="{DynamicResource postionStyle}"  VerticalAlignment="Top"></Button>
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="6" Click="Button_Click" x:Name="postion31" Style="{DynamicResource postionStyle}"  VerticalAlignment="Top"></Button>
+                                <Button Width="33" Height="70" Background="Blue" Grid.Column="7" Click="Button_Click" x:Name="postion32" Style="{DynamicResource postionStyle}"  VerticalAlignment="Top"/>
+
+                            </Grid>
+
+                            <Button Width="50" Height="50" Background="Pink" x:Name="dice" Style="{DynamicResource diceButton}">
+                                <TextBlock Text="DICE"></TextBlock>
+                            </Button>
+
+                        </Grid>
+
+
+
+
+                    </Border>
+
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+
+</Window>
