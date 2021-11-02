@@ -6,4 +6,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="Components\" />
+    <Folder Include="Core\" />
+    <Folder Include="Audios\" />
+    <Folder Include="Styles\" />
+  </ItemGroup>
+
 </Project>
