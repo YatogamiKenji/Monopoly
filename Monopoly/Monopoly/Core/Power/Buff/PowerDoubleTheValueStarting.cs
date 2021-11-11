@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Monopoly
 {
     // Tăng gấp đôi giá trị khi đi qua ô bắt đầu
-    class PowerDoubleTheValueStarting
+    class PowerDoubleTheValueStarting: Power
     {
         public PowerDoubleTheValueStarting() : base()
         { 

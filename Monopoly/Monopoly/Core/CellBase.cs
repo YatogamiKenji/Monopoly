@@ -6,10 +6,29 @@ using System.Threading.Tasks;
 
 namespace Monopoly
 {
-    abstract class CellBase
+    public class CellBase
     {
-        private string Name;
-        abstract public void Chuc_nang();
+        private string _name;
 
+        public string name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        virtual public void Chuc_nang()
+        {
+            
+        }
+
+        public CellBase()
+        {
+            _name = "";
+        }
+
+        public CellBase(string name)
+        {
+            _name = name;
+        }
     }
 }

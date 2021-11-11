@@ -25,8 +25,8 @@ namespace Monopoly
         }
 
         // Vị trí hiện tại của nhân vật trên map
-        private byte _position;
-        public byte position
+        private int _position;
+        public int position
         {
             get { return _position; }
             set { _position = value; }
