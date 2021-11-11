@@ -16,6 +16,13 @@ namespace Monopoly
             set { _name = value; }
         }
 
+        private string _avatar;
+        public string avatar
+        {
+            get { return _avatar; }
+            set { _avatar = avatar; }
+        }
+
         // Giá trị ban đầu của mảnh đất
         private int _value;
         public int value

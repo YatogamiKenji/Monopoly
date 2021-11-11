@@ -16,6 +16,13 @@ namespace Monopoly
             set { _name = value; }
         }
 
+        private string _avatar;
+        public string avatar
+        {
+            get { return _avatar; }
+            set { _avatar = avatar; }
+        }
+
         // Tiền người chơi có
         private int _money;
         public int money
