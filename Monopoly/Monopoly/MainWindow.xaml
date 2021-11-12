@@ -60,9 +60,6 @@
                     <ColumnDefinition Width="80"/>
                 </Grid.ColumnDefinitions>
 
-                <Canvas  Grid.Row="0" Grid.Column="0" Background="Yellow" >
-                    <TextBlock Text="Đi tù" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" IsHitTestVisible="False"></TextBlock>
-                </Canvas>
                 <Canvas x:Name="_10" Grid.Row="0" Grid.Column="0" Background="Yellow" >
                     <TextBlock Text="Đi tù" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" IsHitTestVisible="False"></TextBlock>
                 </Canvas>
@@ -106,7 +103,7 @@
                 <Canvas x:Name="_28" Grid.Row="8" Grid.Column="10" Background="Yellow" ></Canvas>
                 <Canvas x:Name="_29" Grid.Row="9" Grid.Column="10" Background="Yellow" ></Canvas>
 
-                <Canvas x:Name="OGiuaBanCo" Grid.RowSpan="9" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="9" Width="540" Background="Violet">
+                <Canvas x:Name="OGiuaBanCo" Grid.RowSpan="9" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="9" Width="540" Background="LightBlue">
                     <Button x:Name="But_xucxac"
                         Width="100"
                         Height="100"
