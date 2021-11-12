@@ -8,6 +8,7 @@ namespace Monopoly
 {
     class CellChance : CellBase
     {
+
         public override void Chuc_nang()
         {
             
