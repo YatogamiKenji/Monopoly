@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monopoly"
         mc:Ignorable="d"
+        xmlns:component="clr-namespace:Monopoly.Components"
         Title="MainWindow" Height="755" Width="1280">
     <Grid x:Name="nen" Background="Green" Width="1280" Height="720">
 
@@ -20,13 +21,14 @@
             <ColumnDefinition Width="85"/>
             <ColumnDefinition Width="700"/>
             <ColumnDefinition Width="85"/>
-        </Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>        
 
         <Canvas x:Name="Bor_SideBar"
             Grid.Row="1"
             Grid.Column="1"
-            Background="Gray"
-            />
+            Background="Gray">
+            
+        </Canvas>
         <Canvas x:Name="Can_BanCo"  Width="auto" Height="auto" Grid.Column="3" Grid.Row ="1" Background="Gray" >
 
             <Grid x:Name="BanCo" Width="700" Height="700" Grid.Column="3" Grid.Row ="1" >

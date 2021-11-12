@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Monopoly.Components.ChanceCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Monopoly.Components"
+             x:Name="root"
+             mc:Ignorable="d" 
+             d:DesignHeight="129" d:DesignWidth="97">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto" MinHeight="53"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Background="red"
+                   Text="{Binding Title, ElementName=root}"
+                   TextWrapping="NoWrap"
+                   TextTrimming="CharacterEllipsis"
+                   Foreground="White"
+                   FontSize="13"
+                   Padding="2 0 2 0"/>
+
+        <StackPanel Grid.Row="1">
+            <Image Source="{Binding ImgSource, ElementName=root}" Stretch="UniformToFill"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Background="#E0DCDC">
+            <TextBlock Text="{Binding Description, ElementName=root}"
+                       TextWrapping="WrapWithOverflow"
+                       FontSize="10"
+                       Margin="2 0 2 0"/>
+        </StackPanel>
+
+
+        <TextBlock Grid.Row="3"
+                   Background="Red"
+                   Text="Thẻ cơ hội"
+                   TextWrapping="NoWrap"
+                   TextTrimming="CharacterEllipsis"
+                   Foreground="White"
+                   FontSize="10"
+                   FontWeight="SemiBold"
+                   Padding="2 0 2 0"/>
+    </Grid>
+</UserControl>

@@ -8,9 +8,14 @@
 
   <ItemGroup>
     <Folder Include="Images\" />
-    <Folder Include="Components\" />
     <Folder Include="Audios\" />
     <Folder Include="Styles\" />
+	<Folder Include="Core\" />
+	<Folder Include="Components\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
 </Project>
