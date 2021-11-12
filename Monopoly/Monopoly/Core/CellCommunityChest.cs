@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Monopoly
 {
-    class CellKhiVan : CellBase
+    class CellCommunityChest : CellBase
     {
         public override void Chuc_nang()
         {
