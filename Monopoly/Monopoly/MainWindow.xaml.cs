@@ -39,7 +39,6 @@ namespace Monopoly
         {
             InitPlayer();
             InitPlayerClass();
-            InitCellManager();
             InitData();
             cellPos = new List<Canvas>(40)
             { _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14,_15,_16,_17,_18,_19,_20,_21,_22,_23,_24,_25,_26,_27,_28,_29,_30,_31,_32,_33,_34,_35,_36,_37,_38,_39 };
@@ -52,46 +51,6 @@ namespace Monopoly
                 playersClass[i] = new Player();
                 playersClass[i].position = 0;
             }
-        }
-
-        public void InitCellManager()
-        {
-            for (int i =0; i < 6; i++)
-            {
-                if(i==0)
-                {
-                    cellManager[i] = new CellStart();
-                }      
-                else if (i > 0 && i < 6)
-                {
-                    cellManager[i] = new CellLand();
-                }
-            }
-            CellLand CurLand1 = new CellLand();
-            CurLand1.name = "A";
-            CurLand1.value = 1000;
-            CurLand1.level = 0;
-            cellManager[1] = CurLand1;
-            CellLand CurLand2 = new CellLand();
-            CurLand2.name = "B";
-            CurLand2.value = 1200;
-            CurLand2.level = 0;
-            cellManager[2] = CurLand2;
-            CellLand CurLand3 = new CellLand();
-            CurLand3.name = "C";
-            CurLand3.value = 1400;
-            CurLand3.level = 0;
-            cellManager[3] = CurLand3;
-            CellLand CurLand4 = new CellLand();
-            CurLand4.name = "D";
-            CurLand4.value = 1600;
-            CurLand4.level = 0;
-            cellManager[4] = CurLand4;
-            CellLand CurLand5 = new CellLand();
-            CurLand5.name = "E";
-            CurLand5.value = 1800;
-            CurLand5.level = 0;
-            cellManager[5] = CurLand5;
         }
 
         void InitData()
