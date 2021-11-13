@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Monopoly"
         mc:Ignorable="d"
         xmlns:component="clr-namespace:Monopoly.Components"
-        Title="MainWindow" Height="720" Width="1280">
+        Title="MainWindow" Height="755" Width="1280">
     <Grid >
         <component:ChessBoard/>
 
