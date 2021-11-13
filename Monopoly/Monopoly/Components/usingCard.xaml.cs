@@ -12,23 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Threading;
-using System.IO;
 
-namespace Monopoly
+namespace Monopoly.Components
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for usingCard.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class usingCard : UserControl
     {
-       
-        public MainWindow()
+        public usingCard()
         {
             InitializeComponent();
-            
         }
-
-        
     }
 }

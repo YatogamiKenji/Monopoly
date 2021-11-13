@@ -12,23 +12,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Threading;
-using System.IO;
-
-namespace Monopoly
+namespace Monopoly.Components
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ViewStart.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ViewStart : UserControl
     {
-       
-        public MainWindow()
+        public ViewStart()
         {
             InitializeComponent();
-            
         }
 
-        
+        private void QUIT_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close();
+        }
+
+        private void Play_Click(object sender, RoutedEventArgs e)
+        {
+            
+            
+        }
     }
 }

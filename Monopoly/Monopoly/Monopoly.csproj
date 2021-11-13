@@ -11,7 +11,6 @@
     <Folder Include="Audios\" />
     <Folder Include="Styles\" />
 	<Folder Include="Core\" />
-	<Folder Include="Components\" />
   </ItemGroup>
 
   <ItemGroup>
