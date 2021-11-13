@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Monopoly.Components.Setup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Monopoly.Components"
+             mc:Ignorable="d" 
+       d:DesignHeight="755" d:DesignWidth="1280">
+    <Grid Width="1280" Height="720" TextBlock.FontFamily="Bahnschrift" Background="White">
+
+        <TextBox Text="Chọn số lượng người chơi"
+                 FontSize="50" 
+                 Height="110"
+                 Width="960"
+                 TextAlignment="Center"
+                 Background="Orange"
+                 VerticalContentAlignment="Center"
+                 Margin="160,0,160,546" 
+                 FontWeight="Bold" 
+                  IsReadOnly="True"
+                 />
+
+        <Button Width="200" Height="100"  Content="2 người" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="160,206,920,414"></Button>
+        <Button Width="200" Height="100" Content="3 người" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="540,206,540,414"></Button>
+        <Button Width="200" Height="100" Content="4 người" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="920,206,160,414"></Button>
+        <TextBox Text="Chế độ chơi"
+                 FontSize="50" 
+                 Height="110"
+                 Width="670"
+                 TextAlignment="Center"
+                 Background="Orange"
+                 VerticalAlignment="Top"
+                 VerticalContentAlignment="Center"
+                 Margin="305,340,305,0" 
+                 FontWeight="Bold"
+                 IsReadOnly="True"
+                 />
+        <Button Width="360" Height="100" Content="Unlimied" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="80,490,840,130"></Button>
+        <Button Width="360" Height="100" Content="Setup" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="839,490,80,130"/>
+        <Button Width="100" Height="50" Content="Back" Background="Red" FontFamily="Bahnschrift" FontSize="36" Margin="45,635,1136,35"/>
+        <Button Width="300" Height="100" Content="Bắt đầu" Background="Green" FontFamily="Bahnschrift" FontSize="50" Margin="490,585,490,35" ></Button>
+    </Grid>
+</UserControl>
+
