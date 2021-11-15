@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="Monopoly.Components.LandCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Monopoly.Components"
+             x:Name="root"
+             mc:Ignorable="d" 
+             d:DesignHeight="120" d:DesignWidth="93">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Background="red"
+                   Text="{Binding Title, ElementName=root}"
+                   TextWrapping="NoWrap"
+                   TextTrimming="CharacterEllipsis"
+                   Foreground="White"
+                   FontSize="13"
+                   Padding="2 0 2 0"/>
+
+        <StackPanel Grid.Row="1">
+            <Image Source="{Binding ImgSource, ElementName=root}" Stretch="UniformToFill"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Background="#E0DCDC">
+
+            <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                <TextBlock Text="Cấp:"
+                       TextWrapping="WrapWithOverflow"
+                       FontSize="10"
+                       Margin="2 0 0 0"/>
+                <TextBlock Text="{Binding Level, ElementName=root}"
+                       TextWrapping="WrapWithOverflow"
+                       FontSize="10"
+                       Margin="2 0 2 0"/>
+            </StackPanel>
+
+            <!-- Thuế -->
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Thuế:"
+                       TextWrapping="WrapWithOverflow"
+                       FontSize="10"
+                       Margin="2 0 0 0"/>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Tax, ElementName=root}"
+                           Margin="2 0 1 0"
+                           Foreground="DarkOrange"
+                           FontSize="10"
+                           FontWeight="Bold"/>
+                    <Image Source="/Monopoly;component/Image/coinIcon.png"
+                       Height="8"
+                       Width="8"
+                       Margin="0 1 0  0"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Giá trị -->
+            <StackPanel Orientation="Horizontal"  Margin="0 0 0 5">
+                <TextBlock Text="Giá trị:"
+                       TextWrapping="WrapWithOverflow"
+                       FontSize="10"
+                       Margin="2 0 0 0"/>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Value, ElementName=root}"
+                           Margin="2 0 1 0"
+                           Foreground="DarkOrange"
+                           FontSize="10"
+                           FontWeight="Bold"/>
+                    <Image Source="/Monopoly;component/Image/coinIcon.png"
+                       Height="8"
+                       Width="8"
+                       Margin="0 1 0  0"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

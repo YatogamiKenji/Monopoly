@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="Monopoly.Components.TabSideBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Monopoly.Components"
+             x:Name="root"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="75">
+    <StackPanel>
+        <!-- Avatar -->
+        <Border Background="Aqua"
+                CornerRadius="100"
+                MaxWidth="62"
+                Margin="3"
+                Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}">
+            <Image Source="{Binding ImgSource, ElementName=root}"
+                   Stretch="UniformToFill"/>
+            
+        </Border>
+        
+        <!-- Name Player -->
+        <TextBlock Text="{Binding PlayerName, ElementName=root}"
+                   TextAlignment="Center"
+                   Foreground="#525151"
+                   FontSize="13"/>
+        
+        <!-- Money -->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock  Text="{Binding Money, ElementName=root}"
+                        Margin="2 0 1 0"
+                        Foreground="DarkOrange"
+                        FontSize="12"
+                        FontWeight="Bold"/>
+            <Image 
+                Source="/Monopoly;component/Image/coinIcon.png"
+                Height="8"
+                Width="8"
+                Margin="0 1 0  0"/>
+        </StackPanel>
+
+    </StackPanel>
+</UserControl>

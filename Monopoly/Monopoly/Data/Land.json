@@ -1,3 +1,142 @@
-{
-
-}
+[
+  // 1
+  {
+    "name": "Medusa",
+    "value": "1200"
+  },
+  // 2
+  {
+    "name": "Alpha",
+    "value": "1600"
+  },
+  // 3
+  {
+    "name": "Venus",
+    "value": "2200"
+  },
+  // 4
+  {
+    "name": "Alain",
+    "value": "2800"
+  },
+  // 5
+  {
+    "name": "Leo",
+    "value": "3200"
+  },
+  // 6
+  {
+    "name": "Aurelion",
+    "value": "3600"
+  },
+  // 7
+  {
+    "name": "Sol",
+    "value": "4000"
+  },
+  // 8
+  {
+    "name": "Dragon",
+    "value": "4500"
+  },
+  // 9
+  {
+    "name": "Runtera",
+    "value": "5000"
+  },
+  // 10
+  {
+    "name": "Pandora",
+    "value": "5600"
+  },
+  // 11
+  {
+    "name": "Asgard",
+    "value": "6300"
+  },
+  // 12
+  {
+    "name": "Rune",
+    "value": "6800"
+  },
+  // 13
+  {
+    "name": "Caprica",
+    "value": "7400"
+  },
+  // 14
+  {
+    "name": "Ego",
+    "value": "8000"
+  },
+  // 15
+  {
+    "name": "Cybertron",
+    "value": "8600"
+  },
+  // 16
+  {
+    "name": "Krypton",
+    "value": "9200"
+  },
+  // 17
+  {
+    "name": "Solaris",
+    "value": "9800"
+  },
+  // 18
+  {
+    "name": "Siopeia",
+    "value": "10300"
+  },
+  // 19
+  {
+    "name": "Devil",
+    "value": "10800"
+  },
+  // 20
+  {
+    "name": "Arrakis",
+    "value": "11500"
+  },
+  // 21
+  {
+    "name": "Coruscant",
+    "value": "12000"
+  },
+  // 22
+  {
+    "name": "Hope",
+    "value": "12500"
+  },
+  // 23
+  {
+    "name": "Omega",
+    "value": "13000"
+  },
+  // 24
+  {
+    "name": "Valoran",
+    "value": "13400"
+  },
+  // 25
+  {
+    "name": "Demacia",
+    "value": "13800"
+  },
+  // 26
+  {
+    "name": "Void",
+    "value": "14200"
+  },
+  // 27
+  {
+    "name": "Paramecia",
+    "value": "14600"
+  },
+  // 28
+  {
+    "name": "Istanlao",
+    "value": "15000"
+  }
+]
