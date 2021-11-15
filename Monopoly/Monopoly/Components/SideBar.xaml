@@ -17,15 +17,15 @@
 
             <!-- Group Tab-->
             <Grid Grid.Row="0">
-                <component:TabSideBarGroup SelectedId="{Binding SelectedId, ElementName=root, Mode=TwoWay}"
-                                           Players="{Binding Players, ElementName=root}"/>
+                <ContentControl x:Name="tabGroup"/>
             </Grid>
 
             
             
-            <!-- Group Content -->
+            <!-- Content -->
             <Grid Grid.Row="1">
-                <component:ContentSideBarGroup SelectedId="{Binding SelectedId, ElementName=root}"/>
+                <ContentControl x:Name="content"/>
+
             </Grid>
 
         </Grid>

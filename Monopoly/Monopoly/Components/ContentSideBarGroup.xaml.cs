@@ -37,22 +37,22 @@ namespace Monopoly.Components
         {
             InitializeComponent();
 
-            listItem = new List<ContentSideBar>();
-            for (int i = 0; i < 4; i++)
-            {
-                ContentSideBar content = new ContentSideBar();
-                content.Id = i;
-                if (SelectedId == content.Id)
-                {
-                    content.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    content.Visibility = Visibility.Hidden;
-                }
-                listItem.Add(content);
-                gridContentSideBarGroup.Children.Add(content);
-            }
+            //listItem = new List<ContentSideBar>();
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    ContentSideBar content = new ContentSideBar();
+            //    content.Id = i;
+            //    if (SelectedId == content.Id)
+            //    {
+            //        content.Visibility = Visibility.Visible;
+            //    }
+            //    else
+            //    {
+            //        content.Visibility = Visibility.Hidden;
+            //    }
+            //    listItem.Add(content);
+            //    gridContentSideBarGroup.Children.Add(content);
+            //}
         }
     }
 }

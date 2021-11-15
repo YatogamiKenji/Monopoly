@@ -34,16 +34,10 @@ namespace Monopoly.Components
         public static readonly DependencyProperty SelectedIdProperty =
             DependencyProperty.Register("SelectedId", typeof(int), typeof(TabSideBarGroup), new PropertyMetadata(0));
 
-        private List<TabSideBar> listItem;
-
-
-
-
-
         public List<Player> Players
         {
             get { return (List<Player>)GetValue(PlayersProperty); }
-            set { SetValue(PlayersProperty, value); setTab(); }
+            set { SetValue(PlayersProperty, value);}
         }
 
         // Using a DependencyProperty as the backing store for Players.  This enables animation, styling, binding, etc...
@@ -51,24 +45,23 @@ namespace Monopoly.Components
             DependencyProperty.Register("Players", typeof(List<Player>), typeof(TabSideBarGroup));
 
 
-
-
-
-        // Event
-        //public static readonly RoutedEvent TabClickEvent =
-        //    EventManager.RegisterRoutedEvent(nameof(OnTabClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TabSideBarGroup));
-
-        //public event RoutedEventHandler OnTabClick
-        //{
-        //    add { AddHandler(TabClickEvent, value); }
-        //    remove { RemoveHandler(TabClickEvent, value); }
-        //}
-
         public TabSideBarGroup()
         {
             InitializeComponent();
-            listItem = new List<TabSideBar>();
-            for (int i = 0; i < Players.Count; i++)
+            createTab();
+        }
+
+        public TabSideBarGroup(List<Player> players, int turn)
+        {
+            InitializeComponent();
+            Players = players;
+            SelectedId = turn;
+            createTab();
+        }
+
+        private void createTab()
+        {
+            for (int i = 0; i < Players?.Count; i++)
             {
                 TabSideBar t = new TabSideBar(i, new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative)), Players[i].name, Players[i].money);
                 Grid.SetColumn(t, i);
@@ -78,35 +71,8 @@ namespace Monopoly.Components
                 {
                     t.Background = Brushes.White;
                 }
-                listItem.Add(t);
                 gridTabSideBarGroup.Children.Add(t);
             }
         }
-
-        void setTab()
-        {
-            for (int i = 0; i < Players.Count; i++)
-            {
-                
-                listItem[i].Background = Brushes.LightGray;
-                if (SelectedId == i)
-                {
-                    listItem[i].Background = Brushes.White;
-                }
-            }
-        }
-
-        //private void TestEvent(object sender, MouseEventArgs e)
-        //{
-
-        //    MessageBox.Show(SelectedId + "");
-        //    SelectedId = 3;
-
-        //}
-
-        //private void TabClickFunc(object sender, RoutedEventArgs e)
-        //{
-        //    RaiseEvent(new RoutedEventArgs(TabClickEvent));
-        //}
     }
 }

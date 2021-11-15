@@ -26,21 +26,37 @@ namespace Monopoly.Components
 
 
 
-        public int Id
+        public int Money
         {
-            get { return (int)GetValue(IdProperty); }
-            set { SetValue(IdProperty, value); }
+            get { return (int)GetValue(MoneyProperty); }
+            set { SetValue(MoneyProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Id.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty IdProperty =
-            DependencyProperty.Register("Id", typeof(int), typeof(ContentSideBar), new PropertyMetadata(0));
+        // Using a DependencyProperty as the backing store for Money.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MoneyProperty =
+            DependencyProperty.Register("Money", typeof(int), typeof(ContentSideBar), new PropertyMetadata(0));
 
 
 
-        public ContentSideBar()
+        public List<Land> Lands
+        {
+            get { return (List<Land>)GetValue(LandsProperty); }
+            set { SetValue(LandsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Lands.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LandsProperty =
+            DependencyProperty.Register("Lands", typeof(List<Land>), typeof(ContentSideBar));
+
+
+
+        public ContentSideBar(int money, List<Land> lands)
         {
             InitializeComponent();
+            Money = money;
+            Lands = lands;
+            landHeading.Text = "Đất (" + Lands?.Count + "):";
+            listLandCard.Content = new ListLandCardSideBar(Lands);
         }
     }
 }
