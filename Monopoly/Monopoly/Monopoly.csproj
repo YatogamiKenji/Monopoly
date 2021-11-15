@@ -10,7 +10,6 @@
     <Folder Include="Images\" />
     <Folder Include="Audios\" />
     <Folder Include="Styles\" />
-	<Folder Include="Core\" />
   </ItemGroup>
 
   <ItemGroup>
