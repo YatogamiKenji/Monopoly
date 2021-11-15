@@ -8,8 +8,5 @@
         x:Name="root"
         xmlns:component="clr-namespace:Monopoly.Components"
         Title="MainWindow" Height="755" Width="1280">
-    <StackPanel x:Name="main" Orientation="Horizontal">
-        <component:SideBar x:Name="sideBar"/>
-        <Button Content="Add" Click="Button_Click"/>
-    </StackPanel>
+    
 </Window>
