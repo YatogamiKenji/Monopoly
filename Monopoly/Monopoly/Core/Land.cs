@@ -31,6 +31,14 @@ namespace Monopoly
             set { _value = value; }
         }
 
+        // chủ nhân 0: vô chủ, 1: player1, 2: player 2, 3: player3, 4: player 4
+        private int _owner;
+        public int owner
+        {
+            get { return _owner; }
+            set { _owner = value; }
+        }
+
         // Giá trị mảnh đất sau mỗi lần nâng cấp
         private int _landValue;
         public int landValue
@@ -45,6 +53,13 @@ namespace Monopoly
         {
             get { return _level; }
             set { _level = value; }
+        }
+
+        private string _description;
+        public string description
+        {
+            get { return _description; }
+            set { _description = value; }
         }
 
         // Contructor không đối số

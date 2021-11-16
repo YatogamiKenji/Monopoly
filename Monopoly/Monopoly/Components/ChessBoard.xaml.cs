@@ -24,7 +24,7 @@ namespace Monopoly.Components
         List<Canvas> cellPos;
         public int PlayerTurn = 0;
         Player[] playersClass = new Player[4];
-        CellBase[] cellManager = new CellBase[6];
+        Cell[] cellManager = new Cell[40];
         List<Land> lands = new List<Land>();
 
         public ChessBoard()
@@ -53,8 +53,26 @@ namespace Monopoly.Components
 
         void InitData()
         {
-            var content = System.IO.File.ReadAllText(@".\Data\Land.json");
+            var content = System.IO.File.ReadAllText(@"D:\Bài Giảng UIT - HK3\Lập trình trực quan\Đồ án\New folder\Monopoly\Monopoly\Monopoly\Data\Land.json");
             lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
+            int count = 0;
+            for (int i = 0; i < 40; i++) 
+            {
+                cellManager[i] = new Cell();
+                if (i == 0) cellManager[0].type = CellType.BatDau;
+                else if (i == 10) cellManager[10].type = CellType.OTu;
+                else if (i == 20) cellManager[20].type = CellType.BaiDoXe;
+                else if (i == 30) cellManager[30].type = CellType.VaoTu;
+                else if (i == 3 || i == 37) cellManager[i].type = CellType.Thue;
+                else if (i == 7 || i == 23) cellManager[i].type = CellType.CoHoi;
+                else if (i == 13 || i == 27) cellManager[i].type = CellType.KhiVan;
+                else if (i == 17 || i == 33) cellManager[i].type = CellType.QuyenNang;
+                else
+                {
+                    cellManager[i].type = CellType.Dat;
+                    cellManager[i].index = count++;
+                }
+            }
         }
 
         public void InitPlayer()
@@ -80,7 +98,7 @@ namespace Monopoly.Components
             playersClass[PlayerTurn].position = (playersClass[PlayerTurn].position + dice) % 40;
             Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersClass[PlayerTurn].position]));
             Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersClass[PlayerTurn].position]));
-            //cellManager[playersClass[PlayerTurn].position].Chuc_nang();
+            MessageBox.Show(cellManager[playersClass[PlayerTurn].position].type.ToString());
             PlayerTurn = (PlayerTurn + 1) % 4;
         }
     }

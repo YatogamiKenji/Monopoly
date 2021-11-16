@@ -26,9 +26,6 @@ namespace Monopoly
         public MainWindow()
         {
             InitializeComponent();
-            
         }
-
-        
     }
 }

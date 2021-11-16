@@ -8,7 +8,7 @@
         xmlns:component="clr-namespace:Monopoly.Components"
         Title="MainWindow" Height="755" Width="1280">
     <Grid >
-        <component:ChessBoard/>
+        <component:ViewStart/>
 
     </Grid>
 </Window>

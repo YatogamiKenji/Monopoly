@@ -31,8 +31,7 @@ namespace Monopoly.Components
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-            
-            
+            this.Content = new ChessBoard();
         }
     }
 }
