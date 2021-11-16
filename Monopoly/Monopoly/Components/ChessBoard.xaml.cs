@@ -20,12 +20,24 @@ namespace Monopoly.Components
     /// </summary>
     public partial class ChessBoard : UserControl
     {
-        List<Canvas> players = new List<Canvas>();
-        List<Canvas> cellPos;
+        //lượt của player nào
         public int PlayerTurn = 0;
+        //số vòng hiện tại
+        public int turn = 1;
+        //danh sách chứa các player
+        List<Canvas> players = new List<Canvas>();
+        //chứa các ô trên bàn cờ ở trên thiết kế (XAML)
+        List<Canvas> cellPos;
+        //lưu dữ liệu của các player
         Player[] playersClass = new Player[4];
-        CellBase[] cellManager = new CellBase[6];
+        //lưu dữ liệu của các ô trên bàn cờ
+        Cell[] cellManager = new Cell[40];
+        //lưu dữ liệu đất
         List<Land> lands = new List<Land>();
+        //lưu dữ liệu các thẻ cơ hội
+        List<Chance> chances = new List<Chance>();
+        //lưu dữ liệu các thẻ khí vận
+        List<Power> powers = new List<Power>();
 
         public ChessBoard()
         {
@@ -33,16 +45,17 @@ namespace Monopoly.Components
             Init();
         }
 
+        //khởi tạo giá trị
         public void Init()
         {
             InitPlayer();
             InitPlayerClass();
-            InitCellManager();
-            //InitData();
+            InitData();
             cellPos = new List<Canvas>(40)
             { _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14,_15,_16,_17,_18,_19,_20,_21,_22,_23,_24,_25,_26,_27,_28,_29,_30,_31,_32,_33,_34,_35,_36,_37,_38,_39 };
         }
 
+        //khởi tạo player
         public void InitPlayerClass()
         {
             for (int i = 0; i < 4; i++)
@@ -52,58 +65,40 @@ namespace Monopoly.Components
             }
         }
 
-        public void InitCellManager()
+        //khởi tạo data
+        void InitData()
         {
-            for (int i = 0; i < 6; i++)
+            var content = System.IO.File.ReadAllText(@"D:\Bài Giảng UIT - HK3\Lập trình trực quan\Đồ án\New folder\Monopoly\Monopoly\Monopoly\Data\Land.json");
+            lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
+            int count = 0;
+            //khởi tạo dữ liệu quản lý các ô trên bàn cờ
+            for (int i = 0; i < 40; i++)
             {
-                if (i == 0)
+                cellManager[i] = new Cell();
+                if (i == 0) cellManager[0].type = CellType.BatDau;
+                else if (i == 10) cellManager[10].type = CellType.OTu;
+                else if (i == 20) cellManager[20].type = CellType.BaiDoXe;
+                else if (i == 30) cellManager[30].type = CellType.VaoTu;
+                else if (i == 3 || i == 37) cellManager[i].type = CellType.Thue;
+                else if (i == 7 || i == 23) cellManager[i].type = CellType.CoHoi;
+                else if (i == 13 || i == 27) cellManager[i].type = CellType.KhiVan;
+                else if (i == 17 || i == 33) cellManager[i].type = CellType.QuyenNang;
+                else
                 {
-                    cellManager[i] = new CellStart();
-                }
-                else if (i > 0 && i < 6)
-                {
-                    cellManager[i] = new CellLand();
+                    cellManager[i].type = CellType.Dat;
+                    cellManager[i].index = count++;
                 }
             }
-            CellLand CurLand1 = new CellLand();
-            CurLand1.name = "A";
-            CurLand1.value = 1000;
-            CurLand1.level = 0;
-            cellManager[1] = CurLand1;
-            CellLand CurLand2 = new CellLand();
-            CurLand2.name = "B";
-            CurLand2.value = 1200;
-            CurLand2.level = 0;
-            cellManager[2] = CurLand2;
-            CellLand CurLand3 = new CellLand();
-            CurLand3.name = "C";
-            CurLand3.value = 1400;
-            CurLand3.level = 0;
-            cellManager[3] = CurLand3;
-            CellLand CurLand4 = new CellLand();
-            CurLand4.name = "D";
-            CurLand4.value = 1600;
-            CurLand4.level = 0;
-            cellManager[4] = CurLand4;
-            CellLand CurLand5 = new CellLand();
-            CurLand5.name = "E";
-            CurLand5.value = 1800;
-            CurLand5.level = 0;
-            cellManager[5] = CurLand5;
         }
 
-        //void InitData()
-        //{
-        //    var content = System.IO.File.ReadAllText(@"D:\Bài Giảng UIT - HK3\Lập trình trực quan\Đồ án\Monopoly\Monopoly\Monopoly\Monopoly\Data\Land.json");
-        //    lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
-        //}
-
+        //khởi tạo lại vị trí của các player trên bàn cờ
         public void InitPlayer()
         {
             players.Add(player1);
             players.Add(player2);
             players.Add(player3);
             players.Add(player4);
+            //khởi tạo lại vị trí
             Grid.SetRow(players[0], 10);
             Grid.SetColumn(players[0], 0);
             Grid.SetRow(players[1], 10);
@@ -147,14 +142,53 @@ namespace Monopoly.Components
             But_xucxac1.Visibility = Visibility.Collapsed;
             But_xucxac.Visibility = Visibility.Visible;
             timer.Stop();
+            //tính số vòng đã đi được
+            if (playersClass[0].position + dice >= 40) turn++;
             //change player position
             playersClass[PlayerTurn].position = (playersClass[PlayerTurn].position + dice) % 40;
             Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersClass[PlayerTurn].position]));
             Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersClass[PlayerTurn].position]));
-            //cellManager[playersClass[PlayerTurn].position].Chuc_nang();
+            //xử lý nếu đi vào ô đất
+            if (cellManager[playersClass[PlayerTurn].position].type == CellType.Dat)
+            {
+                MessageBox.Show(lands[cellManager[playersClass[PlayerTurn].position].index].name);
+            }
+            //xử lý khi đi vào ô cơ hội
+            else if (cellManager[playersClass[PlayerTurn].position].type == CellType.CoHoi)
+            {
+
+            }
+            //xử lý khi đi vào ô khí vận
+            else if (cellManager[playersClass[PlayerTurn].position].type == CellType.KhiVan)
+            {
+
+            }
+            //xử lý khi đi vào ô quyền năng
+            else if (cellManager[playersClass[PlayerTurn].position].type == CellType.QuyenNang)
+            {
+
+            }
+            //xử lý khi đi vào ô ở tù
+            else if (cellManager[playersClass[PlayerTurn].position].type == CellType.OTu)
+            {
+
+            }
+            //xử lý khi đi vào ô vào tù
+            else if (cellManager[playersClass[PlayerTurn].position].type == CellType.VaoTu)
+            {
+                //đưa player đến ô vào tù
+                playersClass[PlayerTurn].position = 10;
+                Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[10]));
+                Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[10]));
+            }
+            //xử lý khi đi vào ô bắt đầu
+            else if (cellManager[playersClass[PlayerTurn].position].type == CellType.BatDau)
+            {
+                //thưởng tiền khi đi qua ô bắt đầu
+                playersClass[PlayerTurn].money += 1000 * turn;
+            }
+            //tính lượt của các player
             PlayerTurn = (PlayerTurn + 1) % 4;
-
-
         }
     }
 }
