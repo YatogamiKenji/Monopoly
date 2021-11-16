@@ -26,6 +26,8 @@ namespace Monopoly.Components
         Player[] playersClass = new Player[4];
         Cell[] cellManager = new Cell[40];
         List<Land> lands = new List<Land>();
+        List<Chance> chances = new List<Chance>();
+        List<Power> powers = new List<Power>();
 
         public ChessBoard()
         {
@@ -98,7 +100,11 @@ namespace Monopoly.Components
             playersClass[PlayerTurn].position = (playersClass[PlayerTurn].position + dice) % 40;
             Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersClass[PlayerTurn].position]));
             Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersClass[PlayerTurn].position]));
-            MessageBox.Show(cellManager[playersClass[PlayerTurn].position].type.ToString());
+            if (cellManager[playersClass[PlayerTurn].position].type == CellType.Dat)
+            {
+                //MessageBox.Show("mua!!!");
+                MessageBox.Show(lands[cellManager[playersClass[PlayerTurn].position].index].name);
+            }    
             PlayerTurn = (PlayerTurn + 1) % 4;
         }
     }
