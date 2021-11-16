@@ -16,6 +16,7 @@ namespace Monopoly
             set { _name = value; }
         }
 
+        //link avt player
         private string _avatar;
         public string avatar
         {

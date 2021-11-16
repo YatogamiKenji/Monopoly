@@ -16,6 +16,7 @@ namespace Monopoly
             set { _name = value; }
         }
 
+        //link avt land
         private string _avatar;
         public string avatar
         {
@@ -45,6 +46,22 @@ namespace Monopoly
         {
             get { return _level; }
             set { _level = value; }
+        }
+
+        // chủ nhân 0: vô chủ, 1: player1, 2: player 2, 3: player3, 4: player 4
+        private int _owner;
+        public int owner
+        {
+            get { return _owner; }
+            set { _owner = value; }
+        }
+
+        //mô tả mảnh đất :v
+        private string _description;
+        public string description
+        {
+            get { return _description; }
+            set { _description = value; }
         }
 
         // Contructor không đối số

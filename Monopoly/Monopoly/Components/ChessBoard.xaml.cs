@@ -181,6 +181,12 @@ namespace Monopoly.Components
                 Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[10]));
                 Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[10]));
             }
+            //xử lý khi đi vào ô thuế
+            else if (cellManager[playersClass[PlayerTurn].position].type == CellType.Thue)
+            {
+                //phạt 10% số tiền hiện có khi đi vào ô thuế
+                playersClass[PlayerTurn].money = Convert.ToInt32(Math.Ceiling(0.9 * playersClass[PlayerTurn].money));
+            }
             //xử lý khi đi vào ô bắt đầu
             else if (cellManager[playersClass[PlayerTurn].position].type == CellType.BatDau)
             {
