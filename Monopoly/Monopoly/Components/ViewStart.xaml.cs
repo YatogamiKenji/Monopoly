@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Monopoly.Components;
 namespace Monopoly.Components
 {
     /// <summary>
@@ -31,8 +32,9 @@ namespace Monopoly.Components
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-            
-            
+            Setup setup = new Setup();
+            views.Content = setup;
+
         }
     }
 }

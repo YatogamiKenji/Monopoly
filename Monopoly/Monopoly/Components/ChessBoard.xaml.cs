@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Windows.Threading;
 namespace Monopoly.Components
 {
     /// <summary>
@@ -38,7 +38,7 @@ namespace Monopoly.Components
             InitPlayer();
             InitPlayerClass();
             InitCellManager();
-            InitData();
+            //InitData();
             cellPos = new List<Canvas>(40)
             { _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14,_15,_16,_17,_18,_19,_20,_21,_22,_23,_24,_25,_26,_27,_28,_29,_30,_31,_32,_33,_34,_35,_36,_37,_38,_39 };
         }
@@ -92,11 +92,11 @@ namespace Monopoly.Components
             cellManager[5] = CurLand5;
         }
 
-        void InitData()
-        {
-            var content = System.IO.File.ReadAllText(@"D:\Bài Giảng UIT - HK3\Lập trình trực quan\Đồ án\New folder\Monopoly\Monopoly\Monopoly\Data\Land.json");
-            lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
-        }
+        //void InitData()
+        //{
+        //    var content = System.IO.File.ReadAllText(@"D:\Bài Giảng UIT - HK3\Lập trình trực quan\Đồ án\Monopoly\Monopoly\Monopoly\Monopoly\Data\Land.json");
+        //    lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
+        //}
 
         public void InitPlayer()
         {
@@ -114,15 +114,47 @@ namespace Monopoly.Components
             Grid.SetColumn(players[3], 0);
         }
 
-        private void But_xucxac_Click(object sender, RoutedEventArgs e)
+        //create value ramdom
+        public Random random = new Random();
+        public int dice = 0;
+
+        //funciton timer, show random value 1-6
+        public void timer_Tick(object sender, EventArgs e)
         {
+            messboxDice diceshow = new messboxDice();
             Random random = new Random();
-            int dice = random.Next(1, 7);
+            dice = random.Next(1, 7);
+            diceshow.Title = dice.ToString();
+            dices.Content = diceshow;
+
+        }
+        //create timer
+        public DispatcherTimer timer = new DispatcherTimer();
+        public void But_xucxac_Click(object sender, RoutedEventArgs e)
+        {
+            //setup timer
+            timer.Interval = TimeSpan.FromSeconds(0.3);
+            timer.Tick += timer_Tick;
+            timer.Start();
+            //Quay hide, Stop show
+            But_xucxac.Visibility = Visibility.Collapsed;
+            But_xucxac1.Visibility = Visibility.Visible;
+        }
+
+        public void But_xucxac_Click1(object sender, RoutedEventArgs e)
+        {
+            //Quay show, Stop hide
+            But_xucxac1.Visibility = Visibility.Collapsed;
+            But_xucxac.Visibility = Visibility.Visible;
+            timer.Stop();
+            //change player position
             playersClass[PlayerTurn].position = (playersClass[PlayerTurn].position + dice) % 40;
             Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersClass[PlayerTurn].position]));
             Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersClass[PlayerTurn].position]));
             //cellManager[playersClass[PlayerTurn].position].Chuc_nang();
             PlayerTurn = (PlayerTurn + 1) % 4;
+
+
         }
     }
 }

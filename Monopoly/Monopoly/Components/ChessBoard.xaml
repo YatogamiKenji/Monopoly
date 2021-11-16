@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Monopoly.Components"
+             xmlns:compoenent="clr-namespace:Monopoly.Components"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280">
     <Grid x:Name="nen" Background="GreenYellow" Width="1280" Height="720">
@@ -188,11 +189,32 @@
                         FontSize ="30" Canvas.Left="220" Canvas.Top="220"
                         Background="Orange" Click="But_xucxac_Click"
                         ></Button>
+                    <Button x:Name="But_xucxac1"
+                        Width="100"
+                        Height="100"
+                        Content="Stop"
+                        FontSize ="30" Canvas.Left="220" Canvas.Top="220"
+                        Background="Orange" Click="But_xucxac_Click1"
+                        Visibility="Collapsed" Panel.ZIndex="1"
+                        ></Button>
+                    <ContentControl x:Name="dices"
+                                    Canvas.Top="10"
+                                    Canvas.Left="170"
+                                    Height="200"
+                                    Width="200"/>
                 </Canvas>
-                <Canvas x:Name="player1" Width="20" Height="20" Background="Red" Margin="16,15,44,45"  ></Canvas>
-                <Canvas x:Name="player2" Width="20" Height="20" Background="MediumVioletRed" Margin="40,15,20,45"   ></Canvas>
-                <Canvas x:Name="player3" Width="20" Height="20" Background="Blue" Margin="40,40,20,20" ></Canvas>
-                <Canvas x:Name="player4" Width="20" Height="20" Background="LawnGreen" Margin="16,40,44,20"  ></Canvas>
+                <Canvas x:Name="player1" Width="20" Height="20" Background="Red" Margin="16,15,44,45"  >
+                    <TextBlock Text="1" Canvas.Left="6" Canvas.Top="2" FontWeight="Heavy"/>
+                </Canvas>
+                <Canvas x:Name="player2" Width="20" Height="20" Background="MediumVioletRed" Margin="40,15,20,45"   >
+                    <TextBlock Text="2" Canvas.Left="6" Canvas.Top="2" FontWeight="Heavy"/>
+                </Canvas>
+                <Canvas x:Name="player3" Width="20" Height="20" Background="Blue" Margin="40,40,20,20" >
+                    <TextBlock Text="3" Canvas.Left="6" Canvas.Top="2" FontWeight="Heavy"/>
+                </Canvas>
+                <Canvas x:Name="player4" Width="20" Height="20" Background="LawnGreen" Margin="16,40,44,20"  >
+                    <TextBlock Text="4" Canvas.Left="6" Canvas.Top="2" FontWeight="Heavy"/>
+                </Canvas>
 
             </Grid>
         </Canvas>

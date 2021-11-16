@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Monopoly.Components;
 
 namespace Monopoly.Components
 {
@@ -21,15 +22,21 @@ namespace Monopoly.Components
     public partial class messboxDice : UserControl
     {
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(LandCard), new PropertyMetadata("Tên mặc định"));
+            DependencyProperty.Register("Title", typeof(string), typeof(messboxDice), new PropertyMetadata(string.Empty));
         public string Title
         {
             get { return (string)GetValue(TitleProperty); }
             set { SetValue(TitleProperty, value); }
         }
+
         public messboxDice()
         {
             InitializeComponent();
+        }
+
+        private void close_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Monopoly.Components;
 namespace Monopoly.Components
 {
     /// <summary>
@@ -23,6 +23,19 @@ namespace Monopoly.Components
         public Setup()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ViewStart start = new ViewStart();
+            back.Content = start;
+            this.Visibility = Visibility.Collapsed;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ChessBoard board = new ChessBoard();
+            chess.Content = board;
         }
     }
 }

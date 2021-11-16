@@ -6,26 +6,39 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              x:Name="root"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="#C4C4C4">
-        <TextBlock Text="BẠN QUAY ĐƯỢC"
-                   FontSize="25"
+             d:DesignHeight="200" d:DesignWidth="200">
+    <Border CornerRadius="15" 
+            Background="#C4C4C4">
+    <Grid >
+            <Border Background="Bisque"
+                    HorizontalAlignment="Center"
+                    Height="40"
+                    Width="200"
+                    VerticalAlignment="Top"
+                    Padding="0 7 0 0"
+                    CornerRadius="15">
+                <TextBlock Text="BẠN QUAY ĐƯỢC"
+                   FontSize="20"
                    FontWeight="Medium"
-                   HorizontalAlignment="Center"
-                   Background="Bisque"
-                   Height="50"
-                   Width="300"
                    TextAlignment="Center"
-                   VerticalAlignment="Top"
-                   Padding="0 7 0 0"/>
-        <TextBlock x:Name="dice"
-                 FontSize="150"
+                   />
+            </Border>
+            <Border Background="Bisque"
+                VerticalAlignment="Top"
+                Width="200"
+                Height="20"
+                Margin="0 20 0 0"
+                Panel.ZIndex="-1"/>
+            <TextBlock x:Name="content"
+                 FontSize="120"
                  FontWeight="Heavy"
                  Text="{Binding Title, ElementName=root}"
                  Foreground="#C95B5B"
                  Background="Transparent"
                  HorizontalAlignment="Center"
-                 VerticalAlignment="Center"
+                 VerticalAlignment="Top" 
+                 Margin="0,45,0,0"
                  />
     </Grid>
+    </Border>
 </UserControl>
