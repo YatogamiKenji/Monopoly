@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monopoly"
         mc:Ignorable="d"
-        xmlns:component="clr-namespace:Monopoly.Components"
+      
         Title="MainWindow" Height="780" Width="1280">
     <Grid>
         <component:ViewStart/>
+   
     </Grid>
 </Window>

@@ -18,7 +18,7 @@
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
 
-                <RowDefinition Height="270"></RowDefinition>
+                <RowDefinition Height="280"></RowDefinition>
 
             </Grid.RowDefinitions>
 
@@ -26,13 +26,13 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="130"></RowDefinition>
-                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60"></ColumnDefinition>
+                    <ColumnDefinition Width="62.5"></ColumnDefinition>
                     <ColumnDefinition Width="100"></ColumnDefinition>
-                    <ColumnDefinition Width="85"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
                     <ColumnDefinition Width="100"></ColumnDefinition>
                     <ColumnDefinition ></ColumnDefinition>
                 </Grid.ColumnDefinitions>
@@ -52,20 +52,14 @@
                         <TextBox Text="Player 2" Canvas.Left="-24" Canvas.Top="31" FontWeight="Bold" Background="LightGray" IsHitTestVisible="False"></TextBox>
                     </Canvas>
                 </Button>
-                <Button Grid.Row="3" Grid.Column="1">
+                <Button Grid.Row="3" Grid.Column="2">
                     <Canvas>
                         <Ellipse Width="30" Height="30" Fill="Green" Canvas.Left="-15" Canvas.Top="-50"></Ellipse>
                         <Rectangle Width="30" Height="40" Fill="Green" Canvas.Left="-15" Canvas.Top="-20"></Rectangle>
                         <TextBox Text="Player 3 " Canvas.Left="-24" Canvas.Top="31" FontWeight="Bold" Background="LightGray" IsHitTestVisible="False"></TextBox>
                     </Canvas>
                 </Button>
-                <Button Grid.Row="3" Grid.Column="3">
-                    <Canvas>
-                        <Ellipse Width="30" Height="30" Fill="Purple" Canvas.Left="-15" Canvas.Top="-50"></Ellipse>
-                        <Rectangle Width="30" Height="40" Fill="Purple" Canvas.Left="-15" Canvas.Top="-20"></Rectangle>
-                        <TextBox Text="Player 4" Canvas.Left="-24" Canvas.Top="31" FontWeight="Bold" Background="LightGray" IsHitTestVisible="False"></TextBox>
-                    </Canvas>
-                </Button>
+               
             </Grid>
 
         </Grid>
