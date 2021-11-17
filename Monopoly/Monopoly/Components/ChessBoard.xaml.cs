@@ -104,16 +104,14 @@ namespace Monopoly.Components
             messboxDice diceshow = new messboxDice();
             Random random = new Random();
             dice = random.Next(1, 7);
-            diceshow.Title = dice.ToString();
-            dices.Content = diceshow;
-            
+            num.Title = dice.ToString();
         }
         //create timer
         public DispatcherTimer timer = new DispatcherTimer();
         public void But_xucxac_Click(object sender, RoutedEventArgs e)
         {
             //setup timer
-            timer.Interval = TimeSpan.FromSeconds(0.3);
+            timer.Interval = TimeSpan.FromSeconds(0.01);
             timer.Tick += timer_Tick;
             timer.Start();
             //Quay hide, Stop show
@@ -131,12 +129,12 @@ namespace Monopoly.Components
             playersClass[PlayerTurn].position = (playersClass[PlayerTurn].position + dice) % 40;
             Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersClass[PlayerTurn].position]));
             Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersClass[PlayerTurn].position]));
-            if (cellManager[playersClass[PlayerTurn].position].type == CellType.Dat)
-            {
-                //MessageBox.Show("mua!!!");
-                MessageBox.Show(lands[cellManager[playersClass[PlayerTurn].position].index].name);
-            }    
-            //MessageBox.Show(cellManager[playersClass[PlayerTurn].position].type.ToString());
+            //if (cellManager[playersClass[PlayerTurn].position].type == CellType.Dat)
+            //{
+            //    //MessageBox.Show("mua!!!");
+            //    MessageBox.Show(lands[cellManager[playersClass[PlayerTurn].position].index].name);
+            //}    
+            ////MessageBox.Show(cellManager[playersClass[PlayerTurn].position].type.ToString());
             PlayerTurn = (PlayerTurn + 1) % 4;
 
 

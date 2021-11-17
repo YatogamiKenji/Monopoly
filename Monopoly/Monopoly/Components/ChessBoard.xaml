@@ -211,11 +211,7 @@
                         Background="Orange" Click="But_xucxac_Click1"
                         Visibility="Collapsed" Panel.ZIndex="1"
                         ></Button>
-                    <ContentControl x:Name="dices"
-                                    Canvas.Top="10"
-                                    Canvas.Left="150"
-                                    Height="150"
-                                    Width="150"/>
+                    <compoenent:messboxDice Width="150" Height="150" x:Name="num" Canvas.Left="145"/>
                 </Canvas>
                 <Canvas x:Name="player1" Width="20" Height="20" Background="Red" Margin="26,25,54,55"  >
                     <TextBlock Text="1" Canvas.Left="6" Canvas.Top="2" FontWeight="Heavy"/>
