@@ -29,19 +29,14 @@ namespace Monopoly.Components
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register("Title", typeof(string), typeof(LandCard), new PropertyMetadata("Tên mặc định"));
 
-
-
         public int Level
         {
             get { return (int)GetValue(LevelProperty); }
             set { SetValue(LevelProperty, value); }
         }
-
         // Using a DependencyProperty as the backing store for Level.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LevelProperty =
             DependencyProperty.Register("Level", typeof(int), typeof(LandCard), new PropertyMetadata(0));
-
-
 
         public int Tax
         {
@@ -51,7 +46,6 @@ namespace Monopoly.Components
         // Using a DependencyProperty as the backing store for Tax.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TaxProperty =
             DependencyProperty.Register("Tax", typeof(int), typeof(LandCard), new PropertyMetadata(0));
-
 
         public int Value
         {
@@ -74,6 +68,16 @@ namespace Monopoly.Components
         public LandCard()
         {
             InitializeComponent();
+        }
+
+        public LandCard(string title, int level, int tax, int value, ImageSource imgSource)
+        {
+            InitializeComponent();
+            Title = title;
+            Level = level;
+            Tax = tax;
+            Value = value;
+            ImgSource = imgSource;
         }
     }
 }

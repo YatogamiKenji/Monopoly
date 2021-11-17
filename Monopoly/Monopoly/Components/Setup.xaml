@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Monopoly.Components"
+             xmlns:component="clr-namespace:Monopoly.Components"
              mc:Ignorable="d" 
-       d:DesignHeight="755" d:DesignWidth="1280">
+             d:DesignHeight="720" 
+             d:DesignWidth="1280" >
     <Grid Width="1280" Height="720" TextBlock.FontFamily="Bahnschrift" Background="White">
 
         <TextBox Text="Chọn số lượng người chơi"
@@ -36,9 +38,12 @@
                  IsReadOnly="True"
                  />
         <Button Width="360" Height="100" Content="Unlimied" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="80,490,840,130"></Button>
-        <Button Width="360" Height="100" Content="Setup" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="839,490,80,130"/>
-        <Button Width="100" Height="50" Content="Back" Background="Red" FontFamily="Bahnschrift" FontSize="36" Margin="45,635,1136,35"/>
-        <Button Width="300" Height="100" Content="Bắt đầu" Background="Green" FontFamily="Bahnschrift" FontSize="50" Margin="490,585,490,35" ></Button>
+        <Button Width="360" Height="100" Content="Setup" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="840,490,80,130"/>
+        <Button Width="100" Height="50" Content="Back" Background="Red" FontFamily="Bahnschrift" FontSize="36" Margin="45,635,1136,35" Click="Button_Click"/>
+        <Button Width="300" Height="100" Content="Bắt đầu" Background="Green" FontFamily="Bahnschrift" FontSize="50" Margin="490,585,490,35" Click="Button_Click_1" ></Button>
+        <ContentControl x:Name="back"/>
+        <ContentControl x:Name="chess"/>
     </Grid>
+    
 </UserControl>
 

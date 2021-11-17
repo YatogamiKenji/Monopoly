@@ -14,15 +14,17 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
 using System.IO;
-
+using Monopoly.Components;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
 namespace Monopoly
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-       
+    { 
         public MainWindow()
         {
             InitializeComponent();

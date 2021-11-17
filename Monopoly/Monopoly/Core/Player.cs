@@ -52,6 +52,11 @@ namespace Monopoly
 
         // Danh sách đất người chơi đang sở hữu
         private List<Land> _lands;
+        public List<Land> lands
+        {
+            get { return _lands; }
+            set { _lands = value; }
+        }
 
         // Danh sách quyền năng đang còn tác dụng trên người chơi
         private List<Power> _powersEffect;

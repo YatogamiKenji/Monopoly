@@ -67,6 +67,6 @@
                 BorderThickness="3"
                 Margin="1000 500 0 0"
                 />
-        
+        <ContentControl x:Name="views"/>
     </Grid>
 </UserControl>

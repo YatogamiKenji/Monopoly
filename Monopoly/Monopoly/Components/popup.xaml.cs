@@ -12,29 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Monopoly.Components;
+
 namespace Monopoly.Components
 {
     /// <summary>
-    /// Interaction logic for ViewStart.xaml
+    /// Interaction logic for popup.xaml
     /// </summary>
-    public partial class ViewStart : UserControl
+    public partial class popup : UserControl
     {
-        public ViewStart()
+        public static readonly DependencyProperty TitleProperty =
+            DependencyProperty.Register("angle", typeof(string), typeof(popup), new PropertyMetadata(string.Empty));
+        public string angle
+        {
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
+        }
+        public popup()
         {
             InitializeComponent();
-        }
-
-        private void QUIT_Click(object sender, RoutedEventArgs e)
-        {
-            Window.GetWindow(this).Close();
-        }
-
-        private void Play_Click(object sender, RoutedEventArgs e)
-        {
-            
-            Setup setup = new Setup();
-            views.Content = setup;
         }
     }
 }

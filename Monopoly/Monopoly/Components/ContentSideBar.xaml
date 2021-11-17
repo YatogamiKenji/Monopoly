@@ -14,7 +14,7 @@
         <StackPanel Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" Text="Tiền: " FontSize="18" Margin="8 0 4 0"/>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock Text="{Binding Id, ElementName=root}"
+                <TextBlock Text="{Binding Money, ElementName=root}"
                            Margin="2 0 3 0"
                            Foreground="DarkOrange"
                            FontSize="30"
@@ -34,8 +34,8 @@
 
         <!-- Đất -->
         <StackPanel>
-            <TextBlock Text="Đất (3): " FontSize="18" Margin="8 4 4 0"/>
-            <component:ListLandCardSideBar Margin="8"/>
+            <TextBlock x:Name="landHeading" Text="Đất (3): " FontSize="18" Margin="8 4 4 0"/>
+            <ContentControl x:Name="listLandCard"/>
         </StackPanel>
     </StackPanel>
 </UserControl>
