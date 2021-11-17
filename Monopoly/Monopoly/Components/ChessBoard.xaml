@@ -203,16 +203,16 @@
                                     Height="200"
                                     Width="200"/>
                 </Canvas>
-                <Canvas x:Name="player1" Width="20" Height="20" Background="Red" Margin="16,15,44,45"  >
+                <Canvas x:Name="player1" Width="20" Height="20" Background="Red" Margin="10,10,50,50"  >
                     <TextBlock Text="1" Canvas.Left="6" Canvas.Top="2" FontWeight="Heavy"/>
                 </Canvas>
-                <Canvas x:Name="player2" Width="20" Height="20" Background="MediumVioletRed" Margin="40,15,20,45"   >
+                <Canvas x:Name="player2" Width="20" Height="20" Background="MediumVioletRed" Margin="35,10,25,50"   >
                     <TextBlock Text="2" Canvas.Left="6" Canvas.Top="2" FontWeight="Heavy"/>
                 </Canvas>
-                <Canvas x:Name="player3" Width="20" Height="20" Background="Blue" Margin="40,40,20,20" >
+                <Canvas x:Name="player3" Width="20" Height="20" Background="Blue" Margin="35,35,25,25" >
                     <TextBlock Text="3" Canvas.Left="6" Canvas.Top="2" FontWeight="Heavy"/>
                 </Canvas>
-                <Canvas x:Name="player4" Width="20" Height="20" Background="LawnGreen" Margin="16,40,44,20"  >
+                <Canvas x:Name="player4" Width="20" Height="20" Background="LawnGreen" Margin="10,35,50,25"  >
                     <TextBlock Text="4" Canvas.Left="6" Canvas.Top="2" FontWeight="Heavy"/>
                 </Canvas>
 

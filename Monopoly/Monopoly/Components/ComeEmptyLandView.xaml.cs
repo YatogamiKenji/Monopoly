@@ -21,7 +21,12 @@ namespace Monopoly.Components
     public partial class ComeEmptyLandView : UserControl
     {
 
-
+        private Land _land;
+        public Land land
+        {
+            get { return _land; }
+            set { _land = value; }
+        }
 
         public string NameOfLand
         {

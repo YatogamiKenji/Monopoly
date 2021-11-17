@@ -71,6 +71,7 @@ namespace Monopoly
             _outPrison = false;
             _powers = new List<Power>();
             _powersEffect = new List<Power>();
+            _lands = new List<Land>();
         }
 
         //Contructor có đối số
@@ -80,6 +81,9 @@ namespace Monopoly
             _money = money;
             _position = posititon;
             _outPrison = outPrison;
+            _powers = new List<Power>();
+            _powersEffect = new List<Power>();
+            _lands = new List<Land>();
         }
 
         // Thêm đất vào khi mua
@@ -106,7 +110,7 @@ namespace Monopoly
         }
 
         // Xóa bỏ quyền năng sau khi sử dụng
-        public void RemovePower(string name)
+        public void RemovePower(Power power)
         {
             for (int i = 0; i < _powers.Count; i++)
                 if (_powers[i].name == name)
@@ -119,7 +123,7 @@ namespace Monopoly
         // Các quyền năng đang được sử dụng trên người (Cả tốt lẫn xấu)
         public void AddPowersEffect(Power power)
         {
-            _powers.Add(power);
+            _powersEffect.Add(power);
         }
 
         // Tự động loại bỏ các hiệu ứng khi qua từng lượt

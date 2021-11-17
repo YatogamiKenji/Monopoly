@@ -151,12 +151,31 @@ namespace Monopoly.Components
             //xử lý nếu đi vào ô đất
             if (cellManager[playersClass[PlayerTurn].position].type == CellType.Dat)
             {
-                MessageBox.Show(lands[cellManager[playersClass[PlayerTurn].position].index].name);
+                //nếu đất trống thì hiện bản mua để người chơi lựa chọn
+                if (lands[cellManager[playersClass[PlayerTurn].position].index].owner == -1)
+                {
+                    //nếu người chơi mua thì gọi lệnh bên dưới
+                    playersClass[PlayerTurn].money -= lands[cellManager[playersClass[PlayerTurn].position].index].value;
+                    lands[cellManager[playersClass[PlayerTurn].position].index].owner = PlayerTurn;
+                    playersClass[PlayerTurn].AddLand(lands[cellManager[playersClass[PlayerTurn].position].index]);
+                }    
+                //nếu là đất của mình thì sẽ hiện bảng nâng cấp
+                else if (lands[cellManager[playersClass[PlayerTurn].position].index].owner == PlayerTurn)
+                {
+                    //nếu player đồng ý mua thì gọi lệnh bên dưới
+                    playersClass[PlayerTurn].money -= lands[cellManager[playersClass[PlayerTurn].position].index].Upgrade();
+                }
+                //nếu là đất của người khác thì tự động trả thuế và thông báo lên (nếu có)
+                else if (lands[cellManager[playersClass[PlayerTurn].position].index].owner != PlayerTurn)
+                {
+                    playersClass[PlayerTurn].money -= lands[cellManager[playersClass[PlayerTurn].position].index].Tax();
+                }
+                //MessageBox.Show(lands[cellManager[playersClass[PlayerTurn].position].index].name);
             }
             //xử lý khi đi vào ô cơ hội
             else if (cellManager[playersClass[PlayerTurn].position].type == CellType.CoHoi)
             {
-
+                 
             }
             //xử lý khi đi vào ô khí vận
             else if (cellManager[playersClass[PlayerTurn].position].type == CellType.KhiVan)
@@ -192,6 +211,11 @@ namespace Monopoly.Components
             {
                 //thưởng tiền khi đi qua ô bắt đầu
                 playersClass[PlayerTurn].money += 1000 * turn;
+            }
+            //xử lý khi đi vào bãi đổ xe (có thể bỏ đi vì k có sự kiện gì sảy ra)
+            else if (cellManager[playersClass[PlayerTurn].position].type == CellType.BaiDoXe)
+            {
+
             }
             //tính lượt của các player
             PlayerTurn = (PlayerTurn + 1) % 4;

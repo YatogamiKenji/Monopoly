@@ -32,7 +32,7 @@ namespace Monopoly
             set { _value = value; }
         }
 
-        // Giá trị mảnh đất sau mỗi lần nâng cấp
+        // Tổng giá trị mảnh đất sau mỗi lần nâng cấp
         private int _landValue;
         public int landValue
         {
@@ -48,7 +48,7 @@ namespace Monopoly
             set { _level = value; }
         }
 
-        // chủ nhân 0: vô chủ, 1: player1, 2: player 2, 3: player3, 4: player 4
+        // chủ nhân -1: vô chủ, 0: player1, 1: player 2, 2: player3, 3: player 4
         private int _owner;
         public int owner
         {
@@ -71,15 +71,17 @@ namespace Monopoly
             _value = 0;
             _level = 0;
             _landValue = 0;
+            _owner = -1;
         }
 
         // Contructor đầy đủ các đối số
         public Land(string name, int value, byte level)
         {
-            this._name = name;
-            this._value = value;
+            _name = name;
+            _value = value;
             _landValue = value;
-            this._level = level;
+            _level = level;
+            _owner = -1;
         }
 
         // Thuế phải trả khi đi vào ô đất
@@ -89,30 +91,49 @@ namespace Monopoly
             return Convert.ToInt32(Math.Ceiling(0.2 * _landValue));
         }
 
-        // Giá cần để nâng cấp lên từng level
+        // Giá cần để nâng cấp lên level tiếp theo
         public int Upgrade()
         {
             if (_level == 1)
             {
                 _landValue += Convert.ToInt32(Math.Ceiling(1.4 * _value));
+                _level++;
                 return Convert.ToInt32(Math.Ceiling(1.4 * _value));
             }
             else if (_level == 2)
             {
                 _landValue += Convert.ToInt32(Math.Ceiling(1.6 * _value));
+                _level++;
                 return Convert.ToInt32(Math.Ceiling(1.6 * _value));
             }
             else if (_level == 3)
             {
                 _landValue += Convert.ToInt32(Math.Ceiling(1.8 * _value));
+                _level++;
                 return Convert.ToInt32(Math.Ceiling(1.8 * _value));
             }
             else if (_level == 4)
             {
                 _landValue += 2 * _value;
+                _level++;
                 return 2 * _value;
             }
             _landValue += 3 * _value;
+            _level++;
+            return 3 * _value;
+        }
+
+        //giá nâng cấp từng level
+        public int Upgrade(int level)
+        {
+            if (_level == 1)
+                return Convert.ToInt32(Math.Ceiling(1.4 * _value));
+            else if (_level == 2)
+                return Convert.ToInt32(Math.Ceiling(1.6 * _value));
+            else if (_level == 3)
+                return Convert.ToInt32(Math.Ceiling(1.8 * _value));
+            else if (_level == 4)
+                return 2 * _value;
             return 3 * _value;
         }
     }
