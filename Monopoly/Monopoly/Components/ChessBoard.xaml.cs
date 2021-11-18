@@ -70,6 +70,7 @@ namespace Monopoly.Components
         {
             var content = System.IO.File.ReadAllText(@"D:\Bài Giảng UIT - HK3\Lập trình trực quan\Đồ án\New folder\Monopoly\Monopoly\Monopoly\Data\Land.json");
             lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
+            for (int i = 0; i < lands.Count; i++) lands[i].landValue = lands[i].value;
             int count = 0;
             //khởi tạo dữ liệu quản lý các ô trên bàn cờ
             for (int i = 0; i < 40; i++)
@@ -154,6 +155,11 @@ namespace Monopoly.Components
                 //nếu đất trống thì hiện bản mua để người chơi lựa chọn
                 if (lands[cellManager[playersClass[PlayerTurn].position].index].owner == -1)
                 {
+                    ComeEmptyLandView comeEmptyLandView = new ComeEmptyLandView();
+                    comeEmptyLandView.land = lands[cellManager[playersClass[PlayerTurn].position].index];
+                    comeEmptyLandView.SetInfor();
+                    dices.Content = comeEmptyLandView;
+
                     //nếu người chơi mua thì gọi lệnh bên dưới
                     playersClass[PlayerTurn].money -= lands[cellManager[playersClass[PlayerTurn].position].index].value;
                     lands[cellManager[playersClass[PlayerTurn].position].index].owner = PlayerTurn;
@@ -162,15 +168,22 @@ namespace Monopoly.Components
                 //nếu là đất của mình thì sẽ hiện bảng nâng cấp
                 else if (lands[cellManager[playersClass[PlayerTurn].position].index].owner == PlayerTurn)
                 {
-                    //nếu player đồng ý mua thì gọi lệnh bên dưới
+                    ComeOwnLandView comeOwnLandView = new ComeOwnLandView();
+                    comeOwnLandView.land = lands[cellManager[playersClass[PlayerTurn].position].index];
+                    comeOwnLandView.SetInfor();
+                    dices.Content = comeOwnLandView;
+                    //nếu player đồng ý nâng cấp thì gọi lệnh bên dưới
                     playersClass[PlayerTurn].money -= lands[cellManager[playersClass[PlayerTurn].position].index].Upgrade();
+                    //nếu người chơi bán thì gọi lệnh bên dưới
+                    playersClass[PlayerTurn].money += lands[cellManager[playersClass[PlayerTurn].position].index].landValue / 2;
+                    playersClass[PlayerTurn].RemoveLand(lands[cellManager[playersClass[PlayerTurn].position].index].name);
                 }
                 //nếu là đất của người khác thì tự động trả thuế và thông báo lên (nếu có)
                 else if (lands[cellManager[playersClass[PlayerTurn].position].index].owner != PlayerTurn)
                 {
                     playersClass[PlayerTurn].money -= lands[cellManager[playersClass[PlayerTurn].position].index].Tax();
+                    playersClass[lands[cellManager[playersClass[PlayerTurn].position].index].owner].money += lands[cellManager[playersClass[PlayerTurn].position].index].Tax();
                 }
-                //MessageBox.Show(lands[cellManager[playersClass[PlayerTurn].position].index].name);
             }
             //xử lý khi đi vào ô cơ hội
             else if (cellManager[playersClass[PlayerTurn].position].type == CellType.CoHoi)

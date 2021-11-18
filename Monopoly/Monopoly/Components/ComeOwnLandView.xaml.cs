@@ -20,7 +20,12 @@ namespace Monopoly.Components
     /// </summary>
     public partial class ComeOwnLandView : UserControl
     {
-
+        private Land _land;
+        public Land land
+        {
+            get { return _land; }
+            set { _land = value; }
+        }
 
 
         public string NameOfLand
@@ -50,11 +55,19 @@ namespace Monopoly.Components
             set { SetValue(PriceProperty, value); }
         }
 
+
         // Using a DependencyProperty as the backing store for Price.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PriceProperty =
             DependencyProperty.Register("Price", typeof(int), typeof(ComeOwnLandView), new PropertyMetadata(0));
 
+        public int Upgrade
+        {
+            get { return (int)GetValue(UpgradeProperty); }
+            set { SetValue(UpgradeProperty, value); }
+        }
 
+        public static readonly DependencyProperty UpgradeProperty =
+            DependencyProperty.Register("Upgrade", typeof(int), typeof(ComeOwnLandView), new PropertyMetadata(0));
 
 
         public List<int> PriceLevel
@@ -174,8 +187,8 @@ namespace Monopoly.Components
             ImgSource = new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative));
             Price = 12345;
             PriceSell = 1234;
-            PriceLevel = new List<int>(5) { 1111, 2222, 3333, 4444, 5555 };
-            PriceTax = new List<int>(5) { 111, 222, 333, 444, 555 };
+            PriceLevel = new List<int>();
+            PriceTax = new List<int>();
             Level = 0;
         }
 
@@ -200,6 +213,24 @@ namespace Monopoly.Components
             PriceLevel = priceLevel;
             PriceTax = priceTax;
             Level = level;
+        }
+
+        public void SetInfor()
+        {
+            NameOfLand = _land.name;
+            Price = _land.landValue;
+            PriceSell = _land.landValue / 2;
+            Level = _land.level;
+            Upgrade = _land.Upgrade(_land.level + 1);
+            List<int> value = new List<int>();
+            List<int> tax = new List<int>();
+            for (int i = 1; i < 6; i++)
+            {
+                value.Add(_land.Upgrade(i));
+                tax.Add(_land.Tax(i));
+            }
+            PriceLevel = value;
+            PriceTax = tax;
         }
     }
 }

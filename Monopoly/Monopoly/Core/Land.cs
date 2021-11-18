@@ -91,6 +91,16 @@ namespace Monopoly
             return Convert.ToInt32(Math.Ceiling(0.2 * _landValue));
         }
 
+        public int Tax(int level)
+        {
+            if (level == 0) return Convert.ToInt32(Math.Ceiling(0.1 * _value));
+            else if (level == 1) return Convert.ToInt32(Math.Ceiling(0.24 * _value));
+            else if (level == 2) return Convert.ToInt32(Math.Ceiling(0.4 * _value));
+            else if (level == 3) return Convert.ToInt32(Math.Ceiling(0.58 * _value));
+            else if (level == 4) return Convert.ToInt32(Math.Ceiling(0.78 * _value));
+            return Convert.ToInt32(Math.Ceiling(1.08 * _value));
+        }
+
         // Giá cần để nâng cấp lên level tiếp theo
         public int Upgrade()
         {
@@ -126,13 +136,13 @@ namespace Monopoly
         //giá nâng cấp từng level
         public int Upgrade(int level)
         {
-            if (_level == 1)
+            if (level == 1)
                 return Convert.ToInt32(Math.Ceiling(1.4 * _value));
-            else if (_level == 2)
+            else if (level == 2)
                 return Convert.ToInt32(Math.Ceiling(1.6 * _value));
-            else if (_level == 3)
+            else if (level == 3)
                 return Convert.ToInt32(Math.Ceiling(1.8 * _value));
-            else if (_level == 4)
+            else if (level == 4)
                 return 2 * _value;
             return 3 * _value;
         }

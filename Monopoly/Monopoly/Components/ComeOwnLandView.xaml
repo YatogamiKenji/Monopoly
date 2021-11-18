@@ -77,7 +77,7 @@
                 <StackPanel Grid.Row="2" Background="#E0DCDC">
                     <!-- price -->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-                        <TextBlock Text="Giá đất: "
+                        <TextBlock Text="Giá Trị đất: "
                                    FontSize="12"
                                    Margin="6 2"/>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -281,10 +281,10 @@
                 <Button Click="BuyButtonClickFunc">
                     <Button.Content>
                         <StackPanel>
-                            <TextBlock Text="MUA" TextAlignment="Center"/>
+                            <TextBlock Text="NÂNG CẤP" TextAlignment="Center"/>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                 <TextBlock
-                                    Text="{Binding Price, ElementName=root}"
+                                    Text="{Binding Upgrade, ElementName=root}"
                                     Margin="0 0 4 0"
                                     Foreground="DarkOrange"
                                     FontSize="16"
