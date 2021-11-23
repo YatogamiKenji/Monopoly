@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Monopoly.Components"
              mc:Ignorable="d" 
+             xmlns:compoenent="clr-namespace:Monopoly.Components"
              d:DesignHeight="106" d:DesignWidth="321">
     <Grid x:Name="gridTabSideBarGroup">
         <Grid.ColumnDefinitions>
@@ -12,6 +13,6 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions> 
+        </Grid.ColumnDefinitions>
     </Grid>
 </UserControl>

@@ -40,7 +40,7 @@ namespace Monopoly.Components
         public List<Player> Players
         {
             get { return (List<Player>)GetValue(PlayersProperty); }
-            set { SetValue(PlayersProperty, value);}
+            set { SetValue(PlayersProperty, value); }
         }
         // Using a DependencyProperty as the backing store for Players.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PlayersProperty =
