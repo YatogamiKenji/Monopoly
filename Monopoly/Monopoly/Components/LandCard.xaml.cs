@@ -70,6 +70,15 @@ namespace Monopoly.Components
             InitializeComponent();
         }
 
+        public LandCard(Land land)
+        {
+            InitializeComponent();
+            Title = land.name;
+            Level = land.level;
+            Tax = land.Tax();
+            Value = land.value;
+        }
+
         public LandCard(string title, int level, int tax, int value, ImageSource imgSource)
         {
             InitializeComponent();

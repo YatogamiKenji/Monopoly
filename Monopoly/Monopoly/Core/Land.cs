@@ -91,6 +91,7 @@ namespace Monopoly
             return Convert.ToInt32(Math.Ceiling(0.2 * _landValue));
         }
 
+        // Thuế từng level
         public int Tax(int level)
         {
             if (level == 0) return Convert.ToInt32(Math.Ceiling(0.1 * _value));

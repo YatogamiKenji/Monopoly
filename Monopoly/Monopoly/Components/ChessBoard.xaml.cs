@@ -164,6 +164,7 @@ namespace Monopoly.Components
                     comeEmptyLandView.SetInfor();
                     comeEmptyLandView.OnBuyButtonClick += ComeEmptyLandView_OnBuyButtonClick;
                     comeEmptyLandView.OnSkipButtonClick += ComeEmptyLandView_OnSkipButtonClick;
+                    comeEmptyLandView.OnUseCardButtonClick += ComeLandView_OnUseCardButtonClick;
                     dices.Content = comeEmptyLandView;
                 }    
                 //nếu là đất của mình thì sẽ hiện bảng nâng cấp
@@ -175,6 +176,7 @@ namespace Monopoly.Components
                     comeOwnLandView.OnSellButtonClick += ComeOwnLandView_OnSellButtonClick;
                     comeOwnLandView.OnBuyButtonClick += ComeOwnLandView_OnBuyButtonClick;
                     comeOwnLandView.OnSkipButtonClick += ComeOwnLandView_OnSkipButtonClick;
+                    comeOwnLandView.OnUseCardButtonClick += ComeLandView_OnUseCardButtonClick;
                     dices.Content = comeOwnLandView;
                 }
                 //nếu là đất của người khác thì tự động trả thuế và thông báo lên (nếu có)
@@ -241,6 +243,12 @@ namespace Monopoly.Components
                 PlayerTurn = (PlayerTurn + 1) % 4;
                 But_xucxac.Visibility = Visibility.Visible;
             }
+        }
+
+        private void ComeLandView_OnUseCardButtonClick(object sender, RoutedEventArgs e)
+        {
+            UseCardToAnother useCardToAnother = new UseCardToAnother();
+            dices.Content = useCardToAnother;
         }
 
         private void ComeOwnLandView_OnSkipButtonClick(object sender, RoutedEventArgs e)
