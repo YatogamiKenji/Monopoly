@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:Monopoly"
         mc:Ignorable="d"
         xmlns:component="clr-namespace:Monopoly.Components"
-        Title="MainWindow" Height="780" Width="1280">
+        Title="MainWindow" Height="760" Width="1280"
+        
+        >
     <Grid>
         <component:ViewStart/>
     </Grid>

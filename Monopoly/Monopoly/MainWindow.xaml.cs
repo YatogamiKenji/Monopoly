@@ -29,5 +29,6 @@ namespace Monopoly
         {
             InitializeComponent();
         }
+
     }
 }

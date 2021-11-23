@@ -7,13 +7,80 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
+    <None Remove="Images\alien-ship-icon.png" />
+    <None Remove="Images\bg_setup.jpg" />
+    <None Remove="Images\black-hole-icon.png" />
+    <None Remove="Images\falling-star-icon.png" />
+    <None Remove="Images\mars-icon.png" />
+    <None Remove="Images\pluto-icon.png" />
+    <None Remove="Images\rocket-launch-icon.png" />
+    <None Remove="Images\rocket.png" />
+    <None Remove="Images\space-shuttle-launch-icon.png" />
+    <None Remove="Images\spaceImg.jpg" />
+    <None Remove="Images\spaceStart.mp4" />
+    <None Remove="Images\sputnik-2-icon.png" />
+    <None Remove="Images\telescope-icon.png" />
+    <None Remove="Images\test.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Audios\" />
     <Folder Include="Styles\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\alien-ship-icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\bg_setup.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\black-hole-icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\falling-star-icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\mars-icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\pluto-icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\rocket-launch-icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\rocket.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\space-shuttle-launch-icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\spaceImg.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\sputnik-2-icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\telescope-icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="video\spaceStart.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Components\ViewStart.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
   </ItemGroup>
 
 </Project>

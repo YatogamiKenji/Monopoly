@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Monopoly.Components;
+using System.Windows.Controls.Primitives;
+using System.Windows.Threading;
 namespace Monopoly.Components
 {
     /// <summary>
@@ -37,6 +39,21 @@ namespace Monopoly.Components
             ChessBoard board = new ChessBoard();
             chess.Content = board;
             
+        }
+
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            rocketstart.PlacementTarget = start;
+            rocketstart.Placement = PlacementMode.Right;
+            rocketstart.IsOpen = true;
+            start.Content = "GO!!";
+        }
+
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            start.Content = "START";
+            rocketstart.Visibility = Visibility.Collapsed;
+            rocketstart.IsOpen = false;
         }
     }
 }

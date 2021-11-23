@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="Monopoly.Components.centerChessBoard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Monopoly.Components"
+             xmlns:compoenent="clr-namespace:Monopoly.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="450">
+    <Grid Background="LightBlue" Width="450" Height="450">
+        <Button x:Name="But_xucxac"
+                        Width="70"
+                        Height="70"
+                        Content="Quay"
+                        FontSize ="25" Canvas.Left="170" Canvas.Top="175"
+                        Background="Orange" Click="But_xucxac_Click"
+                        ></Button>
+        <Button x:Name="But_xucxac1"
+                        Width="70"
+                        Height="70"
+                        Content="Stop"
+                        FontSize ="25" Canvas.Left="170" Canvas.Top="175"
+                        Background="Orange" Click="But_xucxac_Click1"
+                        Visibility="Collapsed" Panel.ZIndex="1"
+                        ></Button>
+        <compoenent:messboxDice Width="150" Height="150" x:Name="num" Canvas.Left="145" Margin="150,10,150,290"/>
+    </Grid>
+</UserControl>
