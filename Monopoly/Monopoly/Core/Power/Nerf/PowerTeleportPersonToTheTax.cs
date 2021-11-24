@@ -11,10 +11,16 @@ namespace Monopoly
     {
         public PowerTeleportPersonToTheTax():base()
         {
+            value = 700;
+            name = "ép buộc";
+        }
+
+        public PowerTeleportPersonToTheTax(string name, int value, string description) : base(name, value, description)
+        {
 
         }
 
-        public PowerTeleportPersonToTheTax(string name, int value) : base(name, value)
+        public override void powerFunction(Player playerUse, Player affectedPlayers, int dice)
         {
 
         }

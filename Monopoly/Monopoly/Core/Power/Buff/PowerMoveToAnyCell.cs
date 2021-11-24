@@ -11,10 +11,16 @@ namespace Monopoly
     {
         public PowerMoveToAnyCell():base()
         {
+            value = 1000;
+            name = "Dịch chuyển";
+        }
+
+        public PowerMoveToAnyCell(string name, int value, string description) : base(name, value, description)
+        {
 
         }
 
-        public PowerMoveToAnyCell(string name, int value) : base(name, value)
+        public override void powerFunction(Player playerUse, int dice)
         {
 
         }

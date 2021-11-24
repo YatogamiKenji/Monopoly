@@ -10,11 +10,17 @@ namespace Monopoly
     class PowerDoubleTheValueStarting: Power
     {
         public PowerDoubleTheValueStarting() : base()
-        { 
+        {
+            value = 500;
+            name = "tăng gấp đôi giá trị khi đi qua ô bắt đầu";
+        }
+
+        public PowerDoubleTheValueStarting(string name, int value, string description) : base(name, value, description)
+        {
 
         }
 
-        public PowerDoubleTheValueStarting(string name, int value) : base(name, value)
+        public override void powerFunction(Player playerUse, int dice)
         {
 
         }

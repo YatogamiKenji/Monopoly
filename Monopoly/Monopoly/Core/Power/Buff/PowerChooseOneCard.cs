@@ -11,12 +11,18 @@ namespace Monopoly
     {
         public PowerChooseOneCard():base()
         {
+            value = 500;
+            name = "Chọn 1 thẻ khí vận hoặc cơ hội";
+        }
+
+        public PowerChooseOneCard(string name, int value, string description) : base(name, value, description)
+        {
 
         }
 
-        public PowerChooseOneCard(string name, int value) : base(name, value)
+        public override void powerFunction(Player playerUse, int dice)
         {
-
+            
         }
     }
 }

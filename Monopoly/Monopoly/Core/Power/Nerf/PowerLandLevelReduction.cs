@@ -11,10 +11,16 @@ namespace Monopoly
     {
         public PowerLandLevelReduction():base()
         {
+            value = 2500;
+            name = "Giảm level";
+        }
+
+        public PowerLandLevelReduction(string name, int value, string description) : base(name, value, description)
+        {
 
         }
 
-        public PowerLandLevelReduction(string name, int value) :base(name,value)
+        public override void powerFunction(Player playerUse, Player affectedPlayers, int dice)
         {
 
         }

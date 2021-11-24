@@ -11,12 +11,18 @@ namespace Monopoly
     {
         public PowerAppointPersonToPrison():base()
         {
+            value = 1000;
+            name = "vào tù";
+        }
+
+        public PowerAppointPersonToPrison(string name, int value, string description) : base(name, value, description)
+        {
 
         }
 
-        public PowerAppointPersonToPrison(string name, int value) : base(name, value)
+        public override void powerFunction(Player playerUse, Player affectedPlayers, int dice)
         {
-
+            
         }
     }
 }

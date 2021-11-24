@@ -11,10 +11,16 @@ namespace Monopoly
     {
         public PowerCancelPowerCard():base()
         {
+            value = 2000;
+            name = "Hủy bỏ quyền năng";
+        }
+
+        public PowerCancelPowerCard(string name, int value, string description) : base(name, value, description)
+        {
 
         }
 
-        public PowerCancelPowerCard(string name, int value) : base(name, value)
+        public override void powerFunction(Player playerUse, Player affectedPlayers, int dice)
         {
 
         }

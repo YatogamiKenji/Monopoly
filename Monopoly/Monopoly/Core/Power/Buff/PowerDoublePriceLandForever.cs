@@ -11,10 +11,16 @@ namespace Monopoly
     {
         public PowerDoublePriceLandForever():base()
         {
+            value = 3000;
+            name = "Tăng giá trị đất";
+        }
+
+        public PowerDoublePriceLandForever(string name, int value, string description) : base(name, value, description)
+        {
 
         }
 
-        public PowerDoublePriceLandForever(string name, int value):base(name,value)
+        public override void powerFunction(Player playerUse, int dice)
         {
 
         }

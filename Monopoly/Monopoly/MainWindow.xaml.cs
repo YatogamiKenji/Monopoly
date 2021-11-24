@@ -30,7 +30,5 @@ namespace Monopoly
             InitializeComponent();
             
         }
-
-        
     }
 }

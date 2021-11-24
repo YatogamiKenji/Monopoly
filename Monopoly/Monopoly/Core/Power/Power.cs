@@ -24,18 +24,38 @@ namespace Monopoly
             set { _value = value; }
         }
 
+        //mô tả thẻ quyền năng :v
+        private string _description;
+        public string description
+        {
+            get { return _description; }
+            set { _description = value; }
+        }
+
         // Contructor không tham số
         public Power()
         {
             _name = "";
             _value = 0;
+            _description = "";
         }
 
         // Contructor có tham số
-        public Power(string name, int value)
+        public Power(string name, int value, string description)
         {
-            this._name = name;
-            this._value = value;
+            _name = name;
+            _value = value;
+            _description = description;
+        }
+
+        public virtual void powerFunction(Player playerUse, Player affectedPlayers, int dice)
+        {
+
+        }
+
+        public virtual void powerFunction(Player playerUse, int dice)
+        {
+
         }
     }
 }

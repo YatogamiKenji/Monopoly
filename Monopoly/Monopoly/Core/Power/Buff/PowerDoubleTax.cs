@@ -11,10 +11,16 @@ namespace Monopoly
     {
         public PowerDoubleTax():base()
         {
+            value = 1500;
+            name = "tăng giá trị thuế";
+        }
+
+        public PowerDoubleTax(string name, int value, string description) : base(name, value, description)
+        {
 
         }
 
-        public PowerDoubleTax(string name, int value) : base(name, value)
+        public override void powerFunction(Player playerUse, int dice)
         {
 
         }
