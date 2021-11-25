@@ -52,7 +52,7 @@ namespace Monopoly
         }
         public void OutOfJail(Player p)
         {
-            p.outPrison = true;
+            p.isOutPrison = true;
             //thong bao
         }
         public void MoveBackward(Player p)

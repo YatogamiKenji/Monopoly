@@ -36,7 +36,11 @@ namespace Monopoly
         private int _landValue;
         public int landValue
         {
-            get { return _landValue; }
+            get
+            {
+                if (_isDoublePrice) return 2 * _landValue;
+                return _landValue;
+            }
             set { _landValue = value; }
         }
 
@@ -64,6 +68,20 @@ namespace Monopoly
             set { _description = value; }
         }
 
+        private bool _isDoubleTax;
+        public bool isDoubleTax
+        {
+            get { return _isDoubleTax; }
+            set { _isDoubleTax = value; }
+        }
+
+        private bool _isDoublePrice;
+        public bool isDoublePrice
+        {
+            get { return _isDoublePrice; }
+            set { _isDoublePrice = value; }
+        }
+
         // Contructor không đối số
         public Land()
         {
@@ -87,19 +105,24 @@ namespace Monopoly
         // Thuế phải trả khi đi vào ô đất
         public int Tax()
         {
-            if (_level >= 1 && _level <= 3) return Convert.ToInt32(Math.Ceiling(0.1 * _landValue));
-            return Convert.ToInt32(Math.Ceiling(0.2 * _landValue));
+            int tax = 1;
+            if (_isDoubleTax) tax = 2;
+            if (_level >= 1 && _level <= 3) return tax * Convert.ToInt32(Math.Ceiling(0.1 * _landValue));
+            return tax * Convert.ToInt32(Math.Ceiling(0.2 * _landValue));
         }
 
         // Thuế từng level
         public int Tax(int level)
         {
-            if (level == 0) return Convert.ToInt32(Math.Ceiling(0.1 * _value));
-            else if (level == 1) return Convert.ToInt32(Math.Ceiling(0.24 * _value));
-            else if (level == 2) return Convert.ToInt32(Math.Ceiling(0.4 * _value));
-            else if (level == 3) return Convert.ToInt32(Math.Ceiling(0.58 * _value));
-            else if (level == 4) return Convert.ToInt32(Math.Ceiling(0.78 * _value));
-            return Convert.ToInt32(Math.Ceiling(1.08 * _value));
+            int tax = 1;
+            if (_isDoubleTax) tax = 2;
+            if (_isDoublePrice) tax *= 2;
+            if (level == 0) return tax * Convert.ToInt32(Math.Ceiling(0.1 * _value));
+            else if (level == 1) return tax * Convert.ToInt32(Math.Ceiling(0.24 * _value));
+            else if (level == 2) return tax * Convert.ToInt32(Math.Ceiling(0.4 * _value));
+            else if (level == 3) return tax * Convert.ToInt32(Math.Ceiling(0.58 * _value));
+            else if (level == 4) return tax * Convert.ToInt32(Math.Ceiling(0.78 * _value));
+            return tax * Convert.ToInt32(Math.Ceiling(1.08 * _value));
         }
 
         // Giá cần để nâng cấp lên level tiếp theo

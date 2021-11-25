@@ -9,10 +9,11 @@ namespace Monopoly
     //dịch chuyển một người đến ô nào đó và phải trả thuế
     class PowerTeleportPersonToTheTax : Power
     {
-        public PowerTeleportPersonToTheTax():base()
+        public PowerTeleportPersonToTheTax() : base()
         {
             value = 700;
-            name = "ép buộc";
+            name = "Ép buộc";
+            description = "Dịch chuyển một người chơi đến ô bất kỳ";
         }
 
         public PowerTeleportPersonToTheTax(string name, int value, string description) : base(name, value, description)
@@ -20,9 +21,16 @@ namespace Monopoly
 
         }
 
-        public override void powerFunction(Player playerUse, Player affectedPlayers, int dice)
+        public override bool Using(ref Player playerUse, ref Player affectedPlayers, int dice)
         {
-
+            if (playerUse.money > dice * value)
+            {
+                playerUse.RemovePower(name);
+                playerUse.money -= dice * value;
+                affectedPlayers.AddPowersEffect(new PowerTeleportPersonToTheTax());
+                return true;
+            }
+            return false;
         }
     }
 }

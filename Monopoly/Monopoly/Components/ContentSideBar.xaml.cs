@@ -58,5 +58,16 @@ namespace Monopoly.Components
             landHeading.Text = "Đất (" + Lands?.Count + "):";
             listLandCard.Content = new ListLandCardSideBar(Lands);
         }
+
+        public ContentSideBar(Player player)
+        {
+            InitializeComponent();
+            Money = player.money;
+            Lands = player.lands;
+            landHeading.Text = "Đất (" + Lands?.Count + "):";
+            cardHeading.Text = "Thẻ (" + player.powers?.Count + "):";
+            listCardSideBar.Content = new ListCardSideBar(player.powers, player.isOutPrison);
+            listLandCard.Content = new ListLandCardSideBar(Lands);
+        }
     }
 }

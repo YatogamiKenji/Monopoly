@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace Monopoly
 {
     // ăn cắp đất
-    class PowerStealLand:Power
+    class PowerStealLand : Power
     {
-        public PowerStealLand():base()
+        public PowerStealLand() : base()
         {
             value = 3000;
-            name = "Trộm đất";
+            name = "Trộm hành tinh";
+            description = "Biến một ô đất của ai đó thành của mình";
         }
 
         public PowerStealLand(string name, int value, string description) : base(name, value, description)
@@ -20,9 +21,17 @@ namespace Monopoly
 
         }
 
-        public override void powerFunction(Player playerUse, Player affectedPlayers, int dice)
+        public override bool Using(ref Player playerUse, ref Player affectedPlayers, int dice)
         {
+            if (playerUse.money > dice * value)
+            {
+                playerUse.RemovePower(name);
+                playerUse.money -= dice * value;
+                affectedPlayers.AddPowersEffect(new PowerStealLand());
 
+                return true;
+            }
+            return false;
         }
     }
 }

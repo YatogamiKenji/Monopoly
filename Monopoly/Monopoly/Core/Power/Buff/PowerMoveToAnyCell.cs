@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace Monopoly
 {
     //dịch chuyển đến 1 ô bất kỳ
-    class PowerMoveToAnyCell: Power
+    class PowerMoveToAnyCell : Power
     {
-        public PowerMoveToAnyCell():base()
+        public PowerMoveToAnyCell() : base()
         {
             value = 1000;
             name = "Dịch chuyển";
+            description = "Dịch chuyển đến một ô được người chơi chỉ định trên bàn cờ";
         }
 
         public PowerMoveToAnyCell(string name, int value, string description) : base(name, value, description)
@@ -20,9 +21,15 @@ namespace Monopoly
 
         }
 
-        public override void powerFunction(Player playerUse, int dice)
+        public override bool Using(ref Player playerUse, int dice)
         {
-
+            if (playerUse.money >= dice * value)
+            {
+                playerUse.AddPowersEffect(new PowerMoveToAnyCell());
+                playerUse.RemovePower(name);
+                playerUse.money -= dice * value;
+            }
+            return false;
         }
     }
 }

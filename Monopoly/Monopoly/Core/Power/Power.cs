@@ -48,12 +48,17 @@ namespace Monopoly
             _description = description;
         }
 
-        public virtual void powerFunction(Player playerUse, Player affectedPlayers, int dice)
+        public virtual bool Using(ref Player playerUse, ref Player affectedPlayers, int dice)
         {
-
+            return false;
         }
 
-        public virtual void powerFunction(Player playerUse, int dice)
+        public virtual bool Using(ref Player playerUse, int dice)
+        {
+            return false;
+        }
+
+        public virtual void PowerFunction(ref Player playerUse)
         {
 
         }

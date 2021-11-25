@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Monopoly
 {
     //loại bỏ hiệu ứng bất lợi trong X lượt
-    class PowerRemoveAdverseEffects: Power
+    class PowerRemoveAdverseEffects : Power
     {
         // Số lượt có tác dụng của quyền năng
         private int _numberTurns;
@@ -17,11 +17,12 @@ namespace Monopoly
             set { _numberTurns = value; }
         }
 
-        public PowerRemoveAdverseEffects():base()
+        public PowerRemoveAdverseEffects() : base()
         {
             value = 2500;
             name = "Miễn nhiễm";
             _numberTurns = 5;
+            description = "Miễn nhiễm với bất kỳ hiệu ứng bất lợi nào trong vòng 5 lượt";
         }
 
         public PowerRemoveAdverseEffects(string name, int value, string description) : base(name, value, description)
@@ -29,9 +30,22 @@ namespace Monopoly
             _numberTurns = 5;
         }
 
-        public override void powerFunction(Player playerUse, int dice)
+        public override bool Using(ref Player playerUse, int dice)
         {
+            if (playerUse.money >= dice * value)
+            {
+                playerUse.AddPowersEffect(new PowerRemoveAdverseEffects());
+                playerUse.RemovePower(name);
+                playerUse.money -= dice * value;
+            }
+            return false;
+        }
 
+        public override void PowerFunction(ref Player playerUse)
+        {
+            _numberTurns--;
+            playerUse.isImmune = true;
+            if (_numberTurns == 0) playerUse.RemovePowerEffect(name);
         }
     }
 }

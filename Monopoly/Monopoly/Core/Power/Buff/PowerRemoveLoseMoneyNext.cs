@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Monopoly
 {
     // Loại bỏ lần mất tiền tiếp theo
-    class PowerRemoveLoseMoneyNext: Power
+    class PowerRemoveLoseMoneyNext : Power
     {
         // Số lượt có tác dụng của quyền năng
         private int _numberTurns;
@@ -17,11 +17,12 @@ namespace Monopoly
             set { _numberTurns = value; }
         }
 
-        public PowerRemoveLoseMoneyNext():base()
+        public PowerRemoveLoseMoneyNext() : base()
         {
             value = 700;
             name = "Không mất tiền";
             _numberTurns = 1;
+            description = "Loại bỏ lần mất tiền tiếp theo";
         }
 
         public PowerRemoveLoseMoneyNext(string name, int value, string description) : base(name, value, description)
@@ -29,9 +30,21 @@ namespace Monopoly
             _numberTurns = 1;
         }
 
-        public override void powerFunction(Player playerUse, int dice)
+        public override bool Using(ref Player playerUse, int dice)
         {
+            if (playerUse.money >= dice * value)
+            {
+                playerUse.AddPowersEffect(new PowerRemoveLoseMoneyNext());
+                playerUse.RemovePower(name);
+                playerUse.money -= dice * value;
+            }
+            return false;
+        }
 
+        public override void PowerFunction(ref Player playerUse)
+        {
+            playerUse.isLoseMoney = true;
+            playerUse.RemovePowerEffect(name);
         }
     }
 }

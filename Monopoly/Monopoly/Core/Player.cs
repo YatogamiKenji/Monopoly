@@ -41,15 +41,27 @@ namespace Monopoly
         }
 
         // Kiểm tra thử xem người chơi có vé ra tù không
-        private bool _outPrison;
-        public bool outPrison
+        private bool _isOutPrison;
+        public bool isOutPrison
         {
-            get { return _outPrison; }
-            set { _outPrison = value; }
+            get { return _isOutPrison; }
+            set { _isOutPrison = value; }
+        }
+
+        private bool _isInPrison;
+        public bool isInPrison
+        {
+            get { return _isInPrison; }
+            set { _isInPrison = value; }
         }
 
         // Danh sách quyền năng người chơi sở hữu
         private List<Power> _powers;
+        public List<Power> powers
+        {
+            get { return _powers; }
+            set { _powers = value; }
+        }
 
         // Danh sách đất người chơi đang sở hữu
         private List<Land> _lands;
@@ -61,6 +73,11 @@ namespace Monopoly
 
         // Danh sách quyền năng đang còn tác dụng trên người chơi
         private List<Power> _powersEffect;
+        public List<Power> powersEffect
+        {
+            get { return _powersEffect; }
+            set { _powersEffect = value; }
+        }
 
         //Contructor không tham số
         public Player()
@@ -68,10 +85,11 @@ namespace Monopoly
             _name = "";
             _money = 10000;
             _position = 0;
-            _outPrison = false;
+            _isOutPrison = false;
             _powers = new List<Power>();
             _powersEffect = new List<Power>();
             _lands = new List<Land>();
+            Init();
         }
 
         //Contructor có đối số
@@ -80,10 +98,24 @@ namespace Monopoly
             _name = name;
             _money = money;
             _position = posititon;
-            _outPrison = outPrison;
+            _isOutPrison = outPrison;
             _powers = new List<Power>();
             _powersEffect = new List<Power>();
             _lands = new List<Land>();
+            Init();
+        }
+
+        public void Init()
+        {
+            _isUpgradeFee = false;
+            _isDoubleStart = false;
+            _isDoubleDice = false;
+            _isSplitDice = false;
+            _isInPrison = false;
+            _isImmune = false;
+            _isLoseMoney = false;
+            _isFreezeBank = false;
+            _isRetention = false;
         }
 
         // Thêm đất vào khi mua
@@ -95,12 +127,12 @@ namespace Monopoly
         // Xóa bỏ mảnh đất sau khi bán
         public void RemoveLand(string name)
         {
-            for (int i=0; i<_lands.Count;i++)
+            for (int i = 0; i < _lands.Count; i++)
                 if (_lands[i].name == name)
                 {
                     _lands.RemoveAt(i);
                     break;
-                }    
+                }
         }
 
         // Thêm các quyền năng đang sở hữu
@@ -110,7 +142,7 @@ namespace Monopoly
         }
 
         // Xóa bỏ quyền năng sau khi sử dụng
-        public void RemovePower(Power power)
+        public void RemovePower(string name)
         {
             for (int i = 0; i < _powers.Count; i++)
                 if (_powers[i].name == name)
@@ -126,10 +158,79 @@ namespace Monopoly
             _powersEffect.Add(power);
         }
 
-        // Tự động loại bỏ các hiệu ứng khi qua từng lượt
-        public void RemovePowersEffect()
+        // loại bỏ các hiệu ứng đã hết hạn
+        public void RemovePowerEffect(string name)
         {
-            //tự động tính toán hiệu lực của các quyền năng
+            for (int i = 0; i < _powers.Count; i++)
+                if (_powersEffect[i].name == name)
+                {
+                    _powersEffect.RemoveAt(i);
+                    break;
+                }
+        }
+
+        //kiểm tra tăng gấp đôi số xúc sắc
+        private bool _isDoubleDice = false;
+        public bool isDoubleDice
+        {
+            get { return _isDoubleDice; }
+            set { _isDoubleDice = value; }
+        }
+
+        //kiểm tra chia đôi xúc sắc
+        private bool _isSplitDice;
+        public bool isSplitDice
+        {
+            get { return _isSplitDice; }
+            set { _isSplitDice = value; }
+        }
+
+        // kiểm tra tăng gấp đôi tiền thưởng khi đi qua ô bắt đầu
+        private bool _isDoubleStart = false;
+        public bool isDoubleStart
+        {
+            get { return _isDoubleStart; }
+            set { _isDoubleStart = value; }
+        }
+
+        // kiểm tra giảm 1 nữa tiền nâng cấp tiếp theo
+        private bool _isUpgradeFee;
+        public bool isUpgradeFee
+        {
+            get { return _isUpgradeFee; }
+            set { _isUpgradeFee = value; }
+        }
+
+        // kiểm tra miễn nhiễm
+        private bool _isImmune;
+        public bool isImmune
+        {
+            get { return _isImmune; }
+            set { _isImmune = value; }
+        }
+
+        // kiểm tra miễn mất tiền lần tiếp theo
+        private bool _isLoseMoney;
+        public bool isLoseMoney
+        {
+            get { return _isLoseMoney; }
+            set { _isLoseMoney = value; }
+        }
+
+        //Kiểm tra đóng băng tài khoản ngân hàng
+        private bool _isFreezeBank;
+        public bool isFreezeBank
+        {
+            get { return _isFreezeBank; }
+            set { _isFreezeBank = value; }
+        }
+
+        //kiểm tra xem thử có đang bị giữ chân không
+        private bool _isRetention;
+        public bool isRetention
+        {
+            get { return _isRetention; }
+            set { _isRetention = value; }
         }
     }
 }

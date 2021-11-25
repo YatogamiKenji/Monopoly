@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Monopoly
 {
     //khóa 1 ô đất trong 2 lượt
-    class PowerLockAPlotOfLand:Power
+    class PowerLockAPlotOfLand : Power
     {
         // Số lượt có tác dụng của quyền năng
         private int _numberTurns;
@@ -17,11 +17,12 @@ namespace Monopoly
             set { _numberTurns = value; }
         }
 
-        public PowerLockAPlotOfLand():base()
+        public PowerLockAPlotOfLand() : base()
         {
             value = 500;
-            name = "khóa đất";
+            name = "Khóa hành tinh";
             _numberTurns = 2;
+            description = "Khóa 1 hành tinh của một người chơi trong vòng 2 lượt";
         }
 
         public PowerLockAPlotOfLand(string name, int value, string description) : base(name, value, description)
@@ -29,9 +30,22 @@ namespace Monopoly
             _numberTurns = 2;
         }
 
-        public override void powerFunction(Player playerUse, Player affectedPlayers, int dice)
+        public override bool Using(ref Player playerUse, ref Player affectedPlayers, int dice)
         {
+            if (playerUse.money > dice * value)
+            {
+                playerUse.RemovePower(name);
+                playerUse.money -= dice * value;
+                affectedPlayers.AddPowersEffect(new PowerLockAPlotOfLand());
+                return true;
+            }
+            return false;
+        }
 
+        public override void PowerFunction(ref Player playerUse)
+        {
+            _numberTurns--;
+            if (_numberTurns == 0) playerUse.RemovePowerEffect(name);
         }
     }
 }

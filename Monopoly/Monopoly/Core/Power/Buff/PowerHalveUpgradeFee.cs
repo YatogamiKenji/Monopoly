@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace Monopoly
 {
     // Giảm 1 nữa tiền nâng cấp nhà
-    class PowerHalveUpgradeFee: Power
+    class PowerHalveUpgradeFee : Power
     {
-        public PowerHalveUpgradeFee():base()
+        public PowerHalveUpgradeFee() : base()
         {
             value = 1800;
-            name = "giảm tiền nâng cấp nhà";
+            name = "Giảm tiền nâng cấp";
+            description = "Giảm một nữa tiền nâng cấp nhà";
         }
 
         public PowerHalveUpgradeFee(string name, int value, string description) : base(name, value, description)
@@ -20,9 +21,21 @@ namespace Monopoly
 
         }
 
-        public override void powerFunction(Player playerUse, int dice)
+        public override bool Using(ref Player playerUse, int dice)
         {
+            if (playerUse.money >= dice * value)
+            {
+                playerUse.AddPowersEffect(new PowerHalveUpgradeFee());
+                playerUse.RemovePower(name);
+                playerUse.money -= dice * value;
+            }
+            return false;
+        }
 
+        public override void PowerFunction(ref Player playerUse)
+        {
+            playerUse.RemovePowerEffect(name);
+            playerUse.isUpgradeFee = true;
         }
     }
 }

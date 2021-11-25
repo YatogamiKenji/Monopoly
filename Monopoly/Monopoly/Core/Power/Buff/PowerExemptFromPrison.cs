@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Monopoly
 {
     //miễn vào tù 10 lượt
-    class PowerExemptFromPrison:Power
+    class PowerExemptFromPrison : Power
     {
         // Số lượt có tác dụng của quyền năng
         private int _numberTurns;
@@ -17,11 +17,12 @@ namespace Monopoly
             set { _numberTurns = value; }
         }
 
-        public PowerExemptFromPrison():base()
+        public PowerExemptFromPrison() : base()
         {
             value = 600;
             name = "Miễn vào tù";
             _numberTurns = 10;
+            description = "Miễn vào tù trong vòng 10 lượt";
         }
 
         public PowerExemptFromPrison(string name, int value, string description) : base(name, value, description)
@@ -29,9 +30,22 @@ namespace Monopoly
             _numberTurns = 10;
         }
 
-        public override void powerFunction(Player playerUse, int dice)
+        public override bool Using(ref Player playerUse, int dice)
         {
+            if (playerUse.money >= dice * value)
+            {
+                playerUse.AddPowersEffect(new PowerExemptFromPrison());
+                playerUse.RemovePower(name);
+                playerUse.money -= dice * value;
+            }
+            return false;
+        }
 
+        public override void PowerFunction(ref Player playerUse)
+        {
+            _numberTurns--;
+            playerUse.isOutPrison = true;
+            if (_numberTurns == 0) playerUse.RemovePowerEffect(name);
         }
     }
 }

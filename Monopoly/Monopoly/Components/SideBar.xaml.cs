@@ -70,8 +70,8 @@ namespace Monopoly.Components
 
             if (Players != null)
             {
-                ContentSideBar c = new ContentSideBar(Players[SelectedId].money, Players[SelectedId].lands);
-                content.Content = c;
+                ContentSideBar contentSideBar = new ContentSideBar(Players[SelectedId]);
+                content.Content = contentSideBar;
             }
         }
     }

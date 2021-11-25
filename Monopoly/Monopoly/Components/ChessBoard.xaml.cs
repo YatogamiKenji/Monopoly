@@ -64,12 +64,15 @@ namespace Monopoly.Components
         //khởi tạo giá trị
         public void Init()
         {
-           
+            InitData();
+
+            InitPower();
+
             InitPlayer();
            
             InitPlayerClass();
             
-            InitData();
+            
             cellPos = new List<Canvas>(40)
             { _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14,_15,_16,_17,_18,_19,_20,_21,_22,_23,_24,_25,_26,_27,_28,_29,_30,_31,_32,_33,_34,_35,_36,_37,_38,_39 };
 
@@ -103,7 +106,7 @@ namespace Monopoly.Components
         //khởi tạo data
         void InitData()
         {
-            var content = System.IO.File.ReadAllText(@"C:\Users\trant\OneDrive - Trường ĐH CNTT - University of Information Technology\Đại học\LTTQ\Đồ án\Monopoly\Monopoly\Monopoly\Monopoly\Data\Land.json");
+            var content = System.IO.File.ReadAllText(@".\Data\Land.json");
             lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
             for (int i = 0; i < lands.Count; i++) lands[i].landValue = lands[i].value;
             int count = 0;
@@ -152,6 +155,32 @@ namespace Monopoly.Components
             //Grid.SetColumn(players[3], 0);
         }
 
+        void InitPower()
+        {
+            //buff
+            powers.Add(new PowerChooseOneCard());
+            powers.Add(new PowerDoubleDice());
+            powers.Add(new PowerDoublePriceLandForever());
+            powers.Add(new PowerDoubleTax());
+            powers.Add(new PowerDoubleTheValueStarting());
+            powers.Add(new PowerExemptFromPrison());
+            powers.Add(new PowerHalveUpgradeFee());
+            powers.Add(new PowerMoveToAnyCell());
+            powers.Add(new PowerRemoveAdverseEffects());
+            powers.Add(new PowerRemoveLoseMoneyNext());
+            //nerf
+            powers.Add(new PowerAppointPersonToPrison());
+            powers.Add(new PowerCancelPowerCard());
+            powers.Add(new PowerFreezeBankAccounts());
+            powers.Add(new PowerHoldAPerson());
+            powers.Add(new PowerLandLevelReduction());
+            powers.Add(new PowerLandPriceHalved());
+            powers.Add(new PowerLockAPlotOfLand());
+            powers.Add(new PowerSplitDice());
+            powers.Add(new PowerStealLand());
+            powers.Add(new PowerTeleportPersonToTheTax());
+        }
+
         //create value ramdom
         public Random random = new Random();
         public int dice = 0;
@@ -179,6 +208,18 @@ namespace Monopoly.Components
             But_xucxac1.Visibility = Visibility.Visible;
         }
 
+        public void RemovePowersEffect(ref Player player)
+        {
+            //tự động tính toán hiệu lực của các quyền năng
+            if (player.powersEffect != null)
+            {
+                for (int i = 0; i < player.powersEffect.Count; i++)
+                {
+                    player.powersEffect[i].PowerFunction(ref player);
+                }
+            }
+        }
+
         public void But_xucxac_Click1(object sender, RoutedEventArgs e)
         {
             //Quay show, Stop hide
@@ -189,6 +230,16 @@ namespace Monopoly.Components
             //tính số vòng đã đi được
             DoEvents();
             Thread.Sleep(1000);
+            dice = 17;
+
+            // kích hoạt các hiệu ứng đang ở trên người
+            Player player = playersList[PlayerTurn];
+            RemovePowersEffect(ref player);
+            playersList[PlayerTurn] = player;
+            if (playersList[PlayerTurn].isDoubleDice) dice *= 2;
+            if (playersList[PlayerTurn].isSplitDice) dice /= 2;
+
+            But_xucxac.Visibility = Visibility.Collapsed;
 
             //change player position
             for (int i = 0; i < dice; i++) 
@@ -200,7 +251,10 @@ namespace Monopoly.Components
                 if (cellManager[playersList[PlayerTurn].position].type == CellType.BatDau)
                 {
                     //thưởng tiền khi đi qua ô bắt đầu
-                    playersList[PlayerTurn].money += 1000 * (turn[PlayerTurn] / 2 + 1);
+                    if (playersList[PlayerTurn].isDoubleStart)
+                        playersList[PlayerTurn].money += 2000 * (turn[PlayerTurn] / 2 + 1);
+                    else
+                        playersList[PlayerTurn].money += 1000 * (turn[PlayerTurn] / 2 + 1);
                     if (turn[PlayerTurn] / 2 + 1 < 10) turn[PlayerTurn]++;
                     sideBar.update(playersList, PlayerTurn);
                 }
@@ -208,7 +262,6 @@ namespace Monopoly.Components
                 Thread.Sleep(500);
             }
 
-            But_xucxac.Visibility = Visibility.Collapsed;
             sideBar.update(playersList, PlayerTurn);
 
             //xử lý nếu đi vào ô đất
@@ -231,7 +284,7 @@ namespace Monopoly.Components
                 {
                     ComeOwnLandView comeOwnLandView = new ComeOwnLandView();
                     comeOwnLandView.land = lands[cellManager[playersList[PlayerTurn].position].index];
-                    comeOwnLandView.SetInfor();
+                    comeOwnLandView.SetInfor(1);
                     comeOwnLandView.OnSellButtonClick += ComeOwnLandView_OnSellButtonClick;
                     comeOwnLandView.OnBuyButtonClick += ComeOwnLandView_OnBuyButtonClick;
                     comeOwnLandView.OnSkipButtonClick += ComeOwnLandView_OnSkipButtonClick;
@@ -243,9 +296,12 @@ namespace Monopoly.Components
                 else if (lands[cellManager[playersList[PlayerTurn].position].index].owner != PlayerTurn)
                 {
                     //nếu đủ tiền thì tự động trả
-                    if (playersList[PlayerTurn].money >= lands[cellManager[playersList[PlayerTurn].position].index].Tax())
+                    if (playersList[PlayerTurn].money >= lands[cellManager[playersList[PlayerTurn].position].index].Tax() || playersList[PlayerTurn].isLoseMoney)
                     {
-                        playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Tax();
+                        //nếu có không có miễn mất tiền
+                        if (!playersList[PlayerTurn].isLoseMoney)
+                            playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Tax();
+                        else playersList[PlayerTurn].isLoseMoney = false;
                         playersList[lands[cellManager[playersList[PlayerTurn].position].index].owner].money += lands[cellManager[playersList[PlayerTurn].position].index].Tax();
                         But_xucxac.Visibility = Visibility.Visible;
                         sideBar.update(playersList, PlayerTurn);
@@ -259,6 +315,7 @@ namespace Monopoly.Components
                     Thread.Sleep(1500);
                     //PlayerTurn = (PlayerTurn + 1) % 4;
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                    if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                     sideBar.update(playersList, PlayerTurn);
                 }
             }
@@ -273,6 +330,7 @@ namespace Monopoly.Components
                 But_xucxac.Visibility = Visibility.Visible;
                 //PlayerTurn = (PlayerTurn + 1) % 4;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -288,6 +346,7 @@ namespace Monopoly.Components
                 But_xucxac.Visibility = Visibility.Visible;
                 //PlayerTurn = (PlayerTurn + 1) % 4;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -299,10 +358,14 @@ namespace Monopoly.Components
                 //Tiến hành random thẻ quyền năng
                 //ComePowerCard comePowerCard = new ComePowerCard();
                 //dices.Content = comePowerCard;
+                Random randomPower = new Random();
+                int indexPower = randomPower.Next(20);
+                playersList[PlayerTurn].AddPower(powers[indexPower]);
                 sideBar.update(playersList, PlayerTurn);
                 But_xucxac.Visibility = Visibility.Visible;
                 //PlayerTurn = (PlayerTurn + 1) % 4;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -314,6 +377,7 @@ namespace Monopoly.Components
                 But_xucxac.Visibility = Visibility.Visible;
                 //PlayerTurn = (PlayerTurn + 1) % 4;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -323,26 +387,33 @@ namespace Monopoly.Components
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.VaoTu)
             {
                 //đưa player đến ô vào tù
-                playersList[PlayerTurn].position = 10;
-                Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[10]));
-                Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[10]));
-                But_xucxac.Visibility = Visibility.Visible;
-                //PlayerTurn = (PlayerTurn + 1) % 4;
-                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                DoEvents();
-                Thread.Sleep(1500);
-                sideBar.update(playersList, PlayerTurn);
+                if (!playersList[PlayerTurn].isOutPrison)
+                {
+                    playersList[PlayerTurn].position = 10;
+                    playersList[PlayerTurn].isInPrison = true;
+                    Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[10]));
+                    Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[10]));
+                    But_xucxac.Visibility = Visibility.Visible;
+                    PlayerTurn = (PlayerTurn + 1) % 4;
+                    if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                    DoEvents();
+                    Thread.Sleep(1500);
+                    sideBar.update(playersList, PlayerTurn);
+                }
             }
 
             //xử lý khi đi vào ô thuế
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.Thue)
             {
                 //phạt 10% số tiền hiện có khi đi vào ô thuế
-                playersList[PlayerTurn].money = Convert.ToInt32(Math.Ceiling(0.9 * playersList[PlayerTurn].money));
+                if (!playersList[PlayerTurn].isLoseMoney)
+                    playersList[PlayerTurn].money = Convert.ToInt32(Math.Ceiling(0.9 * playersList[PlayerTurn].money));
+                else playersList[PlayerTurn].isLoseMoney = false;
                 sideBar.update(playersList, PlayerTurn);
                 But_xucxac.Visibility = Visibility.Visible;
                 //PlayerTurn = (PlayerTurn + 1) % 4;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -354,6 +425,7 @@ namespace Monopoly.Components
                 But_xucxac.Visibility = Visibility.Visible;
                 //PlayerTurn = (PlayerTurn + 1) % 4;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -363,8 +435,8 @@ namespace Monopoly.Components
 
         private void ComeLandView_OnUseCardButtonClick(object sender, RoutedEventArgs e)
         {
-            //UseCardToAnother useCardToAnother = new UseCardToAnother();
-            //dices.Content = useCardToAnother;
+            usingCard usingCard = new usingCard();
+            dices.Content = usingCard;
         }
 
         private void ComeOwnLandView_OnSkipButtonClick(object sender, RoutedEventArgs e)
@@ -372,6 +444,7 @@ namespace Monopoly.Components
             //tính lượt của các player
             //PlayerTurn = (PlayerTurn + 1) % 4;
             PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+            if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             DoEvents();
             Thread.Sleep(1000);
             sideBar.update(playersList, PlayerTurn);
@@ -389,6 +462,7 @@ namespace Monopoly.Components
             //tính lượt của các player
             // PlayerTurn = (PlayerTurn + 1) % 4;
             PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+            if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             DoEvents();
             Thread.Sleep(1500);
             sideBar.update(playersList, PlayerTurn);
@@ -399,14 +473,25 @@ namespace Monopoly.Components
         private void ComeOwnLandView_OnSellButtonClick(object sender, RoutedEventArgs e)
         {
             //nếu player đồng ý nâng cấp thì gọi lệnh bên dưới
-            if (playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].Upgrade())
+            if (playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].Upgrade() || playersList[PlayerTurn].isLoseMoney)
             {
-                playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Upgrade();
+                int fee = 1;
+                if (!playersList[PlayerTurn].isLoseMoney)
+                {
+                    if (playersList[PlayerTurn].isUpgradeFee)
+                    {
+                        playersList[PlayerTurn].isUpgradeFee = false;
+                        fee = 2;
+                    }
+                    playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Upgrade() / fee;
+                }
+                else playersList[PlayerTurn].isLoseMoney = false;
+
                 sideBar.update(playersList, PlayerTurn);
 
                 //tính lượt của các player
-                // PlayerTurn = (PlayerTurn + 1) % 4;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 But_xucxac.Visibility = Visibility.Visible;
                 dices.Content = diceshow;
             }
@@ -421,6 +506,7 @@ namespace Monopoly.Components
             //tính lượt của các player
             //PlayerTurn = (PlayerTurn + 1) % 4;
             PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+            if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             DoEvents();
             Thread.Sleep(1000);
             sideBar.update(playersList, PlayerTurn);
@@ -431,9 +517,12 @@ namespace Monopoly.Components
         private void ComeEmptyLandView_OnBuyButtonClick(object sender, RoutedEventArgs e)
         {
             //nếu người chơi mua thì gọi lệnh bên dưới
-            if (playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].value)
+            if (playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].value || playersList[PlayerTurn].isLoseMoney)
             {
-                playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].value;
+                if (!playersList[PlayerTurn].isLoseMoney)
+                    playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].value;
+                else playersList[PlayerTurn].isLoseMoney = false;
+
                 lands[cellManager[playersList[PlayerTurn].position].index].owner = PlayerTurn;
                 playersList[PlayerTurn].AddLand(lands[cellManager[playersList[PlayerTurn].position].index]);
                 sideBar.update(playersList, PlayerTurn);
@@ -443,6 +532,7 @@ namespace Monopoly.Components
                 //tính lượt của các player
                 // PlayerTurn = (PlayerTurn + 1) % 4;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 But_xucxac.Visibility = Visibility.Visible;
                 dices.Content = diceshow;
             }

@@ -215,13 +215,13 @@ namespace Monopoly.Components
             Level = level;
         }
 
-        public void SetInfor()
+        public void SetInfor(int fee)
         {
             NameOfLand = _land.name;
             Price = _land.landValue;
             PriceSell = _land.landValue / 2;
             Level = _land.level;
-            Upgrade = _land.Upgrade(_land.level + 1);
+            Upgrade = _land.Upgrade(_land.level + 1) / fee;
             List<int> value = new List<int>();
             List<int> tax = new List<int>();
             for (int i = 1; i < 6; i++)

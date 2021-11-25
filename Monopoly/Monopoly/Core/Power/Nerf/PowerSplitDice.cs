@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Monopoly
 {
     // chia đôi xúc sắc
-    class PowerSplitDice: Power
+    class PowerSplitDice : Power
     {
         // Số lượt có tác dụng của quyền năng
         private int _numberTurns;
@@ -17,11 +17,12 @@ namespace Monopoly
             set { _numberTurns = value; }
         }
 
-        public PowerSplitDice():base()
+        public PowerSplitDice() : base()
         {
             value = 500;
             name = "Chia đôi";
             _numberTurns = 7;
+            description = "Chia đôi xúc xắc của một người chơi trong vòng 7 lượt";
         }
 
         public PowerSplitDice(string name, int value, string description) : base(name, value, description)
@@ -29,9 +30,23 @@ namespace Monopoly
             _numberTurns = 7;
         }
 
-        public override void powerFunction(Player playerUse, Player affectedPlayers, int dice)
+        public override bool Using(ref Player playerUse, ref Player affectedPlayers, int dice)
         {
+            if (playerUse.money > dice * value)
+            {
+                playerUse.RemovePower(name);
+                playerUse.money -= dice * value;
+                affectedPlayers.AddPowersEffect(new PowerSplitDice());
+                return true;
+            }
+            return false;
+        }
 
+        public override void PowerFunction(ref Player playerUse)
+        {
+            playerUse.isSplitDice = true;
+            _numberTurns--;
+            if (_numberTurns == 0) playerUse.RemovePowerEffect(name);
         }
     }
 }

@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace Monopoly
 {
     // Chỉ định 1 người vào tù
-    class PowerAppointPersonToPrison:Power
+    class PowerAppointPersonToPrison : Power
     {
-        public PowerAppointPersonToPrison():base()
+        public PowerAppointPersonToPrison() : base()
         {
             value = 1000;
-            name = "vào tù";
+            name = "Vào tù";
+            description = "Chỉ định 1 người chơi bất kỳ vào tù";
         }
 
         public PowerAppointPersonToPrison(string name, int value, string description) : base(name, value, description)
@@ -20,9 +21,16 @@ namespace Monopoly
 
         }
 
-        public override void powerFunction(Player playerUse, Player affectedPlayers, int dice)
+        public override bool Using(ref Player playerUse, ref Player affectedPlayers, int dice)
         {
-            
+            if (playerUse.money > dice * value)
+            {
+                playerUse.RemovePower(name);
+                playerUse.money -= dice * value;
+                affectedPlayers.AddPowersEffect(new PowerAppointPersonToPrison());
+                return true;
+            }
+            return false;
         }
     }
 }

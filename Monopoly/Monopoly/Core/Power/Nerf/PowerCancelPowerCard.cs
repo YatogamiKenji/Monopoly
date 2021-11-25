@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace Monopoly
 {
     //hủy bỏ 1 thẻ quyền năng của người khác
-    class PowerCancelPowerCard:Power
+    class PowerCancelPowerCard : Power
     {
-        public PowerCancelPowerCard():base()
+        public PowerCancelPowerCard() : base()
         {
             value = 2000;
             name = "Hủy bỏ quyền năng";
+            description = "Hủy bỏ 1 quyền năng trên tay người khác";
         }
 
         public PowerCancelPowerCard(string name, int value, string description) : base(name, value, description)
@@ -20,9 +21,16 @@ namespace Monopoly
 
         }
 
-        public override void powerFunction(Player playerUse, Player affectedPlayers, int dice)
+        public override bool Using(ref Player playerUse, ref Player affectedPlayers, int dice)
         {
-
+            if (playerUse.money > dice * value)
+            {
+                playerUse.RemovePower(name);
+                playerUse.money -= dice * value;
+                affectedPlayers.AddPowersEffect(new PowerCancelPowerCard());
+                return true;
+            }
+            return false;
         }
     }
 }

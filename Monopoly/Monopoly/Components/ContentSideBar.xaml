@@ -9,11 +9,11 @@
              x:Name="root"
              d:DesignHeight="546" d:DesignWidth="321">
     <StackPanel Background="White">
-        
+
         <!-- Tiền -->
         <StackPanel Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" Text="Tiền: " FontSize="18" Margin="8 0 4 0"/>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBlock Text="{Binding Money, ElementName=root}"
                            Margin="2 0 3 0"
                            Foreground="DarkOrange"
@@ -25,11 +25,11 @@
                        Margin="0 1 0  0"/>
             </StackPanel>
         </StackPanel>
-        
+
         <!-- Thẻ -->
         <StackPanel>
-            <TextBlock Text="Thẻ (3): " FontSize="18" Margin="8 4 4 0"/>
-            <component:ListCardSideBar Margin="8"/>
+            <TextBlock x:Name="cardHeading" Text="Thẻ (3): " FontSize="18" Margin="8 4 4 0"/>
+            <component:ListCardSideBar x:Name="listCardSideBar"/>
         </StackPanel>
 
         <!-- Đất -->

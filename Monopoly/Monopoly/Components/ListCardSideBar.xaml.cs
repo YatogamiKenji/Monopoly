@@ -22,7 +22,8 @@ namespace Monopoly.Components
     public partial class ListCardSideBar : UserControl
     {
 
-        //private List<CCard> TestCard;
+        List<Power> powers = new List<Power>();
+        bool isPrison = false;
 
         public List<object> ListCard
         {
@@ -37,58 +38,43 @@ namespace Monopoly.Components
         public ListCardSideBar()
         {
             InitializeComponent();
-            //TestCard = new List<CCard>();
-            //TestCard.Add(new CPowerCard("Dịch chuyển", "Dịch chuyển đến một ô bất kì", new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative)), 150000));
-            //TestCard.Add(new CChanceCard("Dịch chuyển", "Dịch chuyển đến một ô bất kì", new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative))));
-            //TestCard.Add(new CLuckCard("Dịch chuyển", "Dịch chuyển đến một ô bất kì", new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative))));
-            //TestCard.Add(new CPowerCard("Dịch chuyển", "Dịch chuyển đến một ô bất kì", new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative)), 150000));
-            //TestCard.Add(new CChanceCard("Dịch chuyển", "Dịch chuyển đến một ô bất kì", new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative))));
-            //TestCard.Add(new CLuckCard("Dịch chuyển", "Dịch chuyển đến một ô bất kì", new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative))));
 
+            UpdateCard();
+        }
+
+        public ListCardSideBar(List<Power> powers, bool prison)
+        {
+            InitializeComponent();
+            this.powers = powers;
+            isPrison = prison;
             UpdateCard();
         }
 
         private void UpdateCard()
         {
-            //foreach(var card in TestCard)
-            //{
-            //    if (card.Type == "Power")
-            //    {
-            //        PowerCard c = new PowerCard();
-            //        c.Title = card.Title;
-            //        c.Description = card.Description;
-            //        c.ImgSource = card.ImgSource;
-            //        c.Price = ((CPowerCard)card).Price;
-            //        c.Width = 97;
-            //        c.Height = 129;
-            //        c.Margin = new Thickness(2, 0, 2, 0);
-            //        listCardSideBarPanel.Children.Add(c);
-            //    }
-            //    else if (card.Type == "Chance")
-            //    {
-            //        ChanceCard c = new ChanceCard();
-            //        c.Title = card.Title;
-            //        c.Description = card.Description;
-            //        c.ImgSource = card.ImgSource;
-            //        c.Width = 97;
-            //        c.Height = 129;
-            //        c.Margin = new Thickness(2, 0, 2, 0);
-            //        listCardSideBarPanel.Children.Add(c);
-
-            //    }
-            //    else if (card.Type == "Luck")
-            //    {
-            //        LuckCard c = new LuckCard();
-            //        c.Title = card.Title;
-            //        c.Description = card.Description;
-            //        c.ImgSource = card.ImgSource;
-            //        c.Width = 97;
-            //        c.Height = 129;
-            //        c.Margin = new Thickness(2, 0, 2, 0);
-            //        listCardSideBarPanel.Children.Add(c);
-
-            //    }
-            //}            
+            foreach (var card in powers)
+            {
+                PowerCard powerCard = new PowerCard();
+                powerCard.Title = card.name;
+                powerCard.Description = card.description;
+                //powerCard.ImgSource = card.ImgSource;
+                powerCard.Price = card.value;
+                powerCard.Width = 97;
+                powerCard.Height = 129;
+                powerCard.Margin = new Thickness(2, 0, 2, 0);
+                listCardSideBarPanel.Children.Add(powerCard);
+            }
+            if (isPrison)
+            {
+                LuckCard luckCard = new LuckCard();
+                luckCard.Title = "Ra tù";
+                luckCard.Description = "Ra tù";
+                //luckCard.ImgSource =;
+                luckCard.Width = 97;
+                luckCard.Height = 129;
+                luckCard.Margin = new Thickness(2, 0, 2, 0);
+                listCardSideBarPanel.Children.Add(luckCard);
+            }
         }
     }
 }

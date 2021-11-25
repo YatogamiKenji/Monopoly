@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Monopoly
 {
     //đóng băng tài khoản ngân hàng
-    class PowerFreezeBankAccounts:Power
+    class PowerFreezeBankAccounts : Power
     {
         // Số lượt có tác dụng của quyền năng
         private int _numberTurns;
@@ -17,11 +17,12 @@ namespace Monopoly
             set { _numberTurns = value; }
         }
 
-        public PowerFreezeBankAccounts():base()
+        public PowerFreezeBankAccounts() : base()
         {
             value = 1000;
-            name = "đóng băng tài khoản";
+            name = "Đóng băng tài khoản";
             _numberTurns = 2;
+            description = "Đóng băng tài khoản của người khác trong vòng 2 lượt";
         }
 
         public PowerFreezeBankAccounts(string name, int value, string description) : base(name, value, description)
@@ -29,9 +30,23 @@ namespace Monopoly
             _numberTurns = 2;
         }
 
-        public override void powerFunction(Player playerUse, Player affectedPlayers, int dice)
+        public override bool Using(ref Player playerUse, ref Player affectedPlayers, int dice)
         {
+            if (playerUse.money > dice * value)
+            {
+                playerUse.RemovePower(name);
+                playerUse.money -= dice * value;
+                affectedPlayers.AddPowersEffect(new PowerFreezeBankAccounts());
+                return true;
+            }
+            return false;
+        }
 
+        public override void PowerFunction(ref Player playerUse)
+        {
+            playerUse.isFreezeBank = true;
+            _numberTurns--;
+            if (_numberTurns == 0) playerUse.RemovePowerEffect(name);
         }
     }
 }
