@@ -60,7 +60,7 @@
                                 <Setter Property="Foreground" Value="Black" />
                                 <Setter Property="Button.Effect">
                                     <Setter.Value>
-                                        <DropShadowEffect BlurRadius="100" RenderingBias="Performance" Direction="-90" Opacity="1" ShadowDepth ="15" Color ="pink"/>
+                                        <DropShadowEffect BlurRadius="100" RenderingBias="Performance" Direction="-90" Opacity="1" ShadowDepth ="0" Color ="pink"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -112,7 +112,7 @@
                                 <Setter Property="Foreground" Value="Black" />
                                 <Setter Property="Button.Effect">
                                     <Setter.Value>
-                                        <DropShadowEffect BlurRadius="100" RenderingBias="Performance" Direction="-90" Opacity="1" ShadowDepth ="15" Color ="#2196f3"/>
+                                        <DropShadowEffect BlurRadius="100" RenderingBias="Performance" Direction="-90" Opacity="1" ShadowDepth ="0" Color ="#2196f3"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>

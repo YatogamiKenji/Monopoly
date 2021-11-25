@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Images\alien-ship-icon.png" />
+    <None Remove="Images\bg_chessBoard.jpg" />
     <None Remove="Images\bg_setup.jpg" />
     <None Remove="Images\black-hole-icon.png" />
     <None Remove="Images\falling-star-icon.png" />
@@ -34,6 +35,9 @@
 
   <ItemGroup>
     <Resource Include="Images\alien-ship-icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\bg_chessBoard.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\bg_setup.jpg">

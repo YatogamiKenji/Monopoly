@@ -7,22 +7,23 @@
              xmlns:compoenent="clr-namespace:Monopoly.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="450">
+    <UserControl.Resources>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0"/>
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="150,-345,150,645" To="150,10,150,290" DecelerationRatio="0.9" Duration="0:0:1"/>
+            <DoubleAnimation BeginTime="0:0:1.5" Storyboard.TargetProperty="Opacity" From="1.0" To="0.0" Duration="0:0:1.0"/>
+        </Storyboard>
+    </UserControl.Resources>
     <Grid Background="LightBlue" Width="450" Height="450">
         <Button x:Name="But_xucxac"
                         Width="70"
                         Height="70"
                         Content="Quay"
                         FontSize ="25" Canvas.Left="170" Canvas.Top="175"
-                        Background="Orange" Click="But_xucxac_Click"
+                        Background="Orange" 
+                        Click="But_xucxac_Click"
                         ></Button>
-        <Button x:Name="But_xucxac1"
-                        Width="70"
-                        Height="70"
-                        Content="Stop"
-                        FontSize ="25" Canvas.Left="170" Canvas.Top="175"
-                        Background="Orange" Click="But_xucxac_Click1"
-                        Visibility="Collapsed" Panel.ZIndex="1"
-                        ></Button>
-        <compoenent:messboxDice Width="150" Height="150" x:Name="num" Canvas.Left="145" Margin="150,10,150,290"/>
+        
+        <compoenent:messboxDice Panel.ZIndex="2"  x:Name="num" Width="150" Height="150" Margin="150,-345,150,645"/>
     </Grid>
 </UserControl>

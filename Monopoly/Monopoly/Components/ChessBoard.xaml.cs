@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Windows.Controls.Primitives;
+using Monopoly.Components;
 namespace Monopoly.Components
 {
     /// <summary>
@@ -94,9 +95,9 @@ namespace Monopoly.Components
             Grid.SetColumn(players[3], 0);
         }
 
-      
         public void changePlayerPosition(int dice)
         {
+            InitializeComponent();
             //change player position
             playersClass[PlayerTurn].position = (playersClass[PlayerTurn].position + dice) % 40;
             Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersClass[PlayerTurn].position]));
@@ -108,7 +109,8 @@ namespace Monopoly.Components
             //}    
             ////MessageBox.Show(cellManager[playersClass[PlayerTurn].position].type.ToString());
             PlayerTurn = (PlayerTurn + 1) % 4;
-    }
+           
+        }
         private void _1_MouseEnter(object sender, MouseEventArgs e)
         {
             popup_left.PlacementTarget = _1;

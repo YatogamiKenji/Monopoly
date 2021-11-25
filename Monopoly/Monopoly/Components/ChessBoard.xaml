@@ -7,31 +7,34 @@
              xmlns:compoenent="clr-namespace:Monopoly.Components"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280">
-    <Grid x:Name="nen" Background="GreenYellow" Width="1280" Height="720">
-
+    <Grid x:Name="nen" Width="1280" Height="720">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/bg_chessBoard.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="700"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="650"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="85"/>
-            <ColumnDefinition Width="700"/>
-            <ColumnDefinition Width="85"/>
+            <ColumnDefinition Width="650"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Canvas x:Name="Bor_SideBar"
             Grid.Row="1"
             Grid.Column="1"
-            Background="Gray">
+            Background="Gray"
+            />
 
-        </Canvas>
-        <Canvas x:Name="Can_BanCo"  Width="auto" Height="auto" Grid.Column="3" Grid.Row ="1" Background="Gray" >
 
-            <Grid x:Name="BanCo" Width="650" Height="650" Grid.Column="3" Grid.Row ="1" Canvas.Left="25" Canvas.Top="25">
+        <Canvas x:Name="Can_BanCo" Grid.Column="3" Grid.Row ="1">
+
+            <Grid x:Name="BanCo" Width="650" Height="650" Grid.Column="3" Grid.Row ="1">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100"/>
@@ -220,8 +223,7 @@
         <Popup x:Name="popup_top"
                AllowsTransparency="True"
                HorizontalOffset="-137.5"
-               VerticalOffset="100"
-               Width="220">
+               VerticalOffset="100" Grid.ColumnSpan="2" Margin="20,0,210,0">
             <Grid>
                 <compoenent:popup angle="450" x:Name="texttop" Foreground="#E0FFFF"/>
             </Grid>
@@ -232,8 +234,7 @@
         <Popup x:Name="popup_bottom"
                AllowsTransparency="True"
                HorizontalOffset="-135"
-               VerticalOffset="-195"
-               Width="220">
+               VerticalOffset="-195" Grid.ColumnSpan="2" Margin="20,0,210,0">
             <Grid>
                 <compoenent:popup angle="270" x:Name="textbottom" Foreground="#E0FFFF"/>
             </Grid>
