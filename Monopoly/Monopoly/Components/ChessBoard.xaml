@@ -186,24 +186,23 @@
                         Width="100"
                         Height="100"
                         Content="Quay"
-                        FontSize ="30" Canvas.Left="220" Canvas.Top="220"
+                        FontSize ="30" Canvas.Left="220" Canvas.Top="390"
                         Background="Orange" Click="But_xucxac_Click"
                         ></Button>
                     <Button x:Name="But_xucxac1"
                         Width="100"
                         Height="100"
                         Content="Stop"
-                        FontSize ="30" Canvas.Left="220" Canvas.Top="220"
+                        FontSize ="30" Canvas.Left="220" Canvas.Top="390"
                         Background="Orange" Click="But_xucxac_Click1"
                         Visibility="Collapsed" Panel.ZIndex="1"
                         ></Button>
                     <ContentControl x:Name="dices"
                                     Canvas.Top="10"
-                                    Canvas.Left="170"
-                                    Height="200"
-                                    Width="200"/>
+                                    Height="345"
+                                    Width="540"/>
                 </Canvas>
-                <Canvas x:Name="player1" Width="20" Height="20" Background="Red" Margin="10,10,50,50"  >
+                <!--<Canvas x:Name="player1" Width="20" Height="20" Background="Red" Margin="10,10,50,50"  >
                     <TextBlock Text="1" Canvas.Left="6" Canvas.Top="2" FontWeight="Heavy"/>
                 </Canvas>
                 <Canvas x:Name="player2" Width="20" Height="20" Background="MediumVioletRed" Margin="35,10,25,50"   >
@@ -214,7 +213,7 @@
                 </Canvas>
                 <Canvas x:Name="player4" Width="20" Height="20" Background="LawnGreen" Margin="10,35,50,25"  >
                     <TextBlock Text="4" Canvas.Left="6" Canvas.Top="2" FontWeight="Heavy"/>
-                </Canvas>
+                </Canvas>-->
 
             </Grid>
         </Canvas>

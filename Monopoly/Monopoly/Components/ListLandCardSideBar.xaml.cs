@@ -54,6 +54,7 @@ namespace Monopoly.Components
                     var rowDefinition = new RowDefinition();
                     rowDefinition.Height = GridLength.Auto;
                     listLandCardSideBarGrid.RowDefinitions.Add(rowDefinition);
+                   
                 }
                 for (int i = 0; i < Lands.Count; i++)
                 {
@@ -61,7 +62,7 @@ namespace Monopoly.Components
 
                     landCard.Margin = new Thickness(2, 2, 2, 2);
                     landCard.Width = 93;
-                    landCard.Height = 120;
+                    landCard.Height = 130;
                     landCard.SetValue(Grid.RowProperty, (int)Math.Floor((decimal)i / 3));
                     landCard.SetValue(Grid.ColumnProperty, (int)Math.Floor((decimal)i % 3));
                     listLandCardSideBarGrid.Children.Add(landCard);

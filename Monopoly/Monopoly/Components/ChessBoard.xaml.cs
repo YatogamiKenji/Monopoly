@@ -27,7 +27,8 @@ namespace Monopoly.Components
         //số vòng hiện tại
         public List<int> turn;
         //danh sách chứa các player
-        List<Canvas> players = new List<Canvas>();
+        //List<Canvas> players; = new List<Canvas>();
+        public List<PlayerShow> players; // này chỉnh từ list canva thành PlayerShow, list này được lấy dữ liệu bên list PlayerShow của Setup
         //chứa các ô trên bàn cờ ở trên thiết kế (XAML)
         List<Canvas> cellPos;
         //lưu dữ liệu của các player
@@ -40,42 +41,69 @@ namespace Monopoly.Components
         List<Chance> chances = new List<Chance>();
         //lưu dữ liệu các thẻ khí vận
         List<Power> powers = new List<Power>();
+        // Số lượng người chơi
+        int NumberOfPlayers = 0;
 
-        public ChessBoard()
+        //public ChessBoard()
+        //{
+        //    InitializeComponent();
+        //    Init();
+        //}
+
+        public ChessBoard(List<PlayerShow> PlayerShowFromSetup)
         {
+           
             InitializeComponent();
+           // MessageBox.Show("cc");
+            this.players = PlayerShowFromSetup;
+            //MessageBox.Show("cc");
             Init();
+           
         }
 
         //khởi tạo giá trị
         public void Init()
         {
+           
             InitPlayer();
+           
             InitPlayerClass();
+            
             InitData();
             cellPos = new List<Canvas>(40)
             { _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14,_15,_16,_17,_18,_19,_20,_21,_22,_23,_24,_25,_26,_27,_28,_29,_30,_31,_32,_33,_34,_35,_36,_37,_38,_39 };
-            
-            turn = new List<int>(4) { 0, 0, 0, 0 };
+
+            //turn = new List<int>(4) { 0, 0, 0, 0 };
+            turn = new List<int>();
+            for (int i = 0; i < players.Count; i++) turn.Add(0);
         }
 
         //khởi tạo player
         public void InitPlayerClass()
         {
+
             for (int i = 0; i < 4; i++)
             {
                 Player player = new Player();
                 player.position = 0;
                 playersList.Add(player);
             }
+
+            NumberOfPlayers = players.Count;
+           
+           
             sideBar.Players = playersList;
+           
+            // MessageBox.Show("cc");
             sideBar.update(playersList, PlayerTurn);
+          //  MessageBox.Show("cc");
+
         }
 
         //khởi tạo data
         void InitData()
         {
-            var content = System.IO.File.ReadAllText(@"D:\Bài Giảng UIT - HK3\Lập trình trực quan\Đồ án\New folder\Monopoly\Monopoly\Monopoly\Data\Land.json");
+            var content = System.IO.File.ReadAllText(@"C:\Users\trant\OneDrive - Trường ĐH CNTT - University of Information Technology\Đại học\LTTQ\Đồ án\Monopoly\Monopoly\Monopoly\Monopoly\Data\Land.json");
             lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
             for (int i = 0; i < lands.Count; i++) lands[i].landValue = lands[i].value;
             int count = 0;
@@ -102,19 +130,26 @@ namespace Monopoly.Components
         //khởi tạo lại vị trí của các player trên bàn cờ
         public void InitPlayer()
         {
-            players.Add(player1);
-            players.Add(player2);
-            players.Add(player3);
-            players.Add(player4);
+            //players.Add(player1);
+            //players.Add(player2);
+            //players.Add(player3);
+            //players.Add(player4);
             //khởi tạo lại vị trí
-            Grid.SetRow(players[0], 10);
-            Grid.SetColumn(players[0], 0);
-            Grid.SetRow(players[1], 10);
-            Grid.SetColumn(players[1], 0);
-            Grid.SetRow(players[2], 10);
-            Grid.SetColumn(players[2], 0);
-            Grid.SetRow(players[3], 10);
-            Grid.SetColumn(players[3], 0);
+            for(int i = 0; i < players.Count; i ++)
+            {
+                Grid.SetRow(players[i], 10);
+                Grid.SetColumn(players[i], 0);
+              
+                BanCo.Children.Add(players[i]);
+            }
+            //Grid.SetRow(players[0], 10);
+            //Grid.SetColumn(players[0], 0);
+            //Grid.SetRow(players[1], 10);
+            //Grid.SetColumn(players[1], 0);
+            //Grid.SetRow(players[2], 10);
+            //Grid.SetColumn(players[2], 0);
+            //Grid.SetRow(players[3], 10);
+            //Grid.SetColumn(players[3], 0);
         }
 
         //create value ramdom
@@ -222,7 +257,8 @@ namespace Monopoly.Components
                     }
                     DoEvents();
                     Thread.Sleep(1500);
-                    PlayerTurn = (PlayerTurn + 1) % 4;
+                    //PlayerTurn = (PlayerTurn + 1) % 4;
+                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                     sideBar.update(playersList, PlayerTurn);
                 }
             }
@@ -235,7 +271,8 @@ namespace Monopoly.Components
                 //dices.Content = comeLuckLand;
                 sideBar.update(playersList, PlayerTurn);
                 But_xucxac.Visibility = Visibility.Visible;
-                PlayerTurn = (PlayerTurn + 1) % 4;
+                //PlayerTurn = (PlayerTurn + 1) % 4;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -249,7 +286,8 @@ namespace Monopoly.Components
                 //dices.Content = comeChanceCard;
                 sideBar.update(playersList, PlayerTurn);
                 But_xucxac.Visibility = Visibility.Visible;
-                PlayerTurn = (PlayerTurn + 1) % 4;
+                //PlayerTurn = (PlayerTurn + 1) % 4;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -263,7 +301,8 @@ namespace Monopoly.Components
                 //dices.Content = comePowerCard;
                 sideBar.update(playersList, PlayerTurn);
                 But_xucxac.Visibility = Visibility.Visible;
-                PlayerTurn = (PlayerTurn + 1) % 4;
+                //PlayerTurn = (PlayerTurn + 1) % 4;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -273,7 +312,8 @@ namespace Monopoly.Components
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.OTu)
             {
                 But_xucxac.Visibility = Visibility.Visible;
-                PlayerTurn = (PlayerTurn + 1) % 4;
+                //PlayerTurn = (PlayerTurn + 1) % 4;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -287,7 +327,8 @@ namespace Monopoly.Components
                 Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[10]));
                 Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[10]));
                 But_xucxac.Visibility = Visibility.Visible;
-                PlayerTurn = (PlayerTurn + 1) % 4;
+                //PlayerTurn = (PlayerTurn + 1) % 4;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -300,7 +341,8 @@ namespace Monopoly.Components
                 playersList[PlayerTurn].money = Convert.ToInt32(Math.Ceiling(0.9 * playersList[PlayerTurn].money));
                 sideBar.update(playersList, PlayerTurn);
                 But_xucxac.Visibility = Visibility.Visible;
-                PlayerTurn = (PlayerTurn + 1) % 4;
+                //PlayerTurn = (PlayerTurn + 1) % 4;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -310,7 +352,8 @@ namespace Monopoly.Components
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.BaiDoXe)
             {
                 But_xucxac.Visibility = Visibility.Visible;
-                PlayerTurn = (PlayerTurn + 1) % 4;
+                //PlayerTurn = (PlayerTurn + 1) % 4;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -327,7 +370,8 @@ namespace Monopoly.Components
         private void ComeOwnLandView_OnSkipButtonClick(object sender, RoutedEventArgs e)
         {
             //tính lượt của các player
-            PlayerTurn = (PlayerTurn + 1) % 4;
+            //PlayerTurn = (PlayerTurn + 1) % 4;
+            PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             DoEvents();
             Thread.Sleep(1000);
             sideBar.update(playersList, PlayerTurn);
@@ -343,7 +387,8 @@ namespace Monopoly.Components
             sideBar.update(playersList, PlayerTurn);
 
             //tính lượt của các player
-            PlayerTurn = (PlayerTurn + 1) % 4;
+            // PlayerTurn = (PlayerTurn + 1) % 4;
+            PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             DoEvents();
             Thread.Sleep(1500);
             sideBar.update(playersList, PlayerTurn);
@@ -360,7 +405,8 @@ namespace Monopoly.Components
                 sideBar.update(playersList, PlayerTurn);
 
                 //tính lượt của các player
-                PlayerTurn = (PlayerTurn + 1) % 4;
+                // PlayerTurn = (PlayerTurn + 1) % 4;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 But_xucxac.Visibility = Visibility.Visible;
                 dices.Content = diceshow;
             }
@@ -373,7 +419,8 @@ namespace Monopoly.Components
         private void ComeEmptyLandView_OnSkipButtonClick(object sender, RoutedEventArgs e)
         {
             //tính lượt của các player
-            PlayerTurn = (PlayerTurn + 1) % 4;
+            //PlayerTurn = (PlayerTurn + 1) % 4;
+            PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             DoEvents();
             Thread.Sleep(1000);
             sideBar.update(playersList, PlayerTurn);
@@ -394,7 +441,8 @@ namespace Monopoly.Components
                 Thread.Sleep(1500);
 
                 //tính lượt của các player
-                PlayerTurn = (PlayerTurn + 1) % 4;
+                // PlayerTurn = (PlayerTurn + 1) % 4;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 But_xucxac.Visibility = Visibility.Visible;
                 dices.Content = diceshow;
             }

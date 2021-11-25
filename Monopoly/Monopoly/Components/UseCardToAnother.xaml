@@ -16,52 +16,9 @@
             <TextBlock Height="40" Text="Bạn muốn sử dụng thẻ 'X' lên ai?" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center"></TextBlock>
         </StackPanel>
         <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-
-                <RowDefinition Height="280"></RowDefinition>
-
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="130"></RowDefinition>
-                    <RowDefinition Height="20"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="62.5"></ColumnDefinition>
-                    <ColumnDefinition Width="100"></ColumnDefinition>
-                    <ColumnDefinition Width="100"></ColumnDefinition>
-                    <ColumnDefinition Width="100"></ColumnDefinition>
-                    <ColumnDefinition ></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="1">
-                    <Canvas>
-                        <Ellipse Width="30" Height="30" Fill="Red" Canvas.Left="-15" Canvas.Top="-50"></Ellipse>
-                        <Rectangle Width="30" Height="40" Fill="Red" Canvas.Left="-15" Canvas.Top="-20"></Rectangle>
-                        <TextBox Text="Player 1" Canvas.Left="-24" Canvas.Top="31" FontWeight="Bold" Background="LightGray" IsHitTestVisible="False"></TextBox>
-                    </Canvas>
-
-                </Button>
-                <Button Grid.Column="3">
-                    <Canvas>
-                        <Ellipse Width="30" Height="30" Fill="Blue" Canvas.Left="-15" Canvas.Top="-50"></Ellipse>
-                        <Rectangle Width="30" Height="40" Fill="Blue" Canvas.Left="-15" Canvas.Top="-20"></Rectangle>
-                        <TextBox Text="Player 2" Canvas.Left="-24" Canvas.Top="31" FontWeight="Bold" Background="LightGray" IsHitTestVisible="False"></TextBox>
-                    </Canvas>
-                </Button>
-                <Button Grid.Row="3" Grid.Column="2">
-                    <Canvas>
-                        <Ellipse Width="30" Height="30" Fill="Green" Canvas.Left="-15" Canvas.Top="-50"></Ellipse>
-                        <Rectangle Width="30" Height="40" Fill="Green" Canvas.Left="-15" Canvas.Top="-20"></Rectangle>
-                        <TextBox Text="Player 3 " Canvas.Left="-24" Canvas.Top="31" FontWeight="Bold" Background="LightGray" IsHitTestVisible="False"></TextBox>
-                    </Canvas>
-                </Button>
-               
-            </Grid>
-
+           
+            <local:ListContentPlayers/>
+            
         </Grid>
 
     </Grid>

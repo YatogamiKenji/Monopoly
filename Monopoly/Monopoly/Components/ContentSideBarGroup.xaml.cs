@@ -31,7 +31,7 @@ namespace Monopoly.Components
         public static readonly DependencyProperty SelectedIdProperty =
             DependencyProperty.Register("SelectedId", typeof(int), typeof(ContentSideBarGroup), new PropertyMetadata(0));
 
-        private List<ContentSideBar> listItem;
+        //private List<ContentSideBar> listItem;
 
         public ContentSideBarGroup()
         {

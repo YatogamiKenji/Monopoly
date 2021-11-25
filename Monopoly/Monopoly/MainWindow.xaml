@@ -9,7 +9,10 @@
       
         Title="Monopoly" Height="780" Width="1280">
     <Grid>
-        <component:ViewStart/>
-   
+        <!--<component:ViewStart/>-->
+        <!--<component:ListContentPlayers/>-->
+        <!--<component:ViewStart/>-->
+        <component:Setup/>
+       
     </Grid>
 </Window>

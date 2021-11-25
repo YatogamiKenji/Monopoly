@@ -23,9 +23,9 @@
                   IsReadOnly="True"
                  />
 
-        <Button Width="200" Height="100"  Content="2 người" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="160,206,920,414"></Button>
-        <Button Width="200" Height="100" Content="3 người" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="540,206,540,414"></Button>
-        <Button Width="200" Height="100" Content="4 người" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="920,206,160,414"></Button>
+        <Button Width="200" Height="100"  Content="2 người" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="160,206,920,414" Click="Button_Click_2"></Button>
+        <Button Width="200" Height="100" Content="3 người" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="540,206,540,414" Click="Button_Click_3"></Button>
+        <Button Width="200" Height="100" Content="4 người" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="920,206,160,414" Click="Button_Click_4"></Button>
         <TextBox Text="Chế độ chơi"
                  FontSize="50" 
                  Height="110"
