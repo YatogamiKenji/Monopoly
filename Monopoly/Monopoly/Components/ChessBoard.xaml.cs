@@ -396,10 +396,6 @@ namespace Monopoly.Components
 
                 //ComePowerCard comePowerCard = new ComePowerCard();
                 //dices.Content = comePowerCard;
-                playersList[PlayerTurn].AddPower(RandomPower());
-                sideBar.update(playersList, PlayerTurn);
-                But_xucxac.Visibility = Visibility.Visible;
-
                 //PlayerTurn = (PlayerTurn + 1) % 4;
             }
 
