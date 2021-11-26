@@ -85,7 +85,7 @@ namespace Monopoly.Components
         public void InitPlayerClass()
         {
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < players.Count; i++)
             {
                 Player player = new Player();
                 player.position = 0;
@@ -106,7 +106,9 @@ namespace Monopoly.Components
         //khởi tạo data
         void InitData()
         {
-            var content = System.IO.File.ReadAllText(@".\Data\Land.json");
+           
+            //var content = System.IO.File.ReadAllText(@".\Data\Land.json");
+            var content = System.IO.File.ReadAllText(@"C:\Đồ án\Monopoly\Monopoly\Monopoly\Data\Land.json");
             lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
             for (int i = 0; i < lands.Count; i++) lands[i].landValue = lands[i].value;
             int count = 0;
@@ -356,19 +358,19 @@ namespace Monopoly.Components
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.QuyenNang)
             {
                 //Tiến hành random thẻ quyền năng
-                //ComePowerCard comePowerCard = new ComePowerCard();
-                //dices.Content = comePowerCard;
                 Random randomPower = new Random();
                 int indexPower = randomPower.Next(20);
+                PowerCard powerCard = new PowerCard(powers[indexPower]);
+                ComeSpecialLand comeSpecialLand = new ComeSpecialLand();
+                comeSpecialLand.Title = "Ô QUYỀN NĂNG";
+                comeSpecialLand.PicCard.Content = powerCard;
+                dices.Content = comeSpecialLand;
+               // sideBar.update(playersList, PlayerTurn);
+                //But_xucxac.Visibility = Visibility.Visible;
                 playersList[PlayerTurn].AddPower(powers[indexPower]);
-                sideBar.update(playersList, PlayerTurn);
-                But_xucxac.Visibility = Visibility.Visible;
+                comeSpecialLand.OnOKButtonClick += ComeSpecialLand_OnOKButtonClick;
+               
                 //PlayerTurn = (PlayerTurn + 1) % 4;
-                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                DoEvents();
-                Thread.Sleep(1500);
-                sideBar.update(playersList, PlayerTurn);
             }
 
             //xử lý khi đi vào ô ở tù
@@ -431,6 +433,11 @@ namespace Monopoly.Components
                 sideBar.update(playersList, PlayerTurn);
             }
             sideBar.update(playersList, PlayerTurn);
+        }
+
+        private void ComeSpecialLand_OnOKButtonClick(object sender, RoutedEventArgs e)
+        {
+            ComeEmptyLandView_OnSkipButtonClick(sender, e);
         }
 
         private void ComeLandView_OnUseCardButtonClick(object sender, RoutedEventArgs e)
@@ -500,7 +507,7 @@ namespace Monopoly.Components
             Thread.Sleep(1500);
             sideBar.update(playersList, PlayerTurn);
         }
-
+       
         private void ComeEmptyLandView_OnSkipButtonClick(object sender, RoutedEventArgs e)
         {
             //tính lượt của các player

@@ -13,6 +13,8 @@
         <!--<component:ListContentPlayers/>-->
         <!--<component:ViewStart/>-->
         <component:Setup/>
+        <!--<component:ComePowerLand/>-->
        
+
     </Grid>
 </Window>

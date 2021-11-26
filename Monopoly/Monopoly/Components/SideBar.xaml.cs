@@ -73,6 +73,7 @@ namespace Monopoly.Components
                 ContentSideBar contentSideBar = new ContentSideBar(Players[SelectedId]);
                 content.Content = contentSideBar;
             }
+
         }
     }
 }

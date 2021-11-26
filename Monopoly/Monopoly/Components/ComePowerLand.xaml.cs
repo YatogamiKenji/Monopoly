@@ -16,13 +16,15 @@ using System.Windows.Shapes;
 namespace Monopoly.Components
 {
     /// <summary>
-    /// Interaction logic for ComePowerCard.xaml
+    /// Interaction logic for ComePowerLand.xaml
     /// </summary>
-    public partial class ComePowerCard : UserControl
+    public partial class ComePowerLand : UserControl
     {
-        public ComePowerCard()
+        public ComePowerLand()
         {
             InitializeComponent();
         }
+
+       
     }
 }

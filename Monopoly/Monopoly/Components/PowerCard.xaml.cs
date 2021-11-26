@@ -56,11 +56,17 @@ namespace Monopoly.Components
         public static readonly DependencyProperty ImgSourceProperty =
             DependencyProperty.Register("ImgSource", typeof(ImageSource), typeof(PowerCard));
 
-
-
         public PowerCard()
         {
             InitializeComponent();
+        }
+        public PowerCard(Power power)
+        {
+            InitializeComponent();
+            Title = power.name;
+            Description = power.description;
+            Price = power.value;
+            //ImgSource = imgSource;
         }
     }
 }

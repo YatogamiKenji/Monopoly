@@ -20,10 +20,10 @@ namespace Monopoly.Components
     /// </summary>
     public partial class Setup : UserControl
     {
-       // List<ContentPlayer> Cont_Player;   // List các Components của ContentPlayer
-        List<PlayerShow> ShowPlayers = new List<PlayerShow>();   // List các các Components của PlayerShow, PlayerShow là để show hình hình ảnh ngưởi chơi trên bàn cờ
+        // List<ContentPlayer> Cont_Player;   // List các Components của ContentPlayer
+        List<PlayerShow> ShowPlayers; //= new List<PlayerShow>();   // List các các Components của PlayerShow, PlayerShow là để show hình hình ảnh ngưởi chơi trên bàn cờ
 
-        // Cấu hình UI người chơi chơi
+        // Cấu hình UI người chơi 
         PlayerShow ShowPlayer1 = new PlayerShow { Title = "1", Margin = new Thickness(10, 10, 50, 50), BackgroundPlayer = Brushes.Red };
         PlayerShow ShowPlayer2 = new PlayerShow { Title = "2", Margin = new Thickness(35, 10, 25, 50), BackgroundPlayer = Brushes.MediumVioletRed };
         PlayerShow ShowPlayer3 = new PlayerShow { Title = "3", Margin = new Thickness(35, 35, 25, 25), BackgroundPlayer = Brushes.Blue };
@@ -62,6 +62,7 @@ namespace Monopoly.Components
             //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 1" });
             //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 2" });
 
+            ShowPlayers = new List<PlayerShow>();
             ShowPlayers.Add(ShowPlayer1);
             ShowPlayers.Add(ShowPlayer2);
 
@@ -74,6 +75,7 @@ namespace Monopoly.Components
             //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 2" });
             //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 3" });
 
+            ShowPlayers = new List<PlayerShow>();
             ShowPlayers.Add(ShowPlayer1);
             ShowPlayers.Add(ShowPlayer2);
             ShowPlayers.Add(ShowPlayer3);
@@ -87,6 +89,7 @@ namespace Monopoly.Components
             //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 3" });
             //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 4" });
 
+            ShowPlayers = new List<PlayerShow>();
             ShowPlayers.Add(ShowPlayer1);
             ShowPlayers.Add(ShowPlayer2);
             ShowPlayers.Add(ShowPlayer3);

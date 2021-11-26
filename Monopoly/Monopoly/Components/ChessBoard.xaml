@@ -186,20 +186,20 @@
                         Width="100"
                         Height="100"
                         Content="Quay"
-                        FontSize ="30" Canvas.Left="220" Canvas.Top="390"
+                        FontSize ="30" Canvas.Left="220" Canvas.Top="420"
                         Background="Orange" Click="But_xucxac_Click"
                         ></Button>
                     <Button x:Name="But_xucxac1"
                         Width="100"
                         Height="100"
                         Content="Stop"
-                        FontSize ="30" Canvas.Left="220" Canvas.Top="390"
+                        FontSize ="30" Canvas.Left="220" Canvas.Top="420"
                         Background="Orange" Click="But_xucxac_Click1"
                         Visibility="Collapsed" Panel.ZIndex="1"
                         ></Button>
                     <ContentControl x:Name="dices"
                                     Canvas.Top="10"
-                                    Height="345"
+                                    Height="353"
                                     Width="540"/>
                 </Canvas>
                 <!--<Canvas x:Name="player1" Width="20" Height="20" Background="Red" Margin="10,10,50,50"  >
