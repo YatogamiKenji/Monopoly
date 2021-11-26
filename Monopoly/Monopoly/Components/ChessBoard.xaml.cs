@@ -40,23 +40,23 @@ namespace Monopoly.Components
         //lưu dữ liệu các thẻ cơ hội
         List<Chance> chances = new List<Chance>();
         //lưu dữ liệu các thẻ khí vận
-        List<Power> powers = new List<Power>();
+        List<CommunityChest> communityChests = new List<CommunityChest>();
+        //lưu dữ liệu các thẻ power
+        //List<Power> powers = new List<Power>();
         // Số lượng người chơi
         int NumberOfPlayers = 0;
 
-        //public ChessBoard()
-        //{
-        //    InitializeComponent();
-        //    Init();
-        //}
+        public ChessBoard()
+        {
+            InitializeComponent();
+            Init();
+        }
 
         public ChessBoard(List<PlayerShow> PlayerShowFromSetup)
         {
            
             InitializeComponent();
-           // MessageBox.Show("cc");
             this.players = PlayerShowFromSetup;
-            //MessageBox.Show("cc");
             Init();
            
         }
@@ -66,7 +66,7 @@ namespace Monopoly.Components
         {
             InitData();
 
-            InitPower();
+            //InitPower();
 
             InitPlayer();
            
@@ -76,7 +76,6 @@ namespace Monopoly.Components
             cellPos = new List<Canvas>(40)
             { _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14,_15,_16,_17,_18,_19,_20,_21,_22,_23,_24,_25,_26,_27,_28,_29,_30,_31,_32,_33,_34,_35,_36,_37,_38,_39 };
 
-            //turn = new List<int>(4) { 0, 0, 0, 0 };
             turn = new List<int>();
             for (int i = 0; i < players.Count; i++) turn.Add(0);
         }
@@ -97,9 +96,7 @@ namespace Monopoly.Components
            
             sideBar.Players = playersList;
            
-            // MessageBox.Show("cc");
             sideBar.update(playersList, PlayerTurn);
-          //  MessageBox.Show("cc");
 
         }
 
@@ -157,31 +154,31 @@ namespace Monopoly.Components
             //Grid.SetColumn(players[3], 0);
         }
 
-        void InitPower()
-        {
-            //buff
-            powers.Add(new PowerChooseOneCard());
-            powers.Add(new PowerDoubleDice());
-            powers.Add(new PowerDoublePriceLandForever());
-            powers.Add(new PowerDoubleTax());
-            powers.Add(new PowerDoubleTheValueStarting());
-            powers.Add(new PowerExemptFromPrison());
-            powers.Add(new PowerHalveUpgradeFee());
-            powers.Add(new PowerMoveToAnyCell());
-            powers.Add(new PowerRemoveAdverseEffects());
-            powers.Add(new PowerRemoveLoseMoneyNext());
-            //nerf
-            powers.Add(new PowerAppointPersonToPrison());
-            powers.Add(new PowerCancelPowerCard());
-            powers.Add(new PowerFreezeBankAccounts());
-            powers.Add(new PowerHoldAPerson());
-            powers.Add(new PowerLandLevelReduction());
-            powers.Add(new PowerLandPriceHalved());
-            powers.Add(new PowerLockAPlotOfLand());
-            powers.Add(new PowerSplitDice());
-            powers.Add(new PowerStealLand());
-            powers.Add(new PowerTeleportPersonToTheTax());
-        }
+        //void InitPower()
+        //{
+        //    //buff
+        //    powers.Add(new PowerChooseOneCard());
+        //    powers.Add(new PowerDoubleDice());
+        //    powers.Add(new PowerDoublePriceLandForever());
+        //    powers.Add(new PowerDoubleTax());
+        //    powers.Add(new PowerDoubleTheValueStarting());
+        //    powers.Add(new PowerExemptFromPrison());
+        //    powers.Add(new PowerHalveUpgradeFee());
+        //    powers.Add(new PowerMoveToAnyCell());
+        //    powers.Add(new PowerRemoveAdverseEffects());
+        //    powers.Add(new PowerRemoveLoseMoneyNext());
+        //    //nerf
+        //    powers.Add(new PowerAppointPersonToPrison());
+        //    powers.Add(new PowerCancelPowerCard());
+        //    powers.Add(new PowerFreezeBankAccounts());
+        //    powers.Add(new PowerHoldAPerson());
+        //    powers.Add(new PowerLandLevelReduction());
+        //    powers.Add(new PowerLandPriceHalved());
+        //    powers.Add(new PowerLockAPlotOfLand());
+        //    powers.Add(new PowerSplitDice());
+        //    powers.Add(new PowerStealLand());
+        //    powers.Add(new PowerTeleportPersonToTheTax());
+        //}
 
         //create value ramdom
         public Random random = new Random();
@@ -222,6 +219,32 @@ namespace Monopoly.Components
             }
         }
 
+        public Power RandomPower()
+        {
+            Random random = new Random();
+            int x = random.Next(200);
+            if (x >= 0 && x < 13) return new PowerRemoveLoseMoneyNext(); 
+            if (x > 13 && x < 27) return new PowerChooseOneCard();
+            if (x > 27 && x < 33 || x > 61 && x < 66) return new PowerAppointPersonToPrison();
+            if (x > 33 && x < 47) return new PowerSplitDice();
+            if (x > 47 && x < 61) return new PowerLandPriceHalved();
+            if (x > 66 && x < 72 || x > 100 && x < 105) return new PowerMoveToAnyCell();
+            if (x == 13 || x == 61 || x == 100 || x == 131) return new PowerRemoveAdverseEffects();
+            if (x > 72 && x < 86) return new PowerExemptFromPrison();
+            if (x > 86 && x < 100) return new PowerDoubleTheValueStarting();
+            if (x > 105 && x < 111 || x > 151 && x < 156) return new PowerCancelPowerCard();
+            if (x == 27 || x == 66 || x == 105 || x == 145) return new PowerStealLand();
+            if (x > 111 && x > 125) return new PowerFreezeBankAccounts();
+            if (x > 125 && x < 131 || x > 187 && x < 192) return new PowerDoubleTax();
+            if (x > 131 && x < 145) return new PowerDoubleDice();
+            if (x > 145 && x < 151 || x > 191 && x < 196) return new PowerHoldAPerson();
+            if (x == 33 || x == 72 || x == 111 || x == 151) return new PowerDoublePriceLandForever();
+            if (x > 156 && x < 170) return new PowerLockAPlotOfLand();
+            if (x > 169 && x < 175 || x > 195 && x < 200) return new PowerHalveUpgradeFee();
+            if (x > 174 && x < 188) return new PowerTeleportPersonToTheTax();
+            return new PowerLandLevelReduction();
+        }
+
         public void But_xucxac_Click1(object sender, RoutedEventArgs e)
         {
             //Quay show, Stop hide
@@ -232,7 +255,6 @@ namespace Monopoly.Components
             //tính số vòng đã đi được
             DoEvents();
             Thread.Sleep(1000);
-            dice = 17;
 
             // kích hoạt các hiệu ứng đang ở trên người
             Player player = playersList[PlayerTurn];
@@ -358,18 +380,26 @@ namespace Monopoly.Components
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.QuyenNang)
             {
                 //Tiến hành random thẻ quyền năng
-                Random randomPower = new Random();
-                int indexPower = randomPower.Next(20);
-                PowerCard powerCard = new PowerCard(powers[indexPower]);
+                // Random randomPower = new Random();
+                // int indexPower = randomPower.Next(20);
+                Power power = RandomPower();
+                PowerCard powerCard = new PowerCard(power);
                 ComeSpecialLand comeSpecialLand = new ComeSpecialLand();
                 comeSpecialLand.Title = "Ô QUYỀN NĂNG";
                 comeSpecialLand.PicCard.Content = powerCard;
                 dices.Content = comeSpecialLand;
                // sideBar.update(playersList, PlayerTurn);
                 //But_xucxac.Visibility = Visibility.Visible;
-                playersList[PlayerTurn].AddPower(powers[indexPower]);
+                playersList[PlayerTurn].AddPower(power);
                 comeSpecialLand.OnOKButtonClick += ComeSpecialLand_OnOKButtonClick;
                
+
+                //ComePowerCard comePowerCard = new ComePowerCard();
+                //dices.Content = comePowerCard;
+                playersList[PlayerTurn].AddPower(RandomPower());
+                sideBar.update(playersList, PlayerTurn);
+                But_xucxac.Visibility = Visibility.Visible;
+
                 //PlayerTurn = (PlayerTurn + 1) % 4;
             }
 

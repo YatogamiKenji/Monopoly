@@ -27,7 +27,7 @@ namespace Monopoly
             {
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
-                affectedPlayers.AddPowersEffect(new PowerLandLevelReduction());
+                affectedPlayers.lands[0].LowerLevel();
                 return true;
             }
             return false;

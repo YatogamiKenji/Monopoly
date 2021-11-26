@@ -27,7 +27,7 @@ namespace Monopoly
             {
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
-                affectedPlayers.AddPowersEffect(new PowerCancelPowerCard());
+                affectedPlayers.RemovePower("Tên thẻ cần hủy");
                 return true;
             }
             return false;
