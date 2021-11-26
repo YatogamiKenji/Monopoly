@@ -12,7 +12,7 @@
         <!--<component:ViewStart/>-->
         <!--<component:ListContentPlayers/>-->
         <!--<component:ViewStart/>-->
-        <component:Setup/>
+        <component:ViewStart/>
        
     </Grid>
 </Window>

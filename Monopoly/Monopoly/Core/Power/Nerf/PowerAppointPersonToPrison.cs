@@ -27,7 +27,7 @@ namespace Monopoly
             {
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
-                affectedPlayers.AddPowersEffect(new PowerAppointPersonToPrison());
+                affectedPlayers.position = 10;
                 return true;
             }
             return false;

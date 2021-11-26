@@ -170,5 +170,15 @@ namespace Monopoly
                 return 2 * _value;
             return 3 * _value;
         }
+
+        public void LowerLevel()
+        {
+            if (_level == 5) _landValue -= 5 * _value;
+            else if (_level == 4) _landValue -= Convert.ToInt32(Math.Ceiling(3.8 * _value));
+            else if (_level == 3) _landValue -= Convert.ToInt32(Math.Ceiling(3.4 * _value));
+            else _landValue = _value;
+            if (_level - 2 >= 0) _level -= 2;
+            else _level = 0;
+        }
     }
 }
