@@ -14,6 +14,7 @@ namespace Monopoly
             value = 1800;
             name = "Giảm tiền nâng cấp";
             description = "Giảm một nữa tiền nâng cấp nhà";
+            type = true;
         }
 
         public PowerHalveUpgradeFee(string name, int value, string description) : base(name, value, description)

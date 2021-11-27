@@ -23,6 +23,7 @@ namespace Monopoly
             name = "Không mất tiền";
             _numberTurns = 1;
             description = "Loại bỏ lần mất tiền tiếp theo";
+            type = true;
         }
 
         public PowerRemoveLoseMoneyNext(string name, int value, string description) : base(name, value, description)

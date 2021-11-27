@@ -23,6 +23,7 @@ namespace Monopoly
             name = "Nhân đôi bước nhảy";
             _numberTurns = 7;
             description = "Nhân đôi xúc xắc trong vòng 7 lượt";
+            type = true;
         }
 
         public PowerDoubleDice(string name, int value, string description) : base(name, value, description)

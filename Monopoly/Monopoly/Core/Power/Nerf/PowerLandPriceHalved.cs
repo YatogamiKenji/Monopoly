@@ -23,6 +23,7 @@ namespace Monopoly
             name = "Giảm giá trị hành tinh";
             _numberTurns = 2;
             description = "Giảm 50% giá trị hành tinh của một người chơi trong vòng 2 lượt";
+            type = false;
         }
 
         public PowerLandPriceHalved(string name, int value, string description) : base(name, value, description)

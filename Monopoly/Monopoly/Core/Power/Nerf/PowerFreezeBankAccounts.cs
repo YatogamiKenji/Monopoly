@@ -23,6 +23,7 @@ namespace Monopoly
             name = "Đóng băng tài khoản";
             _numberTurns = 2;
             description = "Đóng băng tài khoản của người khác trong vòng 2 lượt";
+            type = false;
         }
 
         public PowerFreezeBankAccounts(string name, int value, string description) : base(name, value, description)

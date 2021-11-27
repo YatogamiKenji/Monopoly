@@ -24,6 +24,14 @@ namespace Monopoly
             set { _value = value; }
         }
 
+        //
+        private bool _type;
+        public bool type
+        {
+            get { return _type; }
+            set { _type = value; }
+        }
+
         //mô tả thẻ quyền năng :v
         private string _description;
         public string description

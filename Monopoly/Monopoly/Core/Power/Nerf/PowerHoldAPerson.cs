@@ -23,6 +23,7 @@ namespace Monopoly
             name = "Giữ chân";
             _numberTurns = 5;
             description = "Giữ chân 1 người tại vị trí cũ trong vòng 5 lượt";
+            type = false;
         }
 
         public PowerHoldAPerson(string name, int value, string description) : base(name, value, description)

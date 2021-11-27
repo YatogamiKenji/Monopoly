@@ -23,6 +23,7 @@ namespace Monopoly
             name = "Miễn nhiễm";
             _numberTurns = 5;
             description = "Miễn nhiễm với bất kỳ hiệu ứng bất lợi nào trong vòng 5 lượt";
+            type = true;
         }
 
         public PowerRemoveAdverseEffects(string name, int value, string description) : base(name, value, description)

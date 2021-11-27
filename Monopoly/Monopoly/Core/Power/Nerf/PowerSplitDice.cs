@@ -23,6 +23,7 @@ namespace Monopoly
             name = "Chia đôi";
             _numberTurns = 7;
             description = "Chia đôi xúc xắc của một người chơi trong vòng 7 lượt";
+            type = false;
         }
 
         public PowerSplitDice(string name, int value, string description) : base(name, value, description)

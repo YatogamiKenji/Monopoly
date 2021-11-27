@@ -14,6 +14,7 @@ namespace Monopoly
             value = 500;
             name = "Gấp đôi giá trị Cổng dịch chuyển";
             description = "Tăng gấp đôi giá trị nhận được khi đi qua cổng dịch chuyển";
+            type = true;
         }
 
         public PowerDoubleTheValueStarting(string name, int value, string description) : base(name, value, description)

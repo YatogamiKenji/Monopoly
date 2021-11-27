@@ -14,6 +14,7 @@ namespace Monopoly
             value = 3000;
             name = "Trộm hành tinh";
             description = "Biến một ô đất của ai đó thành của mình";
+            type = false;
         }
 
         public PowerStealLand(string name, int value, string description) : base(name, value, description)

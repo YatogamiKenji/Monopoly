@@ -23,6 +23,7 @@ namespace Monopoly
             name = "Khóa hành tinh";
             _numberTurns = 2;
             description = "Khóa 1 hành tinh của một người chơi trong vòng 2 lượt";
+            type = false;
         }
 
         public PowerLockAPlotOfLand(string name, int value, string description) : base(name, value, description)

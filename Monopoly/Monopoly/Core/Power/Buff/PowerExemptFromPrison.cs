@@ -23,6 +23,7 @@ namespace Monopoly
             name = "Miễn vào tù";
             _numberTurns = 10;
             description = "Miễn vào tù trong vòng 10 lượt";
+            type = true;
         }
 
         public PowerExemptFromPrison(string name, int value, string description) : base(name, value, description)

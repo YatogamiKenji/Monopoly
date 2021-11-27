@@ -14,6 +14,7 @@ namespace Monopoly
             value = 1500;
             name = "Tăng giá trị thuế";
             description = "Tăng gấp đôi giá trị thuế của một hành tinh";
+            type = true;
         }
 
         public PowerDoubleTax(string name, int value, string description) : base(name, value, description)

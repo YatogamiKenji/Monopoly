@@ -14,6 +14,7 @@ namespace Monopoly
             value = 1000;
             name = "Dịch chuyển";
             description = "Dịch chuyển đến một ô được người chơi chỉ định trên bàn cờ";
+            type = true;
         }
 
         public PowerMoveToAnyCell(string name, int value, string description) : base(name, value, description)
