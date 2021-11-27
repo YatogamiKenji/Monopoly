@@ -24,5 +24,26 @@ namespace Monopoly.Components
         {
             InitializeComponent();
         }
+
+           public static readonly RoutedEvent ButtonCancleClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnButtonCancleClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContenButtonCard));
+
+        public event RoutedEventHandler OnButtonCancleClick
+        {
+            add { AddHandler(ButtonCancleClickEvent, value); }
+            remove { RemoveHandler(ButtonCancleClickEvent, value); }
+        }
+
+        public usingCard(ListCardPlayers listCardPlayers)
+        {
+            InitializeComponent();
+            Grid.SetRow(listCardPlayers, 1);
+            ListCard.Children.Add(listCardPlayers);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(ButtonCancleClickEvent));
+        }
     }
 }

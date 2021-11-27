@@ -22,7 +22,7 @@ namespace Monopoly.Components
     public partial class ListCardSideBar : UserControl
     {
 
-        List<Power> powers = new List<Power>();
+        public  List<Power> powers = new List<Power>();
         bool isPrison = false;
 
         public List<object> ListCard
@@ -52,6 +52,9 @@ namespace Monopoly.Components
 
         private void UpdateCard()
         {
+
+           
+
             foreach (var card in powers)
             {
                 PowerCard powerCard = new PowerCard();

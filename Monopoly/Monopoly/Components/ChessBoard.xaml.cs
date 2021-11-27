@@ -45,6 +45,11 @@ namespace Monopoly.Components
         // Số lượng người chơi
         int NumberOfPlayers = 0;
 
+        //Biến lưu dices.Content trước đó đó là  ComeOwnLandView hay là ComePowerLandView để chuyển đổi trở lại khi hủy sử dụng thẻ
+        Object ContentDicesBack;
+        //Biến kiểm tra dices.Content trước đó đó là  ComeOwnLandView(false) hay là ComePowerLandView(true) để chuyển đổi trở lại khi hủy sử dụng thẻ
+        bool CheckContentBack = false;
+
         public ChessBoard()
         {
             InitializeComponent();
@@ -63,6 +68,7 @@ namespace Monopoly.Components
         //khởi tạo giá trị
         public void Init()
         {
+           // MessageBox.Show("cc");
             InitData();
 
             //InitPower();
@@ -102,8 +108,9 @@ namespace Monopoly.Components
         //khởi tạo data
         void InitData()
         {
-           
-            var content = System.IO.File.ReadAllText(@".\Data\Land.json");
+
+            // var content = System.IO.File.ReadAllText(@".\Data\Land.json");
+            var content = System.IO.File.ReadAllText(@"C:\Đồ án\Monopoly\Monopoly\Monopoly\Data\Land.json");
             lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
             for (int i = 0; i < lands.Count; i++) lands[i].landValue = lands[i].value;
             int count = 0;
@@ -179,6 +186,8 @@ namespace Monopoly.Components
             dices.Content = diceshow;
 
         }
+
+        
         //create timer
         public DispatcherTimer timer = new DispatcherTimer();
 
@@ -231,6 +240,9 @@ namespace Monopoly.Components
             return new PowerLandLevelReduction();
         }
 
+
+        
+
         public void But_xucxac_Click1(object sender, RoutedEventArgs e)
         {
             //Quay show, Stop hide
@@ -238,6 +250,7 @@ namespace Monopoly.Components
             But_xucxac.Visibility = Visibility.Visible;
             timer.Stop();
 
+            dice = 17;
             //tính số vòng đã đi được
             DoEvents();
             Thread.Sleep(1000);
@@ -250,6 +263,8 @@ namespace Monopoly.Components
             if (playersList[PlayerTurn].isSplitDice) dice /= 2;
 
             But_xucxac.Visibility = Visibility.Collapsed;
+
+            
 
             //change player position
             for (int i = 0; i < dice; i++) 
@@ -275,6 +290,8 @@ namespace Monopoly.Components
             sideBar.update(playersList, PlayerTurn);
 
             //xử lý nếu đi vào ô đất
+          
+
             if (cellManager[playersList[PlayerTurn].position].type == CellType.Dat)
             {
                 //nếu đất trống thì hiện bản mua để người chơi lựa chọn
@@ -287,6 +304,9 @@ namespace Monopoly.Components
                     comeEmptyLandView.OnSkipButtonClick += ComeEmptyLandView_OnSkipButtonClick;
                     comeEmptyLandView.OnUseCardButtonClick += ComeLandView_OnUseCardButtonClick;
                     dices.Content = comeEmptyLandView;
+                    ContentDicesBack = comeEmptyLandView;
+                    CheckContentBack = true;
+
                 }
 
                 //nếu là đất của mình thì sẽ hiện bảng nâng cấp
@@ -300,6 +320,8 @@ namespace Monopoly.Components
                     comeOwnLandView.OnSkipButtonClick += ComeOwnLandView_OnSkipButtonClick;
                     comeOwnLandView.OnUseCardButtonClick += ComeLandView_OnUseCardButtonClick;
                     dices.Content = comeOwnLandView;
+                    ContentDicesBack = comeOwnLandView;
+                    CheckContentBack = false;
                 }
 
                 //nếu là đất của người khác thì tự động trả thuế và thông báo lên (nếu có)
@@ -439,8 +461,22 @@ namespace Monopoly.Components
 
         private void ComeLandView_OnUseCardButtonClick(object sender, RoutedEventArgs e)
         {
-            usingCard usingCard = new usingCard();
+            ListCardPlayers listCardPlayers = new ListCardPlayers(playersList[PlayerTurn].powers);
+           // Grid.SetRow(listCardPlayers, 1);
+            usingCard usingCard = new usingCard(listCardPlayers);
+            //usingCard usingCard = new usingCard();
             dices.Content = usingCard;
+            usingCard.OnButtonCancleClick += UsingCard_OnButtonCancleClick;
+            
+
+
+        }
+
+        private void UsingCard_OnButtonCancleClick(object sender, RoutedEventArgs e)
+        {
+            //dices.Visibility = Visibility.Collapsed;
+            if (CheckContentBack) dices.Content = (ComeEmptyLandView)ContentDicesBack;
+            else dices.Content = (ComeEmptyLandView)ContentDicesBack;
         }
 
         private void ComeOwnLandView_OnSkipButtonClick(object sender, RoutedEventArgs e)

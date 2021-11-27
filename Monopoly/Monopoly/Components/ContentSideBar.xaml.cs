@@ -49,6 +49,7 @@ namespace Monopoly.Components
             DependencyProperty.Register("Lands", typeof(List<Land>), typeof(ContentSideBar));
 
 
+     //   private Player _player; // người chơi hiện tại
 
         public ContentSideBar(int money, List<Land> lands)
         {
@@ -62,6 +63,7 @@ namespace Monopoly.Components
         public ContentSideBar(Player player)
         {
             InitializeComponent();
+           // _player = player;
             Money = player.money;
             Lands = player.lands;
             landHeading.Text = "Đất (" + Lands?.Count + "):";
