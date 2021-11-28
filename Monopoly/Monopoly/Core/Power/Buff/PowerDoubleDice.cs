@@ -21,14 +21,14 @@ namespace Monopoly
         {
             value = 900;
             name = "Nhân đôi bước nhảy";
-            _numberTurns = 7;
+            _numberTurns = 3;
             description = "Nhân đôi xúc xắc trong vòng 7 lượt";
             type = true;
         }
 
         public PowerDoubleDice(string name, int value, string description) : base(name, value, description)
         {
-            numberTurns = 7;
+            numberTurns = 3;
         }
 
         public override bool Using(ref Player playerUse, int dice)
@@ -38,14 +38,18 @@ namespace Monopoly
                 playerUse.AddPowersEffect(new PowerDoubleDice());
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
+                return true;
             }
             return false;
         }
 
         public override void PowerFunction(ref Player playerUse)
         {
-            _numberTurns--;
-            playerUse.isDoubleDice = true;
+            if (_numberTurns > 0)
+            {
+                _numberTurns--;
+                playerUse.isDoubleDice = true;
+            }
             if (_numberTurns == 0) playerUse.RemovePower(name);
         }
     }

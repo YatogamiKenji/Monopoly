@@ -41,6 +41,14 @@ namespace Monopoly
         }
 
         // Kiểm tra thử xem người chơi có vé ra tù không
+        private bool _isOutPrisonCard;
+        public bool isOutPrisonCard
+        {
+            get { return _isOutPrisonCard; }
+            set { _isOutPrisonCard = value; }
+        }
+
+        // kiểm tra xem có tác dụng của miễn vô tù không
         private bool _isOutPrison;
         public bool isOutPrison
         {
@@ -48,6 +56,7 @@ namespace Monopoly
             set { _isOutPrison = value; }
         }
 
+        // kiểm tra xem thử có đang ở trong tù không
         private bool _isInPrison;
         public bool isInPrison
         {
@@ -85,10 +94,13 @@ namespace Monopoly
             _name = "";
             _money = 10000;
             _position = 0;
-            _isOutPrison = false;
+            _isOutPrisonCard = false;
             _powers = new List<Power>();
             _powersEffect = new List<Power>();
             _lands = new List<Land>();
+            _isInPrison = false;
+            _isDoubleStart = false;
+            _isLoseMoney = false;
             Init();
         }
 
@@ -98,22 +110,23 @@ namespace Monopoly
             _name = name;
             _money = money;
             _position = posititon;
-            _isOutPrison = outPrison;
+            _isOutPrisonCard = outPrison;
             _powers = new List<Power>();
             _powersEffect = new List<Power>();
             _lands = new List<Land>();
+            _isInPrison = false;
+            _isDoubleStart = false;
+            _isLoseMoney = false;
             Init();
         }
 
         public void Init()
         {
+            _isOutPrison = false;
             _isUpgradeFee = false;
-            _isDoubleStart = false;
             _isDoubleDice = false;
             _isSplitDice = false;
-            _isInPrison = false;
             _isImmune = false;
-            _isLoseMoney = false;
             _isFreezeBank = false;
             _isRetention = false;
         }

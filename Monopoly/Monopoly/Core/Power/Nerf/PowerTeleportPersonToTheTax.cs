@@ -28,7 +28,6 @@ namespace Monopoly
             {
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
-                affectedPlayers.AddPowersEffect(new PowerTeleportPersonToTheTax());
                 return true;
             }
             return false;

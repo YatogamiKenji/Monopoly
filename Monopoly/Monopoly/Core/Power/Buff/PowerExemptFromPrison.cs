@@ -38,14 +38,18 @@ namespace Monopoly
                 playerUse.AddPowersEffect(new PowerExemptFromPrison());
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
+                return true;
             }
             return false;
         }
 
         public override void PowerFunction(ref Player playerUse)
         {
-            _numberTurns--;
-            playerUse.isOutPrison = true;
+            if (numberTurns > 0)
+            {
+                _numberTurns--;
+                playerUse.isOutPrison = true;
+            }
             if (_numberTurns == 0) playerUse.RemovePowerEffect(name);
         }
     }

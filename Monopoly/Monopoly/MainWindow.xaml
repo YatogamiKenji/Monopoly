@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:Monopoly"
         xmlns:component="clr-namespace:Monopoly.Components"
         mc:Ignorable="d"
-      
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
         Title="Monopoly" Height="780" Width="1280">
     <Grid>
         <!--<component:ViewStart/>-->
         <!--<component:ListContentPlayers/>-->
         <!--<component:ViewStart/>-->
-        <component:Setup/>
+        <component:ViewStart/>
         <!--<component:ComePowerLand/>-->
 
             <!--<component:ViewStart/>-->
