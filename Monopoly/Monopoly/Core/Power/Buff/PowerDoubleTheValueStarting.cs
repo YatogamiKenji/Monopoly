@@ -26,16 +26,12 @@ namespace Monopoly
         {
             if (playerUse.money >= dice * value)
             {
-                playerUse.AddPowersEffect(new PowerDoubleTheValueStarting());
+                playerUse.isDoubleStart = true;
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
+                return true;
             }
             return false;
-        }
-
-        public override void PowerFunction(ref Player playerUse)
-        {
-            playerUse.isDoubleStart = true;
         }
     }
 }

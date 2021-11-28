@@ -28,8 +28,6 @@ namespace Monopoly
             {
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
-                affectedPlayers.AddPowersEffect(new PowerStealLand());
-
                 return true;
             }
             return false;

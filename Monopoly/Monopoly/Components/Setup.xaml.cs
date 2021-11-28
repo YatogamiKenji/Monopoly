@@ -32,7 +32,7 @@ namespace Monopoly.Components
         public Setup()
         {
             InitializeComponent();
-
+            ShowPlayers = new List<PlayerShow>();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -45,8 +45,6 @@ namespace Monopoly.Components
         //Chuyển sang giaoa diện bàn cờ chính
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
-
             if (ShowPlayers.Count > 0)
             {
 

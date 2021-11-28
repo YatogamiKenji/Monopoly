@@ -29,6 +29,7 @@ namespace Monopoly
                 playerUse.AddPowersEffect(new PowerMoveToAnyCell());
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
+                return true;
             }
             return false;
         }

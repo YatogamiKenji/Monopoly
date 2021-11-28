@@ -45,8 +45,11 @@ namespace Monopoly
 
         public override void PowerFunction(ref Player playerUse)
         {
-            playerUse.isSplitDice = true;
-            _numberTurns--;
+            if (_numberTurns > 0)
+            {
+                playerUse.isSplitDice = true;
+                _numberTurns--;
+            }
             if (_numberTurns == 0) playerUse.RemovePowerEffect(name);
         }
     }

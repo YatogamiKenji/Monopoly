@@ -45,7 +45,10 @@ namespace Monopoly
 
         public override void PowerFunction(ref Player playerUse)
         {
-            _numberTurns--;
+            if (_numberTurns > 0)
+            {
+                _numberTurns--;
+            }
             if (_numberTurns == 0) playerUse.RemovePowerEffect(name);
         }
     }
