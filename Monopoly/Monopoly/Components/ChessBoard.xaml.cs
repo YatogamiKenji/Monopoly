@@ -40,7 +40,8 @@ namespace Monopoly.Components
         List<Chance> chances = new List<Chance>();
         //lưu dữ liệu các thẻ khí vận
         List<CommunityChest> communityChests = new List<CommunityChest>();
-        //lưu dữ liệu các thẻ power
+        //giao diện danh sách các thẻ của mỗi người chơi
+        ListCardPlayers listCardPlayers = new ListCardPlayers();
         //List<Power> powers = new List<Power>();
         // Số lượng người chơi
         int NumberOfPlayers = 0;
@@ -92,6 +93,7 @@ namespace Monopoly.Components
             for (int i = 0; i < players.Count; i++)
             {
                 Player player = new Player();
+                player.name = (i + 1).ToString();
                 player.position = 0;
                 playersList.Add(player);
             }
@@ -284,7 +286,7 @@ namespace Monopoly.Components
                     sideBar.update(playersList, PlayerTurn);
                 }
                 DoEvents();
-                Thread.Sleep(500);
+              //  Thread.Sleep(500);
             }
 
             sideBar.update(playersList, PlayerTurn);
@@ -466,17 +468,119 @@ namespace Monopoly.Components
             usingCard usingCard = new usingCard(listCardPlayers);
             //usingCard usingCard = new usingCard();
             dices.Content = usingCard;
+            for (int i = 0; i < listCardPlayers.contenButtonCards.Count; i++)
+            {
+                listCardPlayers.contenButtonCards[i].OnButtonCardClick += ChessBoard_OnButtonCardClick;
+            }
             usingCard.OnButtonCancleClick += UsingCard_OnButtonCancleClick;
+
             
-
-
         }
-
+        // nếu đổi ý không sử dụng thẻ nữa
         private void UsingCard_OnButtonCancleClick(object sender, RoutedEventArgs e)
         {
             //dices.Visibility = Visibility.Collapsed;
+           
             if (CheckContentBack) dices.Content = (ComeEmptyLandView)ContentDicesBack;
             else dices.Content = (ComeEmptyLandView)ContentDicesBack;
+        }
+
+        // xử lý các sự kiện nếu sử dụng các thẻ trong dách sách thẻ 
+        private void ChessBoard_OnButtonCardClick(object sender, RoutedEventArgs e)
+        {
+            ContenButtonCard Card = (ContenButtonCard)sender;
+
+          //  MessageBox.Show(Card.IDCard);
+            // nếu thẻ được sử dụng là thẻ chọn một người chơi vào tù
+            if(Card.IDCard == "PowerAppointPersonToPrison" ||
+                Card.IDCard == "PowerCancelPowerCard" || 
+                Card.IDCard == "PowerFreezeBankAccounts" || 
+                Card.IDCard == "PowerHoldAPerson" || 
+                Card.IDCard == "PowerLandLevelReduction" || 
+                Card.IDCard == "PowerLandPriceHalved" || 
+                Card.IDCard == "PowerLockAPlotOfLand" || 
+                Card.IDCard == "PowerSplitDice" || 
+                Card.IDCard == "PowerStealLand" || 
+                Card.IDCard == "PowerTeleportPersonToTheTax")
+            {
+                ListContentPlayers candidatePlayers = new ListContentPlayers(playersList, PlayerTurn);
+
+                UseCardToAnother useCardToAnother = new UseCardToAnother(candidatePlayers);
+
+                foreach( ContentPlayer ButtonPlayer in useCardToAnother.haha.ListButtonPlayers)
+                {
+                    ButtonPlayer.NameCardImpact = Card.IDCard;
+                    ButtonPlayer.OnButtonPlayerClick += ButtonPlayer_OnButtonPlayerClick;
+                }
+                dices.Content = useCardToAnother;
+            }    
+        }
+
+        private void ButtonPlayer_OnButtonPlayerClick(object sender, RoutedEventArgs e)
+        {
+            //throw new NotImplementedException();
+            ContentPlayer PickedPlayer = sender as ContentPlayer;
+            for(int i = 0; i < playersList.Count; i++) // trong danh sách các người chơi 
+            {
+                if(playersList[i].name == PickedPlayer.NamePlayer) // xác định người chơi nào bị chọn
+                {  
+                     if(PickedPlayer.NameCardImpact == "PowerAppointPersonToPrison")
+                    {
+                     
+                        // sự kiện khi pick thẻ PowerAppointPersonToPrison viết ở đây, người bị chọn có chỉ số là i
+                    }
+                    else if (PickedPlayer.NameCardImpact == "PowerCancelPowerCard")
+                    {
+                        
+                        // sự kiện khi pick thẻ PowerCancelPowerCard viết ở đây
+                    }
+                    else if (PickedPlayer.NameCardImpact == "PowerFreezeBankAccounts")
+                    {
+                       
+                        // sự kiện khi pick thẻ PowerFreezeBankAccounts viết ở đây
+                    }
+                    else if (PickedPlayer.NameCardImpact == "PowerHoldAPerson")
+                    {
+                       
+                        // sự kiện khi pick thẻ PowerHoldAPerson viết ở đây
+                    }
+                    else if (PickedPlayer.NameCardImpact == "PowerLandLevelReduction")
+                    {
+                      
+                        // sự kiện khi pick thẻ PowerLandLevelReduction viết ở đây
+                    }
+                    else if (PickedPlayer.NameCardImpact == "PowerLandPriceHalved")
+                    {
+                       
+                        // sự kiện khi pick thẻ PowerLandPriceHalved viết ở đây
+                    }
+                    else if (PickedPlayer.NameCardImpact == "PowerLockAPlotOfLand")
+                    {
+                       
+                        // sự kiện khi pick thẻ PowerLockAPlotOfLand viết ở đây
+                    }
+                    else if (PickedPlayer.NameCardImpact == "PowerSplitDice")
+                    {
+                       
+                        // sự kiện khi pick thẻ PowerSplitDice viết ở đây
+                    }
+                    else if (PickedPlayer.NameCardImpact == "PowerStealLand")
+                    {
+                      
+                        // sự kiện khi pick thẻ PowerStealLand viết ở đây
+                    }
+                    else if (PickedPlayer.NameCardImpact == "PowerTeleportPersonToTheTax")
+                    {
+                      
+                        // sự kiện khi pick thẻ PowerTeleportPersonToTheTax viết ở đây
+                    }
+
+
+                }
+            }
+            ComeOwnLandView_OnSkipButtonClick(sender, e);
+
+
         }
 
         private void ComeOwnLandView_OnSkipButtonClick(object sender, RoutedEventArgs e)

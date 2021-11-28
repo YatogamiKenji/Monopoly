@@ -20,6 +20,8 @@ namespace Monopoly.Components
     /// </summary>
     public partial class PowerCard : UserControl
     {
+
+        public string TypeCard;
         public string Title
         {
             get { return (string)GetValue(TitleProperty); }
@@ -63,6 +65,7 @@ namespace Monopoly.Components
         public PowerCard(Power power)
         {
             InitializeComponent();
+            TypeCard = power.GetType().Name;
             Title = power.name;
             Description = power.description;
             Price = power.value;

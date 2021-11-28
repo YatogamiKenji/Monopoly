@@ -14,7 +14,7 @@
         <!--<component:ViewStart/>-->
         <component:Setup/>
         <!--<component:ComePowerLand/>-->
-
+        
             <!--<component:ViewStart/>-->
     </Grid>
 </Window>

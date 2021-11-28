@@ -6,12 +6,12 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              xmlns:components="clr-namespace:Monopoly.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="" d:DesignWidth="400">
+             d:DesignHeight="320" d:DesignWidth="400">
     <UserControl.Resources>
         <Style x:Key="ButtonCenterMap" TargetType="Button">
             <Setter Property="Width" Value="134"/>
             <Setter Property="Height" Value="48"/>
-            <Setter Property="Margin" Value="0 12 0 0"/>
+            <!--<Setter Property="Margin" Value="0 12 0 0"/>-->
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="White"/>
@@ -28,7 +28,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid x:Name= "ListCard">
+    <Grid x:Name="ListCard" Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="45"/>
             <RowDefinition/>
@@ -41,7 +41,10 @@
                    Padding="30 5 0 0"
                    Grid.Row="0" Margin="0,0,0,5"
                    />
-        <Button Content="Hủy" Grid.Row="2"  Margin="250,0,0,0" VerticalAlignment="Center"  HorizontalAlignment="Left" Click="Button_Click">
+
+        <!--<components:ListCardPlayers Grid.Row="1"/>-->
+
+        <Button Content="Hủy" Grid.Row="2" VerticalAlignment="Center"  HorizontalAlignment="Center" Click="Button_Click">
             <Button.Style>
                 <Style TargetType="Button" BasedOn="{StaticResource ButtonCenterMap}">
                     <Setter Property="Background" Value="#656565"/>
@@ -54,7 +57,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <local:ListCardPlayers Margin="0,40,0,0" Grid.RowSpan="2"/>
+        <!--<local:ListCardPlayers Grid.RowSpan="2"/>-->
 
         <!--<Grid Grid.Row="1"
               HorizontalAlignment="Left"

@@ -22,6 +22,10 @@ namespace Monopoly.Components
 
     public partial class ContentPlayer : UserControl
     {
+
+
+        public string NameCardImpact = "" ; // tên thẻ tác động lên người chơi này  
+
         public string NamePlayer
         {
             get { return (string)GetValue(NamePlayerProperty); }
@@ -32,11 +36,29 @@ namespace Monopoly.Components
         public static readonly DependencyProperty NamePlayerProperty =
             DependencyProperty.Register("NamePlayer", typeof(string), typeof(ContentPlayer), new PropertyMetadata(""));
 
+        public static readonly RoutedEvent ButtonPlayerClickEvent =
+       EventManager.RegisterRoutedEvent(nameof(OnButtonPlayerClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContentPlayer));
+
+        public event RoutedEventHandler OnButtonPlayerClick
+        {
+            add { AddHandler(ButtonPlayerClickEvent, value); }
+            remove { RemoveHandler(ButtonPlayerClickEvent, value); }
+        }
+
 
         public ContentPlayer()
         {
             InitializeComponent();
         }
-       
+        //public ContentPlayer(Player x)
+        //{
+        //    InitializeComponent();
+        //    NamePlayer = x.name;
+        //}
+
+        private void ChoosePlayer(object sender, RoutedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(ButtonPlayerClickEvent));
+        }
     }
 }

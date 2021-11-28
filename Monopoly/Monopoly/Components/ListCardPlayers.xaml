@@ -11,7 +11,7 @@
             <ScrollViewer HorizontalScrollBarVisibility = "Hidden" VerticalScrollBarVisibility = "Visible">
                 <Grid x:Name="listCardPlayersGrid">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>

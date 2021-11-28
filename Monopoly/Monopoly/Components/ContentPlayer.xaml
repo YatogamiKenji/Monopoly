@@ -8,7 +8,7 @@
              x:Name="root"
              d:DesignHeight="200" d:DesignWidth="150">
     <Grid>
-        <Button>
+        <Button Click="ChoosePlayer">
             <Canvas>
                 <Image/>
                 <Ellipse Width="30" Height="30" Fill="Red" Canvas.Left="-15" Canvas.Top="-50"></Ellipse>

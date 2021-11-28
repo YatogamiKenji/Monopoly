@@ -39,11 +39,14 @@ namespace Monopoly.Components
             InitializeComponent();
             Grid.SetRow(listCardPlayers, 1);
             ListCard.Children.Add(listCardPlayers);
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(ButtonCancleClickEvent));
         }
+
+
     }
 }

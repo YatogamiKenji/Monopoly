@@ -20,9 +20,21 @@ namespace Monopoly.Components
     /// </summary>
     public partial class UseCardToAnother : UserControl
     {
+        // danh sách các button người chơi;
+        public ListContentPlayers haha;
         public UseCardToAnother()
+        {   
+            InitializeComponent();
+          
+        }
+        public UseCardToAnother(ListContentPlayers listContentPlayers)
         {
             InitializeComponent();
+            haha = listContentPlayers;
+            Grid.SetRow(haha, 1);
+            listContentPlayers.VerticalAlignment = VerticalAlignment.Top;
+            UseCardToAnotherGrid.Children.Add(haha);
+           // ListContentPlayers = listContentPlayers;
         }
     }
 }
