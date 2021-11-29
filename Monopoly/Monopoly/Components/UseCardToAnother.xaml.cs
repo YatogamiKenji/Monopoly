@@ -22,11 +22,13 @@ namespace Monopoly.Components
     {
         // danh sách các button người chơi;
         public ListContentPlayers haha;
+
         public UseCardToAnother()
         {   
             InitializeComponent();
           
         }
+
         public UseCardToAnother(ListContentPlayers listContentPlayers)
         {
             InitializeComponent();

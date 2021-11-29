@@ -26,6 +26,8 @@ namespace Monopoly.Components
 
         public string NameCardImpact = "" ; // tên thẻ tác động lên người chơi này  
 
+        public Power power;
+
         public string NamePlayer
         {
             get { return (string)GetValue(NamePlayerProperty); }

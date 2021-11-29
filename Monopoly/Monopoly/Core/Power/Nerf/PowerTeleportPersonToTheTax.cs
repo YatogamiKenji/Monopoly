@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Monopoly
 {
-    //dịch chuyển một người đến ô nào đó và phải trả thuế
+    //dịch chuyển một người đến ô thuế
     class PowerTeleportPersonToTheTax : Power
     {
         public PowerTeleportPersonToTheTax() : base()
         {
             value = 700;
             name = "Ép buộc";
-            description = "Dịch chuyển một người chơi đến ô bất kỳ";
+            description = "Dịch chuyển một người chơi đến ô thuế và trả thuế gấp đôi";
             type = false;
         }
 
@@ -28,6 +28,8 @@ namespace Monopoly
             {
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
+                affectedPlayers.money = Convert.ToInt32(Math.Ceiling(0.8 * affectedPlayers.money));
+                affectedPlayers.position = 3;
                 return true;
             }
             return false;

@@ -56,8 +56,6 @@ namespace Monopoly.Components
         //}
         private void createPowersCards()
         {
-           
-
             if (Powers != null)
             {
                 for (int i = 0; i < Math.Ceiling((decimal)Powers.Count / 3); i++)
@@ -71,7 +69,7 @@ namespace Monopoly.Components
                 {
                   
                     
-                    ContenButtonCard butCard = new ContenButtonCard(new PowerCard(Powers[i]));
+                    ContenButtonCard butCard = new ContenButtonCard(new PowerCard(Powers[i]), Powers[i]);
                     butCard.Margin = new Thickness(2, 2, 2, 2);
                     butCard.Width = 110;
                     butCard.Height = 145;

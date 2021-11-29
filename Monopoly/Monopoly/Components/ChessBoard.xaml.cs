@@ -105,13 +105,14 @@ namespace Monopoly.Components
            
             sideBar.update(playersList, PlayerTurn);
 
+            //playersList[0].AddPower(new PowerTeleportPersonToTheTax());
         }
 
         //khởi tạo data
         void InitData()
         {
-            var content = System.IO.File.ReadAllText(@"C:\Đồ án\Monopoly\Monopoly\Monopoly\Data\Land.json");
-            //var content = System.IO.File.ReadAllText(@".\Data\Land.json");
+            //var content = System.IO.File.ReadAllText(@"C:\Đồ án\Monopoly\Monopoly\Monopoly\Data\Land.json");
+            var content = System.IO.File.ReadAllText(@".\Data\Land.json");
             lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
             for (int i = 0; i < lands.Count; i++) lands[i].landValue = lands[i].value;
             int count = 0;
@@ -251,7 +252,7 @@ namespace Monopoly.Components
             But_xucxac.Visibility = Visibility.Visible;
             timer.Stop();
 
-            dice = 17;
+            //dice = 17;
             //tính số vòng đã đi được
             DoEvents();
             Thread.Sleep(1000);
@@ -345,7 +346,13 @@ namespace Monopoly.Components
                     DoEvents();
                     Thread.Sleep(1500);
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                    if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                    if (playersList[PlayerTurn].isRetention)
+                    {
+                        Player _player = playersList[PlayerTurn];
+                        RemovePowersEffect(ref _player);
+                        playersList[PlayerTurn] = _player;
+                        PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                    }
                     sideBar.update(playersList, PlayerTurn);
                 }
             }
@@ -359,7 +366,13 @@ namespace Monopoly.Components
                 sideBar.update(playersList, PlayerTurn);
                 But_xucxac.Visibility = Visibility.Visible;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention)
+                {
+                    Player _player = playersList[PlayerTurn];
+                    RemovePowersEffect(ref _player);
+                    playersList[PlayerTurn] = _player;
+                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                }
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -374,7 +387,13 @@ namespace Monopoly.Components
                 sideBar.update(playersList, PlayerTurn);
                 But_xucxac.Visibility = Visibility.Visible;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention)
+                {
+                    Player _player = playersList[PlayerTurn];
+                    RemovePowersEffect(ref _player);
+                    playersList[PlayerTurn] = _player;
+                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                }
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -399,7 +418,13 @@ namespace Monopoly.Components
             {
                 But_xucxac.Visibility = Visibility.Visible;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention)
+                {
+                    Player _player = playersList[PlayerTurn];
+                    RemovePowersEffect(ref _player);
+                    playersList[PlayerTurn] = _player;
+                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                }
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -417,7 +442,13 @@ namespace Monopoly.Components
                     Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[10]));
                     But_xucxac.Visibility = Visibility.Visible;
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                    if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                    if (playersList[PlayerTurn].isRetention)
+                    {
+                        Player _player = playersList[PlayerTurn];
+                        RemovePowersEffect(ref _player);
+                        playersList[PlayerTurn] = _player;
+                        PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                    }
                     DoEvents();
                     Thread.Sleep(1500);
                     sideBar.update(playersList, PlayerTurn);
@@ -434,7 +465,13 @@ namespace Monopoly.Components
                 sideBar.update(playersList, PlayerTurn);
                 But_xucxac.Visibility = Visibility.Visible;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention)
+                {
+                    Player _player = playersList[PlayerTurn];
+                    RemovePowersEffect(ref _player);
+                    playersList[PlayerTurn] = _player;
+                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                }
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -445,7 +482,13 @@ namespace Monopoly.Components
             {
                 But_xucxac.Visibility = Visibility.Visible;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention)
+                {
+                    Player _player = playersList[PlayerTurn];
+                    RemovePowersEffect(ref _player);
+                    playersList[PlayerTurn] = _player;
+                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                }
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
@@ -456,35 +499,18 @@ namespace Monopoly.Components
             {
                 But_xucxac.Visibility = Visibility.Visible;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention)
+                {
+                    Player _player = playersList[PlayerTurn];
+                    RemovePowersEffect(ref _player);
+                    playersList[PlayerTurn] = _player;
+                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                }
                 DoEvents();
                 Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
             }
 
-            sideBar.update(playersList, PlayerTurn);
-        }
-
-
-        //xử lý khi sử dụng thẻ
-        private void UsingCard(int index)
-        {
-            if (playersList[PlayerTurn].powers[index].type)
-            {
-                Player player = playersList[PlayerTurn];
-                Power power = playersList[PlayerTurn].powers[index];
-                power.Using(ref player, dice);
-                power.PowerFunction(ref player);
-                playersList[PlayerTurn] = player;
-            }
-            else
-            {
-                UseCardToAnother useCardToAnother = new UseCardToAnother();
-                dices.Content = useCardToAnother;
-            }
-            PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            But_xucxac.Visibility = Visibility.Visible;
-            dices.Content = diceshow;
             sideBar.update(playersList, PlayerTurn);
         }
 
@@ -507,9 +533,8 @@ namespace Monopoly.Components
                 listCardPlayers.contenButtonCards[i].OnButtonCardClick += ChessBoard_OnButtonCardClick;
             }
             usingCard.OnButtonCancleClick += UsingCard_OnButtonCancleClick;
-
-            
         }
+
         // nếu đổi ý không sử dụng thẻ nữa
         private void UsingCard_OnButtonCancleClick(object sender, RoutedEventArgs e)
         {
@@ -526,7 +551,7 @@ namespace Monopoly.Components
 
           //  MessageBox.Show(Card.IDCard);
             // nếu thẻ được sử dụng là thẻ chọn một người chơi vào tù
-            if(Card.IDCard == "PowerAppointPersonToPrison" ||
+            /*if(Card.IDCard == "PowerAppointPersonToPrison" ||
                 Card.IDCard == "PowerCancelPowerCard" || 
                 Card.IDCard == "PowerFreezeBankAccounts" || 
                 Card.IDCard == "PowerHoldAPerson" || 
@@ -547,81 +572,153 @@ namespace Monopoly.Components
                     ButtonPlayer.OnButtonPlayerClick += ButtonPlayer_OnButtonPlayerClick;
                 }
                 dices.Content = useCardToAnother;
+            }   
+            else
+            {
+                Player player = playersList[PlayerTurn];
+                Power power = playersList[PlayerTurn].powers[index];
+                power.Using(ref player, dice);
+                power.PowerFunction(ref player);
+                playersList[PlayerTurn] = player;
+            }   */
+            if (Card.power.type)
+            {
+                Player player = playersList[PlayerTurn];
+                Power power = Card.power;
+                power.Using(ref player, dice);
+                power.PowerFunction(ref player);
+                playersList[PlayerTurn] = player;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+
+                if (playersList[PlayerTurn].isRetention)
+                {
+                    Player _player = playersList[PlayerTurn];
+                    RemovePowersEffect(ref _player);
+                    playersList[PlayerTurn] = _player;
+                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                }
+                But_xucxac.Visibility = Visibility.Visible;
+                dices.Content = diceshow;
+                sideBar.update(playersList, PlayerTurn);
             }    
+            else
+            {
+                ListContentPlayers candidatePlayers = new ListContentPlayers(playersList, PlayerTurn);
+
+                UseCardToAnother useCardToAnother = new UseCardToAnother(candidatePlayers);
+
+                foreach (ContentPlayer ButtonPlayer in useCardToAnother.haha.ListButtonPlayers)
+                {
+                    ButtonPlayer.power = Card.power;
+                    ButtonPlayer.NameCardImpact = Card.IDCard;
+                    ButtonPlayer.OnButtonPlayerClick += ButtonPlayer_OnButtonPlayerClick;
+                }
+                dices.Content = useCardToAnother;
+            }
         }
 
         private void ButtonPlayer_OnButtonPlayerClick(object sender, RoutedEventArgs e)
         {
             //throw new NotImplementedException();
             ContentPlayer PickedPlayer = sender as ContentPlayer;
+
             for(int i = 0; i < playersList.Count; i++) // trong danh sách các người chơi 
             {
                 if(playersList[i].name == PickedPlayer.NamePlayer) // xác định người chơi nào bị chọn
-                {  
-                     if(PickedPlayer.NameCardImpact == "PowerAppointPersonToPrison")
+                {
+                    Player playerUse = playersList[PlayerTurn];
+                    Player affectedPlayers = playersList[i];
+                    PickedPlayer.power.Using(ref playerUse, ref affectedPlayers, dice);
+                    PickedPlayer.power.PowerFunction(ref affectedPlayers);
+                    if (PickedPlayer.NameCardImpact == "PowerAppointPersonToPrison" ||
+                        PickedPlayer.NameCardImpact == "PowerTeleportPersonToTheTax") 
                     {
-                     
-                        // sự kiện khi pick thẻ PowerAppointPersonToPrison viết ở đây, người bị chọn có chỉ số là i
-                    }
-                    else if (PickedPlayer.NameCardImpact == "PowerCancelPowerCard")
+                        Grid.SetRow(players[i], Grid.GetRow(cellPos[playersList[i].position]));
+                        Grid.SetColumn(players[i], Grid.GetColumn(cellPos[playersList[i].position]));
+                    }    
+
+                    playersList[PlayerTurn] = playerUse;
+                    playersList[i] = affectedPlayers;
+                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                    if (playersList[PlayerTurn].isRetention)
                     {
-                        
-                        // sự kiện khi pick thẻ PowerCancelPowerCard viết ở đây
+                        Player player = playersList[PlayerTurn];
+                        RemovePowersEffect(ref player);
+                        playersList[PlayerTurn] = player;
+                        PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                     }
-                    else if (PickedPlayer.NameCardImpact == "PowerFreezeBankAccounts")
-                    {
-                       
-                        // sự kiện khi pick thẻ PowerFreezeBankAccounts viết ở đây
-                    }
-                    else if (PickedPlayer.NameCardImpact == "PowerHoldAPerson")
-                    {
-                       
-                        // sự kiện khi pick thẻ PowerHoldAPerson viết ở đây
-                    }
-                    else if (PickedPlayer.NameCardImpact == "PowerLandLevelReduction")
-                    {
-                      
-                        // sự kiện khi pick thẻ PowerLandLevelReduction viết ở đây
-                    }
-                    else if (PickedPlayer.NameCardImpact == "PowerLandPriceHalved")
-                    {
-                       
-                        // sự kiện khi pick thẻ PowerLandPriceHalved viết ở đây
-                    }
-                    else if (PickedPlayer.NameCardImpact == "PowerLockAPlotOfLand")
-                    {
-                       
-                        // sự kiện khi pick thẻ PowerLockAPlotOfLand viết ở đây
-                    }
-                    else if (PickedPlayer.NameCardImpact == "PowerSplitDice")
-                    {
-                       
-                        // sự kiện khi pick thẻ PowerSplitDice viết ở đây
-                    }
-                    else if (PickedPlayer.NameCardImpact == "PowerStealLand")
-                    {
-                      
-                        // sự kiện khi pick thẻ PowerStealLand viết ở đây
-                    }
-                    else if (PickedPlayer.NameCardImpact == "PowerTeleportPersonToTheTax")
-                    {
-                      
-                        // sự kiện khi pick thẻ PowerTeleportPersonToTheTax viết ở đây
-                    }
+
+                    But_xucxac.Visibility = Visibility.Visible;
+                    dices.Content = diceshow;
+                    sideBar.update(playersList, PlayerTurn);
+                    /*if(PickedPlayer.NameCardImpact == "PowerAppointPersonToPrison")
+                   {
+
+                       // sự kiện khi pick thẻ PowerAppointPersonToPrison viết ở đây, người bị chọn có chỉ số là i
+                   }
+                   else if (PickedPlayer.NameCardImpact == "PowerCancelPowerCard")
+                   {
+
+                       // sự kiện khi pick thẻ PowerCancelPowerCard viết ở đây
+                   }
+                   else if (PickedPlayer.NameCardImpact == "PowerFreezeBankAccounts")
+                   {
+
+                       // sự kiện khi pick thẻ PowerFreezeBankAccounts viết ở đây
+                   }
+                   else if (PickedPlayer.NameCardImpact == "PowerHoldAPerson")
+                   {
+
+                       // sự kiện khi pick thẻ PowerHoldAPerson viết ở đây
+                   }
+                   else if (PickedPlayer.NameCardImpact == "PowerLandLevelReduction")
+                   {
+
+                       // sự kiện khi pick thẻ PowerLandLevelReduction viết ở đây
+                   }
+                   else if (PickedPlayer.NameCardImpact == "PowerLandPriceHalved")
+                   {
+
+                       // sự kiện khi pick thẻ PowerLandPriceHalved viết ở đây
+                   }
+                   else if (PickedPlayer.NameCardImpact == "PowerLockAPlotOfLand")
+                   {
+
+                       // sự kiện khi pick thẻ PowerLockAPlotOfLand viết ở đây
+                   }
+                   else if (PickedPlayer.NameCardImpact == "PowerSplitDice")
+                   {
+
+                       // sự kiện khi pick thẻ PowerSplitDice viết ở đây
+                   }
+                   else if (PickedPlayer.NameCardImpact == "PowerStealLand")
+                   {
+
+                       // sự kiện khi pick thẻ PowerStealLand viết ở đây
+                   }
+                   else if (PickedPlayer.NameCardImpact == "PowerTeleportPersonToTheTax")
+                   {
+
+                       // sự kiện khi pick thẻ PowerTeleportPersonToTheTax viết ở đây
+                   }*/
 
 
                 }
             }
-            ComeOwnLandView_OnSkipButtonClick(sender, e);
-
-
+            //ComeOwnLandView_OnSkipButtonClick(sender, e);
         }
 
         private void ComeOwnLandView_OnSkipButtonClick(object sender, RoutedEventArgs e)
         {
             //tính lượt của các player
             PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+            if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers; if (playersList[PlayerTurn].isRetention)
+            {
+                Player player = playersList[PlayerTurn];
+                RemovePowersEffect(ref player);
+                playersList[PlayerTurn] = player;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+            }
             DoEvents();
             Thread.Sleep(1000);
             sideBar.update(playersList, PlayerTurn);
@@ -633,13 +730,20 @@ namespace Monopoly.Components
         private void ComeOwnLandView_OnBuyButtonClick(object sender, RoutedEventArgs e)
         {
             //nếu người chơi bán thì gọi lệnh bên dưới
-            playersList[PlayerTurn].money += lands[cellManager[playersList[PlayerTurn].position].index].landValue / 2;
+            //đóng băng tài khoản bán k đc cộng tiền
+            if (!playersList[PlayerTurn].isFreezeBank) playersList[PlayerTurn].money += lands[cellManager[playersList[PlayerTurn].position].index].landValue / 2;
             playersList[PlayerTurn].RemoveLand(lands[cellManager[playersList[PlayerTurn].position].index].name);
             sideBar.update(playersList, PlayerTurn);
 
             //tính lượt của các player
             PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+            if (playersList[PlayerTurn].isRetention)
+            {
+                Player player = playersList[PlayerTurn];
+                RemovePowersEffect(ref player);
+                playersList[PlayerTurn] = player;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+            }
             DoEvents();
             Thread.Sleep(1500);
             sideBar.update(playersList, PlayerTurn);
@@ -651,7 +755,7 @@ namespace Monopoly.Components
         private void ComeOwnLandView_OnSellButtonClick(object sender, RoutedEventArgs e)
         {
             //nếu player đồng ý nâng cấp thì gọi lệnh bên dưới
-            if (playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].Upgrade() || playersList[PlayerTurn].isLoseMoney)
+            if ((playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].Upgrade() || playersList[PlayerTurn].isLoseMoney) && !playersList[PlayerTurn].isFreezeBank) 
             {
                 int fee = 1;
                 if (!playersList[PlayerTurn].isLoseMoney)
@@ -669,7 +773,13 @@ namespace Monopoly.Components
 
                 //tính lượt của các player
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention)
+                {
+                    Player player = playersList[PlayerTurn];
+                    RemovePowersEffect(ref player);
+                    playersList[PlayerTurn] = player;
+                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                }
                 But_xucxac.Visibility = Visibility.Visible;
                 dices.Content = diceshow;
             }
@@ -684,7 +794,13 @@ namespace Monopoly.Components
         {
             //tính lượt của các player
             PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+            if (playersList[PlayerTurn].isRetention)
+            {
+                Player player = playersList[PlayerTurn];
+                RemovePowersEffect(ref player);
+                playersList[PlayerTurn] = player;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+            }
             DoEvents();
             Thread.Sleep(1000);
             sideBar.update(playersList, PlayerTurn);
@@ -696,7 +812,7 @@ namespace Monopoly.Components
         private void ComeEmptyLandView_OnBuyButtonClick(object sender, RoutedEventArgs e)
         {
             //nếu người chơi mua thì gọi lệnh bên dưới
-            if (playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].value || playersList[PlayerTurn].isLoseMoney)
+            if ((playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].value || playersList[PlayerTurn].isLoseMoney) && !playersList[PlayerTurn].isFreezeBank)
             {
                 if (!playersList[PlayerTurn].isLoseMoney)
                     playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].value;
@@ -710,7 +826,13 @@ namespace Monopoly.Components
 
                 //tính lượt của các player
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention)
+                {
+                    Player player = playersList[PlayerTurn];
+                    RemovePowersEffect(ref player);
+                    playersList[PlayerTurn] = player;
+                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                }
                 But_xucxac.Visibility = Visibility.Visible;
                 dices.Content = diceshow;
             }

@@ -23,6 +23,7 @@ namespace Monopoly.Components
     {
 
         public string IDCard; // loaị class thẻ
+        public Power power;
         //PowerCard typeCard; // 
         public static readonly RoutedEvent ButtonCardClickEvent =
           EventManager.RegisterRoutedEvent(nameof(OnButtonCardClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContenButtonCard));
@@ -41,7 +42,7 @@ namespace Monopoly.Components
 
         }
 
-        public ContenButtonCard(PowerCard typeCard)
+        public ContenButtonCard(PowerCard typeCard, Power power)
         {
             InitializeComponent();
             //ButtonCard = new Button();
@@ -50,7 +51,8 @@ namespace Monopoly.Components
             //GridBut.Children.Add(ButtonCard);
             //ButtonCard.Click += ButtonCard_Click;
             // GridBut.Children.Add(typeCard);
-         //   MessageBox.Show("cc");
+            //   MessageBox.Show("cc");
+            this.power = power;
             Bor_PicCard.Children.Add(typeCard);
             IDCard = typeCard.TypeCard;
            
@@ -59,8 +61,6 @@ namespace Monopoly.Components
         private void ButtonCard_Click(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(ButtonCardClickEvent));
-           
-
         }
     }
 }
