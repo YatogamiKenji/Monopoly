@@ -1,0 +1,218 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style x:Key="BtnStyle1Text" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#fff"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Light"/>
+    </Style>
+    
+    <Style x:Key="BtnStyle1Blue" TargetType="Button">
+        <Setter Property="Width" Value="119"/>
+        <Setter Property="Height" Value="39"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid HorizontalAlignment="Center"
+                              VerticalAlignment="Center">
+                        <Image Source="/Monopoly;component/Images/btn/style1/btn_style1_blue.png" 
+                                   Stretch="Fill"/>
+                        <Image Source="/Monopoly;component/Images/btn/style1/btn_style1_highlight.png" 
+                                   x:Name="highlight"
+                                   Stretch="Fill">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Opacity" Value="0"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Grid}}" Value="True">
+                                            <Setter Property="Opacity" Value="1"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BtnStyle1Red" TargetType="Button">
+        <Setter Property="Width" Value="119"/>
+        <Setter Property="Height" Value="39"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid HorizontalAlignment="Center"
+                              VerticalAlignment="Center">
+                        <Image Source="/Monopoly;component/Images/btn/style1/btn_style1_red.png" 
+                                   Stretch="Fill"/>
+                        <Image Source="/Monopoly;component/Images/btn/style1/btn_style1_highlight.png" 
+                                   x:Name="highlight"
+                                   Stretch="Fill">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Opacity" Value="0"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Grid}}" Value="True">
+                                            <Setter Property="Opacity" Value="1"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BtnStyle1Green" TargetType="Button">
+        <Setter Property="Width" Value="119"/>
+        <Setter Property="Height" Value="39"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid HorizontalAlignment="Center"
+                              VerticalAlignment="Center">
+                        <Image Source="/Monopoly;component/Images/btn/style1/btn_style1_green.png" 
+                                   Stretch="Fill"/>
+                        <Image Source="/Monopoly;component/Images/btn/style1/btn_style1_highlight.png" 
+                                   x:Name="highlight"
+                                   Stretch="Fill">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Opacity" Value="0"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Grid}}" Value="True">
+                                            <Setter Property="Opacity" Value="1"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BtnStyle1Yellow" TargetType="Button">
+        <Setter Property="Width" Value="119"/>
+        <Setter Property="Height" Value="39"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid HorizontalAlignment="Center"
+                              VerticalAlignment="Center">
+                        <Image Source="/Monopoly;component/Images/btn/style1/btn_style1_yellow.png" 
+                                   Stretch="Fill"/>
+                        <Image Source="/Monopoly;component/Images/btn/style1/btn_style1_highlight.png" 
+                                   x:Name="highlight"
+                                   Stretch="Fill">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Opacity" Value="0"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Grid}}" Value="True">
+                                            <Setter Property="Opacity" Value="1"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="BtnStyle1Violet" TargetType="Button">
+        <Setter Property="Width" Value="119"/>
+        <Setter Property="Height" Value="39"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid HorizontalAlignment="Center"
+                              VerticalAlignment="Center">
+                        <Image Source="/Monopoly;component/Images/btn/style1/btn_style1_violet.png" 
+                                   Stretch="Fill"/>
+                        <Image Source="/Monopoly;component/Images/btn/style1/btn_style1_highlight.png" 
+                                   x:Name="highlight"
+                                   Stretch="Fill">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Opacity" Value="0"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Grid}}" Value="True">
+                                            <Setter Property="Opacity" Value="1"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BtnStyle1Gray" TargetType="Button">
+        <Setter Property="Width" Value="119"/>
+        <Setter Property="Height" Value="39"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid HorizontalAlignment="Center"
+                              VerticalAlignment="Center">
+                        <Image Source="/Monopoly;component/Images/btn/style1/btn_style1_gray.png" 
+                                   Stretch="Fill"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+</ResourceDictionary>
