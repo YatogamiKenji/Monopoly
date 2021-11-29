@@ -24,6 +24,7 @@ namespace Monopoly
             _numberTurns = 2;
             description = "Giảm 50% giá trị hành tinh của một người chơi trong vòng 2 lượt";
             type = false;
+            usingLand = true;
         }
 
         public PowerLandPriceHalved(string name, int value, string description) : base(name, value, description)

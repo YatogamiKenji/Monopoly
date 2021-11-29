@@ -24,12 +24,20 @@ namespace Monopoly
             set { _value = value; }
         }
 
-        //
+        // kiểm tra xem là loại sử dụng lên người khác hay lên chính bản thân
         private bool _type;
         public bool type
         {
             get { return _type; }
             set { _type = value; }
+        }
+
+        // kiểm tra xem thử có cần sử dụng đến đất không
+        private bool _usingLand;
+        public bool usingLand
+        {
+            get { return _usingLand; }
+            set { _usingLand = value; }
         }
 
         //mô tả thẻ quyền năng :v

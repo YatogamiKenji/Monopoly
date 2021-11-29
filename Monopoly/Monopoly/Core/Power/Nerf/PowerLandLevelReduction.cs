@@ -15,6 +15,7 @@ namespace Monopoly
             name = "Giảm level";
             description = "Giảm 2 level hành tinh của người khác";
             type = false;
+            usingLand = true;
         }
 
         public PowerLandLevelReduction(string name, int value, string description) : base(name, value, description)

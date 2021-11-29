@@ -15,6 +15,7 @@ namespace Monopoly
             name = "Tăng giá trị thuế";
             description = "Tăng gấp đôi giá trị thuế của một hành tinh";
             type = true;
+            usingLand = true;
         }
 
         public PowerDoubleTax(string name, int value, string description) : base(name, value, description)
@@ -37,9 +38,9 @@ namespace Monopoly
         public override void PowerFunction(ref Player playerUse)
         {
             //vị trí của mảnh đất
-            int index = 0;
+            //int index = 0;
             // chọn mảnh đất
-            playerUse.lands[index].isDoubleTax = true;
+            //playerUse.lands[index].isDoubleTax = true;
         }
     }
 }

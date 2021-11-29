@@ -15,6 +15,7 @@ namespace Monopoly
             name = "Ép buộc";
             description = "Dịch chuyển một người chơi đến ô thuế và trả thuế gấp đôi";
             type = false;
+            usingLand = false;
         }
 
         public PowerTeleportPersonToTheTax(string name, int value, string description) : base(name, value, description)

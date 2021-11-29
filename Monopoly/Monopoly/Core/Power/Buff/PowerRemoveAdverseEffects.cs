@@ -24,6 +24,7 @@ namespace Monopoly
             _numberTurns = 5;
             description = "Miễn nhiễm với bất kỳ hiệu ứng bất lợi nào trong vòng 5 lượt";
             type = true;
+            usingLand = false;
         }
 
         public PowerRemoveAdverseEffects(string name, int value, string description) : base(name, value, description)
