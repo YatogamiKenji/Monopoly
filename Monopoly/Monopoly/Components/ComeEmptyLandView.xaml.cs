@@ -138,8 +138,8 @@ namespace Monopoly.Components
             InitializeComponent();
             NameOfLand = "Tên đất mặc định";
             ImgSource = new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative));
-            PriceLevel = new List<int>();
-            PriceTax = new List<int>();
+            PriceLevel = new List<int>() { 0, 0, 0, 0, 0};
+            PriceTax = new List<int>() { 0, 0, 0, 0, 0};
         }
 
         public ComeEmptyLandView(string nameOfLand, ImageSource imgSource, int price, List<int> priceLevel, List<int> priceTax)

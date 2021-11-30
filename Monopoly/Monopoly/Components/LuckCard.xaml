@@ -6,43 +6,33 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              x:Name="root"
              mc:Ignorable="d" 
-             d:DesignHeight="129" d:DesignWidth="97">
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto" MinHeight="53"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
-                   Background="red"
-                   Text="{Binding Title, ElementName=root}"
-                   TextWrapping="NoWrap"
-                   TextTrimming="CharacterEllipsis"
-                   Foreground="White"
-                   FontSize="13"
-                   Padding="2 0 2 0"/>
+             d:DesignHeight="131" d:DesignWidth="101">
+    <Grid Width="101" Height="131">
+        <Image Source="/Monopoly;component/Images/card/card_yellow.png"
+               Stretch="Fill"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="19"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="42"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Style="{StaticResource TitleCardText}"
+                       Text="{Binding Title, ElementName=root}"/>
 
-        <StackPanel Grid.Row="1">
-            <Image Source="{Binding ImgSource, ElementName=root}" Stretch="UniformToFill"/>
-        </StackPanel>
+            <Grid Margin="1 0 1 0" Grid.Row="1">
+                <Image Source="{Binding ImgSource, ElementName=root}" Stretch="UniformToFill"/>
+            </Grid>
 
-        <StackPanel Grid.Row="2" Background="#E0DCDC">
-            <TextBlock Text="{Binding Description, ElementName=root}"
-                       TextWrapping="WrapWithOverflow"
-                       FontSize="10"
-                       Margin="2 0 2 0"/>
-        </StackPanel>
+            <TextBlock Grid.Row="2"
+                       Style="{StaticResource DescriptionCardText}"
+                       Text="{Binding Description, ElementName=root}" />
 
 
-        <TextBlock Grid.Row="3"
-                   Background="Blue"
-                   Text="Thẻ khí vận"
-                   TextWrapping="NoWrap"
-                   TextTrimming="CharacterEllipsis"
-                   Foreground="White"
-                   FontSize="10"
-                   FontWeight="SemiBold"
-                   Padding="2 0 2 0"/>
+            <TextBlock Grid.Row="3"
+                       Style="{StaticResource TypeCardText}"
+                       Text="Khí vận"/>
+        </Grid>
     </Grid>
 </UserControl>

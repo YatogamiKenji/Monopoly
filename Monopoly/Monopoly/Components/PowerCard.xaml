@@ -6,54 +6,47 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              x:Name="root"
              mc:Ignorable="d" 
-             d:DesignHeight="129" d:DesignWidth="97">
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto" MinHeight="53"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
-                   Background="red"
-                   Text="{Binding Title, ElementName=root}"
-                   TextWrapping="NoWrap"
-                   TextTrimming="CharacterEllipsis"
-                   Foreground="White"
-                   FontSize="13"
-                   Padding="2 0 2 0"/>
+             d:DesignHeight="131" d:DesignWidth="101">
 
-        <StackPanel Grid.Row="1">
-            <Image Source="{Binding ImgSource, ElementName=root}" Stretch="UniformToFill"/>
-        </StackPanel>
-        
-        <StackPanel Grid.Row="2" Background="#E0DCDC">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+    <Grid Width="101" Height="131">
+        <Image Source="/Monopoly;component/Images/card/power_card_violet.png"
+               Stretch="Fill"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="14"/>
+                <RowDefinition Height="28" />
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Style="{StaticResource TitleCardText}"
+                       Text="{Binding Title, ElementName=root}"/>
+
+            <Grid Margin="1 0 1 0" Grid.Row="1">
+                <Image Source="{Binding ImgSource, ElementName=root}" Stretch="UniformToFill"/>
+            </Grid>
+            
+            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBlock Text="{Binding Price, ElementName=root}"
-                           Margin="2 0 1 0"
-                           Foreground="DarkOrange"
-                           FontSize="10"
-                           FontWeight="Bold"/>
+                           Margin="4 2 1 0"
+                           Foreground="Yellow"
+                           FontSize="10"/>
                 <Image Source="/Monopoly;component/Image/coinIcon.png"
                        Height="8"
                        Width="8"
-                       Margin="0 1 0  0"/>
+                       Margin="0 1 0 0"/>
             </StackPanel>
-            <TextBlock Text="{Binding Description, ElementName=root}"
-                       TextWrapping="WrapWithOverflow"
-                       FontSize="10"
-                       Margin="2 0 2 0"/>
-        </StackPanel>
-        
-        
-        <TextBlock Grid.Row="3"
-                   Background="Green"
-                   Text="Thẻ quyền năng"
-                   TextWrapping="NoWrap"
-                   TextTrimming="CharacterEllipsis"
-                   Foreground="White"
-                   FontSize="10"
-                   FontWeight="SemiBold"
-                   Padding="2 0 2 0"/>
+
+            <TextBlock Grid.Row="3"
+                       Style="{StaticResource DescriptionCardText}"
+                       Text="{Binding Description, ElementName=root}" 
+                       Margin="4 2 4 0"/>
+
+
+            <TextBlock Grid.Row="4"
+                       Style="{StaticResource TypeCardText}"
+                       Text="Quyền năng"/>
+        </Grid>
     </Grid>
 </UserControl>

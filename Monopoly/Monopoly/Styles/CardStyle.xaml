@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="TitleCardText" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Padding" Value="4 2 2 0"/>
+    </Style>
+    <Style x:Key="DescriptionCardText" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="Margin" Value="4 4 4 2"/>
+        <Setter Property="Opacity" Value="0.8"/>
+        <Setter Property="LineHeight" Value="10" />
+    </Style>
+
+    <Style x:Key="TypeCardText" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="40 1 0 0"/>
+    </Style>
+</ResourceDictionary>

@@ -6,76 +6,80 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              x:Name="root"
              mc:Ignorable="d" 
-             d:DesignHeight="120" d:DesignWidth="93">
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
-                   Background="red"
-                   Text="{Binding Title, ElementName=root}"
-                   TextWrapping="NoWrap"
-                   TextTrimming="CharacterEllipsis"
-                   Foreground="White"
-                   FontSize="13"
-                   Padding="2 0 2 0"/>
+             d:DesignHeight="131" d:DesignWidth="97">
+    <Grid Width="97" Height="131">
+        <Image Source="/Monopoly;component/Images/card/land_card_red.png"
+               Stretch="Fill"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="19"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Style="{StaticResource TitleCardText}"
+                       Text="{Binding Title, ElementName=root}"/>
 
-        <StackPanel Grid.Row="1">
-            <Image Source="{Binding ImgSource, ElementName=root}" Stretch="UniformToFill"/>
-        </StackPanel>
+            <Grid Margin="1 0 1 0" Grid.Row="1">
+                <Image Source="{Binding ImgSource, ElementName=root}" Stretch="UniformToFill"/>
+            </Grid>
+            
+            <StackPanel Grid.Row="2" Margin="2 6 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Cấp:"
+                        TextWrapping="WrapWithOverflow"
+                        FontSize="10"
+                        Margin="2 0 0 0"
+                        Foreground="White"
+                        Opacity="0.8"/>
+                    <TextBlock Text="{Binding Level, ElementName=root}"
+                        TextWrapping="WrapWithOverflow"
+                        FontSize="10"
+                        Margin="2 0 2 0"
+                        Foreground="White"/>
+                </StackPanel>
 
-        <StackPanel Grid.Row="2" Background="#E0DCDC">
-
-            <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
-                <TextBlock Text="Cấp:"
-                       TextWrapping="WrapWithOverflow"
-                       FontSize="10"
-                       Margin="2 0 0 0"/>
-                <TextBlock Text="{Binding Level, ElementName=root}"
-                       TextWrapping="WrapWithOverflow"
-                       FontSize="10"
-                       Margin="2 0 2 0"/>
-            </StackPanel>
-
-            <!-- Thuế -->
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Thuế:"
-                       TextWrapping="WrapWithOverflow"
-                       FontSize="10"
-                       Margin="2 0 0 0"/>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="{Binding Tax, ElementName=root}"
+                <!-- Thuế -->
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Thuế:"
+                        TextWrapping="WrapWithOverflow"
+                        FontSize="10"
+                        Margin="2 0 0 0"
+                        Foreground="White"
+                        Opacity="0.8"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Tax, ElementName=root}"
                            Margin="2 0 1 0"
-                           Foreground="DarkOrange"
-                           FontSize="10"
-                           FontWeight="Bold"/>
-                    <Image Source="/Monopoly;component/Image/coinIcon.png"
+                           Foreground="Yellow"
+                           FontSize="10"/>
+                        <Image Source="/Monopoly;component/Image/coinIcon.png"
                        Height="8"
                        Width="8"
                        Margin="0 1 0  0"/>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
 
-            <!-- Giá trị -->
-            <StackPanel Orientation="Horizontal"  Margin="0 0 0 5">
-                <TextBlock Text="Giá trị:"
-                       TextWrapping="WrapWithOverflow"
-                       FontSize="10"
-                       Margin="2 0 0 0"/>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="{Binding Value, ElementName=root}"
+                <!-- Giá trị -->
+                <StackPanel Orientation="Horizontal"  Margin="0 0 0 5">
+                    <TextBlock Text="Giá trị:"
+                        TextWrapping="WrapWithOverflow"
+                        FontSize="10"
+                        Margin="2 0 0 0"
+                        Foreground="White"
+                        Opacity="0.8"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Value, ElementName=root}"
                            Margin="2 0 1 0"
-                           Foreground="DarkOrange"
-                           FontSize="10"
-                           FontWeight="Bold"/>
-                    <Image Source="/Monopoly;component/Image/coinIcon.png"
+                           Foreground="Yellow"
+                           FontSize="10"/>
+                        <Image Source="/Monopoly;component/Image/coinIcon.png"
                        Height="8"
                        Width="8"
                        Margin="0 1 0  0"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
-        </StackPanel>
+
+        </Grid>
     </Grid>
 </UserControl>
