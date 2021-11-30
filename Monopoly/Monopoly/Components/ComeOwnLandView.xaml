@@ -10,24 +10,31 @@
 
     <UserControl.Resources>
         <Style x:Key="ButtonCenterMap" TargetType="Button">
-            <Setter Property="Width" Value="134"/>
-            <Setter Property="Height" Value="48"/>
-            <Setter Property="Margin" Value="0 12 0 0"/>
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="119"/>
+            <Setter Property="Height" Value="39"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="0">
+                        <!--<Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="0">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
+                        </Border>-->
+                        <Grid HorizontalAlignment="Center"
+                              VerticalAlignment="Center">
+                            <Image Source="/Monopoly;component/Images/btn/style1/btn_style1_blue.png" 
+                                   Stretch="Fill"/>
+                            <TextBlock Text="{TemplateBinding Content}"
+                                       Foreground="White"
+                                       TextAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="14"/>
+                        </Grid>
+                        
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid Background="White">
+    <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
