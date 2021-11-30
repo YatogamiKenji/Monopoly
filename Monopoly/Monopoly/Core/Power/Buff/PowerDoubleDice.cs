@@ -24,6 +24,7 @@ namespace Monopoly
             _numberTurns = 3;
             description = "Nhân đôi xúc xắc trong vòng 7 lượt";
             type = true;
+            usingLand = false;
         }
 
         public PowerDoubleDice(string name, int value, string description) : base(name, value, description)

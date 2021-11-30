@@ -16,6 +16,8 @@ namespace Monopoly
             set { _name = value; }
         }
 
+        private string _nameDefault;
+
         //link avt land
         private string _avatar;
         public string avatar
@@ -31,6 +33,8 @@ namespace Monopoly
             get { return _value; }
             set { _value = value; }
         }
+
+        private int _valueDefault;
 
         // Tổng giá trị mảnh đất sau mỗi lần nâng cấp
         private int _landValue;
@@ -68,6 +72,8 @@ namespace Monopoly
             set { _description = value; }
         }
 
+
+        // tăng gấp đôi giá thuế đất
         private bool _isDoubleTax;
         public bool isDoubleTax
         {
@@ -75,6 +81,7 @@ namespace Monopoly
             set { _isDoubleTax = value; }
         }
 
+        //tăng giá trị đất
         private bool _isDoublePrice;
         public bool isDoublePrice
         {
@@ -89,7 +96,7 @@ namespace Monopoly
             _value = 0;
             _level = 0;
             _landValue = 0;
-            _owner = -1;
+            Init();
         }
 
         // Contructor đầy đủ các đối số
@@ -99,7 +106,15 @@ namespace Monopoly
             _value = value;
             _landValue = value;
             _level = level;
+            Init();
+        }
+
+        public void Init()
+        {
             _owner = -1;
+            _isDoublePrice = false;
+            _isDoubleTax = false;
+            _isLock = false;
         }
 
         // Thuế phải trả khi đi vào ô đất
@@ -179,6 +194,32 @@ namespace Monopoly
             else _landValue = _value;
             if (_level - 2 >= 0) _level -= 2;
             else _level = 0;
+        }
+
+        //kiểm tra đất có đang bị khóa không
+        private bool _isLock;
+        public bool isLock
+        {
+            get { return _isLock; }
+            set { _isLock = value; }
+        }
+
+        //trả về dữ liệu mặc định
+        public void GetDefault()
+        {
+            _name = _nameDefault;
+            _value = _valueDefault;
+            _level = 0;
+            _landValue = _value;
+            Init();
+        }
+
+        //set dữ liệu mặc định
+        public void SetDefault()
+        {
+            _nameDefault = _name;
+            _valueDefault = _value;
+            Init();
         }
     }
 }

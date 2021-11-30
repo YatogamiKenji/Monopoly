@@ -15,6 +15,7 @@ namespace Monopoly
             name = "Hủy bỏ quyền năng";
             description = "Hủy bỏ 1 quyền năng trên tay người khác";
             type = false;
+            usingLand = false;
         }
 
         public PowerCancelPowerCard(string name, int value, string description) : base(name, value, description)

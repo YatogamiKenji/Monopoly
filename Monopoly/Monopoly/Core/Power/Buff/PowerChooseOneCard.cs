@@ -15,6 +15,7 @@ namespace Monopoly
             name = "Chọn 1 thẻ";
             description = "Chọn 1 thẻ cơ hội hoặc khí vận";
             type = true;
+            usingLand = false;
         }
 
         public PowerChooseOneCard(string name, int value, string description) : base(name, value, description)

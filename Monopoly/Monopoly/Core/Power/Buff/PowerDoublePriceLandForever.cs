@@ -15,6 +15,7 @@ namespace Monopoly
             name = "Tăng giá trị hành tinh";
             description = "Tăng gấp đôi giá trị hành tinh";
             type = true;
+            usingLand = true;
         }
 
         public PowerDoublePriceLandForever(string name, int value, string description) : base(name, value, description)

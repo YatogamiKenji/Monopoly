@@ -15,6 +15,7 @@ namespace Monopoly
             name = "Không mất tiền";
             description = "Loại bỏ lần mất tiền tiếp theo";
             type = true;
+            usingLand = false;
         }
 
         public PowerRemoveLoseMoneyNext(string name, int value, string description) : base(name, value, description)

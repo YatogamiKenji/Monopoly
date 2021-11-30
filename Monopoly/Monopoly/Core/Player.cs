@@ -80,6 +80,14 @@ namespace Monopoly
             set { _lands = value; }
         }
 
+        // Danh sách chứa vị trí các mảnh đất
+        private List<int> _indexLands;
+        public List<int> indexLands
+        {
+            get { return _indexLands; }
+            set { _indexLands = value; }
+        }
+
         // Danh sách quyền năng đang còn tác dụng trên người chơi
         private List<Power> _powersEffect;
         public List<Power> powersEffect
@@ -132,18 +140,20 @@ namespace Monopoly
         }
 
         // Thêm đất vào khi mua
-        public void AddLand(Land land)
+        public void AddLand(Land land, int index)
         {
             _lands.Add(land);
+            _indexLands.Add(index);
         }
 
         // Xóa bỏ mảnh đất sau khi bán
-        public void RemoveLand(string name)
+        public void RemoveLand(int index)
         {
             for (int i = 0; i < _lands.Count; i++)
-                if (_lands[i].name == name)
+                if (_indexLands[i] == index)
                 {
                     _lands.RemoveAt(i);
+                    _indexLands.RemoveAt(i);
                     break;
                 }
         }
@@ -180,6 +190,16 @@ namespace Monopoly
                     _powersEffect.RemoveAt(i);
                     break;
                 }
+        }
+
+        public void UpdateLand(int index)
+        {
+            for (int i = 0; i < _indexLands.Count; i++)
+                if (_indexLands[i] == index) 
+                {
+                    lands[i].Upgrade();
+                    break;
+                }    
         }
 
         //kiểm tra tăng gấp đôi số xúc sắc
