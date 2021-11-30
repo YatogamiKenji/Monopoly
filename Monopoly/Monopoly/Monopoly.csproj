@@ -7,13 +7,135 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
+    <None Remove="Images\background\5509862.jpg" />
+    <None Remove="Images\btn\style1\btn_style1_blue.png" />
+    <None Remove="Images\btn\style1\btn_style1_gray.png" />
+    <None Remove="Images\btn\style1\btn_style1_green.png" />
+    <None Remove="Images\btn\style1\btn_style1_highlight.png" />
+    <None Remove="Images\btn\style1\btn_style1_red.png" />
+    <None Remove="Images\btn\style1\btn_style1_violet.png" />
+    <None Remove="Images\btn\style1\btn_style1_yellow.png" />
+    <None Remove="Images\btn\style2\btn_style2_blue.png" />
+    <None Remove="Images\btn\style2\btn_style2_blue_large.png" />
+    <None Remove="Images\btn\style2\btn_style2_gray.png" />
+    <None Remove="Images\btn\style2\btn_style2_gray_large.png" />
+    <None Remove="Images\btn\style2\btn_style2_green.png" />
+    <None Remove="Images\btn\style2\btn_style2_green_large.png" />
+    <None Remove="Images\btn\style2\btn_style2_highlight.png" />
+    <None Remove="Images\btn\style2\btn_style2_highlight_large.png" />
+    <None Remove="Images\btn\style2\btn_style2_red.png" />
+    <None Remove="Images\btn\style2\btn_style2_red_large.png" />
+    <None Remove="Images\btn\style2\btn_style2_violet.png" />
+    <None Remove="Images\btn\style2\btn_style2_violet_large.png" />
+    <None Remove="Images\btn\style2\btn_style2_yellow.png" />
+    <None Remove="Images\btn\style2\btn_style2_yellow_large.png" />
+    <None Remove="Images\card\card_blue.png" />
+    <None Remove="Images\card\card_green.png" />
+    <None Remove="Images\card\card_red.png" />
+    <None Remove="Images\card\card_violet.png" />
+    <None Remove="Images\card\card_yellow.png" />
+    <None Remove="Images\card\land_card_blue.png" />
+    <None Remove="Images\card\land_card_green.png" />
+    <None Remove="Images\card\land_card_red.png" />
+    <None Remove="Images\card\land_card_violet.png" />
+    <None Remove="Images\card\land_card_yellow.png" />
+    <None Remove="Images\card\power_card_blue.png" />
+    <None Remove="Images\card\power_card_green.png" />
+    <None Remove="Images\card\power_card_red.png" />
+    <None Remove="Images\card\power_card_violet.png" />
+    <None Remove="Images\card\power_card_yellow.png" />
+    <None Remove="Images\cell\cell.png" />
+    <None Remove="Images\cell\cell_highlight.png" />
+    <None Remove="Images\land_card_detail\land_card_detail_blue.png" />
+    <None Remove="Images\land_card_detail\land_card_detail_green.png" />
+    <None Remove="Images\land_card_detail\land_card_detail_red.png" />
+    <None Remove="Images\land_card_detail\land_card_detail_violet.png" />
+    <None Remove="Images\land_card_detail\land_card_detail_yellow.png" />
+    <None Remove="Images\panel\panel_center_map.png" />
+    <None Remove="Images\sidebar\list_card_sidebar.png" />
+    <None Remove="Images\sidebar\list_land_sidebar.png" />
+    <None Remove="Images\sidebar\money_sidebar.png" />
+    <None Remove="Images\sidebar\sidebar.png" />
+    <None Remove="Images\sidebar\tab_sidebar.png" />
+    <None Remove="Images\sidebar\tab_sidebar_disable.png" />
+    <None Remove="Images\sidebar\tab_sidebar_selected.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Audios\" />
-    <Folder Include="Styles\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\background\5509862.jpg" />
+    <Resource Include="Images\btn\style1\btn_style1_blue.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\btn\style1\btn_style1_gray.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\btn\style1\btn_style1_green.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\btn\style1\btn_style1_highlight.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\btn\style1\btn_style1_red.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\btn\style1\btn_style1_violet.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\btn\style1\btn_style1_yellow.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\btn\style2\btn_style2_blue.png" />
+    <Resource Include="Images\btn\style2\btn_style2_blue_large.png" />
+    <Resource Include="Images\btn\style2\btn_style2_gray.png" />
+    <Resource Include="Images\btn\style2\btn_style2_gray_large.png" />
+    <Resource Include="Images\btn\style2\btn_style2_green.png" />
+    <Resource Include="Images\btn\style2\btn_style2_green_large.png" />
+    <Resource Include="Images\btn\style2\btn_style2_highlight.png" />
+    <Resource Include="Images\btn\style2\btn_style2_highlight_large.png" />
+    <Resource Include="Images\btn\style2\btn_style2_red.png" />
+    <Resource Include="Images\btn\style2\btn_style2_red_large.png" />
+    <Resource Include="Images\btn\style2\btn_style2_violet.png" />
+    <Resource Include="Images\btn\style2\btn_style2_violet_large.png" />
+    <Resource Include="Images\btn\style2\btn_style2_yellow.png" />
+    <Resource Include="Images\btn\style2\btn_style2_yellow_large.png" />
+    <Resource Include="Images\card\card_blue.png" />
+    <Resource Include="Images\card\card_green.png" />
+    <Resource Include="Images\card\card_red.png" />
+    <Resource Include="Images\card\card_violet.png" />
+    <Resource Include="Images\card\card_yellow.png" />
+    <Resource Include="Images\card\land_card_blue.png" />
+    <Resource Include="Images\card\land_card_green.png" />
+    <Resource Include="Images\card\land_card_red.png" />
+    <Resource Include="Images\card\land_card_violet.png" />
+    <Resource Include="Images\card\land_card_yellow.png" />
+    <Resource Include="Images\card\power_card_blue.png" />
+    <Resource Include="Images\card\power_card_green.png" />
+    <Resource Include="Images\card\power_card_red.png" />
+    <Resource Include="Images\card\power_card_violet.png" />
+    <Resource Include="Images\card\power_card_yellow.png" />
+    <Resource Include="Images\cell\cell.png" />
+    <Resource Include="Images\cell\cell_highlight.png" />
+    <Resource Include="Images\land_card_detail\land_card_detail_blue.png" />
+    <Resource Include="Images\land_card_detail\land_card_detail_green.png" />
+    <Resource Include="Images\land_card_detail\land_card_detail_red.png" />
+    <Resource Include="Images\land_card_detail\land_card_detail_violet.png" />
+    <Resource Include="Images\land_card_detail\land_card_detail_yellow.png" />
+    <Resource Include="Images\panel\panel_center_map.png" />
+    <Resource Include="Images\sidebar\list_card_sidebar.png" />
+    <Resource Include="Images\sidebar\list_land_sidebar.png" />
+    <Resource Include="Images\sidebar\money_sidebar.png" />
+    <Resource Include="Images\sidebar\sidebar.png" />
+    <Resource Include="Images\sidebar\tab_sidebar.png" />
+    <Resource Include="Images\sidebar\tab_sidebar_disable.png" />
+    <Resource Include="Images\sidebar\tab_sidebar_selected.png" />
   </ItemGroup>
 
 </Project>

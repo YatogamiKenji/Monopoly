@@ -167,7 +167,7 @@ namespace Monopoly.Components
             Price = _land.value;
             List<int> value = new List<int>();
             List<int> tax = new List<int>();
-            for (int i = 1; i < 6; i++) 
+            for (int i = 1; i < 6; i++)
             {
                 value.Add(_land.Upgrade(i));
                 tax.Add(_land.Tax(i));
