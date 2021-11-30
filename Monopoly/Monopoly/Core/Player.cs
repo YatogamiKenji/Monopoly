@@ -106,6 +106,7 @@ namespace Monopoly
             _powers = new List<Power>();
             _powersEffect = new List<Power>();
             _lands = new List<Land>();
+            _indexLands = new List<int>();
             _isInPrison = false;
             _isDoubleStart = false;
             _isLoseMoney = false;
@@ -122,6 +123,7 @@ namespace Monopoly
             _powers = new List<Power>();
             _powersEffect = new List<Power>();
             _lands = new List<Land>();
+            _indexLands = new List<int>();
             _isInPrison = false;
             _isDoubleStart = false;
             _isLoseMoney = false;
