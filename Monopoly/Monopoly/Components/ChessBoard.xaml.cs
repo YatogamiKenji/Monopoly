@@ -374,7 +374,7 @@ namespace Monopoly.Components
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 }
                 DoEvents();
-                Thread.Sleep(1500);
+                //Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
             }
 
@@ -395,7 +395,7 @@ namespace Monopoly.Components
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 }
                 DoEvents();
-                Thread.Sleep(1500);
+                //Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
             }
 
@@ -426,7 +426,7 @@ namespace Monopoly.Components
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 }
                 DoEvents();
-                Thread.Sleep(1500);
+                //Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
             }
 
@@ -450,7 +450,7 @@ namespace Monopoly.Components
                         PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                     }
                     DoEvents();
-                    Thread.Sleep(1500);
+                    //Thread.Sleep(1500);
                     sideBar.update(playersList, PlayerTurn);
                 }
             }
@@ -473,7 +473,7 @@ namespace Monopoly.Components
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 }
                 DoEvents();
-                Thread.Sleep(1500);
+                //Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
             }
 
@@ -490,7 +490,7 @@ namespace Monopoly.Components
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 }
                 DoEvents();
-                Thread.Sleep(1500);
+                //Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
             }
 
@@ -507,7 +507,7 @@ namespace Monopoly.Components
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 }
                 DoEvents();
-                Thread.Sleep(1500);
+                //Thread.Sleep(1500);
                 sideBar.update(playersList, PlayerTurn);
             }
 
@@ -720,7 +720,7 @@ namespace Monopoly.Components
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             }
             DoEvents();
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
             sideBar.update(playersList, PlayerTurn);
             But_xucxac.Visibility = Visibility.Visible;
             dices.Content = diceshow;
@@ -745,7 +745,7 @@ namespace Monopoly.Components
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             }
             DoEvents();
-            Thread.Sleep(1500);
+            //Thread.Sleep(1500);
             sideBar.update(playersList, PlayerTurn);
             But_xucxac.Visibility = Visibility.Visible;
             dices.Content = diceshow;
@@ -785,7 +785,7 @@ namespace Monopoly.Components
             }
             else MessageBox.Show("không đủ tiền");
             DoEvents();
-            Thread.Sleep(1500);
+            //Thread.Sleep(1500);
             sideBar.update(playersList, PlayerTurn);
         }
        
@@ -802,7 +802,7 @@ namespace Monopoly.Components
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             }
             DoEvents();
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
             sideBar.update(playersList, PlayerTurn);
             But_xucxac.Visibility = Visibility.Visible;
             dices.Content = diceshow;
@@ -822,7 +822,7 @@ namespace Monopoly.Components
                 playersList[PlayerTurn].AddLand(lands[cellManager[playersList[PlayerTurn].position].index]);
                 sideBar.update(playersList, PlayerTurn);
                 DoEvents();
-                Thread.Sleep(1500);
+                //Thread.Sleep(1500);
 
                 //tính lượt của các player
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
