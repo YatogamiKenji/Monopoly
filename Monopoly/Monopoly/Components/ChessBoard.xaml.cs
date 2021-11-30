@@ -583,6 +583,7 @@ namespace Monopoly.Components
                 power.PowerFunction(ref player);
                 playersList[PlayerTurn] = player;
             }   */
+
             if (Card.power.type)
             {
                 Player player = playersList[PlayerTurn];
