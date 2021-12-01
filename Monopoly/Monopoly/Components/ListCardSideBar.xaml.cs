@@ -62,8 +62,8 @@ namespace Monopoly.Components
                 powerCard.Description = card.description;
                 //powerCard.ImgSource = card.ImgSource;
                 powerCard.Price = card.value;
-                powerCard.Width = 97;
-                powerCard.Height = 129;
+                powerCard.Width = 101;
+                powerCard.Height = 131;
                 powerCard.Margin = new Thickness(2, 0, 2, 0);
                 listCardSideBarPanel.Children.Add(powerCard);
             }
@@ -73,8 +73,8 @@ namespace Monopoly.Components
                 luckCard.Title = "Ra tù";
                 luckCard.Description = "Ra tù";
                 //luckCard.ImgSource =;
-                luckCard.Width = 97;
-                luckCard.Height = 129;
+                luckCard.Width = 101;
+                luckCard.Height = 131;
                 luckCard.Margin = new Thickness(2, 0, 2, 0);
                 listCardSideBarPanel.Children.Add(luckCard);
             }

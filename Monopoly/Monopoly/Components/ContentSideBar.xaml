@@ -7,35 +7,70 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              mc:Ignorable="d"
              x:Name="root"
-             d:DesignHeight="546" d:DesignWidth="321">
-    <StackPanel Background="White">
+             d:DesignHeight="546" d:DesignWidth="374">
+    <StackPanel>
 
         <!-- Tiền -->
-        <StackPanel Orientation="Horizontal">
-            <TextBlock VerticalAlignment="Center" Text="Tiền: " FontSize="18" Margin="8 0 4 0"/>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock Text="{Binding Money, ElementName=root}"
-                           Margin="2 0 3 0"
-                           Foreground="DarkOrange"
-                           FontSize="30"
-                           FontWeight="Bold"/>
-                <Image Source="/Monopoly;component/Image/coinIcon.png"
+        <Grid Width="311" Height="73" Margin="0 8 0 0">
+            <Image Source="/Monopoly;component/Images/sidebar/money_sidebar.png"
+                   Stretch="Fill"/>
+            <StackPanel Orientation="Vertical">
+                <TextBlock VerticalAlignment="Center"
+                           Text="Tiền "
+                           FontSize="18"
+                           Margin="32 2 0 0"
+                           Foreground="White"/>
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding Money, ElementName=root}"
+                           Margin="2 11 3 0"
+                           Foreground="Yellow"
+                           FontSize="28"
+                           FontWeight="SemiBold"/>
+                    <Image Source="/Monopoly;component/Image/coinIcon.png"
                        Height="25"
                        Width="25"
                        Margin="0 1 0  0"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </Grid>
+        
 
         <!-- Thẻ -->
-        <StackPanel>
-            <TextBlock x:Name="cardHeading" Text="Thẻ (3): " FontSize="18" Margin="8 4 4 0"/>
-            <component:ListCardSideBar x:Name="listCardSideBar"/>
-        </StackPanel>
+        <Grid Width="335" Margin="0 6 0 0">
+            <Image Source="/Monopoly;component/Images/sidebar/list_card_sidebar.png"
+                   Stretch="Fill"/>
+
+            <StackPanel>
+                <TextBlock x:Name="cardHeading"
+                           Text="Thẻ (3): "
+                           FontSize="18"
+                           Margin="20 2 0 0"
+                           Foreground="White"/>
+                <Grid Margin="10 2 10 2">
+                    <component:ListCardSideBar x:Name="listCardSideBar"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        
 
         <!-- Đất -->
-        <StackPanel>
-            <TextBlock x:Name="landHeading" Text="Đất (3): " FontSize="18" Margin="8 4 4 0"/>
-            <ContentControl x:Name="listLandCard"/>
-        </StackPanel>
+        <Grid Width="335" Margin="0 6 0 0">
+            <Image Source="/Monopoly;component/Images/sidebar/list_land_sidebar.png"
+                   Stretch="Fill"/>
+
+            <StackPanel>
+                <TextBlock x:Name="landHeading"
+                           Text="Đất (3): "
+                           FontSize="18"
+                           Margin="20 6 0 0"
+                           Foreground="White"/>
+                <Grid Margin="10 2 10 2">
+                    <ContentControl x:Name="listLandCard"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        
     </StackPanel>
 </UserControl>

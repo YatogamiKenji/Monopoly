@@ -7,8 +7,7 @@
              xmlns:compoenent="clr-namespace:Monopoly.Components"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280">
-    <Grid x:Name="nen" Background="GreenYellow" Width="1280" Height="720">
-
+    <Grid x:Name="nen" Width="1280" Height="720">
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
             <RowDefinition Height="700"/>
@@ -22,11 +21,12 @@
             <ColumnDefinition Width="700"/>
             <ColumnDefinition Width="85"/>
         </Grid.ColumnDefinitions>
-
+        <Image Grid.RowSpan="3" Grid.ColumnSpan="5" 
+               Source="/Monopoly;component/Images/background/bg.jpg"
+               Stretch="UniformToFill"/>
         <Canvas x:Name="Bor_SideBar"
             Grid.Row="1"
-            Grid.Column="1"
-            Background="Gray">
+            Grid.Column="1">
             <compoenent:SideBar x:Name="sideBar"/>
         </Canvas>
         <Canvas x:Name="Can_BanCo"  Width="auto" Height="auto" Grid.Column="3" Grid.Row ="1" Background="Gray" >

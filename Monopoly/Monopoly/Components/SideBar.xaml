@@ -7,9 +7,11 @@
              xmlns:component="clr-namespace:Monopoly.Components"
              x:Name="root"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="350">
-    <Grid Background="#c4c4c4" Width="400" Height="700">
-        <Grid  Margin="12 12 12 12">
+             d:DesignHeight="700" d:DesignWidth="400">
+    <Grid Width="400" Height="700">
+        <Image Source="/Monopoly;component/Images/sidebar/sidebar.png"
+               Stretch="Fill"/>
+        <Grid  Margin="13 14 13 14">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>

@@ -67,8 +67,6 @@ namespace Monopoly.Components
         public static readonly DependencyProperty MoneyProperty =
             DependencyProperty.Register("Money", typeof(int), typeof(TabSideBar), new PropertyMetadata(0));
 
-
-
         public TabSideBar(int id, ImageSource imgSource, string playerName, int money)
         {
             InitializeComponent();
@@ -76,6 +74,14 @@ namespace Monopoly.Components
             ImgSource = imgSource;
             PlayerName = playerName;
             Money = money;
+        }
+
+        public void SetBg(string state)
+        {
+            if (state == "selected")
+                imgBg.Source = new BitmapImage(new Uri(@"/Monopoly;component/Images/sidebar/tab_sidebar_selected.png", UriKind.Relative));
+            else
+                imgBg.Source = new BitmapImage(new Uri(@"/Monopoly;component/Images/sidebar/tab_sidebar.png", UriKind.Relative));
         }
     }
 }

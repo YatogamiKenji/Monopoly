@@ -6,38 +6,54 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              x:Name="root"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="75">
-    <StackPanel>
-        <!-- Avatar -->
-        <Border Background="Aqua"
+             d:DesignHeight="116" d:DesignWidth="94">
+    <Grid Width="94" Height="116">
+        <Image Source="/Monopoly;component/Images/sidebar/tab_sidebar.png" 
+               Stretch="Fill"
+               x:Name="imgBg"/>
+        <StackPanel>
+            <!-- Avatar -->
+            <Border Background="Brown"
                 CornerRadius="100"
-                MaxWidth="62"
-                Margin="3"
-                Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}">
-            <Image Source="{Binding ImgSource, ElementName=root}"
-                   Stretch="UniformToFill"/>
-            
-        </Border>
-        
-        <!-- Name Player -->
-        <TextBlock Text="{Binding PlayerName, ElementName=root}"
+                Height="59"
+                Width="59"
+                Margin="0 10 0 0">
+                
+                <!--<Image Source="{Binding ImgSource, ElementName=root}"
+                   Stretch="UniformToFill"/>-->
+                <Border.Clip>
+                    <EllipseGeometry Center="29 29" RadiusX="30" RadiusY="30" />
+                </Border.Clip>
+                <Image Source="{Binding ImgSource, ElementName=root}"
+                   Stretch="UniformToFill">
+                    
+                </Image>
+            </Border>
+
+            <!-- Name Player -->
+            <TextBlock Text="{Binding PlayerName, ElementName=root}"
                    TextAlignment="Center"
-                   Foreground="#525151"
-                   FontSize="13"/>
-        
-        <!-- Money -->
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock  Text="{Binding Money, ElementName=root}"
+                   Foreground="White"
+                   FontSize="13"
+                   Margin="0 7 0 0"/>
+
+            <!-- Money -->
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Margin="0 4 0 0">
+                <TextBlock  Text="{Binding Money, ElementName=root}"
                         Margin="2 0 1 0"
-                        Foreground="DarkOrange"
-                        FontSize="12"
-                        FontWeight="Bold"/>
-            <Image 
+                        Foreground="White"
+                        FontSize="12"/>
+                <Image 
                 Source="/Monopoly;component/Image/coinIcon.png"
                 Height="8"
                 Width="8"
                 Margin="0 1 0  0"/>
+            </StackPanel>
+
         </StackPanel>
 
-    </StackPanel>
+    </Grid>
 </UserControl>

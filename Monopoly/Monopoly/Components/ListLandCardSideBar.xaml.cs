@@ -61,8 +61,8 @@ namespace Monopoly.Components
                     LandCard landCard = new LandCard(Lands[i].name, Lands[i].level, Lands[i].Tax(), Lands[i].value, new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative)));
 
                     landCard.Margin = new Thickness(2, 2, 2, 2);
-                    landCard.Width = 93;
-                    landCard.Height = 130;
+                    landCard.Width = 97;
+                    landCard.Height = 131;
                     landCard.SetValue(Grid.RowProperty, (int)Math.Floor((decimal)i / 3));
                     landCard.SetValue(Grid.ColumnProperty, (int)Math.Floor((decimal)i % 3));
                     listLandCardSideBarGrid.Children.Add(landCard);

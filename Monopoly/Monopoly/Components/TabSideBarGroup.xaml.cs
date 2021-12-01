@@ -65,11 +65,9 @@ namespace Monopoly.Components
             {
                 TabSideBar t = new TabSideBar(i, new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative)), Players[i].name, Players[i].money);
                 Grid.SetColumn(t, i);
-                t.Margin = new Thickness(2, 0, 2, 0);
-                t.Background = Brushes.LightGray;
                 if (SelectedId == i)
                 {
-                    t.Background = Brushes.White;
+                    t.SetBg("selected");
                 }
                 gridTabSideBarGroup.Children.Add(t);
             }

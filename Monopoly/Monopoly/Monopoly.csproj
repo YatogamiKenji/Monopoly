@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Images\background\5509862.jpg" />
+    <None Remove="Images\background\bg.jpg" />
     <None Remove="Images\btn\style1\btn_style1_blue.png" />
     <None Remove="Images\btn\style1\btn_style1_gray.png" />
     <None Remove="Images\btn\style1\btn_style1_green.png" />
@@ -70,7 +71,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\background\5509862.jpg" />
+    <Resource Include="Images\background\bg.jpg" />
     <Resource Include="Images\btn\style1\btn_style1_blue.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
