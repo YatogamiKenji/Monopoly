@@ -30,7 +30,11 @@ namespace Monopoly
         private int _value;
         public int value
         {
-            get { return _value; }
+            get 
+            {
+                if (_isReduceValue) return _value / 2;
+                return _value; 
+            }
             set { _value = value; }
         }
 
@@ -89,6 +93,14 @@ namespace Monopoly
             set { _isDoublePrice = value; }
         }
 
+        // giảm giá trị đất
+        private bool _isReduceValue;
+        public bool isReduceValue
+        {
+            get { return _isReduceValue; }
+            set { _isReduceValue = value; }
+        }
+
         // Contructor không đối số
         public Land()
         {
@@ -132,6 +144,7 @@ namespace Monopoly
             int tax = 1;
             if (_isDoubleTax) tax = 2;
             if (_isDoublePrice) tax *= 2;
+            if (_isReduceValue) tax /= 2;
             if (level == 0) return tax * Convert.ToInt32(Math.Ceiling(0.1 * _value));
             else if (level == 1) return tax * Convert.ToInt32(Math.Ceiling(0.24 * _value));
             else if (level == 2) return tax * Convert.ToInt32(Math.Ceiling(0.4 * _value));

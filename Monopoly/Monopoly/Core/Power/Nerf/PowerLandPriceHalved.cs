@@ -27,6 +27,19 @@ namespace Monopoly
             usingLand = true;
         }
 
+        public PowerLandPriceHalved(int index) : base()
+        {
+            value = 700;
+            name = "Giảm giá trị hành tinh";
+            _numberTurns = 2;
+            description = "Giảm 50% giá trị hành tinh của một người chơi trong vòng 2 lượt";
+            type = false;
+            usingLand = true;
+            this.index = index;
+        }
+
+        int index;
+
         public PowerLandPriceHalved(string name, int value, string description) : base(name, value, description)
         {
             _numberTurns = 2;
@@ -50,7 +63,27 @@ namespace Monopoly
             {
                 _numberTurns--;
             }
-            if (_numberTurns == 0) playerUse.RemovePowerEffect(name);
+            if (_numberTurns == 0)
+            {
+                playerUse.RemovePowerEffect(name);
+                for (int i = 0; i < playerUse.lands.Count; i++)
+                    if (playerUse.indexLands[i] == index)
+                    {
+                        playerUse.lands[i].isReduceValue = false;
+                        break;
+                    }
+            }
+        }
+
+        public override void PowerFunction(ref Player playerUse, int index)
+        {
+            for (int i = 0; i < playerUse.lands.Count; i++)
+                if (playerUse.indexLands[i] == index)
+                {
+                    playerUse.lands[i].isReduceValue = true;
+                    playerUse.AddPowersEffect(new PowerLandPriceHalved(index));
+                    break;
+                }
         }
     }
 }
