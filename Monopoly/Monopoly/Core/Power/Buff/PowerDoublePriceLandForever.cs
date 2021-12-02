@@ -35,12 +35,14 @@ namespace Monopoly
             return false;
         }
 
-        public override void PowerFunction(ref Player playerUse)
+        public override void PowerFunction(ref Player playerUse, int index)
         {
-            //vị trí của mảnh đất
-            int index = 0;
-            // chọn mảnh đất
-            playerUse.lands[index].isDoublePrice = true;
+            for (int i = 0; i < playerUse.lands.Count; i++)
+                if (playerUse.indexLands[i] == index)
+                {
+                    playerUse.lands[i].isDoublePrice = true;
+                    break;
+                }
         }
     }
 }

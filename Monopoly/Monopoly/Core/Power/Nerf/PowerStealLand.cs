@@ -33,5 +33,10 @@ namespace Monopoly
             }
             return false;
         }
+
+        public override void PowerFunction(ref Player playerUse, int index)
+        {
+            playerUse.RemoveLand(index);
+        }
     }
 }

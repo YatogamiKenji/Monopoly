@@ -17,6 +17,8 @@ namespace Monopoly
             set { _numberTurns = value; }
         }
 
+        int index;
+
         public PowerLockAPlotOfLand() : base()
         {
             value = 500;
@@ -25,6 +27,17 @@ namespace Monopoly
             description = "Khóa 1 hành tinh của một người chơi trong vòng 2 lượt";
             type = false;
             usingLand = false;
+        }
+
+        public PowerLockAPlotOfLand(int index) : base()
+        {
+            value = 500;
+            name = "Khóa hành tinh";
+            _numberTurns = 2;
+            description = "Khóa 1 hành tinh của một người chơi trong vòng 2 lượt";
+            type = false;
+            usingLand = false;
+            this.index = index;
         }
 
         public PowerLockAPlotOfLand(string name, int value, string description) : base(name, value, description)
@@ -38,7 +51,6 @@ namespace Monopoly
             {
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
-                affectedPlayers.AddPowersEffect(new PowerLockAPlotOfLand());
                 return true;
             }
             return false;
@@ -50,7 +62,27 @@ namespace Monopoly
             {
                 _numberTurns--;
             }
-            if (_numberTurns == 0) playerUse.RemovePowerEffect(name);
+            if (_numberTurns == 0)
+            {
+                playerUse.RemovePowerEffect(name);
+                for (int i = 0; i < playerUse.lands.Count; i++)
+                    if (playerUse.indexLands[i] == index)
+                    {
+                        playerUse.lands[i].isLock = false;
+                        break;
+                    }
+            }
+        }
+
+        public override void PowerFunction(ref Player playerUse, int index)
+        {
+            for (int i = 0; i < playerUse.lands.Count; i++)
+                if (playerUse.indexLands[i] == index)
+                {
+                    playerUse.lands[i].isLock = true;
+                    playerUse.AddPowersEffect(new PowerLockAPlotOfLand(index));
+                    break;
+                }
         }
     }
 }
