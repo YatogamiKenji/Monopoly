@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Monopoly.Components;
+using System.Windows.Controls.Primitives;
+using System.Windows.Threading;
 namespace Monopoly.Components
 {
     /// <summary>
@@ -42,7 +44,7 @@ namespace Monopoly.Components
             this.Visibility = Visibility.Collapsed;
         }
 
-        //Chuyển sang giaoa diện bàn cờ chính
+        //Chuyển sang giao diện bàn cờ chính
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             if (ShowPlayers.Count > 0)
@@ -94,6 +96,30 @@ namespace Monopoly.Components
             ShowPlayers.Add(ShowPlayer4);
 
 
+        }
+        //Khởi tạo chế độ Setup
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+
+        }
+        //Khởi tạo chế độ Limited
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            rocketstart.PlacementTarget = start;
+            rocketstart.Placement = PlacementMode.Right;
+            rocketstart.IsOpen = true;
+            start.Content = "GO!!";
+        }
+
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            start.Content = "START";
+            rocketstart.Visibility = Visibility.Collapsed;
+            rocketstart.IsOpen = false;
         }
 
     }

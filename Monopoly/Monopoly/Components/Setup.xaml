@@ -6,45 +6,534 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              xmlns:component="clr-namespace:Monopoly.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="755" 
-             d:DesignWidth="1280"
-             Visibility="Visible">
-    <Grid Width="1280" Height="720" TextBlock.FontFamily="Bahnschrift" Background="White">
+             d:DesignHeight="720" 
+             d:DesignWidth="1280" >
+    <UserControl.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="setup_Start" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="30" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#2196f3"/>
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Button.Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="100" RenderingBias="Performance" Direction="-90" Opacity="1" ShadowDepth ="15" Color ="#2196f3"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="FocusVisual1">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background1" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border1" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background1" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border1" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background1" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border1" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background1" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border1" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground1" Color="#FF838383"/>
+        <Style x:Key="playerStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual1}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background1}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border1}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
 
-        <TextBox Text="Chọn số lượng người chơi"
-                 FontSize="50" 
-                 Height="110"
-                 Width="960"
-                 TextAlignment="Center"
-                 Background="Orange"
-                 VerticalContentAlignment="Center"
-                 Margin="160,0,160,546" 
-                 FontWeight="Bold" 
-                  IsReadOnly="True"
-                 />
 
-        <Button Width="200" Height="100"  Content="2 người" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="160,206,920,414" Click="Button_Click_2"></Button>
-        <Button Width="200" Height="100" Content="3 người" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="540,206,540,414" Click="Button_Click_3"></Button>
-        <Button Width="200" Height="100" Content="4 người" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="920,206,160,414" Click="Button_Click_4"></Button>
-        <TextBox Text="Chế độ chơi"
-                 FontSize="50" 
-                 Height="110"
-                 Width="670"
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Button.Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="100" RenderingBias="Performance" Opacity="1" ShadowDepth ="0" Color ="Blue"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background1}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border1}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground1}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="FocusVisual2">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background2" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border2" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background2" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border2" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background2" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border2" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background2" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border2" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground2" Color="#FF838383"/>
+        <Style x:Key="setupSetting" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual2}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background2}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border2}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+
+
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Button.Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="100" RenderingBias="Performance" Opacity="1" ShadowDepth ="0" Color ="Red"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background2}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border2}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground2}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Width="1280" Height="720">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/bg_setup.jpg"/>
+        </Grid.Background>
+        <Image Source="/Images/mars-icon.png"
+               Height="200"
+               Width="200" 
+               Margin="126,97,954,423" 
+               RenderTransformOrigin="0.107,0.552"
+               />
+        <TextBox Text="P"
+                 FontSize="45" 
                  TextAlignment="Center"
-                 Background="Orange"
-                 VerticalAlignment="Top"
+                 Background="Transparent"
+                 Foreground="#2196f3"
                  VerticalContentAlignment="Center"
-                 Margin="305,340,305,0" 
                  FontWeight="Bold"
-                 IsReadOnly="True"
-                 />
-        <Button Width="360" Height="100" Content="Unlimied" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="80,490,840,130"></Button>
-        <Button Width="360" Height="100" Content="Setup" Background="Orange" FontFamily="Bahnschrift" FontSize="50" Margin="840,490,80,130"/>
-        <Button Width="100" Height="50" Content="Back" Background="Red" FontFamily="Bahnschrift" FontSize="36" Margin="45,635,1136,35" Click="Button_Click"/>
-        <Button Width="300" Height="100" Content="Bắt đầu" Background="Green" FontFamily="Bahnschrift" FontSize="50" Margin="490,585,490,35" Click="Button_Click_1" ></Button>
+                 BorderThickness="0"
+                 IsReadOnly="True" Margin="138,85,1105,560" RenderTransformOrigin="0.5,0.5"
+                 >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-29.482"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox Text="L"
+                 FontSize="45" 
+                 TextAlignment="Center"
+                 Background="Transparent"
+                 Foreground="#2196f3"
+                 VerticalContentAlignment="Center"
+                 FontWeight="Bold"
+                 BorderThickness="0"
+                 IsReadOnly="True" Margin="164,66,1079,579" RenderTransformOrigin="0.5,0.5"
+                 >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-17.512"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox Text="A"
+                 FontSize="45" 
+                 TextAlignment="Center"
+                 Background="Transparent"
+                 Foreground="#2196f3"
+                 VerticalContentAlignment="Center"
+                 FontWeight="Bold"
+                 BorderThickness="0"
+                 IsReadOnly="True" Margin="200,58,1043,587" RenderTransformOrigin="0.5,0.5"
+                 >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-6.999"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox Text="Y"
+                 FontSize="45" 
+                 TextAlignment="Center"
+                 Background="Transparent"
+                 Foreground="#2196f3"
+                 VerticalContentAlignment="Center"
+                 FontWeight="Bold"
+                 BorderThickness="0"
+                 IsReadOnly="True" Margin="236,62,1007,583" RenderTransformOrigin="0.5,0.5"
+                 >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.355"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox Text="E"
+                 FontSize="45" 
+                 TextAlignment="Center"
+                 Background="Transparent"
+                 Foreground="#2196f3"
+                 VerticalContentAlignment="Center"
+                 FontWeight="Bold"
+                 BorderThickness="0"
+                 IsReadOnly="True" Margin="264,74,979,571" RenderTransformOrigin="0.5,0.5"
+                 >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="27.765"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox Text="R"
+                 FontSize="45" 
+                 TextAlignment="Center"
+                 Background="Transparent"
+                 Foreground="#2196f3"
+                 VerticalContentAlignment="Center"
+                 FontWeight="Bold"
+                 BorderThickness="0"
+                 IsReadOnly="True" Margin="291,98,952,547" RenderTransformOrigin="0.5,0.5"
+                 >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="48.132"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+
+
+        <Button Style="{DynamicResource playerStyle}" Content="2" Click="Button_Click_2" Foreground="Tomato" BorderThickness="0" FontStyle="Italic" FontWeight="Heavy" FontSize="60" Margin="388,75,730,477" x:Name="two" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.877"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush ImageSource="/Images/alien-ship-icon.png"/>
+            </Button.Background>
+        </Button>
+        <Button Style="{DynamicResource playerStyle}" Click="Button_Click_3" Content="3" Foreground="Tomato" FontStyle="Italic" BorderThickness="0"  FontWeight="Heavy" FontSize="60" Margin="318,235,800,317" x:Name="three" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.877"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush ImageSource="/Images/alien-ship-icon.png"/>
+            </Button.Background>
+        </Button>
+        <Button Style="{DynamicResource playerStyle}" Click="Button_Click_4" Content="4" Foreground="Tomato" FontStyle="Italic" BorderThickness="0"  FontWeight="Heavy" FontSize="60" Margin="112,292,1006,260" x:Name="four" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.877"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush ImageSource="/Images/alien-ship-icon.png"/>
+            </Button.Background>
+        </Button>
+
+        <Image Source="/Images/pluto-icon.png"
+               Height="200"
+               Width="200" 
+               Margin="896,360,184,160" 
+               RenderTransformOrigin="0.107,0.552"
+               x:Name="earth"
+               />
+
+
+        <TextBox Text="S"
+                 FontSize="45" 
+                 Foreground="#2196f3"
+                 TextAlignment="Center"
+                 Background="Transparent"
+                 VerticalAlignment="Top"
+                 BorderThickness="0"
+                 Margin="884,468,359,0" 
+                 FontWeight="Bold"
+                 IsReadOnly="True" RenderTransformOrigin="0.5,0.5"
+                 >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="44.024"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox Text="E"
+                 FontSize="45" 
+                 Foreground="#2196f3"
+                 TextAlignment="Center"
+                 Background="Transparent"
+                 VerticalAlignment="Top"
+                 BorderThickness="0"
+                 Margin="905,493,338,0" 
+                 FontWeight="Bold"
+                 IsReadOnly="True" RenderTransformOrigin="0.5,0.5"
+                 >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="34.021"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox Text="T"
+                 FontSize="45" 
+                 Foreground="#2196f3"
+                 TextAlignment="Center"
+                 Background="Transparent"
+                 VerticalAlignment="Top"
+                 BorderThickness="0"
+                 Margin="935,514,308,0" 
+                 FontWeight="Bold"
+                 IsReadOnly="True" RenderTransformOrigin="0.5,0.5"
+                 >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="26.857"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox Text="T"
+                 FontSize="45" 
+                 Foreground="#2196f3"
+                 TextAlignment="Center"
+                 Background="Transparent"
+                 VerticalAlignment="Top"
+                 BorderThickness="0"
+                 Margin="970,523,273,0" 
+                 FontWeight="Bold"
+                 IsReadOnly="True" RenderTransformOrigin="0.5,0.5"
+                 >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="10.855"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox Text="I"
+                 FontSize="45" 
+                 Foreground="#2196f3"
+                 TextAlignment="Center"
+                 Background="Transparent"
+                 VerticalAlignment="Top"
+                 BorderThickness="0"
+                 Margin="1004,521,239,0" 
+                 FontWeight="Bold"
+                 IsReadOnly="True" RenderTransformOrigin="0.5,0.5"
+                 >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-7.964"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox Text="N"
+                 FontSize="45" 
+                 Foreground="#2196f3"
+                 TextAlignment="Center"
+                 Background="Transparent"
+                 VerticalAlignment="Top"
+                 BorderThickness="0"
+                 Margin="1037,508,206,0" 
+                 FontWeight="Bold"
+                 IsReadOnly="True" RenderTransformOrigin="0.5,0.5"
+                 >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-30.076"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox Text="G"
+                 FontSize="45" 
+                 Foreground="#2196f3"
+                 TextAlignment="Center"
+                 Background="Transparent"
+                 VerticalAlignment="Top"
+                 BorderThickness="0"
+                 Margin="1063,479,180,0" 
+                 FontWeight="Bold"
+                 IsReadOnly="True" RenderTransformOrigin="0.5,0.5"
+                 >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-45.62"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Button Style="{DynamicResource setupSetting}" BorderThickness="0" Margin="1067,276,12,294" RenderTransformOrigin="0.465,0.324" Click="Button_Click_6" >
+            <Button.Background >
+                <ImageBrush ImageSource="/Images/space-shuttle-launch-icon.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+        <TextBlock Text="Unlimied" FontWeight="Heavy" Foreground="Tomato" FontSize="40" Margin="1076,404,20,253" x:Name="Unlimied"/>
+        <Button Style="{DynamicResource setupSetting}" BorderThickness="0" Margin="744,276,335,294" RenderTransformOrigin="0.5,0.5" Click="Button_Click_5" >
+            <Button.Background >
+                <ImageBrush ImageSource="/Images/space-shuttle-launch-icon.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+        <TextBlock Text="Setup" FontWeight="Heavy" Foreground="Tomato" FontSize="40" Margin="786,404,377,260"/>
+
+        <Button Style="{DynamicResource setupSetting}" Content="BACK" FontSize="35" Margin="0,547,1057,3" Click="Button_Click" BorderThickness="0" Foreground="Tomato" FontWeight="Heavy">
+            <Button.Background >
+                <ImageBrush ImageSource="/Images/black-hole-icon.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+
+
+        <Button Style="{DynamicResource setup_Start}" Content="START" x:Name="start" FontSize="45" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" Foreground="tomato" BorderThickness="5" BorderBrush="#2196f3" Background="Transparent" FontWeight="Heavy" Margin="1022,608,50,24" Click="Button_Click_1" RenderTransformOrigin="0.5,0.5"/>
+        <Popup x:Name="rocketstart"
+               AllowsTransparency="True"
+               HorizontalOffset="-340"
+               VerticalOffset="-10">
+            <Grid>
+                <component:rocket/>
+            </Grid>
+        </Popup>
+
         <ContentControl x:Name="back"/>
         <ContentControl x:Name="chess"/>
+
     </Grid>
-    
+
 </UserControl>
 

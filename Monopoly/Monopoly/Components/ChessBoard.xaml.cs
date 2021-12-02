@@ -112,7 +112,7 @@ namespace Monopoly.Components
         void InitData()
         {
             //var content = System.IO.File.ReadAllText(@"C:\Đồ án\Monopoly\Monopoly\Monopoly\Data\Land.json");
-            var content = System.IO.File.ReadAllText(@".\Data\Land.json");
+            var content = System.IO.File.ReadAllText(@"D:\IT008.LTTQ\MonopolyPinal\Monopoly\Monopoly\Monopoly\Data\Land.json");
             lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
             for (int i = 0; i < lands.Count; i++)
             {

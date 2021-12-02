@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Monopoly.Components;
+using System.Windows.Controls.Primitives;
+using System.Windows.Threading;
 namespace Monopoly.Components
 {
     /// <summary>
@@ -32,9 +34,71 @@ namespace Monopoly.Components
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
+
             Setup setup = new Setup();
             views.Content = setup;
+        }
 
+        private void ABOUT_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void Play_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Play.Content = "SETUP!";
+            rocketstart.PlacementTarget = Play;
+            rocketstart.Placement = PlacementMode.Right;
+            rocketstart.IsOpen = true;
+
+        }
+
+        private void Play_MouseLeave(object sender, MouseEventArgs e)
+        {
+            rocketstart.Visibility = Visibility.Collapsed;
+            rocketstart.IsOpen = false;
+            Play.Content = "PLAY";
+        }
+
+        private void GUIDE_MouseEnter(object sender, MouseEventArgs e)
+        {
+            rocketstart.PlacementTarget = GUIDE;
+            rocketstart.Placement = PlacementMode.Right;
+            rocketstart.IsOpen = true;
+            GUIDE.Content = "Learning!";
+        }
+
+        private void GUIDE_MouseLeave(object sender, MouseEventArgs e)
+        {
+            GUIDE.Content = "GUIDE";
+            rocketstart.Visibility = Visibility.Collapsed;
+            rocketstart.IsOpen = false;
+        }
+
+        private void QUIT_MouseEnter(object sender, MouseEventArgs e)
+        {
+            rocketstart.PlacementTarget = QUIT;
+            rocketstart.Placement = PlacementMode.Right;
+            rocketstart.IsOpen = true;
+            QUIT.Content = "You sure?";
+        }
+
+        private void QUIT_MouseLeave(object sender, MouseEventArgs e)
+        {
+            QUIT.Content = "QUIT";
+            rocketstart.Visibility = Visibility.Collapsed;
+            rocketstart.IsOpen = false;
+        }
+
+        private void ABOUT_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ABOUT.Content = "OUR";
+        }
+
+        private void ABOUT_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ABOUT.Content = "ABOUT";
         }
     }
 }
