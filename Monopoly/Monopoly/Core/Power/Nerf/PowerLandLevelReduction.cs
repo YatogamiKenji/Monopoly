@@ -34,5 +34,15 @@ namespace Monopoly
             }
             return false;
         }
+
+        public override void PowerFunction(ref Player playerUse, int index)
+        {
+            for (int i = 0; i < playerUse.lands.Count; i++)
+                if (playerUse.indexLands[i] == index)
+                {
+                    playerUse.lands[i].LowerLevel();
+                    break;
+                }
+        }
     }
 }

@@ -112,7 +112,7 @@ namespace Monopoly.Components
         void InitData()
         {
             //var content = System.IO.File.ReadAllText(@"C:\Đồ án\Monopoly\Monopoly\Monopoly\Data\Land.json");
-            var content = System.IO.File.ReadAllText(@".\Data\Land.json");
+            var content = System.IO.File.ReadAllText(@"D:\IT008.LTTQ\MonopolyPinal\Monopoly\Monopoly\Monopoly\Data\Land.json");
             lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
             for (int i = 0; i < lands.Count; i++)
             {
@@ -588,13 +588,12 @@ namespace Monopoly.Components
             {
                 Player player = playersList[PlayerTurn];
                 Power power = Card.power;
-                power.Using(ref player, dice);
-                power.PowerFunction(ref player);
+                if (power.Using(ref player, dice)) power.PowerFunction(ref player);
 
                 // nếu thẻ power đó có sử dụng đến đất
                 if (power.usingLand)
                 {
-                    //Component chọn đất để sử dụng thẻ
+                    power.PowerFunction(ref player, 0);
                 }
 
                 playersList[PlayerTurn] = player;
@@ -639,22 +638,29 @@ namespace Monopoly.Components
                 {
                     Player playerUse = playersList[PlayerTurn];
                     Player affectedPlayers = playersList[i];
-                    PickedPlayer.power.Using(ref playerUse, ref affectedPlayers, dice);
-                    PickedPlayer.power.PowerFunction(ref affectedPlayers);
-
-                    //những thẻ di chuyển người chơi nên cần update lại vị trí
-                    if (PickedPlayer.NameCardImpact == "PowerAppointPersonToPrison" ||
-                        PickedPlayer.NameCardImpact == "PowerTeleportPersonToTheTax") 
+                    if (PickedPlayer.power.Using(ref playerUse, ref affectedPlayers, dice) && !affectedPlayers.isImmune)
                     {
-                        if (playersList[i].position == 10) playersList[PlayerTurn].isInPrison = true;
-                        Grid.SetRow(players[i], Grid.GetRow(cellPos[playersList[i].position]));
-                        Grid.SetColumn(players[i], Grid.GetColumn(cellPos[playersList[i].position]));
-                    }
+                        PickedPlayer.power.PowerFunction(ref affectedPlayers);
 
-                    // nếu thẻ power đó có sử dụng đến đất
-                    if (PickedPlayer.power.usingLand)
-                    {
-                        //Component chọn đất để sử dụng thẻ
+                        //những thẻ di chuyển người chơi nên cần update lại vị trí
+                        if (PickedPlayer.NameCardImpact == "PowerAppointPersonToPrison" ||
+                            PickedPlayer.NameCardImpact == "PowerTeleportPersonToTheTax")
+                        {
+                            if (playersList[i].position == 10) playersList[PlayerTurn].isInPrison = true;
+                            Grid.SetRow(players[i], Grid.GetRow(cellPos[playersList[i].position]));
+                            Grid.SetColumn(players[i], Grid.GetColumn(cellPos[playersList[i].position]));
+                        }
+
+                        // nếu thẻ power đó có sử dụng đến đất
+                        if (PickedPlayer.power.usingLand)
+                        {
+                            PickedPlayer.power.PowerFunction(ref affectedPlayers, 0);
+                            if (PickedPlayer.NameCardImpact == "PowerStealLand")
+                            {
+                                lands[cellManager[0].index].owner = PlayerTurn;
+                                playerUse.AddLand(lands[cellManager[0].index], cellManager[0].index);
+                            }    
+                        }
                     }
 
                     playersList[PlayerTurn] = playerUse;

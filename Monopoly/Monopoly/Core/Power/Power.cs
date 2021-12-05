@@ -78,5 +78,10 @@ namespace Monopoly
         {
 
         }
+
+        public virtual void PowerFunction(ref Player playerUse, int index)
+        {
+
+        }
     }
 }
