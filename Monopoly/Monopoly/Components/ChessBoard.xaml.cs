@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Windows.Controls.Primitives;
+using System.IO;
 
 namespace Monopoly.Components
 {
@@ -112,8 +113,7 @@ namespace Monopoly.Components
         //khởi tạo data
         void InitData()
         {
-            //var content = System.IO.File.ReadAllText(@"C:\Đồ án\Monopoly\Monopoly\Monopoly\Data\Land.json");
-            var content = System.IO.File.ReadAllText(@"D:\IT008.LTTQ\MonopolyPinal\Monopoly\Monopoly\Monopoly\Data\Land.json");
+            var content = System.IO.File.ReadAllText(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Data\Land.json");
             lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
             for (int i = 0; i < lands.Count; i++)
             {
