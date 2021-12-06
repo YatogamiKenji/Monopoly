@@ -64,121 +64,121 @@
                     <TextBlock Text="Đi tù" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" IsHitTestVisible="False"></TextBlock>
                     <Border Background="Yellow" Height="80" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_9" Grid.Row="1" Grid.Column="0" >
+                <Canvas x:Name="_9" Grid.Row="1" Grid.Column="0" MouseEnter="_9_MouseEnter" MouseLeave="_9_MouseLeave">
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_8" Grid.Row="2" Grid.Column="0"  >
+                <Canvas x:Name="_8" Grid.Row="2" Grid.Column="0" MouseEnter="_8_MouseEnter" MouseLeave="_8_MouseLeave" >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_7" Grid.Row="3" Grid.Column="0"  >
+                <Canvas x:Name="_7" Grid.Row="3" Grid.Column="0" MouseEnter="_7_MouseEnter" MouseLeave="_7_MouseLeave" >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_6" Grid.Row="4" Grid.Column="0"  >
+                <Canvas x:Name="_6" Grid.Row="4" Grid.Column="0" MouseEnter="_6_MouseEnter" MouseLeave="_6_MouseLeave" >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_5" Grid.Row="5" Grid.Column="0" >
+                <Canvas x:Name="_5" Grid.Row="5" Grid.Column="0" MouseEnter="_5_MouseEnter" MouseLeave="_5_MouseLeave" >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_4" Grid.Row="6" Grid.Column="0"  >
+                <Canvas x:Name="_4" Grid.Row="6" Grid.Column="0" MouseEnter="_4_MouseEnter" MouseLeave="_4_MouseLeave" >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_3" Grid.Row="7" Grid.Column="0" >
+                <Canvas x:Name="_3" Grid.Row="7" Grid.Column="0" MouseEnter="_3_MouseEnter" MouseLeave="_3_MouseLeave" >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_2" Grid.Row="8" Grid.Column="0"  >
+                <Canvas x:Name="_2" Grid.Row="8" Grid.Column="0" MouseEnter="_2_MouseEnter" MouseLeave="_2_MouseLeave"  >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_1" Grid.Row="9" Grid.Column="0"  >
+                <Canvas x:Name="_1" Grid.Row="9" Grid.Column="0" MouseEnter="_1_MouseEnter" MouseLeave="_1_MouseLeave" >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_0" Grid.Row="10" Grid.Column="0">
+                <Canvas x:Name="_0" Grid.Row="10" Grid.Column="0" >
                     <Border Background="Yellow" Height="80" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_11" Grid.Row="0" Grid.Column="1" >
+                <Canvas x:Name="_11" Grid.Row="0" Grid.Column="1" MouseEnter="_11_MouseEnter" MouseLeave="_11_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_12" Grid.Row="0" Grid.Column="2" >
+                <Canvas x:Name="_12" Grid.Row="0" Grid.Column="2" MouseEnter="_12_MouseEnter" MouseLeave="_12_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_13" Grid.Row="0" Grid.Column="3"  >
+                <Canvas x:Name="_13" Grid.Row="0" Grid.Column="3" MouseEnter="_13_MouseEnter" MouseLeave="_13_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_14" Grid.Row="0" Grid.Column="4"  >
+                <Canvas x:Name="_14" Grid.Row="0" Grid.Column="4" MouseEnter="_14_MouseEnter" MouseLeave="_14_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_15" Grid.Row="0" Grid.Column="5"  >
+                <Canvas x:Name="_15" Grid.Row="0" Grid.Column="5" MouseEnter="_15_MouseEnter" MouseLeave="_15_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_16" Grid.Row="0" Grid.Column="6" >
+                <Canvas x:Name="_16" Grid.Row="0" Grid.Column="6" MouseEnter="_16_MouseEnter" MouseLeave="_16_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_17" Grid.Row="0" Grid.Column="7"  >
+                <Canvas x:Name="_17" Grid.Row="0" Grid.Column="7" MouseEnter="_17_MouseEnter" MouseLeave="_17_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_18" Grid.Row="0" Grid.Column="8"  >
+                <Canvas x:Name="_18" Grid.Row="0" Grid.Column="8" MouseEnter="_18_MouseEnter" MouseLeave="_18_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_19" Grid.Row="0" Grid.Column="9" >
+                <Canvas x:Name="_19" Grid.Row="0" Grid.Column="9" MouseEnter="_19_MouseEnter" MouseLeave="_19_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_20" Grid.Row="0" Grid.Column="10"  >
+                <Canvas x:Name="_20" Grid.Row="0" Grid.Column="10">
                     <Border Background="Yellow" Height="80" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_39" Grid.Row="10" Grid.Column="1" >
+                <Canvas x:Name="_39" Grid.Row="10" Grid.Column="1" MouseEnter="_39_MouseEnter" MouseLeave="_39_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_38" Grid.Row="10" Grid.Column="2"  >
+                <Canvas x:Name="_38" Grid.Row="10" Grid.Column="2" MouseEnter="_38_MouseEnter" MouseLeave="_38_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_37" Grid.Row="10" Grid.Column="3"  >
+                <Canvas x:Name="_37" Grid.Row="10" Grid.Column="3" MouseEnter="_37_MouseEnter" MouseLeave="_37_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_36" Grid.Row="10" Grid.Column="4"  >
+                <Canvas x:Name="_36" Grid.Row="10" Grid.Column="4" MouseEnter="_36_MouseEnter" MouseLeave="_36_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_35" Grid.Row="10" Grid.Column="5" >
+                <Canvas x:Name="_35" Grid.Row="10" Grid.Column="5" MouseEnter="_35_MouseEnter" MouseLeave="_35_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_34" Grid.Row="10" Grid.Column="6"  >
+                <Canvas x:Name="_34" Grid.Row="10" Grid.Column="6" MouseEnter="_34_MouseEnter" MouseLeave="_34_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_33" Grid.Row="10" Grid.Column="7" >
+                <Canvas x:Name="_33" Grid.Row="10" Grid.Column="7" MouseEnter="_33_MouseEnter" MouseLeave="_33_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_32" Grid.Row="10" Grid.Column="8"  >
+                <Canvas x:Name="_32" Grid.Row="10" Grid.Column="8" MouseEnter="_32_MouseEnter" MouseLeave="_32_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_31" Grid.Row="10" Grid.Column="9"  >
+                <Canvas x:Name="_31" Grid.Row="10" Grid.Column="9" MouseEnter="_31_MouseEnter" MouseLeave="_31_MouseLeave" >
                     <Border Background="Yellow" Height="80" Width="60" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
                 <Canvas x:Name="_30" Grid.Row="10" Grid.Column="10" >
                     <Border Background="Yellow" Height="80" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_21" Grid.Row="1" Grid.Column="10" >
+                <Canvas x:Name="_21" Grid.Row="1" Grid.Column="10" MouseEnter="_21_MouseEnter" MouseLeave="_21_MouseLeave" >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_22" Grid.Row="2" Grid.Column="10">
+                <Canvas x:Name="_22" Grid.Row="2" Grid.Column="10" MouseEnter="_22_MouseEnter" MouseLeave="_22_MouseLeave">
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_23" Grid.Row="3" Grid.Column="10" >
+                <Canvas x:Name="_23" Grid.Row="3" Grid.Column="10" MouseEnter="_23_MouseEnter" MouseLeave="_23_MouseLeave" >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_24" Grid.Row="4" Grid.Column="10"  >
+                <Canvas x:Name="_24" Grid.Row="4" Grid.Column="10" MouseEnter="_24_MouseEnter" MouseLeave="_24_MouseLeave" >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_25" Grid.Row="5" Grid.Column="10" >
+                <Canvas x:Name="_25" Grid.Row="5" Grid.Column="10" MouseEnter="_25_MouseEnter" MouseLeave="_25_MouseLeave" >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_26" Grid.Row="6" Grid.Column="10" >
+                <Canvas x:Name="_26" Grid.Row="6" Grid.Column="10" MouseEnter="_26_MouseEnter" MouseLeave="_26_MouseLeave" >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_27" Grid.Row="7" Grid.Column="10" >
+                <Canvas x:Name="_27" Grid.Row="7" Grid.Column="10" MouseEnter="_27_MouseEnter" MouseLeave="_27_MouseLeave" >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_28" Grid.Row="8" Grid.Column="10">
+                <Canvas x:Name="_28" Grid.Row="8" Grid.Column="10" MouseEnter="_28_MouseEnter" MouseLeave="_28_MouseLeave">
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
-                <Canvas x:Name="_29" Grid.Row="9" Grid.Column="10" >
+                <Canvas x:Name="_29" Grid.Row="9" Grid.Column="10" MouseEnter="_29_MouseEnter" MouseLeave="_29_MouseLeave" >
                     <Border Background="Yellow" Height="60" Width="80" BorderThickness="1" CornerRadius="5"></Border>
                 </Canvas>
                 <Canvas x:Name="OGiuaBanCo" Grid.RowSpan="9" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="9" Width="540" Background="LightBlue">
@@ -202,6 +202,47 @@
                                     Height="353"
                                     Width="540"/>
                 </Canvas>
+                <!--add the popupTop user control-->
+
+                <Popup x:Name="popup_top"
+               AllowsTransparency="True"
+               HorizontalOffset="-130"
+               VerticalOffset="80" Grid.ColumnSpan="2" Margin="20,0,210,0">
+                    <Grid>
+                        <compoenent:popup angle="450" x:Name="texttop" Foreground="#E0FFFF"/>
+                    </Grid>
+                </Popup>
+
+                <!--add the popupBottom user control-->
+
+                <Popup x:Name="popup_bottom"
+               AllowsTransparency="True"
+               HorizontalOffset="-127"
+               VerticalOffset="-195" Grid.ColumnSpan="2" Margin="20,0,210,0">
+                    <Grid>
+                        <compoenent:popup angle="270" x:Name="textbottom" Foreground="#E0FFFF"/>
+                    </Grid>
+                </Popup>
+                <!--add the popupRight user control-->
+
+                <Popup x:Name="popup_right"
+               AllowsTransparency="True"
+               HorizontalOffset="-275"
+               VerticalOffset="-70">
+                    <Grid>
+                        <compoenent:popup angle="180" x:Name="textright" Foreground="#E0FFFF"/>
+                    </Grid>
+                </Popup>
+                <!--add the popupLeft user control-->
+
+                <Popup x:Name="popup_left"
+               AllowsTransparency="True"
+               HorizontalOffset="0"
+               VerticalOffset="-65">
+                    <Grid>
+                        <compoenent:popup x:Name="textleft" Foreground="#E0FFFF"/>
+                    </Grid>
+                </Popup>
                 <!--<Canvas x:Name="player1" Width="20" Height="20" Background="Red" Margin="10,10,50,50"  >
                     <TextBlock Text="1" Canvas.Left="6" Canvas.Top="2" FontWeight="Heavy"/>
                 </Canvas>

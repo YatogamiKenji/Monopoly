@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Windows.Controls.Primitives;
 
 namespace Monopoly.Components
 {
@@ -873,6 +874,512 @@ namespace Monopoly.Components
         public static void DoEvents()
         {
             Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(delegate { }));
+        }
+
+        private void _1_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _1;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = "_1";
+
+        }
+        private void _1_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+
+        }
+
+        private void _2_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _2;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = "_2";
+        }
+
+        private void _2_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _3_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _3;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = "_3";
+        }
+
+        private void _3_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _4_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _4;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = "_4";
+        }
+
+        private void _4_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _5_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _5;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = "_5";
+        }
+
+        private void _5_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _6_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _6;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = "_6";
+        }
+
+        private void _6_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _7_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _7;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = "_7";
+        }
+
+        private void _7_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _8_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _8;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = "_8";
+        }
+
+        private void _8_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _9_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _9;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = "_9";
+        }
+
+        private void _9_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _11_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _11;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = "_11";
+        }
+
+        private void _11_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _12_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _12;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = "_12";
+        }
+
+        private void _12_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _13_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _13;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = "_13";
+        }
+
+        private void _13_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _14_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _14;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = "_14";
+        }
+
+        private void _14_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _15_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _15_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+            popup_top.PlacementTarget = _15;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = "_15";
+        }
+
+        private void _31_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _31;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = "_31";
+        }
+
+        private void _31_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _16_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _16;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = "_16";
+        }
+
+        private void _16_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _17_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _17;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = "_17";
+        }
+
+        private void _17_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _18_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _18;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = "_18";
+        }
+
+        private void _18_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _19_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _19;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = "_19";
+        }
+
+        private void _19_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _39_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _39;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = "_39";
+        }
+
+        private void _39_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _38_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _38;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = "_38";
+        }
+
+        private void _38_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _37_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _37;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = "_37";
+        }
+
+        private void _37_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _36_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _36;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = "_36";
+        }
+
+        private void _36_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _35_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _35;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = "_35";
+        }
+
+        private void _35_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _34_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _34_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _34;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = "_34";
+        }
+
+        private void _33_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _33_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _33;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = "_33";
+        }
+
+        private void _32_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _32;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = "_32";
+        }
+
+        private void _32_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _21_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _21_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _21;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = "_21";
+        }
+
+        private void _22_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _22_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _22;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = "_22";
+        }
+
+        private void _23_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _23_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _23;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = "_23";
+        }
+
+        private void _24_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _24;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = "_24";
+        }
+
+        private void _24_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _25_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _25_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _25;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = "_25";
+        }
+
+        private void _26_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _26;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = "_26";
+        }
+
+        private void _26_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _27_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _27;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = "_27";
+        }
+
+        private void _27_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _28_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _28;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = "_28";
+        }
+
+        private void _28_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _29_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _29_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _29;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = "_29";
         }
     }
 }
