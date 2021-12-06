@@ -135,7 +135,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/spaceImg.jpg"/>
+            <ImageBrush ImageSource="/Images/background/spaceImg.jpg"/>
         </Grid.Background>
         <Border Height="170"
                 Width="1100"

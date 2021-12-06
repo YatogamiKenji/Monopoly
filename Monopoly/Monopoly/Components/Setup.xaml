@@ -187,9 +187,9 @@
     </UserControl.Resources>
     <Grid Width="1280" Height="720">
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/bg_setup.jpg"/>
+            <ImageBrush ImageSource="/Images/background/bg_setup.jpg"/>
         </Grid.Background>
-        <Image Source="/Images/mars-icon.png"
+        <Image Source="/Images/icon/mars-icon.png"
                Height="200"
                Width="200" 
                Margin="126,97,954,423" 
@@ -321,7 +321,7 @@
                 </TransformGroup>
             </Button.RenderTransform>
             <Button.Background>
-                <ImageBrush ImageSource="/Images/alien-ship-icon.png"/>
+                <ImageBrush ImageSource="/Images/icon/alien-ship-icon.png"/>
             </Button.Background>
         </Button>
         <Button Style="{DynamicResource playerStyle}" Click="Button_Click_3" Content="3" Foreground="Tomato" FontStyle="Italic" BorderThickness="0"  FontWeight="Heavy" FontSize="60" Margin="318,235,800,317" x:Name="three" RenderTransformOrigin="0.5,0.5">
@@ -334,7 +334,7 @@
                 </TransformGroup>
             </Button.RenderTransform>
             <Button.Background>
-                <ImageBrush ImageSource="/Images/alien-ship-icon.png"/>
+                <ImageBrush ImageSource="/Images/icon/alien-ship-icon.png"/>
             </Button.Background>
         </Button>
         <Button Style="{DynamicResource playerStyle}" Click="Button_Click_4" Content="4" Foreground="Tomato" FontStyle="Italic" BorderThickness="0"  FontWeight="Heavy" FontSize="60" Margin="112,292,1006,260" x:Name="four" RenderTransformOrigin="0.5,0.5">
@@ -347,11 +347,11 @@
                 </TransformGroup>
             </Button.RenderTransform>
             <Button.Background>
-                <ImageBrush ImageSource="/Images/alien-ship-icon.png"/>
+                <ImageBrush ImageSource="/Images/icon/alien-ship-icon.png"/>
             </Button.Background>
         </Button>
 
-        <Image Source="/Images/pluto-icon.png"
+        <Image Source="/Images/icon/pluto-icon.png"
                Height="200"
                Width="200" 
                Margin="896,360,184,160" 
@@ -502,20 +502,20 @@
         </TextBox>
         <Button Style="{DynamicResource setupSetting}" BorderThickness="0" Margin="1067,276,12,294" RenderTransformOrigin="0.465,0.324" Click="Button_Click_6" >
             <Button.Background >
-                <ImageBrush ImageSource="/Images/space-shuttle-launch-icon.png" Stretch="Uniform"/>
+                <ImageBrush ImageSource="/Images/icon/space-shuttle-launch-icon.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
         <TextBlock Text="Unlimied" FontWeight="Heavy" Foreground="Tomato" FontSize="40" Margin="1076,404,20,253" x:Name="Unlimied"/>
         <Button Style="{DynamicResource setupSetting}" BorderThickness="0" Margin="744,276,335,294" RenderTransformOrigin="0.5,0.5" Click="Button_Click_5" >
             <Button.Background >
-                <ImageBrush ImageSource="/Images/space-shuttle-launch-icon.png" Stretch="Uniform"/>
+                <ImageBrush ImageSource="/Images/icon/space-shuttle-launch-icon.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
         <TextBlock Text="Setup" FontWeight="Heavy" Foreground="Tomato" FontSize="40" Margin="786,404,377,260"/>
 
         <Button Style="{DynamicResource setupSetting}" Content="BACK" FontSize="35" Margin="0,547,1057,3" Click="Button_Click" BorderThickness="0" Foreground="Tomato" FontWeight="Heavy">
             <Button.Background >
-                <ImageBrush ImageSource="/Images/black-hole-icon.png" Stretch="Uniform"/>
+                <ImageBrush ImageSource="/Images/icon/black-hole-icon.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
 

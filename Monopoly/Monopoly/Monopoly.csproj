@@ -10,6 +10,8 @@
     <None Remove="Images\alien-ship-icon.png" />
     <None Remove="Images\background\5509862.jpg" />
     <None Remove="Images\background\bg.jpg" />
+    <None Remove="Images\background\bg_setup.jpg" />
+    <None Remove="Images\background\spaceImg.jpg" />
     <None Remove="Images\bg_chessBoard.jpg" />
     <None Remove="Images\bg_setup.jpg" />
     <None Remove="Images\bg_space.jpg" />
@@ -53,6 +55,16 @@
     <None Remove="Images\cell\cell.png" />
     <None Remove="Images\cell\cell_highlight.png" />
     <None Remove="Images\falling-star-icon.png" />
+    <None Remove="Images\icon\alien-ship-icon.png" />
+    <None Remove="Images\icon\black-hole-icon.png" />
+    <None Remove="Images\icon\falling-star-icon.png" />
+    <None Remove="Images\icon\mars-icon.png" />
+    <None Remove="Images\icon\pluto-icon.png" />
+    <None Remove="Images\icon\rocket-launch-icon.png" />
+    <None Remove="Images\icon\rocket.png" />
+    <None Remove="Images\icon\space-shuttle-launch-icon.png" />
+    <None Remove="Images\icon\sputnik-2-icon.png" />
+    <None Remove="Images\icon\telescope-icon.png" />
     <None Remove="Images\land_card_detail\land_card_detail_blue.png" />
     <None Remove="Images\land_card_detail\land_card_detail_green.png" />
     <None Remove="Images\land_card_detail\land_card_detail_red.png" />
@@ -77,15 +89,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\rocket-launch-icon.png" />
-    <Resource Include="Images\rocket.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Images\black-hole-icon.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Audios\" />
   </ItemGroup>
 
@@ -94,11 +97,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\alien-ship-icon.png" />
     <Resource Include="Images\background\bg.jpg" />
-    <Resource Include="Images\bg_chessBoard.jpg" />
-    <Resource Include="Images\bg_setup.jpg" />
-    <Resource Include="Images\bg_space.jpg" />
+    <Resource Include="Images\background\bg_setup.jpg" />
+    <Resource Include="Images\background\spaceImg.jpg" />
     <Resource Include="Images\btn\style1\btn_style1_blue.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -151,15 +152,22 @@
     <Resource Include="Images\card\power_card_yellow.png" />
     <Resource Include="Images\cell\cell.png" />
     <Resource Include="Images\cell\cell_highlight.png" />
-    <Resource Include="Images\falling-star-icon.png" />
+    <Resource Include="Images\icon\alien-ship-icon.png" />
+    <Resource Include="Images\icon\black-hole-icon.png" />
+    <Resource Include="Images\icon\falling-star-icon.png" />
+    <Resource Include="Images\icon\mars-icon.png" />
+    <Resource Include="Images\icon\pluto-icon.png" />
+    <Resource Include="Images\icon\rocket-launch-icon.png" />
+    <Resource Include="Images\icon\rocket.png" />
+    <Resource Include="Images\icon\space-shuttle-launch-icon.png" />
+    <Resource Include="Images\icon\sputnik-2-icon.png" />
+    <Resource Include="Images\icon\telescope-icon.png" />
     <Resource Include="Images\land_card_detail\land_card_detail_blue.png" />
     <Resource Include="Images\land_card_detail\land_card_detail_green.png" />
     <Resource Include="Images\land_card_detail\land_card_detail_red.png" />
     <Resource Include="Images\land_card_detail\land_card_detail_violet.png" />
     <Resource Include="Images\land_card_detail\land_card_detail_yellow.png" />
-    <Resource Include="Images\mars-icon.png" />
     <Resource Include="Images\panel\panel_center_map.png" />
-    <Resource Include="Images\pluto-icon.png" />
     <Resource Include="Images\sidebar\list_card_sidebar.png" />
     <Resource Include="Images\sidebar\list_land_sidebar.png" />
     <Resource Include="Images\sidebar\money_sidebar.png" />
@@ -167,10 +175,6 @@
     <Resource Include="Images\sidebar\tab_sidebar.png" />
     <Resource Include="Images\sidebar\tab_sidebar_disable.png" />
     <Resource Include="Images\sidebar\tab_sidebar_selected.png" />
-    <Resource Include="Images\space-shuttle-launch-icon.png" />
-    <Resource Include="Images\spaceImg.jpg" />
-    <Resource Include="Images\sputnik-2-icon.png" />
-    <Resource Include="Images\telescope-icon.png" />
   </ItemGroup>
 
 </Project>

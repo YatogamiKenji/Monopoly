@@ -41,7 +41,7 @@ namespace Monopoly.Components
         {
             ViewStart start = new ViewStart();
             back.Content = start;
-            this.Visibility = Visibility.Collapsed;
+            
         }
 
         //Chuyển sang giao diện bàn cờ chính
