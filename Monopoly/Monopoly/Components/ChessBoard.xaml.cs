@@ -15,7 +15,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Windows.Controls.Primitives;
+<<<<<<< HEAD
 using System.Windows.Media.Animation;
+=======
+using System.IO;
+>>>>>>> fb373e093d660922066e0b6a8800acfd9866522e
 
 namespace Monopoly.Components
 {
@@ -113,14 +117,14 @@ namespace Monopoly.Components
         //khởi tạo data
         void InitData()
         {
-            //var content = System.IO.File.ReadAllText(@"C:\Đồ án\Monopoly\Monopoly\Monopoly\Data\Land.json");
-            var content = System.IO.File.ReadAllText(@"D:\IT008.LTTQ\MonopolyPinal\Monopoly\Monopoly\Monopoly\Data\Land.json");
+            var content = System.IO.File.ReadAllText(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Data\Land.json");
             lands = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Land>>(content);
             for (int i = 0; i < lands.Count; i++)
             {
                 lands[i].landValue = lands[i].value;
                 lands[i].SetDefault();
             }
+
             int count = 0;
             //khởi tạo dữ liệu quản lý các ô trên bàn cờ
             for (int i = 0; i < 40; i++)
@@ -201,7 +205,7 @@ namespace Monopoly.Components
             Random random = new Random();
             int x = random.Next(200);
             if (x >= 0 && x < 13) return new PowerRemoveLoseMoneyNext(); 
-            if (x > 13 && x < 27) return new PowerChooseOneCard();
+            if (x > 13 && x < 27) return new PowerTeleport();
             if (x > 27 && x < 33 || x > 61 && x < 66) return new PowerAppointPersonToPrison();
             if (x > 33 && x < 47) return new PowerSplitDice();
             if (x > 47 && x < 61) return new PowerLandPriceHalved();
@@ -255,25 +259,54 @@ namespace Monopoly.Components
                 if (playersList[PlayerTurn].isDoubleDice) dice *= 2;
                 if (playersList[PlayerTurn].isSplitDice) dice /= 2;
 
-                //change player position
-                for (int i = 0; i < dice; i++)
+                //nếu không có tác dụng của thẻ PowerTeleport thì cho nhân vật di chuyển đến đích đến
+                if (!playersList[PlayerTurn].isTeleport)
                 {
-                    playersList[PlayerTurn].position = (playersList[PlayerTurn].position + 1) % 40;
-                    Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersList[PlayerTurn].position]));
-                    Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersList[PlayerTurn].position]));
-
-                    //xử lý khi đi ngang ô bắt đầu
-                    if (cellManager[playersList[PlayerTurn].position].type == CellType.BatDau)
+                    //change player position
+                    for (int i = 0; i < dice; i++)
                     {
-                        //thưởng tiền khi đi qua ô bắt đầu
+                        playersList[PlayerTurn].position = (playersList[PlayerTurn].position + 1) % 40;
+                        Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersList[PlayerTurn].position]));
+                        Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersList[PlayerTurn].position]));
+
+                        //xử lý khi đi ngang ô bắt đầu
+                        if (cellManager[playersList[PlayerTurn].position].type == CellType.BatDau)
+                        {
+                            //thưởng tiền khi đi qua ô bắt đầu
+                            if (playersList[PlayerTurn].isDoubleStart) playersList[PlayerTurn].money += 2000 * (turn[PlayerTurn] / 2 + 1);
+                            else playersList[PlayerTurn].money += 1000 * (turn[PlayerTurn] / 2 + 1);
+                            if (turn[PlayerTurn] / 2 + 1 < 10) turn[PlayerTurn]++;
+                            sideBar.update(playersList, PlayerTurn);
+                        }
+                        DoEvents();
+                        //  Thread.Sleep(500);
+                    }
+                }
+                else
+                {
+                    int index = 0;
+                    //mở sự kiện để chọn ô
+                    //sau khi chọn xong vị trí được lưu vào index
+                    //sử lý khi người chơi đ ngang ô bắt đầu
+                    if (index >= 0 && index < 13 && playersList[PlayerTurn].position > 30)
+                    {
                         if (playersList[PlayerTurn].isDoubleStart) playersList[PlayerTurn].money += 2000 * (turn[PlayerTurn] / 2 + 1);
                         else playersList[PlayerTurn].money += 1000 * (turn[PlayerTurn] / 2 + 1);
                         if (turn[PlayerTurn] / 2 + 1 < 10) turn[PlayerTurn]++;
+<<<<<<< HEAD
                         sideBar.update(playersList, PlayerTurn);
                     }
                     
                    
                 }
+=======
+                    } 
+                        
+                    playersList[PlayerTurn].position = index;
+                    Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[index]));
+                    Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[index]));
+                }    
+>>>>>>> fb373e093d660922066e0b6a8800acfd9866522e
 
                 sideBar.update(playersList, PlayerTurn);
 
@@ -878,6 +911,7 @@ namespace Monopoly.Components
             textleft.PopupText.Text = "_1";
 
         }
+
         private void _1_MouseLeave(object sender, MouseEventArgs e)
         {
             popup_left.Visibility = Visibility.Collapsed;

@@ -1,142 +1,170 @@
-[
+﻿[
   // 1
   {
     "name": "Medusa",
-    "value": "1200"
+    "value": "1200",
+    "description": "Hành tinh của nữ vương Medusa cùng tộc nhân của mình. Tương truyền ai nhìn vào đôi mắt của nàng sẽ hóa đá nên trên hành tinh có rất nhiều tượng đá với những dáng vẻ khác nhau."
   },
   // 2
   {
     "name": "Alpha",
-    "value": "1600"
+    "value": "1600",
+    "description": "Hành tinh Alpha có khối lượng gấp 1,1 lần và độ sáng gấp 1,519 lần Mặt trời của chúng ta. Nơi này ẩn chứa nguồn năng lượng khổng lồ."
   },
   // 3
   {
     "name": "Venus",
-    "value": "2200"
+    "value": "2200",
+    "description": "Sao Kim được xếp vào nhóm hành tinh đất đá và đôi khi người ta còn coi nó là hành tinh \"chị em\" với Trái Đất do kích cỡ, gia tốc hấp dẫn, tham số quỹ đạo gần giống với Trái Đất. Áp suất khí quyển tại bề mặt hành tinh cao gấp 92 lần so với của Trái Đất. Với nhiệt độ bề mặt trung bình bằng 735 K (462 °C)."
   },
   // 4
   {
     "name": "Alain",
-    "value": "2800"
+    "value": "2800",
+    "description": "Hành tinh Alain có màu cam đỏ đặc trưng, khá dễ dàng nhận biết khi nhìn lên bầu trời đêm. Màu sắc này có được là do bề mặt hành tinh chứa nhiều oxi sắt. Là hành tinh của các chiến binh thiện chiến."
   },
   // 5
   {
     "name": "Leo",
-    "value": "3200"
+    "value": "3200",
+    "description": "Hành tinh Leo có cấu hình độc nhất bởi vì trục tự quay của hành tinh bị nghiêng rất lớn, gần như song song với mặt phẳng quỹ đạo của hành tinh. Sự cấu hình đặt biệt này đã tạo nên những đặc điểm mà các hành tinh khác không có."
   },
   // 6
   {
     "name": "Aurelion",
-    "value": "3600"
+    "value": "3600",
+    "description": "Hành tinh này có một đĩa bụi và khí khổng lồ bao quanh. Nên tạo cho nó một lớp lá chắn phòng thủ tuyệt vời bất khả xâm phạm."
   },
   // 7
   {
     "name": "Sol",
-    "value": "4000"
+    "value": "4000",
+    "description": "Hành tinh này có khối lượng gấp 17 lần khối lượng của Trái Đất. Lực hấp dẫn trên bề mặt hành tinh này rất nhỏ. Tại đây mọi định luật vật lý mà chúng ta biết dường như vô dụng."
   },
   // 8
   {
     "name": "Dragon",
-    "value": "4500"
+    "value": "4500",
+    "description": "Hành tinh này là hành tinh của chúa tể rồng. Nơi đây là nơi sinh sống của chủng loài rồng cổ đại trong truyền thuyết."
   },
   // 9
   {
     "name": "Runtera",
-    "value": "5000"
+    "value": "5000",
+    "description": "Hành tinh này nằm top 3 trong những hành tinh kim loại. Với lượng kim loại tinh khiết rải khắp bề mặt đến tận lõi của hành tinh."
   },
   // 10
   {
     "name": "Pandora",
-    "value": "5600"
+    "value": "5600",
+    "description": "Hành tinh này có chu kỳ tự quay quanh trục chậm bất thường, bề mặt của nó có tỷ lệ cacbon cao, tối màu và chỉ phản xạ khoảng 4% ánh sáng chiếu đến."
   },
   // 11
   {
     "name": "Asgard",
-    "value": "6300"
+    "value": "6300",
+    "description": "Hành tinh Asgard là nơi các vị thần Aesir sinh sống. Nơi này ẩn chứa nguồn sức mạnh khổng lồ."
   },
   // 12
   {
     "name": "Rune",
-    "value": "6800"
+    "value": "6800",
+    "description": "Bề mặt chủ yếu được bao phủ bởi dung nham nóng chảy. Ẩn dấu bên trong dòng dung nham này là nguồn năng lượng khổng lồ."
   },
   // 13
   {
     "name": "Caprica",
-    "value": "7400"
+    "value": "7400",
+    "description": "Bề mặt hành tinh này bao phủ bởi thực vật. Khí hậu trong lành mát mẻ. Nguồn tài nguyên vô tận."
   },
   // 14
   {
     "name": "Ego",
-    "value": "8000"
+    "value": "8000",
+    "description": "Ego là một hành tinh Celestrial nguyên thủy cực kỳ mạnh mẽ. Chứa khả năng hủy diệt các hành tinh có sự sống khác."
   },
   // 15
   {
     "name": "Cybertron",
-    "value": "8600"
+    "value": "8600",
+    "description": "Hành tinh Cybertron có trọng lực gấp 10 lần trái đất. Nơi đây dường như là một thế giới sa mạc khắc nghiệt với một bầu trời màu vàng / đỏ thay vì màu xanh lam. Nó có ít nhất hai vệ tinh tự nhiên, và có một mặt trăng tròn đẩy đủ mỗi 100 năm/lần."
   },
   // 16
   {
     "name": "Krypton",
-    "value": "9200"
+    "value": "9200",
+    "description": "Hành tinh này là nơi thần Zeus trú ngụ. Nhìn từ xa hành tinh này trông rất thanh tú, oai phong lẫm liệt như một vị vua."
   },
   // 17
   {
     "name": "Solaris",
-    "value": "9800"
+    "value": "9800",
+    "description": "Hành tinh này nằm top 2 trong những hành tinh kim loại. Với lượng kim loại tinh khiết rải khắp bề mặt đến tận lõi của hành tinh."
   },
   // 18
   {
     "name": "Siopeia",
-    "value": "10300"
+    "value": "10300",
+    "description": "Hành tinh này là hành tinh của nữ thần của cây cỏ, mùa màng và tình mẫu tử."
   },
   // 19
   {
     "name": "Devil",
-    "value": "10800"
+    "value": "10800",
+    "description": "Devil là hành tinh sáng nhất. Bề ngoài sỏi đá nhưng ẩn dấu sâu bên trong là khoáng sản quý hiếm."
   },
   // 20
   {
     "name": "Arrakis",
-    "value": "11500"
+    "value": "11500",
+    "description": "Hành tinh này nằm top 1 trong những hành tinh kim loại. Với lượng kim loại tinh khiết rải khắp bề mặt đến tận lõi của hành tinh."
   },
   // 21
   {
     "name": "Coruscant",
-    "value": "12000"
+    "value": "12000",
+    "description": "Hành tinh Coruscant là nơi trú ngụ của Jedi Order. Hơn 1 nghìn tỷ dân. Coruscant là nơi tập trung các cơ sở y tế, nhà hát, khu vực hội họp chính trị. Coruscant nhộn nhịp, đẹp đẽ và sang trọng. Là nơi Old Republic và các Jedi trú ngụ và hoạt động mạnh mẽ nhất."
   },
   // 22
   {
     "name": "Hope",
-    "value": "12500"
+    "value": "12500",
+    "description": "Những người sống trên hành tinh này luôn tràn ngập nụ cười và hy vọng."
   },
   // 23
   {
     "name": "Omega",
-    "value": "13000"
+    "value": "13000",
+    "description": "Hành tinh Omega nằm cách Trái Đất khoảng 5.000 tới 6.000 năm ánh sáng và trải rộng khoảng 15 năm ánh sáng. Đám mây của vật chất liên sao trong đó có chứa tinh vân này có đường kính khoảng 40 năm ánh sáng. Tổng khối lượng của hành tinh Omega ước khoảng 800 khối lượng Mặt Trời."
   },
   // 24
   {
     "name": "Valoran",
-    "value": "13400"
+    "value": "13400",
+    "description": "Hành tinh này có kích thước gấp đôi Trái Đất của chúng ta. Nhiệt độ bề mặt rất cao và được bao phủ bởi kim cương và lõi là than chì."
   },
   // 25
   {
     "name": "Demacia",
-    "value": "13800"
+    "value": "13800",
+    "description": "Bề mặt của Demacia 16 chứa ít nhất 30% là kim loại và những lớp đá bên trên bề mặt cũng có kim loại. Một kho báu khổng lồ."
   },
   // 26
   {
     "name": "Void",
-    "value": "14200"
+    "value": "14200",
+    "description": "Hành tinh có cấu trúc và các tính chất giống các hành tinh vòng trong của Hệ Mặt Trời (như Sao Kim, Trái Đất, Sao Hỏa): có bề mặt chắc cứng, khối lượng khá thấp, trọng lượng riêng cao, chứa nhiều sắt và các kim loại nặng quý hiếm."
   },
   // 27
   {
     "name": "Paramecia",
-    "value": "14600"
+    "value": "14600",
+    "description": "Hành tinh này nằm ở tận cùng rìa phía Tây của vũ trụ. Chứa rất nhiều kim loại quý trên bề mặt và lõi của nó chứa đầy kim cương. Ước tính giá trị hành tinh này rất lớn."
   },
   // 28
   {
     "name": "Istanlao",
-    "value": "15000"
+    "value": "15000",
+    "description": "Hành tinh này có các điều kiện khí hậu giống hệ như Trái Đất. Được mệnh danh là anh em sinh đôi của Trái Đất chúng ta."
   }
 ]
