@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media.Animation;
 
 namespace Monopoly.Components
 {
@@ -180,33 +181,7 @@ namespace Monopoly.Components
         //    powers.Add(new PowerTeleportPersonToTheTax());
         //}
 
-        //create value ramdom
-        public Random random = new Random();
-        public int dice = 0;
-        messboxDice diceshow = new messboxDice();
-
-        //funciton timer, show random value 1-6
-        public void timer_Tick(object sender, EventArgs e)
-        {
-            dice = random.Next(1, 7);
-            diceshow.Title = dice.ToString();
-            dices.Content = diceshow;
-        }
-
-   
-        //create timer
-        public DispatcherTimer timer = new DispatcherTimer();
-
-        public void But_xucxac_Click(object sender, RoutedEventArgs e)
-        {
-            //setup timer
-            timer.Interval = TimeSpan.FromSeconds(0.01);
-            timer.Tick += timer_Tick;
-            timer.Start();
-            //Quay hide, Stop show
-            But_xucxac.Visibility = Visibility.Collapsed;
-            But_xucxac1.Visibility = Visibility.Visible;
-        }
+       
 
         public void RemovePowersEffect(ref Player player)
         {
@@ -247,17 +222,25 @@ namespace Monopoly.Components
             return new PowerLandLevelReduction();
         }
 
-        public void But_xucxac_Click1(object sender, RoutedEventArgs e)
+        //create value ramdom
+        public Random random = new Random();
+        public int dice = 0;
+
+        public void But_xucxac_Click(object sender, RoutedEventArgs e)
         {
-            //Quay show, Stop hide
-            But_xucxac1.Visibility = Visibility.Collapsed;
+            dice = random.Next(1, 7);
+
+            notification.content.Text = dice.ToString();
             But_xucxac.Visibility = Visibility.Visible;
-            timer.Stop();
+            //animation faceout 
+            Storyboard slide = Resources["OpenMenu"] as Storyboard;
+            slide.Begin(notification);
+
 
             //dice = 17;
             //tính số vòng đã đi được
-            DoEvents();
-            Thread.Sleep(1000);
+           
+           
             But_xucxac.Visibility = Visibility.Collapsed;
 
             // nếu người chơi đang ở trong tù thì phải đổ được 1 hoặc 6 mới được phép di chuyển ra ngoài
@@ -288,8 +271,8 @@ namespace Monopoly.Components
                         if (turn[PlayerTurn] / 2 + 1 < 10) turn[PlayerTurn]++;
                         sideBar.update(playersList, PlayerTurn);
                     }
-                    DoEvents();
-                    //  Thread.Sleep(500);
+                    
+                   
                 }
 
                 sideBar.update(playersList, PlayerTurn);
@@ -345,8 +328,8 @@ namespace Monopoly.Components
                         {
 
                         }
-                        DoEvents();
-                        Thread.Sleep(1500);
+                        
+                        
                         PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                         if (playersList[PlayerTurn].isRetention)
                         {
@@ -375,8 +358,8 @@ namespace Monopoly.Components
                         playersList[PlayerTurn] = _player;
                         PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                     }
-                    DoEvents();
-                    Thread.Sleep(1500);
+                    
+                   
                     sideBar.update(playersList, PlayerTurn);
                 }
 
@@ -396,8 +379,8 @@ namespace Monopoly.Components
                         playersList[PlayerTurn] = _player;
                         PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                     }
-                    DoEvents();
-                    Thread.Sleep(1500);
+                   
+                   
                     sideBar.update(playersList, PlayerTurn);
                 }
 
@@ -427,8 +410,8 @@ namespace Monopoly.Components
                         playersList[PlayerTurn] = _player;
                         PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                     }
-                    DoEvents();
-                    Thread.Sleep(1500);
+                   
+
                     sideBar.update(playersList, PlayerTurn);
                 }
 
@@ -451,8 +434,8 @@ namespace Monopoly.Components
                             playersList[PlayerTurn] = _player;
                             PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                         }
-                        DoEvents();
-                        Thread.Sleep(1500);
+                        
+                        
                         sideBar.update(playersList, PlayerTurn);
                     }
                 }
@@ -474,8 +457,8 @@ namespace Monopoly.Components
                         playersList[PlayerTurn] = _player;
                         PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                     }
-                    DoEvents();
-                    Thread.Sleep(1500);
+                   
+                   
                     sideBar.update(playersList, PlayerTurn);
                 }
 
@@ -491,8 +474,8 @@ namespace Monopoly.Components
                         playersList[PlayerTurn] = _player;
                         PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                     }
-                    DoEvents();
-                    Thread.Sleep(1500);
+                    
+                   
                     sideBar.update(playersList, PlayerTurn);
                 }
 
@@ -508,8 +491,8 @@ namespace Monopoly.Components
                         playersList[PlayerTurn] = _player;
                         PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                     }
-                    DoEvents();
-                    Thread.Sleep(1500);
+                    
+                    
                     sideBar.update(playersList, PlayerTurn);
                 }
 
@@ -609,7 +592,9 @@ namespace Monopoly.Components
                 }
 
                 But_xucxac.Visibility = Visibility.Visible;
-                dices.Content = diceshow;
+                //animation faceout 
+                Storyboard slide = Resources["OpenMenu"] as Storyboard;
+                slide.Begin(notification);
                 sideBar.update(playersList, PlayerTurn);
             }    
             else
@@ -676,7 +661,9 @@ namespace Monopoly.Components
                     }
 
                     But_xucxac.Visibility = Visibility.Visible;
-                    dices.Content = diceshow;
+                    //animation faceout 
+                    Storyboard slide = Resources["OpenMenu"] as Storyboard;
+                    slide.Begin(notification);
                     sideBar.update(playersList, PlayerTurn);
                     /*if(PickedPlayer.NameCardImpact == "PowerAppointPersonToPrison")
                    {
@@ -747,11 +734,13 @@ namespace Monopoly.Components
                 playersList[PlayerTurn] = player;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             }
-            DoEvents();
-            Thread.Sleep(1000);
+           
+            
             sideBar.update(playersList, PlayerTurn);
             But_xucxac.Visibility = Visibility.Visible;
-            dices.Content = diceshow;
+            //animation faceout 
+            Storyboard slide = Resources["OpenMenu"] as Storyboard;
+            slide.Begin(notification);
         }
 
         //bán đất
@@ -774,11 +763,13 @@ namespace Monopoly.Components
                 playersList[PlayerTurn] = player;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             }
-            DoEvents();
-            Thread.Sleep(1500);
+            
+           
             sideBar.update(playersList, PlayerTurn);
             But_xucxac.Visibility = Visibility.Visible;
-            dices.Content = diceshow;
+            //animation faceout 
+            Storyboard slide = Resources["OpenMenu"] as Storyboard;
+            slide.Begin(notification);
         }
 
         //nâng cấp
@@ -812,11 +803,13 @@ namespace Monopoly.Components
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 }
                 But_xucxac.Visibility = Visibility.Visible;
-                dices.Content = diceshow;
+                //animation faceout 
+                Storyboard slide = Resources["OpenMenu"] as Storyboard;
+                slide.Begin(notification);
             }
             else MessageBox.Show("không đủ tiền");
-            DoEvents();
-            Thread.Sleep(1500);
+            
+            
             sideBar.update(playersList, PlayerTurn);
         }
        
@@ -832,11 +825,13 @@ namespace Monopoly.Components
                 playersList[PlayerTurn] = player;
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             }
-            DoEvents();
-            Thread.Sleep(1000);
+            
+           
             sideBar.update(playersList, PlayerTurn);
             But_xucxac.Visibility = Visibility.Visible;
-            dices.Content = diceshow;
+            //animation faceout 
+            Storyboard slide = Resources["OpenMenu"] as Storyboard;
+            slide.Begin(notification);
         }
 
         //mua đất
@@ -852,8 +847,8 @@ namespace Monopoly.Components
                 lands[cellManager[playersList[PlayerTurn].position].index].owner = PlayerTurn;
                 playersList[PlayerTurn].AddLand(lands[cellManager[playersList[PlayerTurn].position].index], cellManager[playersList[PlayerTurn].position].index);
                 sideBar.update(playersList, PlayerTurn);
-                DoEvents();
-                Thread.Sleep(1500);
+                
+                
 
                 //tính lượt của các player
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
@@ -865,16 +860,15 @@ namespace Monopoly.Components
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 }
                 But_xucxac.Visibility = Visibility.Visible;
-                dices.Content = diceshow;
+                //animation faceout 
+                Storyboard slide = Resources["OpenMenu"] as Storyboard;
+                slide.Begin(notification);
             }
             else MessageBox.Show("không đủ tiền");
             sideBar.update(playersList, PlayerTurn);
         }
 
-        public static void DoEvents()
-        {
-            Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(delegate { }));
-        }
+        
 
         private void _1_MouseEnter(object sender, MouseEventArgs e)
         {
