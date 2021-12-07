@@ -120,6 +120,7 @@ namespace Monopoly.Components
                 lands[i].landValue = lands[i].value;
                 lands[i].SetDefault();
             }
+
             int count = 0;
             //khởi tạo dữ liệu quản lý các ô trên bàn cờ
             for (int i = 0; i < 40; i++)
