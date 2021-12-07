@@ -139,6 +139,7 @@ namespace Monopoly
             _isImmune = false;
             _isFreezeBank = false;
             _isRetention = false;
+            _isTeleport = false;
         }
 
         // Thêm đất vào khi mua
@@ -266,6 +267,14 @@ namespace Monopoly
         {
             get { return _isRetention; }
             set { _isRetention = value; }
+        }
+
+        //kiểm tra xem có tác dụng của power dịch chuyển không
+        private bool _isTeleport;
+        public bool isTeleport
+        {
+            get { return _isTeleport; }
+            set { _isTeleport = value; }
         }
     }
 }
