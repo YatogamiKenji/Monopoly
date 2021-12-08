@@ -10,12 +10,6 @@
         WindowStartupLocation="CenterScreen"
         Title="Monopoly" Height="760" Width="1280">
     <Grid>
-        <!--<component:ViewStart/>-->
-        <!--<component:ListContentPlayers/>-->
-        <!--<component:ViewStart/>-->
         <component:ViewStart/>
-        <!--<component:ComePowerLand/>-->
-        
-            <!--<component:ViewStart/>-->
     </Grid>
 </Window>

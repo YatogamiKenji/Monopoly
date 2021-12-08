@@ -42,10 +42,13 @@
         </Path>
 
         <TextBlock x:Name="PopupText"
-                   FontSize="20"
+                   FontSize="15"
                    Panel.ZIndex="1"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center">
+                   VerticalAlignment="Center"
+                   MaxWidth="150" 
+                   TextWrapping="Wrap"
+                   Margin="20 0 0 0">
         </TextBlock>
     </Grid>
 </UserControl>
