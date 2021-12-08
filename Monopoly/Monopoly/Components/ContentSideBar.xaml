@@ -11,20 +11,20 @@
     <StackPanel>
 
         <!-- Tiền -->
-        <Grid Width="311" Height="73" Margin="0 8 0 0">
+        <Grid Width="311" Height="73" Margin="0 12 0 0">
             <Image Source="/Monopoly;component/Images/sidebar/money_sidebar.png"
                    Stretch="Fill"/>
             <StackPanel Orientation="Vertical">
                 <TextBlock VerticalAlignment="Center"
                            Text="Tiền "
                            FontSize="18"
-                           Margin="32 2 0 0"
+                           Margin="32 0 0 0"
                            Foreground="White"/>
                 <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center">
                     <TextBlock Text="{Binding Money, ElementName=root}"
-                           Margin="2 11 3 0"
+                           Margin="2 4 3 0"
                            Foreground="Yellow"
                            FontSize="28"
                            FontWeight="SemiBold"/>
@@ -38,7 +38,7 @@
         
 
         <!-- Thẻ -->
-        <Grid Width="335" Margin="0 6 0 0">
+        <Grid Width="335" Margin="0 12 0 0">
             <Image Source="/Monopoly;component/Images/sidebar/list_card_sidebar.png"
                    Stretch="Fill"/>
 
@@ -46,7 +46,7 @@
                 <TextBlock x:Name="cardHeading"
                            Text="Thẻ (3): "
                            FontSize="18"
-                           Margin="20 2 0 0"
+                           Margin="20 0 0 0"
                            Foreground="White"/>
                 <Grid Margin="10 2 10 2">
                     <component:ListCardSideBar x:Name="listCardSideBar"/>
@@ -56,7 +56,7 @@
         
 
         <!-- Đất -->
-        <Grid Width="335" Margin="0 6 0 0">
+        <Grid Width="335" Height="255" Margin="0 12 0 0">
             <Image Source="/Monopoly;component/Images/sidebar/list_land_sidebar.png"
                    Stretch="Fill"/>
 
@@ -64,7 +64,7 @@
                 <TextBlock x:Name="landHeading"
                            Text="Đất (3): "
                            FontSize="18"
-                           Margin="20 6 0 0"
+                           Margin="20 2 0 0"
                            Foreground="White"/>
                 <Grid Margin="10 2 10 2">
                     <ContentControl x:Name="listLandCard"/>
