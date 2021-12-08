@@ -110,7 +110,20 @@ namespace Monopoly.Components
            
             sideBar.update(playersList, PlayerTurn);
 
-            //playersList[0].AddPower(new PowerSplitDice());
+            playersList[0].AddPower(new PowerSplitDice());
+            playersList[0].AddPower(new PowerSplitDice());
+            playersList[0].AddPower(new PowerSplitDice());
+            playersList[0].AddPower(new PowerSplitDice());
+            playersList[0].AddPower(new PowerSplitDice());
+            playersList[0].AddPower(new PowerSplitDice());
+            playersList[0].AddPower(new PowerSplitDice());
+            playersList[0].AddPower(new PowerSplitDice());
+            playersList[0].AddLand(lands[0], 0);
+            playersList[0].AddLand(lands[0], 0);
+            playersList[0].AddLand(lands[0], 0);
+            playersList[0].AddLand(lands[0], 0);
+            playersList[0].AddLand(lands[0], 0);
+            playersList[0].AddLand(lands[0], 0);
         }
 
         //khởi tạo data
@@ -354,7 +367,25 @@ namespace Monopoly.Components
                         //nếu không đủ tiền xử lý sự kiện bán đất, bán nhà để trả nợ
                         else
                         {
+                            //bán đến khi đủ tiền trả nợ
+                            while (playersList[PlayerTurn].money < lands[cellManager[playersList[PlayerTurn].position].index].Tax())
+                            {
+                                ListLandPlayers listLandPlayers = new ListLandPlayers(playersList[PlayerTurn].lands);
+                                SellLand sellLand = new SellLand(listLandPlayers);
 
+                                for (int i = 0; i < listLandPlayers.contenButtonCards.Count; i++)
+                                {
+                                    listLandPlayers.contenButtonCards[i].OnButtonCardClick += SellLand_OnButtonCardClick;
+                                }
+
+                                dices.Content = sellLand;
+                            }
+
+                            //tự động trả
+                            playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Tax();
+                            playersList[lands[cellManager[playersList[PlayerTurn].position].index].owner].money += lands[cellManager[playersList[PlayerTurn].position].index].Tax();
+                            But_xucxac.Visibility = Visibility.Visible;
+                            sideBar.update(playersList, PlayerTurn);
                         }
                         
                         
@@ -553,6 +584,24 @@ namespace Monopoly.Components
             dices.Content = usingCard;
         }
 
+        private void SellLand_OnButtonCardClick(object sender, RoutedEventArgs e)
+        {
+            ContenButtonCard Card = (ContenButtonCard)sender;
+            playersList[PlayerTurn].money += Card.land.SellLand();
+            playersList[PlayerTurn].RemoveLand(Card.land.name);
+            But_xucxac.Visibility = Visibility.Visible;
+            dices.Content = null;
+            sideBar.update(playersList, PlayerTurn);
+            PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+            if (playersList[PlayerTurn].isRetention)
+            {
+                Player _player = playersList[PlayerTurn];
+                RemovePowersEffect(ref _player);
+                playersList[PlayerTurn] = _player;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+            }
+        }
+
         // nếu đổi ý không sử dụng thẻ nữa
         private void UsingCard_OnButtonCancleClick(object sender, RoutedEventArgs e)
         {
@@ -626,9 +675,9 @@ namespace Monopoly.Components
                 But_xucxac.Visibility = Visibility.Visible;
                 dices.Content = null;
                 //animation faceout 
-                Storyboard slide = Resources["OpenMenu"] as Storyboard;
-                slide.Begin(notification);
-                notification.Margin = new Thickness(275, -176, 275, 36);
+                //Storyboard slide = Resources["OpenMenu"] as Storyboard;
+                //slide.Begin(notification);
+                //notification.Margin = new Thickness(275, -176, 275, 36);
                 sideBar.update(playersList, PlayerTurn);
                 
             }    
@@ -705,9 +754,9 @@ namespace Monopoly.Components
                     But_xucxac.Visibility = Visibility.Visible;
                     dices.Content = null;
                     //animation faceout 
-                    Storyboard slide = Resources["OpenMenu"] as Storyboard;
-                    slide.Begin(notification);
-                    notification.Margin = new Thickness(275, -176, 275, 36);
+                    //Storyboard slide = Resources["OpenMenu"] as Storyboard;
+                    //slide.Begin(notification);
+                    //notification.Margin = new Thickness(275, -176, 275, 36);
                     sideBar.update(playersList, PlayerTurn);
                     /*if(PickedPlayer.NameCardImpact == "PowerAppointPersonToPrison")
                    {
@@ -784,9 +833,9 @@ namespace Monopoly.Components
             But_xucxac.Visibility = Visibility.Visible;
             dices.Content = null;
             //animation faceout 
-            Storyboard slide = Resources["OpenMenu"] as Storyboard;
-            slide.Begin(notification);
-            notification.Margin = new Thickness(275, -176, 275, 36);
+            //Storyboard slide = Resources["OpenMenu"] as Storyboard;
+            //slide.Begin(notification);
+            //notification.Margin = new Thickness(275, -176, 275, 36);
         }
 
         //bán đất
@@ -815,9 +864,9 @@ namespace Monopoly.Components
             But_xucxac.Visibility = Visibility.Visible;
             dices.Content = null;
             //animation faceout 
-            Storyboard slide = Resources["OpenMenu"] as Storyboard;
-            slide.Begin(notification);
-            notification.Margin = new Thickness(275, -176, 275, 36);
+            //Storyboard slide = Resources["OpenMenu"] as Storyboard;
+            //slide.Begin(notification);
+            //notification.Margin = new Thickness(275, -176, 275, 36);
         }
 
         //nâng cấp
@@ -853,9 +902,9 @@ namespace Monopoly.Components
                 But_xucxac.Visibility = Visibility.Visible;
                 dices.Content = null;
                 //animation faceout 
-                Storyboard slide = Resources["OpenMenu"] as Storyboard;
-                slide.Begin(notification);
-                notification.Margin = new Thickness(275, -176, 275, 36);
+                //Storyboard slide = Resources["OpenMenu"] as Storyboard;
+                //slide.Begin(notification);
+                //notification.Margin = new Thickness(275, -176, 275, 36);
             }
             else MessageBox.Show("không đủ tiền");
             
@@ -881,9 +930,9 @@ namespace Monopoly.Components
             But_xucxac.Visibility = Visibility.Visible;
             dices.Content = null;
             //animation faceout 
-            Storyboard slide = Resources["OpenMenu"] as Storyboard;
-            slide.Begin(notification);
-            notification.Margin = new Thickness(275, -176, 275, 36);
+            //Storyboard slide = Resources["OpenMenu"] as Storyboard;
+            //slide.Begin(notification);
+            //notification.Margin = new Thickness(275, -176, 275, 36);
 
             
         }
@@ -916,9 +965,9 @@ namespace Monopoly.Components
                 But_xucxac.Visibility = Visibility.Visible;
                 dices.Content = null;
                 //animation faceout 
-                Storyboard slide = Resources["OpenMenu"] as Storyboard;
-                slide.Begin(notification);
-                notification.Margin = new Thickness(275, -176, 275, 36);
+                //Storyboard slide = Resources["OpenMenu"] as Storyboard;
+                //slide.Begin(notification);
+                //notification.Margin = new Thickness(275, -176, 275, 36);
                 
             }
             else MessageBox.Show("không đủ tiền");
