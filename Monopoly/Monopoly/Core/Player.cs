@@ -161,6 +161,17 @@ namespace Monopoly
                 }
         }
 
+        public void RemoveLand(string name)
+        {
+            for (int i = 0; i < _lands.Count; i++)
+                if (_lands[i].name == name)
+                {
+                    _lands.RemoveAt(i);
+                    _indexLands.RemoveAt(i);
+                    break;
+                }
+        }
+
         // Thêm các quyền năng đang sở hữu
         public void AddPower(Power power)
         {
@@ -198,11 +209,11 @@ namespace Monopoly
         public void UpdateLand(int index)
         {
             for (int i = 0; i < _indexLands.Count; i++)
-                if (_indexLands[i] == index) 
+                if (_indexLands[i] == index)
                 {
                     lands[i].Upgrade();
                     break;
-                }    
+                }
         }
 
         //kiểm tra tăng gấp đôi số xúc sắc

@@ -20,6 +20,8 @@ namespace Monopoly.Components
     /// </summary>
     public partial class LandCard : UserControl
     {
+        public string TypeCard;
+
         public string Title
         {
             get { return (string)GetValue(TitleProperty); }
@@ -73,6 +75,7 @@ namespace Monopoly.Components
         public LandCard(Land land)
         {
             InitializeComponent();
+            TypeCard = land.GetType().Name;
             Title = land.name;
             Level = land.level;
             Tax = land.Tax();

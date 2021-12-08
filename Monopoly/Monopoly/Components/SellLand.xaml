@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Monopoly.Components.SellLand"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Monopoly.Components"
+             xmlns:components="clr-namespace:Monopoly.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="320" d:DesignWidth="400">
+    <Grid x:Name="ListCard" Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition/>
+            <RowDefinition Height="56"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Hành tinh của bạn:"
+                   Background="#C4C4C4"
+                   FontSize="25"
+                   FontWeight="Medium"
+                   Padding="30 5 0 0"
+                   Grid.Row="0" Margin="0,0,0,5"/>
+
+    </Grid>
+</UserControl>
