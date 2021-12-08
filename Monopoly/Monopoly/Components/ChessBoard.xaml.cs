@@ -15,11 +15,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Windows.Controls.Primitives;
-<<<<<<< HEAD
 using System.Windows.Media.Animation;
-=======
 using System.IO;
->>>>>>> fb373e093d660922066e0b6a8800acfd9866522e
+
 
 namespace Monopoly.Components
 {
@@ -278,8 +276,7 @@ namespace Monopoly.Components
                             if (turn[PlayerTurn] / 2 + 1 < 10) turn[PlayerTurn]++;
                             sideBar.update(playersList, PlayerTurn);
                         }
-                        DoEvents();
-                        //  Thread.Sleep(500);
+                       
                     }
                 }
                 else
@@ -293,21 +290,15 @@ namespace Monopoly.Components
                         if (playersList[PlayerTurn].isDoubleStart) playersList[PlayerTurn].money += 2000 * (turn[PlayerTurn] / 2 + 1);
                         else playersList[PlayerTurn].money += 1000 * (turn[PlayerTurn] / 2 + 1);
                         if (turn[PlayerTurn] / 2 + 1 < 10) turn[PlayerTurn]++;
-<<<<<<< HEAD
+
                         sideBar.update(playersList, PlayerTurn);
                     }
                     
-                   
-                }
-=======
-                    } 
-                        
                     playersList[PlayerTurn].position = index;
                     Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[index]));
                     Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[index]));
                 }    
->>>>>>> fb373e093d660922066e0b6a8800acfd9866522e
-
+                
                 sideBar.update(playersList, PlayerTurn);
 
                 //xử lý nếu đi vào ô đất
