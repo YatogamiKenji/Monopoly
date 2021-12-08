@@ -109,7 +109,7 @@ namespace Monopoly.Components
            
             sideBar.update(playersList, PlayerTurn);
 
-            //playersList[0].AddPower(new PowerHoldAPerson());
+            //playersList[0].AddPower(new PowerSplitDice());
         }
 
         //khởi tạo data
@@ -530,6 +530,8 @@ namespace Monopoly.Components
             ComeEmptyLandView_OnSkipButtonClick(sender, e);
         }
 
+        usingCard _usingCard;
+
         //sử dụng thẻ
         private void ComeLandView_OnUseCardButtonClick(object sender, RoutedEventArgs e)
         {
@@ -537,12 +539,14 @@ namespace Monopoly.Components
            // Grid.SetRow(listCardPlayers, 1);
             usingCard usingCard = new usingCard(listCardPlayers);
             //usingCard usingCard = new usingCard();
-            dices.Content = usingCard;
+            
             for (int i = 0; i < listCardPlayers.contenButtonCards.Count; i++)
             {
                 listCardPlayers.contenButtonCards[i].OnButtonCardClick += ChessBoard_OnButtonCardClick;
             }
             usingCard.OnButtonCancleClick += UsingCard_OnButtonCancleClick;
+            _usingCard = usingCard;
+            dices.Content = usingCard;
         }
 
         // nếu đổi ý không sử dụng thẻ nữa
@@ -616,16 +620,18 @@ namespace Monopoly.Components
                 }
 
                 But_xucxac.Visibility = Visibility.Visible;
+                dices.Content = null;
                 //animation faceout 
-                Storyboard slide = Resources["OpenMenu"] as Storyboard;
-                slide.Begin(notification);
-                sideBar.update(playersList, PlayerTurn);
+                //Storyboard slide = Resources["OpenMenu"] as Storyboard;
+                //slide.Begin(notification);
+                //sideBar.update(playersList, PlayerTurn);
             }    
             else
             {
                 ListContentPlayers candidatePlayers = new ListContentPlayers(playersList, PlayerTurn);
 
                 UseCardToAnother useCardToAnother = new UseCardToAnother(candidatePlayers);
+                useCardToAnother.OnButtonCancleClick += UseCardToAnother_OnButtonCancleClick;
 
                 foreach (ContentPlayer ButtonPlayer in useCardToAnother.haha.ListButtonPlayers)
                 {
@@ -637,6 +643,12 @@ namespace Monopoly.Components
             }
         }
 
+        private void UseCardToAnother_OnButtonCancleClick(object sender, RoutedEventArgs e)
+        {
+            dices.Content = _usingCard;
+        }
+
+        //xử lý sự kiện sau khi chọn được người hứng chịu hiệu ứng của thẻ quyền năng
         private void ButtonPlayer_OnButtonPlayerClick(object sender, RoutedEventArgs e)
         {
             //throw new NotImplementedException();
@@ -685,9 +697,10 @@ namespace Monopoly.Components
                     }
 
                     But_xucxac.Visibility = Visibility.Visible;
+                    dices.Content = null;
                     //animation faceout 
-                    Storyboard slide = Resources["OpenMenu"] as Storyboard;
-                    slide.Begin(notification);
+                    //Storyboard slide = Resources["OpenMenu"] as Storyboard;
+                    //slide.Begin(notification);
                     sideBar.update(playersList, PlayerTurn);
                     /*if(PickedPlayer.NameCardImpact == "PowerAppointPersonToPrison")
                    {
@@ -762,9 +775,10 @@ namespace Monopoly.Components
             
             sideBar.update(playersList, PlayerTurn);
             But_xucxac.Visibility = Visibility.Visible;
+            dices.Content = null;
             //animation faceout 
-            Storyboard slide = Resources["OpenMenu"] as Storyboard;
-            slide.Begin(notification);
+            //Storyboard slide = Resources["OpenMenu"] as Storyboard;
+            //slide.Begin(notification);
         }
 
         //bán đất
@@ -791,9 +805,10 @@ namespace Monopoly.Components
            
             sideBar.update(playersList, PlayerTurn);
             But_xucxac.Visibility = Visibility.Visible;
+            dices.Content = null;
             //animation faceout 
-            Storyboard slide = Resources["OpenMenu"] as Storyboard;
-            slide.Begin(notification);
+            //Storyboard slide = Resources["OpenMenu"] as Storyboard;
+            //slide.Begin(notification);
         }
 
         //nâng cấp
@@ -827,9 +842,10 @@ namespace Monopoly.Components
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 }
                 But_xucxac.Visibility = Visibility.Visible;
+                dices.Content = null;
                 //animation faceout 
-                Storyboard slide = Resources["OpenMenu"] as Storyboard;
-                slide.Begin(notification);
+                //Storyboard slide = Resources["OpenMenu"] as Storyboard;
+                //slide.Begin(notification);
             }
             else MessageBox.Show("không đủ tiền");
             
@@ -853,9 +869,10 @@ namespace Monopoly.Components
            
             sideBar.update(playersList, PlayerTurn);
             But_xucxac.Visibility = Visibility.Visible;
+            dices.Content = null;
             //animation faceout 
-            Storyboard slide = Resources["OpenMenu"] as Storyboard;
-            slide.Begin(notification);
+            //Storyboard slide = Resources["OpenMenu"] as Storyboard;
+            //slide.Begin(notification);
         }
 
         //mua đất
@@ -884,9 +901,10 @@ namespace Monopoly.Components
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 }
                 But_xucxac.Visibility = Visibility.Visible;
+                dices.Content = null;
                 //animation faceout 
-                Storyboard slide = Resources["OpenMenu"] as Storyboard;
-                slide.Begin(notification);
+                //Storyboard slide = Resources["OpenMenu"] as Storyboard;
+                //slide.Begin(notification);
             }
             else MessageBox.Show("không đủ tiền");
             sideBar.update(playersList, PlayerTurn);
@@ -899,7 +917,7 @@ namespace Monopoly.Components
             popup_left.PlacementTarget = _1;
             popup_left.Placement = PlacementMode.Right;
             popup_left.IsOpen = true;
-            textleft.PopupText.Text = "_1";
+            textleft.PopupText.Text = lands[0].description;
 
         }
 
@@ -915,7 +933,7 @@ namespace Monopoly.Components
             popup_left.PlacementTarget = _2;
             popup_left.Placement = PlacementMode.Right;
             popup_left.IsOpen = true;
-            textleft.PopupText.Text = "_2";
+            textleft.PopupText.Text = lands[1].description;
         }
 
         private void _2_MouseLeave(object sender, MouseEventArgs e)
@@ -929,7 +947,7 @@ namespace Monopoly.Components
             popup_left.PlacementTarget = _3;
             popup_left.Placement = PlacementMode.Right;
             popup_left.IsOpen = true;
-            textleft.PopupText.Text = "_3";
+            textleft.PopupText.Text = "Thuế";
         }
 
         private void _3_MouseLeave(object sender, MouseEventArgs e)
@@ -943,7 +961,7 @@ namespace Monopoly.Components
             popup_left.PlacementTarget = _4;
             popup_left.Placement = PlacementMode.Right;
             popup_left.IsOpen = true;
-            textleft.PopupText.Text = "_4";
+            textleft.PopupText.Text = lands[2].description;
         }
 
         private void _4_MouseLeave(object sender, MouseEventArgs e)
@@ -957,7 +975,7 @@ namespace Monopoly.Components
             popup_left.PlacementTarget = _5;
             popup_left.Placement = PlacementMode.Right;
             popup_left.IsOpen = true;
-            textleft.PopupText.Text = "_5";
+            textleft.PopupText.Text = lands[3].description;
         }
 
         private void _5_MouseLeave(object sender, MouseEventArgs e)
@@ -971,7 +989,7 @@ namespace Monopoly.Components
             popup_left.PlacementTarget = _6;
             popup_left.Placement = PlacementMode.Right;
             popup_left.IsOpen = true;
-            textleft.PopupText.Text = "_6";
+            textleft.PopupText.Text = lands[4].description;
         }
 
         private void _6_MouseLeave(object sender, MouseEventArgs e)
@@ -985,7 +1003,7 @@ namespace Monopoly.Components
             popup_left.PlacementTarget = _7;
             popup_left.Placement = PlacementMode.Right;
             popup_left.IsOpen = true;
-            textleft.PopupText.Text = "_7";
+            textleft.PopupText.Text = "Cơ Hội";
         }
 
         private void _7_MouseLeave(object sender, MouseEventArgs e)
@@ -999,7 +1017,7 @@ namespace Monopoly.Components
             popup_left.PlacementTarget = _8;
             popup_left.Placement = PlacementMode.Right;
             popup_left.IsOpen = true;
-            textleft.PopupText.Text = "_8";
+            textleft.PopupText.Text = lands[5].description;
         }
 
         private void _8_MouseLeave(object sender, MouseEventArgs e)
@@ -1013,7 +1031,7 @@ namespace Monopoly.Components
             popup_left.PlacementTarget = _9;
             popup_left.Placement = PlacementMode.Right;
             popup_left.IsOpen = true;
-            textleft.PopupText.Text = "_9";
+            textleft.PopupText.Text = lands[6].description;
         }
 
         private void _9_MouseLeave(object sender, MouseEventArgs e)
@@ -1027,7 +1045,7 @@ namespace Monopoly.Components
             popup_top.PlacementTarget = _11;
             popup_top.Placement = PlacementMode.Right;
             popup_top.IsOpen = true;
-            texttop.PopupText.Text = "_11";
+            texttop.PopupText.Text = lands[7].description;
         }
 
         private void _11_MouseLeave(object sender, MouseEventArgs e)
@@ -1041,7 +1059,7 @@ namespace Monopoly.Components
             popup_top.PlacementTarget = _12;
             popup_top.Placement = PlacementMode.Right;
             popup_top.IsOpen = true;
-            texttop.PopupText.Text = "_12";
+            texttop.PopupText.Text = lands[8].description;
         }
 
         private void _12_MouseLeave(object sender, MouseEventArgs e)
@@ -1055,7 +1073,7 @@ namespace Monopoly.Components
             popup_top.PlacementTarget = _13;
             popup_top.Placement = PlacementMode.Right;
             popup_top.IsOpen = true;
-            texttop.PopupText.Text = "_13";
+            texttop.PopupText.Text = "Khí Vận";
         }
 
         private void _13_MouseLeave(object sender, MouseEventArgs e)
@@ -1069,7 +1087,7 @@ namespace Monopoly.Components
             popup_top.PlacementTarget = _14;
             popup_top.Placement = PlacementMode.Right;
             popup_top.IsOpen = true;
-            texttop.PopupText.Text = "_14";
+            texttop.PopupText.Text = lands[9].description;
         }
 
         private void _14_MouseLeave(object sender, MouseEventArgs e)
@@ -1090,7 +1108,7 @@ namespace Monopoly.Components
             popup_top.PlacementTarget = _15;
             popup_top.Placement = PlacementMode.Right;
             popup_top.IsOpen = true;
-            texttop.PopupText.Text = "_15";
+            texttop.PopupText.Text = lands[10].description;
         }
 
         private void _31_MouseEnter(object sender, MouseEventArgs e)
@@ -1098,7 +1116,7 @@ namespace Monopoly.Components
             popup_bottom.PlacementTarget = _31;
             popup_bottom.Placement = PlacementMode.Right;
             popup_bottom.IsOpen = true;
-            textbottom.PopupText.Text = "_31";
+            textbottom.PopupText.Text = lands[21].description;
         }
 
         private void _31_MouseLeave(object sender, MouseEventArgs e)
@@ -1112,7 +1130,7 @@ namespace Monopoly.Components
             popup_top.PlacementTarget = _16;
             popup_top.Placement = PlacementMode.Right;
             popup_top.IsOpen = true;
-            texttop.PopupText.Text = "_16";
+            texttop.PopupText.Text = lands[11].description;
         }
 
         private void _16_MouseLeave(object sender, MouseEventArgs e)
@@ -1126,7 +1144,7 @@ namespace Monopoly.Components
             popup_top.PlacementTarget = _17;
             popup_top.Placement = PlacementMode.Right;
             popup_top.IsOpen = true;
-            texttop.PopupText.Text = "_17";
+            texttop.PopupText.Text = "Quyền Năng";
         }
 
         private void _17_MouseLeave(object sender, MouseEventArgs e)
@@ -1140,7 +1158,7 @@ namespace Monopoly.Components
             popup_top.PlacementTarget = _18;
             popup_top.Placement = PlacementMode.Right;
             popup_top.IsOpen = true;
-            texttop.PopupText.Text = "_18";
+            texttop.PopupText.Text = lands[12].description;
         }
 
         private void _18_MouseLeave(object sender, MouseEventArgs e)
@@ -1154,7 +1172,7 @@ namespace Monopoly.Components
             popup_top.PlacementTarget = _19;
             popup_top.Placement = PlacementMode.Right;
             popup_top.IsOpen = true;
-            texttop.PopupText.Text = "_19";
+            texttop.PopupText.Text = lands[13].description;
         }
 
         private void _19_MouseLeave(object sender, MouseEventArgs e)
@@ -1168,7 +1186,7 @@ namespace Monopoly.Components
             popup_bottom.PlacementTarget = _39;
             popup_bottom.Placement = PlacementMode.Right;
             popup_bottom.IsOpen = true;
-            textbottom.PopupText.Text = "_39";
+            textbottom.PopupText.Text = lands[27].description;
         }
 
         private void _39_MouseLeave(object sender, MouseEventArgs e)
@@ -1182,7 +1200,7 @@ namespace Monopoly.Components
             popup_bottom.PlacementTarget = _38;
             popup_bottom.Placement = PlacementMode.Right;
             popup_bottom.IsOpen = true;
-            textbottom.PopupText.Text = "_38";
+            textbottom.PopupText.Text = lands[26].description;
         }
 
         private void _38_MouseLeave(object sender, MouseEventArgs e)
@@ -1196,7 +1214,7 @@ namespace Monopoly.Components
             popup_bottom.PlacementTarget = _37;
             popup_bottom.Placement = PlacementMode.Right;
             popup_bottom.IsOpen = true;
-            textbottom.PopupText.Text = "_37";
+            textbottom.PopupText.Text = "Thuế";
         }
 
         private void _37_MouseLeave(object sender, MouseEventArgs e)
@@ -1210,7 +1228,7 @@ namespace Monopoly.Components
             popup_bottom.PlacementTarget = _36;
             popup_bottom.Placement = PlacementMode.Right;
             popup_bottom.IsOpen = true;
-            textbottom.PopupText.Text = "_36";
+            textbottom.PopupText.Text = lands[25].description;
         }
 
         private void _36_MouseLeave(object sender, MouseEventArgs e)
@@ -1224,7 +1242,7 @@ namespace Monopoly.Components
             popup_bottom.PlacementTarget = _35;
             popup_bottom.Placement = PlacementMode.Right;
             popup_bottom.IsOpen = true;
-            textbottom.PopupText.Text = "_35";
+            textbottom.PopupText.Text = lands[24].description;
         }
 
         private void _35_MouseLeave(object sender, MouseEventArgs e)
@@ -1244,7 +1262,7 @@ namespace Monopoly.Components
             popup_bottom.PlacementTarget = _34;
             popup_bottom.Placement = PlacementMode.Right;
             popup_bottom.IsOpen = true;
-            textbottom.PopupText.Text = "_34";
+            textbottom.PopupText.Text = lands[23].description;
         }
 
         private void _33_MouseLeave(object sender, MouseEventArgs e)
@@ -1258,7 +1276,7 @@ namespace Monopoly.Components
             popup_bottom.PlacementTarget = _33;
             popup_bottom.Placement = PlacementMode.Right;
             popup_bottom.IsOpen = true;
-            textbottom.PopupText.Text = "_33";
+            textbottom.PopupText.Text = "Quyền Năng";
         }
 
         private void _32_MouseEnter(object sender, MouseEventArgs e)
@@ -1266,7 +1284,7 @@ namespace Monopoly.Components
             popup_bottom.PlacementTarget = _32;
             popup_bottom.Placement = PlacementMode.Right;
             popup_bottom.IsOpen = true;
-            textbottom.PopupText.Text = "_32";
+            textbottom.PopupText.Text = lands[22].description;
         }
 
         private void _32_MouseLeave(object sender, MouseEventArgs e)
@@ -1286,7 +1304,7 @@ namespace Monopoly.Components
             popup_right.PlacementTarget = _21;
             popup_right.Placement = PlacementMode.Right;
             popup_right.IsOpen = true;
-            textright.PopupText.Text = "_21";
+            textright.PopupText.Text = lands[14].description;
         }
 
         private void _22_MouseLeave(object sender, MouseEventArgs e)
@@ -1300,7 +1318,7 @@ namespace Monopoly.Components
             popup_right.PlacementTarget = _22;
             popup_right.Placement = PlacementMode.Right;
             popup_right.IsOpen = true;
-            textright.PopupText.Text = "_22";
+            textright.PopupText.Text = lands[15].description;
         }
 
         private void _23_MouseLeave(object sender, MouseEventArgs e)
@@ -1314,7 +1332,7 @@ namespace Monopoly.Components
             popup_right.PlacementTarget = _23;
             popup_right.Placement = PlacementMode.Right;
             popup_right.IsOpen = true;
-            textright.PopupText.Text = "_23";
+            textright.PopupText.Text = "Cơ Hội";
         }
 
         private void _24_MouseEnter(object sender, MouseEventArgs e)
@@ -1322,7 +1340,7 @@ namespace Monopoly.Components
             popup_right.PlacementTarget = _24;
             popup_right.Placement = PlacementMode.Right;
             popup_right.IsOpen = true;
-            textright.PopupText.Text = "_24";
+            textright.PopupText.Text = lands[16].description;
         }
 
         private void _24_MouseLeave(object sender, MouseEventArgs e)
@@ -1342,7 +1360,7 @@ namespace Monopoly.Components
             popup_right.PlacementTarget = _25;
             popup_right.Placement = PlacementMode.Right;
             popup_right.IsOpen = true;
-            textright.PopupText.Text = "_25";
+            textright.PopupText.Text = lands[17].description;
         }
 
         private void _26_MouseEnter(object sender, MouseEventArgs e)
@@ -1350,7 +1368,7 @@ namespace Monopoly.Components
             popup_right.PlacementTarget = _26;
             popup_right.Placement = PlacementMode.Right;
             popup_right.IsOpen = true;
-            textright.PopupText.Text = "_26";
+            textright.PopupText.Text = lands[18].description;
         }
 
         private void _26_MouseLeave(object sender, MouseEventArgs e)
@@ -1364,7 +1382,7 @@ namespace Monopoly.Components
             popup_right.PlacementTarget = _27;
             popup_right.Placement = PlacementMode.Right;
             popup_right.IsOpen = true;
-            textright.PopupText.Text = "_27";
+            textright.PopupText.Text = "Khí Vận";
         }
 
         private void _27_MouseLeave(object sender, MouseEventArgs e)
@@ -1378,7 +1396,7 @@ namespace Monopoly.Components
             popup_right.PlacementTarget = _28;
             popup_right.Placement = PlacementMode.Right;
             popup_right.IsOpen = true;
-            textright.PopupText.Text = "_28";
+            textright.PopupText.Text = lands[19].description;
         }
 
         private void _28_MouseLeave(object sender, MouseEventArgs e)
@@ -1398,7 +1416,7 @@ namespace Monopoly.Components
             popup_right.PlacementTarget = _29;
             popup_right.Placement = PlacementMode.Right;
             popup_right.IsOpen = true;
-            textright.PopupText.Text = "_29";
+            textright.PopupText.Text = lands[20].description;
         }
     }
 }
