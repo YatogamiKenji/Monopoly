@@ -12,8 +12,8 @@
             <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0"/>
             <ThicknessAnimation Storyboard.TargetProperty="Margin" From="275,-175,275,35" To="275,173,275,377" DecelerationRatio="0.9" Duration="0:0:1"/>
             <DoubleAnimation BeginTime="0:0:1.5" Storyboard.TargetProperty="Opacity" From="1.0" To="0.0" Duration="0:0:1.0"/>
+            <ThicknessAnimation BeginTime="0:0:3" Storyboard.TargetProperty="Margin" From="275,173,275,377" To="275,-175,275,35" DecelerationRatio="0.9" Duration="0:0:1"/>
         </Storyboard>
-        
     </UserControl.Resources>
 
     <Grid x:Name="nen" Width="1280" Height="720">
@@ -258,8 +258,8 @@
                 </Canvas>-->
 
             </Grid>
-            <compoenent:messboxDice x:Name="notification" Panel.ZIndex="2" Width="200" Height="200" Margin="275,-176,275,36" Grid.Column="3" Canvas.Left="-28" Canvas.Top="-66"/>
-            
+            <compoenent:messboxDice x:Name="notification" Panel.ZIndex="2"  Width="200" Height="200" Margin="275,-176,275,36" Grid.Column="3" Canvas.Left="-28" Canvas.Top="-66"/>
+
         </Canvas>
 
     </Grid>

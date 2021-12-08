@@ -240,7 +240,8 @@ namespace Monopoly.Components
             //animation faceout 
             Storyboard slide = Resources["OpenMenu"] as Storyboard;
             slide.Begin(notification);
-            notification.Margin = new Thickness(275, -176, 275, 36);
+            
+            
 
 
             //dice = 17;
@@ -628,7 +629,7 @@ namespace Monopoly.Components
                 //animation faceout 
                 Storyboard slide = Resources["OpenMenu"] as Storyboard;
                 slide.Begin(notification);
-                notification.Margin = new Thickness(275, -176, 275, 36);
+                
                 sideBar.update(playersList, PlayerTurn);
                 
             }    
@@ -707,7 +708,7 @@ namespace Monopoly.Components
                     //animation faceout 
                     Storyboard slide = Resources["OpenMenu"] as Storyboard;
                     slide.Begin(notification);
-                    notification.Margin = new Thickness(275, -176, 275, 36);
+                    
                     sideBar.update(playersList, PlayerTurn);
                     /*if(PickedPlayer.NameCardImpact == "PowerAppointPersonToPrison")
                    {
@@ -786,7 +787,7 @@ namespace Monopoly.Components
             //animation faceout 
             Storyboard slide = Resources["OpenMenu"] as Storyboard;
             slide.Begin(notification);
-            notification.Margin = new Thickness(275, -176, 275, 36);
+            
         }
 
         //bán đất
@@ -817,7 +818,7 @@ namespace Monopoly.Components
             //animation faceout 
             Storyboard slide = Resources["OpenMenu"] as Storyboard;
             slide.Begin(notification);
-            notification.Margin = new Thickness(275, -176, 275, 36);
+            
         }
 
         //nâng cấp
@@ -855,7 +856,7 @@ namespace Monopoly.Components
                 //animation faceout 
                 Storyboard slide = Resources["OpenMenu"] as Storyboard;
                 slide.Begin(notification);
-                notification.Margin = new Thickness(275, -176, 275, 36);
+                
             }
             else MessageBox.Show("không đủ tiền");
             
@@ -883,7 +884,7 @@ namespace Monopoly.Components
             //animation faceout 
             Storyboard slide = Resources["OpenMenu"] as Storyboard;
             slide.Begin(notification);
-            notification.Margin = new Thickness(275, -176, 275, 36);
+            
 
             
         }
@@ -918,7 +919,7 @@ namespace Monopoly.Components
                 //animation faceout 
                 Storyboard slide = Resources["OpenMenu"] as Storyboard;
                 slide.Begin(notification);
-                notification.Margin = new Thickness(275, -176, 275, 36);
+                
                 
             }
             else MessageBox.Show("không đủ tiền");
