@@ -32,24 +32,19 @@ namespace Monopoly.Components
         public DispatcherTimer timer1 = new DispatcherTimer();
         public DispatcherTimer timer2 = new DispatcherTimer();
 
+
         private void dice_Click(object sender, RoutedEventArgs e)
         {
             Storyboard sb = (Storyboard)rc.FindResource("spin");
             TransRotate.Angle = 0;
-
             timer.Interval = TimeSpan.FromSeconds(0.5);
             timer.Tick += timer_Tick;
             timer1.Interval = TimeSpan.FromSeconds(2);
             timer1.Tick += timer1_Tick;
             timer2.Interval = TimeSpan.FromSeconds(1);
             timer2.Tick += timer2_Tick;
-
             sb.Begin();
             timer.Start();
-
-            ChessBoard run = new ChessBoard();
-            
-
         }
 
         public void timer_Tick(object sender, EventArgs e)

@@ -59,6 +59,7 @@ namespace Monopoly.Components
         {
             InitializeComponent();
             Init();
+            
         }
 
         public ChessBoard(List<PlayerShow> PlayerShowFromSetup)
@@ -228,8 +229,10 @@ namespace Monopoly.Components
         public Random random = new Random();
         public int dice = 0;
 
+
         public void But_xucxac_Click(object sender, RoutedEventArgs e)
         {
+
             dice = random.Next(1, 7);
 
             notification.content.Text = dice.ToString();
@@ -237,6 +240,7 @@ namespace Monopoly.Components
             //animation faceout 
             Storyboard slide = Resources["OpenMenu"] as Storyboard;
             slide.Begin(notification);
+            notification.Margin = new Thickness(275, -176, 275, 36);
 
 
             //dice = 17;
@@ -619,6 +623,7 @@ namespace Monopoly.Components
                 //animation faceout 
                 Storyboard slide = Resources["OpenMenu"] as Storyboard;
                 slide.Begin(notification);
+                notification.Margin = new Thickness(275, -176, 275, 36);
                 sideBar.update(playersList, PlayerTurn);
             }    
             else
@@ -653,7 +658,7 @@ namespace Monopoly.Components
                         PickedPlayer.power.PowerFunction(ref affectedPlayers);
 
                         //những thẻ di chuyển người chơi nên cần update lại vị trí
-                        if (PickedPlayer.NameCardImpact == "PowerAppointPersonToPrison" ||
+                        if (PickedPlayer.NameCardImpact == "PowerAppointPersonToPrison" ||  
                             PickedPlayer.NameCardImpact == "PowerTeleportPersonToTheTax")
                         {
                             if (playersList[i].position == 10) playersList[PlayerTurn].isInPrison = true;
@@ -688,6 +693,7 @@ namespace Monopoly.Components
                     //animation faceout 
                     Storyboard slide = Resources["OpenMenu"] as Storyboard;
                     slide.Begin(notification);
+                    notification.Margin = new Thickness(275, -176, 275, 36);
                     sideBar.update(playersList, PlayerTurn);
                     /*if(PickedPlayer.NameCardImpact == "PowerAppointPersonToPrison")
                    {
@@ -765,6 +771,7 @@ namespace Monopoly.Components
             //animation faceout 
             Storyboard slide = Resources["OpenMenu"] as Storyboard;
             slide.Begin(notification);
+            notification.Margin = new Thickness(275, -176, 275, 36);
         }
 
         //bán đất
@@ -794,6 +801,7 @@ namespace Monopoly.Components
             //animation faceout 
             Storyboard slide = Resources["OpenMenu"] as Storyboard;
             slide.Begin(notification);
+            notification.Margin = new Thickness(275, -176, 275, 36);
         }
 
         //nâng cấp
@@ -830,6 +838,7 @@ namespace Monopoly.Components
                 //animation faceout 
                 Storyboard slide = Resources["OpenMenu"] as Storyboard;
                 slide.Begin(notification);
+                notification.Margin = new Thickness(275, -176, 275, 36);
             }
             else MessageBox.Show("không đủ tiền");
             
@@ -856,6 +865,7 @@ namespace Monopoly.Components
             //animation faceout 
             Storyboard slide = Resources["OpenMenu"] as Storyboard;
             slide.Begin(notification);
+            notification.Margin = new Thickness(275, -176, 275, 36);
         }
 
         //mua đất
@@ -887,6 +897,7 @@ namespace Monopoly.Components
                 //animation faceout 
                 Storyboard slide = Resources["OpenMenu"] as Storyboard;
                 slide.Begin(notification);
+                notification.Margin = new Thickness(275, -176, 275, 36);
             }
             else MessageBox.Show("không đủ tiền");
             sideBar.update(playersList, PlayerTurn);
@@ -1400,5 +1411,7 @@ namespace Monopoly.Components
             popup_right.IsOpen = true;
             textright.PopupText.Text = "_29";
         }
+
+       
     }
 }
