@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Monopoly.Components
-{   
+{
 
     /// <summary>
     /// Interaction logic for ContenButtonCard.xaml
@@ -24,6 +24,7 @@ namespace Monopoly.Components
 
         public string IDCard; // loaị class thẻ
         public Power power;
+        public Land land;
         //PowerCard typeCard; // 
         public static readonly RoutedEvent ButtonCardClickEvent =
           EventManager.RegisterRoutedEvent(nameof(OnButtonCardClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContenButtonCard));
@@ -34,7 +35,7 @@ namespace Monopoly.Components
             remove { RemoveHandler(ButtonCardClickEvent, value); }
         }
 
-        
+
         // Button ButtonCard;
         public ContenButtonCard()
         {
@@ -45,17 +46,18 @@ namespace Monopoly.Components
         public ContenButtonCard(PowerCard typeCard, Power power)
         {
             InitializeComponent();
-            //ButtonCard = new Button();
-            //ButtonCard.Style.
-            //ButtonCard.Content = typeCard;
-            //GridBut.Children.Add(ButtonCard);
-            //ButtonCard.Click += ButtonCard_Click;
-            // GridBut.Children.Add(typeCard);
-            //   MessageBox.Show("cc");
             this.power = power;
             Bor_PicCard.Children.Add(typeCard);
             IDCard = typeCard.TypeCard;
-           
+
+        }
+
+        public ContenButtonCard(LandCard typeCard, Land land)
+        {
+            InitializeComponent();
+            this.land = land;
+            Bor_PicCard.Children.Add(typeCard);
+            IDCard = typeCard.TypeCard;
         }
 
         private void ButtonCard_Click(object sender, RoutedEventArgs e)

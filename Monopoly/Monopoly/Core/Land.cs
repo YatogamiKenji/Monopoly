@@ -30,10 +30,10 @@ namespace Monopoly
         private int _value;
         public int value
         {
-            get 
+            get
             {
                 if (_isReduceValue) return _value / 2;
-                return _value; 
+                return _value;
             }
             set { _value = value; }
         }
@@ -207,6 +207,12 @@ namespace Monopoly
             else _landValue = _value;
             if (_level - 2 >= 0) _level -= 2;
             else _level = 0;
+        }
+
+        public int SellLand()
+        {
+            GetDefault();
+            return _value / 2;
         }
 
         //kiểm tra đất có đang bị khóa không
