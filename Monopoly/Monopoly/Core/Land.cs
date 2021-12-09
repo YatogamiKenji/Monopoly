@@ -23,7 +23,7 @@ namespace Monopoly
         public string avatar
         {
             get { return _avatar; }
-            set { _avatar = avatar; }
+            set { _avatar = value; }
         }
 
         // Giá trị ban đầu của mảnh đất
@@ -211,7 +211,6 @@ namespace Monopoly
 
         public int SellLand()
         {
-            GetDefault();
             return _value / 2;
         }
 
@@ -230,6 +229,7 @@ namespace Monopoly
             _value = _valueDefault;
             _level = 0;
             _landValue = _value;
+            _owner = -1;
             Init();
         }
 

@@ -46,7 +46,7 @@ namespace Monopoly.Components
 
         private void createLandCards()
         {
-            
+
             if (Lands != null)
             {
                 for (int i = 0; i < Math.Ceiling((decimal)Lands.Count / 3); i++)
@@ -54,11 +54,11 @@ namespace Monopoly.Components
                     var rowDefinition = new RowDefinition();
                     rowDefinition.Height = GridLength.Auto;
                     listLandCardSideBarGrid.RowDefinitions.Add(rowDefinition);
-                   
+
                 }
                 for (int i = 0; i < Lands.Count; i++)
                 {
-                    LandCard landCard = new LandCard(Lands[i].name, Lands[i].level, Lands[i].Tax(), Lands[i].value, new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative)));
+                    LandCard landCard = new LandCard(Lands[i]);
 
                     landCard.Margin = new Thickness(2, 2, 2, 2);
                     landCard.Width = 97;
@@ -68,10 +68,10 @@ namespace Monopoly.Components
                     listLandCardSideBarGrid.Children.Add(landCard);
                 }
             }
-            
+
         }
 
     }
 
-    
+
 }

@@ -37,7 +37,7 @@
         <TextBlock 
             Grid.Row="0"
             Margin="18 18 18 8"
-            Text="BẠN ĐI VÀO Ô ĐẤT TRỐNG, BẠN CÓ MUỐN MUA KHÔNG?"
+            Text="BẠN ĐI VÀO HÀNH TINH TRỐNG, BẠN CÓ MUỐN MUA KHÔNG?"
             TextAlignment="Center"
             TextWrapping="Wrap"
             FontSize="18"

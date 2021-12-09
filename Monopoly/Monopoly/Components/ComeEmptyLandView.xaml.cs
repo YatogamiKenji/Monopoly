@@ -38,14 +38,14 @@ namespace Monopoly.Components
         public static readonly DependencyProperty NameOfLandProperty =
             DependencyProperty.Register("NameOfLand", typeof(string), typeof(ComeEmptyLandView), new PropertyMetadata(""));
 
-        public ImageSource ImgSource
+        public String ImgSource
         {
-            get { return (ImageSource)GetValue(ImgSourceProperty); }
+            get { return (String)GetValue(ImgSourceProperty); }
             set { SetValue(ImgSourceProperty, value); }
         }
         // Using a DependencyProperty as the backing store for ImgSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ImgSourceProperty =
-            DependencyProperty.Register("ImgSource", typeof(ImageSource), typeof(ComeEmptyLandView));
+            DependencyProperty.Register("ImgSource", typeof(String), typeof(ComeEmptyLandView));
 
 
 
@@ -137,12 +137,18 @@ namespace Monopoly.Components
         {
             InitializeComponent();
             NameOfLand = "Tên đất mặc định";
-            ImgSource = new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative));
-            PriceLevel = new List<int>() { 0, 0, 0, 0, 0};
-            PriceTax = new List<int>() { 0, 0, 0, 0, 0};
+            PriceLevel = new List<int>() { 0, 0, 0, 0, 0 };
+            PriceTax = new List<int>() { 0, 0, 0, 0, 0 };
         }
 
-        public ComeEmptyLandView(string nameOfLand, ImageSource imgSource, int price, List<int> priceLevel, List<int> priceTax)
+        public ComeEmptyLandView(Land land)
+        {
+            InitializeComponent();
+            _land = land;
+            SetInfor();
+        }
+
+        public ComeEmptyLandView(string nameOfLand, String imgSource, int price, List<int> priceLevel, List<int> priceTax)
         {
             InitializeComponent();
             NameOfLand = nameOfLand;
@@ -152,7 +158,7 @@ namespace Monopoly.Components
             PriceTax = priceTax;
         }
 
-        public void SetInfor(string nameOfLand, ImageSource imgSource, int price, List<int> priceLevel, List<int> priceTax)
+        public void SetInfor(string nameOfLand, String imgSource, int price, List<int> priceLevel, List<int> priceTax)
         {
             NameOfLand = nameOfLand;
             ImgSource = imgSource;
@@ -165,6 +171,7 @@ namespace Monopoly.Components
         {
             NameOfLand = _land.name;
             Price = _land.value;
+            ImgSource = @"/Monopoly;component" + land.avatar;
             List<int> value = new List<int>();
             List<int> tax = new List<int>();
             for (int i = 1; i < 6; i++)

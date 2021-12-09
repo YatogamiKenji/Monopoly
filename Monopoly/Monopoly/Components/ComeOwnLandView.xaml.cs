@@ -38,14 +38,14 @@ namespace Monopoly.Components
         public static readonly DependencyProperty NameOfLandProperty =
             DependencyProperty.Register("NameOfLand", typeof(string), typeof(ComeOwnLandView), new PropertyMetadata(""));
 
-        public ImageSource ImgSource
+        public String ImgSource
         {
-            get { return (ImageSource)GetValue(ImgSourceProperty); }
+            get { return (String)GetValue(ImgSourceProperty); }
             set { SetValue(ImgSourceProperty, value); }
         }
         // Using a DependencyProperty as the backing store for ImgSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ImgSourceProperty =
-            DependencyProperty.Register("ImgSource", typeof(ImageSource), typeof(ComeOwnLandView));
+            DependencyProperty.Register("ImgSource", typeof(String), typeof(ComeOwnLandView));
 
 
 
@@ -184,7 +184,7 @@ namespace Monopoly.Components
         {
             InitializeComponent();
             NameOfLand = "Tên đất mặc định";
-            ImgSource = new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative));
+            ImgSource = @"/Monopoly;component" + land.avatar;
             Price = 12345;
             PriceSell = 1234;
             PriceLevel = new List<int>();
@@ -192,7 +192,13 @@ namespace Monopoly.Components
             Level = 0;
         }
 
-        public ComeOwnLandView(string nameOfLand, ImageSource imgSource, int price, int priceSell, List<int> priceLevel, List<int> priceTax, int level)
+        public ComeOwnLandView(Land land)
+        {
+            InitializeComponent();
+            _land = land;
+        }
+
+        public ComeOwnLandView(string nameOfLand, String imgSource, int price, int priceSell, List<int> priceLevel, List<int> priceTax, int level)
         {
             InitializeComponent();
             NameOfLand = nameOfLand;
@@ -204,7 +210,7 @@ namespace Monopoly.Components
             Level = level;
         }
 
-        public void SetInfor(string nameOfLand, ImageSource imgSource, int price, int priceSell, List<int> priceLevel, List<int> priceTax, int level)
+        public void SetInfor(string nameOfLand, String imgSource, int price, int priceSell, List<int> priceLevel, List<int> priceTax, int level)
         {
             NameOfLand = nameOfLand;
             ImgSource = imgSource;

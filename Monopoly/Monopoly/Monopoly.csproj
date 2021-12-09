@@ -75,6 +75,34 @@
     <None Remove="Images\message_box_center_map\message_box_center_map_green.png" />
     <None Remove="Images\message_box_center_map\message_box_center_map_red.png" />
     <None Remove="Images\panel\panel_center_map.png" />
+    <None Remove="Images\planet\planet1.jpg" />
+    <None Remove="Images\planet\planet10.jpg" />
+    <None Remove="Images\planet\planet11.jpg" />
+    <None Remove="Images\planet\planet12.png" />
+    <None Remove="Images\planet\planet13.jpg" />
+    <None Remove="Images\planet\planet14.jpg" />
+    <None Remove="Images\planet\planet15.jpg" />
+    <None Remove="Images\planet\planet16.jpg" />
+    <None Remove="Images\planet\planet17.jpg" />
+    <None Remove="Images\planet\planet18.jpg" />
+    <None Remove="Images\planet\planet19.jpg" />
+    <None Remove="Images\planet\planet2.jpg" />
+    <None Remove="Images\planet\planet20.jpg" />
+    <None Remove="Images\planet\planet21.jpg" />
+    <None Remove="Images\planet\planet22.jpg" />
+    <None Remove="Images\planet\planet23.jpg" />
+    <None Remove="Images\planet\planet24.jpg" />
+    <None Remove="Images\planet\planet25.jpg" />
+    <None Remove="Images\planet\planet26.jpg" />
+    <None Remove="Images\planet\planet27.jpg" />
+    <None Remove="Images\planet\planet28.jpg" />
+    <None Remove="Images\planet\planet3.jpg" />
+    <None Remove="Images\planet\planet4.jpg" />
+    <None Remove="Images\planet\planet5.jpg" />
+    <None Remove="Images\planet\planet6.jpg" />
+    <None Remove="Images\planet\planet7.jpg" />
+    <None Remove="Images\planet\planet8.jpg" />
+    <None Remove="Images\planet\planet9.jpg" />
     <None Remove="Images\player\player_blue.png" />
     <None Remove="Images\player\player_green.png" />
     <None Remove="Images\player\player_red.png" />
@@ -179,6 +207,90 @@
     <Resource Include="Images\message_box_center_map\message_box_center_map_green.png" />
     <Resource Include="Images\message_box_center_map\message_box_center_map_red.png" />
     <Resource Include="Images\panel\panel_center_map.png" />
+    <Resource Include="Images\planet\planet1.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet10.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet11.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet12.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet13.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet14.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet15.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet16.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet17.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet18.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet19.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet2.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet20.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet21.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet22.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet23.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet24.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet25.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet26.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet27.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet28.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet3.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet4.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet5.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet6.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet7.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet8.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\planet\planet9.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\player\player_blue.png" />
     <Resource Include="Images\player\player_green.png" />
     <Resource Include="Images\player\player_red.png" />

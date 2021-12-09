@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,14 +59,14 @@ namespace Monopoly.Components
         public static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register("Value", typeof(int), typeof(LandCard), new PropertyMetadata(0));
 
-        public ImageSource ImgSource
+        public String ImgSource
         {
-            get { return (ImageSource)GetValue(ImgSourceProperty); }
+            get { return (String)GetValue(ImgSourceProperty); }
             set { SetValue(ImgSourceProperty, value); }
         }
         // Using a DependencyProperty as the backing store for ImgSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ImgSourceProperty =
-            DependencyProperty.Register("ImgSource", typeof(ImageSource), typeof(LandCard));
+            DependencyProperty.Register("ImgSource", typeof(String), typeof(LandCard));
 
         public LandCard()
         {
@@ -80,9 +81,10 @@ namespace Monopoly.Components
             Level = land.level;
             Tax = land.Tax();
             Value = land.value;
+            ImgSource = @"/Monopoly;component" + land.avatar;
         }
 
-        public LandCard(string title, int level, int tax, int value, ImageSource imgSource)
+        public LandCard(string title, int level, int tax, int value, String imgSource)
         {
             InitializeComponent();
             Title = title;

@@ -161,17 +161,6 @@ namespace Monopoly
                 }
         }
 
-        public void RemoveLand(string name)
-        {
-            for (int i = 0; i < _lands.Count; i++)
-                if (_lands[i].name == name)
-                {
-                    _lands.RemoveAt(i);
-                    _indexLands.RemoveAt(i);
-                    break;
-                }
-        }
-
         // Thêm các quyền năng đang sở hữu
         public void AddPower(Power power)
         {
