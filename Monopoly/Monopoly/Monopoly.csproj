@@ -75,6 +75,7 @@
     <None Remove="Images\message_box_center_map\message_box_center_map_green.png" />
     <None Remove="Images\message_box_center_map\message_box_center_map_red.png" />
     <None Remove="Images\panel\panel_center_map.png" />
+    <None Remove="Images\planet\galaxy.jpg" />
     <None Remove="Images\planet\planet1.jpg" />
     <None Remove="Images\planet\planet10.jpg" />
     <None Remove="Images\planet\planet11.jpg" />
@@ -207,6 +208,9 @@
     <Resource Include="Images\message_box_center_map\message_box_center_map_green.png" />
     <Resource Include="Images\message_box_center_map\message_box_center_map_red.png" />
     <Resource Include="Images\panel\panel_center_map.png" />
+    <Resource Include="Images\planet\galaxy.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\planet\planet1.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
