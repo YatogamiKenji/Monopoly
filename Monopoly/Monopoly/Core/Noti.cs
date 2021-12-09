@@ -13,7 +13,7 @@ namespace Monopoly
 {
     public class Noti : Control
     {
-        static public void Show(ContentControl area, UIElement notiBox, int existTime, Action<string> actionAfter)
+        static public void Show(ContentControl area, UIElement notiBox, float existTime, Action<string> actionAfter)
         {
             DoubleAnimation fadeInAnim = new DoubleAnimation(1, new Duration(TimeSpan.FromSeconds(0.2)));
             DoubleAnimation fadeOutAnim = new DoubleAnimation(0, new Duration(TimeSpan.FromSeconds(0.2)));
