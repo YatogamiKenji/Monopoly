@@ -6,15 +6,16 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              mc:Ignorable="d" 
              x:Name="root"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="20" d:DesignWidth="20">
    
         
         <Canvas x:Name="NenCanVas" Width="20" Height="20" Background="{Binding BackgroundPlayer, ElementName=root}">
-            <TextBlock Text="{Binding Title, ElementName=root}" 
+        <Image Height="25" Width="25" Source="{Binding BackgroundPlayer, ElementName=root}" Stretch="UniformToFill"></Image>
+            <!--<TextBlock Text="{Binding Title, ElementName=root}" 
                        Canvas.Left="6" 
                        Canvas.Top="2"
                        FontWeight="Heavy"
-                      />
+                      />-->
         </Canvas>
    
 </UserControl>

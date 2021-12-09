@@ -46,15 +46,15 @@ namespace Monopoly.Components
 
 
 
-        public Brush BackgroundPlayer
+        public ImageSource BackgroundPlayer
         {
-            get { return (Brush)GetValue(BackgroundPlayerProperty); }
+            get { return (ImageSource)GetValue(BackgroundPlayerProperty); }
             set { SetValue(BackgroundPlayerProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty BackgroundPlayerProperty =
-            DependencyProperty.Register("BackgroundPlayer", typeof(Brush), typeof(PlayerShow), new PropertyMetadata(Brushes.Transparent));
+            DependencyProperty.Register("BackgroundPlayer", typeof(ImageSource), typeof(PlayerShow));
 
         public PlayerShow()
         {   

@@ -54,6 +54,7 @@
     <None Remove="Images\card\power_card_yellow.png" />
     <None Remove="Images\cell\cell.png" />
     <None Remove="Images\cell\cell_highlight.png" />
+    <None Remove="Images\coin\coin1.png" />
     <None Remove="Images\falling-star-icon.png" />
     <None Remove="Images\icon\alien-ship-icon.png" />
     <None Remove="Images\icon\black-hole-icon.png" />
@@ -189,6 +190,9 @@
     <Resource Include="Images\card\power_card_yellow.png" />
     <Resource Include="Images\cell\cell.png" />
     <Resource Include="Images\cell\cell_highlight.png" />
+    <Resource Include="Images\coin\coin1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\icon\alien-ship-icon.png" />
     <Resource Include="Images\icon\black-hole-icon.png" />
     <Resource Include="Images\icon\falling-star-icon.png" />

@@ -26,10 +26,10 @@ namespace Monopoly.Components
         List<PlayerShow> ShowPlayers; //= new List<PlayerShow>();   // List các các Components của PlayerShow, PlayerShow là để show hình hình ảnh ngưởi chơi trên bàn cờ
 
         // Cấu hình UI người chơi 
-        PlayerShow ShowPlayer1 = new PlayerShow { Title = "1", Margin = new Thickness(10, 10, 50, 50), BackgroundPlayer = Brushes.Red };
-        PlayerShow ShowPlayer2 = new PlayerShow { Title = "2", Margin = new Thickness(35, 10, 25, 50), BackgroundPlayer = Brushes.MediumVioletRed };
-        PlayerShow ShowPlayer3 = new PlayerShow { Title = "3", Margin = new Thickness(35, 35, 25, 25), BackgroundPlayer = Brushes.Blue };
-        PlayerShow ShowPlayer4 = new PlayerShow { Title = "4", Margin = new Thickness(10, 35, 50, 25), BackgroundPlayer = Brushes.LawnGreen };
+        PlayerShow ShowPlayer1 = new PlayerShow { Title = "1", Margin = new Thickness(10, 10, 50, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_blue.png", UriKind.Relative)) };
+        PlayerShow ShowPlayer2 = new PlayerShow { Title = "2", Margin = new Thickness(35, 10, 25, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative)) };
+        PlayerShow ShowPlayer3 = new PlayerShow { Title = "3", Margin = new Thickness(35, 35, 25, 25), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_red.png", UriKind.Relative)) };
+        PlayerShow ShowPlayer4 = new PlayerShow { Title = "4", Margin = new Thickness(10, 35, 50, 25), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_yellow.png", UriKind.Relative)) };
 
         public Setup()
         {
