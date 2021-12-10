@@ -112,9 +112,9 @@ namespace Monopoly.Components
 
 
             //test hieu ung rung lac o
-            o10.StartShaking();
-            o10.IsHitTestVisible = true;
-            o10.OnButtonChessCellClick += O10_OnButtonChessCellClick;
+            //o10.StartShaking();
+            //o10.IsHitTestVisible = true;
+            //o10.OnButtonChessCellClick += O10_OnButtonChessCellClick;
            
             
 
@@ -122,12 +122,12 @@ namespace Monopoly.Components
             for (int i = 0; i < players.Count; i++) turn.Add(0);
         }
 
-        private void O10_OnButtonChessCellClick(object sender, RoutedEventArgs e)
-        {
-            ContentChessCell cell10 = sender as ContentChessCell;
-            cell10.IsHitTestVisible = false;
-            cell10.StopShaking();
-        }
+        //private void O10_OnButtonChessCellClick(object sender, RoutedEventArgs e)
+        //{
+        //    ContentChessCell cell10 = sender as ContentChessCell;
+        //    cell10.IsHitTestVisible = false;
+        //    cell10.StopShaking();
+        //}
 
         //khởi tạo player
         public void InitPlayerClass()
