@@ -363,8 +363,8 @@
                     </Button>
                     <ContentControl x:Name="dices"
                                     Canvas.Top="10"
-                                    Height="405"
-                                    Width="540"/>
+                                    Height="362"
+                                    Width="439" Canvas.Left="52"/>
                 </Canvas>
                 <!--add the popupTop user control-->
 
