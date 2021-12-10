@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Monopoly.Components.ContenButtonCard"
+﻿<UserControl x:Class="Monopoly.Components.ContenButtonCardPower"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +8,7 @@
              d:DesignHeight="150" d:DesignWidth="100">
     <UserControl.Resources>
         <Style x:Key="ButtonCenterMap" TargetType="Button">
-        
+
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="White"/>
@@ -39,11 +39,11 @@
                     </Style.Triggers>
                 </Style>
             </Button.Style>
-            
-            
+
+
             <Grid x:Name="Bor_PicCard" Height="146">
             </Grid>
-            
+
         </Button>
     </Grid>
 </UserControl>

@@ -34,7 +34,7 @@ namespace Monopoly.Components
         }
 
         public static readonly RoutedEvent ButtonCancleClickEvent =
-            EventManager.RegisterRoutedEvent(nameof(OnButtonCancleClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContenButtonCard));
+            EventManager.RegisterRoutedEvent(nameof(OnButtonCancleClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContenButtonCardPower));
 
         public event RoutedEventHandler OnButtonCancleClick
         {

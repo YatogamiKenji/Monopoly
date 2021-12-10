@@ -197,6 +197,22 @@ namespace Monopoly.Components
             playerUsing.OnSkipButtonClick += PlayerUsing_OnSkipButtonClick;
         }
 
+        //bán đất
+        private void PlayerUsing_OnSellButtonClick(object sender, RoutedEventArgs e)
+        {
+            ListLandPlayers listLandPlayers = new ListLandPlayers(playersList[PlayerTurn].lands);
+            SellLand sellLand = new SellLand(listLandPlayers);
+
+            for (int i = 0; i < listLandPlayers.contenButtonCards.Count; i++)
+            {
+                listLandPlayers.contenButtonCards[i].OnButtonCardClick += SellLand_OnButtonCardClick;
+            }
+
+            sellLand.OnButtonCancleClick += UsingCard_OnButtonCancleClick;
+
+            dices.Content = sellLand;
+        }
+
         //bỏ qua button
         private void PlayerUsing_OnSkipButtonClick(object sender, RoutedEventArgs e)
         {
@@ -212,20 +228,6 @@ namespace Monopoly.Components
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             }
             sideBar.update(playersList, PlayerTurn);
-        }
-
-        //bán đất
-        private void PlayerUsing_OnSellButtonClick(object sender, RoutedEventArgs e)
-        {
-            ListLandPlayers listLandPlayers = new ListLandPlayers(playersList[PlayerTurn].lands);
-            SellLand sellLand = new SellLand(listLandPlayers);
-
-            for (int i = 0; i < listLandPlayers.contenButtonCards.Count; i++)
-            {
-                listLandPlayers.contenButtonCards[i].OnButtonCardClick += SellLand_OnButtonCardClick;
-            }
-
-            dices.Content = sellLand;
         }
 
         #endregion
@@ -631,12 +633,11 @@ namespace Monopoly.Components
         #endregion
 
         #region Các sự kiện khi đi vào các ô đặc biệt
+
         //nhấn ok khi nhận được thẻ
         private void ComeSpecialLand_OnOKButtonClick(object sender, RoutedEventArgs e)
         {
-            dices.Content = playerUsing;
-            sideBar.update(playersList, PlayerTurn);
-            CheckContentBack = 2;
+            ShowPlayerUsing();
         }
 
         #endregion
@@ -669,7 +670,7 @@ namespace Monopoly.Components
         // xử lý các sự kiện nếu sử dụng các thẻ trong dách sách thẻ 
         private void ChessBoard_OnButtonCardClick(object sender, RoutedEventArgs e)
         {
-            ContenButtonCard Card = (ContenButtonCard)sender;
+            ContenButtonCardPower Card = (ContenButtonCardPower)sender;
 
             if (Card.power.type)
             {
@@ -826,25 +827,14 @@ namespace Monopoly.Components
         //bỏ qua
         private void OnSkipButtonClick(object sender, RoutedEventArgs e)
         {
-            //tính lượt của các player
-            PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            if (playersList[PlayerTurn].isRetention)
-            {
-                Player player = playersList[PlayerTurn];
-                RemovePowersEffect(ref player);
-                playersList[PlayerTurn] = player;
-                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            }
-
-            sideBar.update(playersList, PlayerTurn);
-            But_xucxac.Visibility = Visibility.Visible;
+            ChangeTurn();
             dices.Content = null;
         }
 
         //Bán đất
         private void SellLand_OnButtonCardClick(object sender, RoutedEventArgs e)
         {
-            ContenButtonCard Card = (ContenButtonCard)sender;
+            ContenButtonCardLand Card = (ContenButtonCardLand)sender;
             playersList[PlayerTurn].money += Card.land.landValue / 2;
             for (int i = 0; i < playersList[PlayerTurn].lands.Count; i++)
                 if (playersList[PlayerTurn].lands[i].name == Card.land.name)
