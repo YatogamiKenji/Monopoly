@@ -13,9 +13,9 @@ namespace Monopoly
 {
     public class Noti : Control
     {
-        static public void Show(ContentControl area, UIElement notiBox, float existTime, Action<string> actionAfter)
+        static public void Show(ContentControl area, UIElement notiBox, double existTime, Action<string> actionAfter)
         {
-            DoubleAnimation fadeInAnim = new DoubleAnimation(1, new Duration(TimeSpan.FromSeconds(0.2)));
+            DoubleAnimation fadeInAnim = new DoubleAnimation(1, new Duration(TimeSpan.FromSeconds(0.25)));
             DoubleAnimation fadeOutAnim = new DoubleAnimation(0, new Duration(TimeSpan.FromSeconds(0.2)));
 
             
@@ -28,37 +28,40 @@ namespace Monopoly
 
             notiBox.BeginAnimation(OpacityProperty, fadeInAnim);
 
-            DispatcherTimer existTimer = new DispatcherTimer();
-            existTimer.Interval = TimeSpan.FromSeconds(existTime);
-            existTimer.Start();
-
-            DispatcherTimer delayAnimTimer = new DispatcherTimer();
-            delayAnimTimer.Interval = TimeSpan.FromSeconds(0.2);
-
-
-            existTimer.Tick += new EventHandler((sender, e) =>
+            SetTimeout(() => 
             {
-                delayAnimTimer.Tick += new EventHandler((sender, e) => 
+                SetTimeout(() =>
                 {
                     area.Content = null;
                     actionAfter("timeout");
-                });
-                delayAnimTimer.Start();
+                }, 0.2);
                 notiBox.BeginAnimation(OpacityProperty, fadeOutAnim);
+            }, existTime);
 
-
-            });
-
-            area.MouseLeftButtonDown += new System.Windows.Input.MouseButtonEventHandler((sender, e) =>
+            System.Windows.Input.MouseButtonEventHandler handler = null;
+            handler = (sender, e) =>
             {
-                delayAnimTimer.Tick += new EventHandler((sender, e) =>
+                SetTimeout(() =>
                 {
                     area.Content = null;
-                    actionAfter("click");
-                });
-                delayAnimTimer.Start();
+                    actionAfter("timeout");
+                }, 0.2);
                 notiBox.BeginAnimation(OpacityProperty, fadeOutAnim);
-            });
+                area.MouseLeftButtonDown -= handler;
+            };
+            area.MouseLeftButtonDown += handler;
+        }
+
+        static public void SetTimeout(Action action, double timeout)
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(timeout);
+            timer.Tick += delegate (object sender, EventArgs args)
+            {
+                action();
+                timer.Stop();
+            };
+            timer.Start();
         }
     }
 }

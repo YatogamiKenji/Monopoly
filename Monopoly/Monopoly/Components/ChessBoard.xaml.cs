@@ -945,6 +945,7 @@ namespace Monopoly.Components
             sideBar.update(playersList, PlayerTurn);
             But_xucxac.Visibility = Visibility.Visible;
             dices.Content = null;
+
             //animation faceout 
             //Storyboard slide = Resources["OpenMenu"] as Storyboard;
             //slide.Begin(notification);
@@ -968,19 +969,24 @@ namespace Monopoly.Components
                 playersList[PlayerTurn].AddLand(lands[cellManager[playersList[PlayerTurn].position].index], cellManager[playersList[PlayerTurn].position].index);
                 sideBar.update(playersList, PlayerTurn);
 
-
-
-                //tính lượt của các player
-                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                if (playersList[PlayerTurn].isRetention)
+                Noti.Show(notiCenterMapArea, new NotiBuyLand(lands[cellManager[playersList[PlayerTurn].position].index].name), 2, (s) =>
                 {
-                    Player player = playersList[PlayerTurn];
-                    RemovePowersEffect(ref player);
-                    playersList[PlayerTurn] = player;
+                    //tính lượt của các player
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                }
-                But_xucxac.Visibility = Visibility.Visible;
-                dices.Content = null;
+                    if (playersList[PlayerTurn].isRetention)
+                    {
+                        Player player = playersList[PlayerTurn];
+                        RemovePowersEffect(ref player);
+                        playersList[PlayerTurn] = player;
+                        PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                    }
+                    But_xucxac.Visibility = Visibility.Visible;
+                    dices.Content = null;
+                    sideBar.update(playersList, PlayerTurn);
+                });
+
+                
+                
                 //animation faceout 
 
                 //Storyboard slide = Resources["OpenMenu"] as Storyboard;
@@ -989,8 +995,11 @@ namespace Monopoly.Components
 
 
             }
-            else MessageBox.Show("không đủ tiền");
-            sideBar.update(playersList, PlayerTurn);
+            else
+            {
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền", "Red"), 1.5, (s) =>{});
+            }
+            
         }
 
 

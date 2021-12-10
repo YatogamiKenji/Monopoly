@@ -420,6 +420,12 @@
                     <TextBlock Text="4" Canvas.Left="6" Canvas.Top="2" FontWeight="Heavy"/>
                 </Canvas>-->
 
+                <ContentControl Grid.Row="1" 
+                                Grid.Column="1"
+                                Grid.RowSpan="9"
+                                Grid.ColumnSpan="9"
+                                x:Name="notiCenterMapArea"/>
+
             </Grid>
             <compoenent:messboxDice x:Name="notification" Panel.ZIndex="2"  Width="200" Height="200" Margin="275,-176,275,36" Grid.Column="3" Canvas.Left="-28" Canvas.Top="-66"/>
 
