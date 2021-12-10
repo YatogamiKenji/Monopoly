@@ -31,5 +31,19 @@ namespace Monopoly.Components
             Grid.SetRow(listLandPlayers, 1);
             ListCard.Children.Add(listLandPlayers);
         }
+
+        public static readonly RoutedEvent ButtonCancleClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnButtonCancleClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContenButtonCardLand));
+
+        public event RoutedEventHandler OnButtonCancleClick
+        {
+            add { AddHandler(ButtonCancleClickEvent, value); }
+            remove { RemoveHandler(ButtonCancleClickEvent, value); }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(ButtonCancleClickEvent));
+        }
     }
 }

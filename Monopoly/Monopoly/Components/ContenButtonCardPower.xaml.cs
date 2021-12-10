@@ -19,15 +19,15 @@ namespace Monopoly.Components
     /// <summary>
     /// Interaction logic for ContenButtonCard.xaml
     /// </summary>
-    public partial class ContenButtonCard : UserControl
+    public partial class ContenButtonCardPower : UserControl
     {
 
         public string IDCard; // loaị class thẻ
         public Power power;
-        public Land land;
+
         //PowerCard typeCard; // 
         public static readonly RoutedEvent ButtonCardClickEvent =
-          EventManager.RegisterRoutedEvent(nameof(OnButtonCardClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContenButtonCard));
+          EventManager.RegisterRoutedEvent(nameof(OnButtonCardClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContenButtonCardPower));
 
         public event RoutedEventHandler OnButtonCardClick
         {
@@ -35,34 +35,23 @@ namespace Monopoly.Components
             remove { RemoveHandler(ButtonCardClickEvent, value); }
         }
 
-
-        // Button ButtonCard;
-        public ContenButtonCard()
+        private void ButtonCard_Click(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
-
+            RaiseEvent(new RoutedEventArgs(ButtonCardClickEvent));
         }
 
-        public ContenButtonCard(PowerCard typeCard, Power power)
+        // Button ButtonCard;
+        public ContenButtonCardPower()
+        {
+            InitializeComponent();
+        }
+
+        public ContenButtonCardPower(PowerCard typeCard, Power power)
         {
             InitializeComponent();
             this.power = power;
             Bor_PicCard.Children.Add(typeCard);
             IDCard = typeCard.TypeCard;
-
-        }
-
-        public ContenButtonCard(LandCard typeCard, Land land)
-        {
-            InitializeComponent();
-            this.land = land;
-            Bor_PicCard.Children.Add(typeCard);
-            IDCard = typeCard.TypeCard;
-        }
-
-        private void ButtonCard_Click(object sender, RoutedEventArgs e)
-        {
-            RaiseEvent(new RoutedEventArgs(ButtonCardClickEvent));
         }
     }
 }

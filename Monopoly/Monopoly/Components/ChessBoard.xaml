@@ -469,7 +469,8 @@
                         Background="Orange" Click="But_xucxac_Click">
                     </Button>
                     <ContentControl x:Name="dices"
-                                    Height="540"
+                                    Canvas.Top="10"
+                                    Height="405"
                                     Width="540"/>
                 </Canvas>
                 <!--add the popupTop user control-->
@@ -514,6 +515,12 @@
                     </Grid>
                 </Popup>
 
+
+                <ContentControl Grid.Row="1" 
+                                Grid.Column="1"
+                                Grid.RowSpan="9"
+                                Grid.ColumnSpan="9"
+                                x:Name="notiCenterMapArea"/>
 
             </Grid>
             <compoenent:messboxDice x:Name="notification" Panel.ZIndex="2"  Width="200" Height="200" Margin="275,-176,275,36" Grid.Column="3" Canvas.Left="-28" Canvas.Top="-66"/>
