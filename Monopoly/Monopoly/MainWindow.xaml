@@ -11,5 +11,6 @@
         Title="Monopoly" Height="760" Width="1280">
     <Grid>
         <component:ViewStart/>
+      
     </Grid>
 </Window>

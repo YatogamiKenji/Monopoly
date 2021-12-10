@@ -66,7 +66,23 @@ namespace Monopoly.Components
                     {
                       
                         ContentPlayer x = new ContentPlayer();
-                       // MessageBox.Show(i.ToString());
+                        // MessageBox.Show(i.ToString());
+                        //if(i == 0)
+                        //{
+                        //    x.ImagePlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_blue.png", UriKind.Relative));
+                        //}
+                        //else if(i == 1)
+                        //{
+                        //   x.ImagePlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative));
+                        //}   
+                        //else if(i == 2)
+                        //{
+                        //    x.ImagePlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_red.png", UriKind.Relative));
+                        //}   
+                        //else if(i == 3)
+                        //{
+                        //    x.ImagePlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_yellow.png", UriKind.Relative));
+                        //}    
                         x.NamePlayer = players[i].name;
                         x.Margin = new Thickness(2, 2, 2, 2);
                         x.Width = 93;
