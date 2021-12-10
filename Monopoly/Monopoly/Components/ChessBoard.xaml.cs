@@ -18,45 +18,62 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media.Animation;
 using System.IO;
 
-
 namespace Monopoly.Components
 {
-    /// <summary>
-    /// Interaction logic for ChessBoard.xaml
-    /// </summary>
     public partial class ChessBoard : UserControl
     {
+        #region Danh sách biến
+
         //lượt của player nào
         public int PlayerTurn = 0;
+
         //số vòng hiện tại
         public List<int> turn;
+
         //danh sách chứa các player
         public List<PlayerShow> players; // này chỉnh từ list canva thành PlayerShow, list này được lấy dữ liệu bên list PlayerShow của Setup
+
         //chứa các ô trên bàn cờ ở trên thiết kế (XAML)
         List<Canvas> cellPos;
+
         //lưu dữ liệu của các player
         List<Player> playersList = new List<Player>();
+
         //lưu dữ liệu của các ô trên bàn cờ
         Cell[] cellManager = new Cell[40];
+
         //lưu dữ liệu đất
         List<Land> lands = new List<Land>();
+
         //lưu dữ liệu các thẻ cơ hội
         List<Chance> chances = new List<Chance>();
+
         //lưu dữ liệu các thẻ khí vận
         List<CommunityChest> communityChests = new List<CommunityChest>();
+
         //giao diện danh sách các thẻ của mỗi người chơi
         ListCardPlayers listCardPlayers = new ListCardPlayers();
-        //List<Power> powers = new List<Power>();
+
         // Số lượng người chơi
         int NumberOfPlayers = 0;
 
         //Biến lưu dices.Content trước đó đó là  ComeOwnLandView hay là ComePowerLandView để chuyển đổi trở lại khi hủy sử dụng thẻ
         Object ContentDicesBack;
-        //Biến kiểm tra dices.Content trước đó đó là  ComeOwnLandView(false) hay là ComePowerLandView(true) để chuyển đổi trở lại khi hủy sử dụng thẻ
+
+        //Biến kiểm tra dices.Content trước đó đó là gì để chuyển đổi trở lại khi hủy sử dụng thẻ
         int CheckContentBack = 0;
 
-
+        //biến này lưu compoenent khi đi vào các ô đặc biệt
         PlayerUsing playerUsing = new PlayerUsing();
+
+        //create value ramdom
+        public Random random = new Random();
+        public int dice = 0;
+        usingCard _usingCard;
+
+        #endregion
+
+        #region Init UI
 
         public ChessBoard()
         {
@@ -66,20 +83,15 @@ namespace Monopoly.Components
 
         public ChessBoard(List<PlayerShow> PlayerShowFromSetup)
         {
-
             InitializeComponent();
             this.players = PlayerShowFromSetup;
             Init();
-
         }
 
         //khởi tạo giá trị
         public void Init()
         {
-            // MessageBox.Show("cc");
             InitData();
-
-            //InitPower();
 
             InitPlayer();
 
@@ -170,19 +182,22 @@ namespace Monopoly.Components
             {
                 Grid.SetRow(players[i], 10);
                 Grid.SetColumn(players[i], 0);
-
                 BanCo.Children.Add(players[i]);
             }
         }
+        #endregion
 
+        #region Init PlayerUsing
+
+        //khởi tạo compoenent Player Using
         void InitPlayerUsing()
         {
-            playerUsing.OnUseCardButtonClick += PlayerUsing_OnUseCardButtonClick;
+            playerUsing.OnUseCardButtonClick += OnUseCardButtonClick;
             playerUsing.OnSellButtonClick += PlayerUsing_OnSellButtonClick;
             playerUsing.OnSkipButtonClick += PlayerUsing_OnSkipButtonClick;
         }
 
-
+        //bỏ qua button
         private void PlayerUsing_OnSkipButtonClick(object sender, RoutedEventArgs e)
         {
             dices.Content = null;
@@ -199,6 +214,7 @@ namespace Monopoly.Components
             sideBar.update(playersList, PlayerTurn);
         }
 
+        //bán đất
         private void PlayerUsing_OnSellButtonClick(object sender, RoutedEventArgs e)
         {
             ListLandPlayers listLandPlayers = new ListLandPlayers(playersList[PlayerTurn].lands);
@@ -210,96 +226,11 @@ namespace Monopoly.Components
             }
         }
 
-        private void PlayerUsing_OnUseCardButtonClick(object sender, RoutedEventArgs e)
-        {
-            ListCardPlayers listCardPlayers = new ListCardPlayers(playersList[PlayerTurn].powers);
-            usingCard UsingCard = new usingCard(listCardPlayers);
+        #endregion
 
-            for (int i = 0; i < listCardPlayers.contenButtonCards.Count; i++)
-            {
-                listCardPlayers.contenButtonCards[i].OnButtonCardClick += ChessBoard_OnButtonCardClick;
-            }
-
-            UsingCard.OnButtonCancleClick += UsingCard_OnButtonCancleClick;
-            _usingCard = UsingCard;
-            dices.Content = UsingCard;
-        }
-
-        //void InitPower()
-        //{
-        //    //buff
-        //    powers.Add(new PowerChooseOneCard());
-        //    powers.Add(new PowerDoubleDice());
-        //    powers.Add(new PowerDoublePriceLandForever());
-        //    powers.Add(new PowerDoubleTax());
-        //    powers.Add(new PowerDoubleTheValueStarting());
-        //    powers.Add(new PowerExemptFromPrison());
-        //    powers.Add(new PowerHalveUpgradeFee());
-        //    powers.Add(new PowerMoveToAnyCell());
-        //    powers.Add(new PowerRemoveAdverseEffects());
-        //    powers.Add(new PowerRemoveLoseMoneyNext());
-        //    //nerf
-        //    powers.Add(new PowerAppointPersonToPrison());
-        //    powers.Add(new PowerCancelPowerCard());
-        //    powers.Add(new PowerFreezeBankAccounts());
-        //    powers.Add(new PowerHoldAPerson());
-        //    powers.Add(new PowerLandLevelReduction());
-        //    powers.Add(new PowerLandPriceHalved());
-        //    powers.Add(new PowerLockAPlotOfLand());
-        //    powers.Add(new PowerSplitDice());
-        //    powers.Add(new PowerStealLand());
-        //    powers.Add(new PowerTeleportPersonToTheTax());
-        //}
-
-
-
-        public void RemovePowersEffect(ref Player player)
-        {
-            //tự động tính toán hiệu lực của các quyền năng
-            if (player.powersEffect != null)
-            {
-                player.Init();
-                for (int i = 0; i < player.powersEffect.Count; i++)
-                {
-                    player.powersEffect[i].PowerFunction(ref player);
-                }
-            }
-        }
-
-        public Power RandomPower()
-        {
-            Random random = new Random();
-            int x = random.Next(200);
-            if (x >= 0 && x < 13) return new PowerRemoveLoseMoneyNext();
-            if (x > 13 && x < 27) return new PowerTeleport();
-            if (x > 27 && x < 33 || x > 61 && x < 66) return new PowerAppointPersonToPrison();
-            if (x > 33 && x < 47) return new PowerSplitDice();
-            if (x > 47 && x < 61) return new PowerLandPriceHalved();
-            if (x > 66 && x < 72 || x > 100 && x < 105) return new PowerMoveToAnyCell();
-            if (x == 13 || x == 61 || x == 100 || x == 131) return new PowerRemoveAdverseEffects();
-            if (x > 72 && x < 86) return new PowerExemptFromPrison();
-            if (x > 86 && x < 100) return new PowerDoubleTheValueStarting();
-            if (x > 105 && x < 111 || x > 151 && x < 156) return new PowerCancelPowerCard();
-            if (x == 27 || x == 66 || x == 105 || x == 145) return new PowerStealLand();
-            if (x > 111 && x > 125) return new PowerFreezeBankAccounts();
-            if (x > 125 && x < 131 || x > 187 && x < 192) return new PowerDoubleTax();
-            if (x > 131 && x < 145) return new PowerDoubleDice();
-            if (x > 145 && x < 151 || x > 191 && x < 196) return new PowerHoldAPerson();
-            if (x == 33 || x == 72 || x == 111 || x == 151) return new PowerDoublePriceLandForever();
-            if (x > 156 && x < 170) return new PowerLockAPlotOfLand();
-            if (x > 169 && x < 175 || x > 195 && x < 200) return new PowerHalveUpgradeFee();
-            if (x > 174 && x < 188) return new PowerTeleportPersonToTheTax();
-            return new PowerLandLevelReduction();
-        }
-
-        //create value ramdom
-        public Random random = new Random();
-        public int dice = 0;
-
-
+        //xử lý sự kiện khi xúc sắt quay
         public void But_xucxac_Click(object sender, RoutedEventArgs e)
         {
-
             dice = random.Next(1, 7);
 
             notification.content.Text = dice.ToString();
@@ -307,13 +238,6 @@ namespace Monopoly.Components
             //animation faceout 
             Storyboard slide = Resources["OpenMenu"] as Storyboard;
             slide.Begin(notification);
-
-
-
-
-            //dice = 17;
-            //tính số vòng đã đi được
-
 
             But_xucxac.Visibility = Visibility.Collapsed;
 
@@ -381,8 +305,8 @@ namespace Monopoly.Components
                     {
                         ComeEmptyLandView comeEmptyLandView = new ComeEmptyLandView(lands[cellManager[playersList[PlayerTurn].position].index]);
                         comeEmptyLandView.OnBuyButtonClick += ComeEmptyLandView_OnBuyButtonClick;
-                        comeEmptyLandView.OnSkipButtonClick += ComeEmptyLandView_OnSkipButtonClick;
-                        comeEmptyLandView.OnUseCardButtonClick += ComeLandView_OnUseCardButtonClick;
+                        comeEmptyLandView.OnSkipButtonClick += OnSkipButtonClick;
+                        comeEmptyLandView.OnUseCardButtonClick += OnUseCardButtonClick;
                         dices.Content = comeEmptyLandView;
                         ContentDicesBack = comeEmptyLandView;
                         CheckContentBack = 0;
@@ -395,8 +319,8 @@ namespace Monopoly.Components
                         comeOwnLandView.SetInfor(1);
                         comeOwnLandView.OnSellButtonClick += ComeOwnLandView_OnSellButtonClick;
                         comeOwnLandView.OnBuyButtonClick += ComeOwnLandView_OnBuyButtonClick;
-                        comeOwnLandView.OnSkipButtonClick += ComeOwnLandView_OnSkipButtonClick;
-                        comeOwnLandView.OnUseCardButtonClick += ComeLandView_OnUseCardButtonClick;
+                        comeOwnLandView.OnSkipButtonClick += OnSkipButtonClick;
+                        comeOwnLandView.OnUseCardButtonClick += OnUseCardButtonClick;
                         dices.Content = comeOwnLandView;
                         ContentDicesBack = comeOwnLandView;
                         CheckContentBack = 1;
@@ -504,6 +428,8 @@ namespace Monopoly.Components
                 else if (cellManager[playersList[PlayerTurn].position].type == CellType.OTu)
                 {
                     dices.Content = playerUsing;
+                    sideBar.update(playersList, PlayerTurn);
+                    CheckContentBack = 2;
                 }
 
                 //xử lý khi đi vào ô vào tù
@@ -545,12 +471,16 @@ namespace Monopoly.Components
                 else if (cellManager[playersList[PlayerTurn].position].type == CellType.BaiDoXe)
                 {
                     dices.Content = playerUsing;
+                    sideBar.update(playersList, PlayerTurn);
+                    CheckContentBack = 2;
                 }
 
                 // xử lý khi đi vào ô bắt đầu
                 else if (cellManager[playersList[PlayerTurn].position].type == CellType.BatDau)
                 {
                     dices.Content = playerUsing;
+                    sideBar.update(playersList, PlayerTurn);
+                    CheckContentBack = 2;
                 }
 
                 sideBar.update(playersList, PlayerTurn);
@@ -567,26 +497,138 @@ namespace Monopoly.Components
                     playersList[PlayerTurn] = _player;
                     PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
                 }
-            } 
-                
+            }
+
         }
 
-        //bỏ qua
+        #region Các sự kiện của ComeEmptyLandView
+
+        //mua đất
+        private void ComeEmptyLandView_OnBuyButtonClick(object sender, RoutedEventArgs e)
+        {
+            //nếu người chơi mua thì gọi lệnh bên dưới
+            if ((playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].value || playersList[PlayerTurn].isLoseMoney) && !playersList[PlayerTurn].isFreezeBank)
+            {
+                if (!playersList[PlayerTurn].isLoseMoney)
+                    playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].value;
+                else playersList[PlayerTurn].isLoseMoney = false;
+
+                lands[cellManager[playersList[PlayerTurn].position].index].owner = PlayerTurn;
+                playersList[PlayerTurn].AddLand(lands[cellManager[playersList[PlayerTurn].position].index], cellManager[playersList[PlayerTurn].position].index);
+                sideBar.update(playersList, PlayerTurn);
+
+
+                Noti.Show(notiCenterMapArea, new NotiBuyLand(lands[cellManager[playersList[PlayerTurn].position].index].name), 2, (s) =>
+                {
+                    //tính lượt của các player
+                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                    if (playersList[PlayerTurn].isRetention)
+                    {
+                        Player player = playersList[PlayerTurn];
+                        RemovePowersEffect(ref player);
+                        playersList[PlayerTurn] = player;
+                        PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                    }
+                    But_xucxac.Visibility = Visibility.Visible;
+                    dices.Content = null;
+                    sideBar.update(playersList, PlayerTurn);
+                });
+            }
+            else
+            {
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền", "Red"), 1.5, (s) => { });
+            }
+            sideBar.update(playersList, PlayerTurn);
+        }
+
+        #endregion
+
+        #region Các sự kiện của ComeOwnLandView
+
+        //bán đất
+        private void ComeOwnLandView_OnBuyButtonClick(object sender, RoutedEventArgs e)
+        {
+            //nếu người chơi bán thì gọi lệnh bên dưới
+            //đóng băng tài khoản bán k đc cộng tiền
+            if (!playersList[PlayerTurn].isFreezeBank) playersList[PlayerTurn].money += lands[cellManager[playersList[PlayerTurn].position].index].landValue / 2;
+            playersList[PlayerTurn].RemoveLand(cellManager[playersList[PlayerTurn].position].index);
+            lands[cellManager[playersList[PlayerTurn].position].index].GetDefault();
+
+            sideBar.update(playersList, PlayerTurn);
+
+            //tính lượt của các player
+            PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+            if (playersList[PlayerTurn].isRetention)
+            {
+                Player player = playersList[PlayerTurn];
+                RemovePowersEffect(ref player);
+                playersList[PlayerTurn] = player;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+            }
+
+            sideBar.update(playersList, PlayerTurn);
+            But_xucxac.Visibility = Visibility.Visible;
+            dices.Content = null;
+        }
+
+        //nâng cấp
+        private void ComeOwnLandView_OnSellButtonClick(object sender, RoutedEventArgs e)
+        {
+            //nếu player đồng ý nâng cấp thì gọi lệnh bên dưới
+            if ((playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].Upgrade() || playersList[PlayerTurn].isLoseMoney) && !playersList[PlayerTurn].isFreezeBank)
+            {
+                int fee = 1;
+                if (!playersList[PlayerTurn].isLoseMoney)
+                {
+                    if (playersList[PlayerTurn].isUpgradeFee)
+                    {
+                        playersList[PlayerTurn].isUpgradeFee = false;
+                        fee = 2;
+                    }
+                    playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Upgrade() / fee;
+                    playersList[PlayerTurn].UpdateLand(cellManager[playersList[PlayerTurn].position].index);
+                }
+                else playersList[PlayerTurn].isLoseMoney = false;
+
+                sideBar.update(playersList, PlayerTurn);
+
+                //tính lượt của các player
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                if (playersList[PlayerTurn].isRetention)
+                {
+                    Player player = playersList[PlayerTurn];
+                    RemovePowersEffect(ref player);
+                    playersList[PlayerTurn] = player;
+                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                }
+                But_xucxac.Visibility = Visibility.Visible;
+                dices.Content = null;
+            }
+            else MessageBox.Show("không đủ tiền");
+
+            sideBar.update(playersList, PlayerTurn);
+        }
+
+        #endregion
+
+        #region Các sự kiện khi đi vào các ô đặc biệt
+        //nhấn ok khi nhận được thẻ
         private void ComeSpecialLand_OnOKButtonClick(object sender, RoutedEventArgs e)
         {
             dices.Content = playerUsing;
-            ComeEmptyLandView_OnSkipButtonClick(sender, e);
+            sideBar.update(playersList, PlayerTurn);
+            CheckContentBack = 2;
         }
 
-        usingCard _usingCard;
+        #endregion
+
+        #region Các sự kiện liên quan đến sử dụng thẻ Power
 
         //sử dụng thẻ
-        private void ComeLandView_OnUseCardButtonClick(object sender, RoutedEventArgs e)
+        private void OnUseCardButtonClick(object sender, RoutedEventArgs e)
         {
             ListCardPlayers listCardPlayers = new ListCardPlayers(playersList[PlayerTurn].powers);
-            // Grid.SetRow(listCardPlayers, 1);
             usingCard UsingCard = new usingCard(listCardPlayers);
-            //usingCard usingCard = new usingCard();
 
             for (int i = 0; i < listCardPlayers.contenButtonCards.Count; i++)
             {
@@ -597,36 +639,9 @@ namespace Monopoly.Components
             dices.Content = UsingCard;
         }
 
-        private void SellLand_OnButtonCardClick(object sender, RoutedEventArgs e)
-        {
-            ContenButtonCard Card = (ContenButtonCard)sender;
-            playersList[PlayerTurn].money += Card.land.landValue / 2;
-            for (int i = 0; i < playersList[PlayerTurn].lands.Count; i++)
-                if (playersList[PlayerTurn].lands[i].name == Card.land.name)
-                {
-                    lands[playersList[PlayerTurn].indexLands[i]].GetDefault();
-                    playersList[PlayerTurn].RemoveLand(playersList[PlayerTurn].indexLands[i]);
-                    break;
-                }
-
-            But_xucxac.Visibility = Visibility.Visible;
-            dices.Content = null;
-            sideBar.update(playersList, PlayerTurn);
-            PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            if (playersList[PlayerTurn].isRetention)
-            {
-                Player _player = playersList[PlayerTurn];
-                RemovePowersEffect(ref _player);
-                playersList[PlayerTurn] = _player;
-                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            }
-        }
-
         // nếu đổi ý không sử dụng thẻ nữa
         private void UsingCard_OnButtonCancleClick(object sender, RoutedEventArgs e)
         {
-            //dices.Visibility = Visibility.Collapsed;
-
             if (CheckContentBack == 0) dices.Content = (ComeEmptyLandView)ContentDicesBack;
             else if (CheckContentBack == 1) dices.Content = (ComeOwnLandView)ContentDicesBack;
             else if (CheckContentBack == 2) dices.Content = playerUsing;
@@ -636,39 +651,6 @@ namespace Monopoly.Components
         private void ChessBoard_OnButtonCardClick(object sender, RoutedEventArgs e)
         {
             ContenButtonCard Card = (ContenButtonCard)sender;
-
-            //  MessageBox.Show(Card.IDCard);
-            // nếu thẻ được sử dụng là thẻ chọn một người chơi vào tù
-            /*if(Card.IDCard == "PowerAppointPersonToPrison" ||
-                Card.IDCard == "PowerCancelPowerCard" || 
-                Card.IDCard == "PowerFreezeBankAccounts" || 
-                Card.IDCard == "PowerHoldAPerson" || 
-                Card.IDCard == "PowerLandLevelReduction" || 
-                Card.IDCard == "PowerLandPriceHalved" || 
-                Card.IDCard == "PowerLockAPlotOfLand" || 
-                Card.IDCard == "PowerSplitDice" || 
-                Card.IDCard == "PowerStealLand" || 
-                Card.IDCard == "PowerTeleportPersonToTheTax")
-            {
-                ListContentPlayers candidatePlayers = new ListContentPlayers(playersList, PlayerTurn);
-
-                UseCardToAnother useCardToAnother = new UseCardToAnother(candidatePlayers);
-
-                foreach( ContentPlayer ButtonPlayer in useCardToAnother.haha.ListButtonPlayers)
-                {
-                    ButtonPlayer.NameCardImpact = Card.IDCard;
-                    ButtonPlayer.OnButtonPlayerClick += ButtonPlayer_OnButtonPlayerClick;
-                }
-                dices.Content = useCardToAnother;
-            }   
-            else
-            {
-                Player player = playersList[PlayerTurn];
-                Power power = playersList[PlayerTurn].powers[index];
-                power.Using(ref player, dice);
-                power.PowerFunction(ref player);
-                playersList[PlayerTurn] = player;
-            }   */
 
             if (Card.power.type)
             {
@@ -695,11 +677,6 @@ namespace Monopoly.Components
 
                 But_xucxac.Visibility = Visibility.Visible;
                 dices.Content = null;
-                //animation faceout 
-                //Storyboard slide = Resources["OpenMenu"] as Storyboard;
-                //slide.Begin(notification);
-
-
                 sideBar.update(playersList, PlayerTurn);
 
             }
@@ -720,6 +697,7 @@ namespace Monopoly.Components
             }
         }
 
+        //Thoát nếu không muốn sử dụng thẻ lên người khác nữa
         private void UseCardToAnother_OnButtonCancleClick(object sender, RoutedEventArgs e)
         {
             dices.Content = _usingCard;
@@ -775,177 +753,59 @@ namespace Monopoly.Components
 
                     But_xucxac.Visibility = Visibility.Visible;
                     dices.Content = null;
-                    //animation faceout 
-
-                    //Storyboard slide = Resources["OpenMenu"] as Storyboard;
-                    //slide.Begin(notification);
-
-
 
                     sideBar.update(playersList, PlayerTurn);
-                    /*if(PickedPlayer.NameCardImpact == "PowerAppointPersonToPrison")
-                   {
-
-                       // sự kiện khi pick thẻ PowerAppointPersonToPrison viết ở đây, người bị chọn có chỉ số là i
-                   }
-                   else if (PickedPlayer.NameCardImpact == "PowerCancelPowerCard")
-                   {
-
-                       // sự kiện khi pick thẻ PowerCancelPowerCard viết ở đây
-                   }
-                   else if (PickedPlayer.NameCardImpact == "PowerFreezeBankAccounts")
-                   {
-
-                       // sự kiện khi pick thẻ PowerFreezeBankAccounts viết ở đây
-                   }
-                   else if (PickedPlayer.NameCardImpact == "PowerHoldAPerson")
-                   {
-
-                       // sự kiện khi pick thẻ PowerHoldAPerson viết ở đây
-                   }
-                   else if (PickedPlayer.NameCardImpact == "PowerLandLevelReduction")
-                   {
-
-                       // sự kiện khi pick thẻ PowerLandLevelReduction viết ở đây
-                   }
-                   else if (PickedPlayer.NameCardImpact == "PowerLandPriceHalved")
-                   {
-
-                       // sự kiện khi pick thẻ PowerLandPriceHalved viết ở đây
-                   }
-                   else if (PickedPlayer.NameCardImpact == "PowerLockAPlotOfLand")
-                   {
-
-                       // sự kiện khi pick thẻ PowerLockAPlotOfLand viết ở đây
-                   }
-                   else if (PickedPlayer.NameCardImpact == "PowerSplitDice")
-                   {
-
-                       // sự kiện khi pick thẻ PowerSplitDice viết ở đây
-                   }
-                   else if (PickedPlayer.NameCardImpact == "PowerStealLand")
-                   {
-
-                       // sự kiện khi pick thẻ PowerStealLand viết ở đây
-                   }
-                   else if (PickedPlayer.NameCardImpact == "PowerTeleportPersonToTheTax")
-                   {
-
-                       // sự kiện khi pick thẻ PowerTeleportPersonToTheTax viết ở đây
-                   }*/
-
-
                 }
             }
-            //ComeOwnLandView_OnSkipButtonClick(sender, e);
+        }
+
+        #endregion
+
+        #region Sự kiện khác
+
+        // xóa bỏ hiệu ứng trên người player theo từng lượt
+        public void RemovePowersEffect(ref Player player)
+        {
+            //tự động tính toán hiệu lực của các quyền năng
+            if (player.powersEffect != null)
+            {
+                player.Init();
+                for (int i = 0; i < player.powersEffect.Count; i++)
+                {
+                    player.powersEffect[i].PowerFunction(ref player);
+                }
+            }
+        }
+
+        //random thẻ quyền năng
+        public Power RandomPower()
+        {
+            Random random = new Random();
+            int x = random.Next(200);
+            if (x >= 0 && x < 13) return new PowerRemoveLoseMoneyNext();
+            if (x > 13 && x < 27) return new PowerTeleport();
+            if (x > 27 && x < 33 || x > 61 && x < 66) return new PowerAppointPersonToPrison();
+            if (x > 33 && x < 47) return new PowerSplitDice();
+            if (x > 47 && x < 61) return new PowerLandPriceHalved();
+            if (x > 66 && x < 72 || x > 100 && x < 105) return new PowerMoveToAnyCell();
+            if (x == 13 || x == 61 || x == 100 || x == 131) return new PowerRemoveAdverseEffects();
+            if (x > 72 && x < 86) return new PowerExemptFromPrison();
+            if (x > 86 && x < 100) return new PowerDoubleTheValueStarting();
+            if (x > 105 && x < 111 || x > 151 && x < 156) return new PowerCancelPowerCard();
+            if (x == 27 || x == 66 || x == 105 || x == 145) return new PowerStealLand();
+            if (x > 111 && x > 125) return new PowerFreezeBankAccounts();
+            if (x > 125 && x < 131 || x > 187 && x < 192) return new PowerDoubleTax();
+            if (x > 131 && x < 145) return new PowerDoubleDice();
+            if (x > 145 && x < 151 || x > 191 && x < 196) return new PowerHoldAPerson();
+            if (x == 33 || x == 72 || x == 111 || x == 151) return new PowerDoublePriceLandForever();
+            if (x > 156 && x < 170) return new PowerLockAPlotOfLand();
+            if (x > 169 && x < 175 || x > 195 && x < 200) return new PowerHalveUpgradeFee();
+            if (x > 174 && x < 188) return new PowerTeleportPersonToTheTax();
+            return new PowerLandLevelReduction();
         }
 
         //bỏ qua
-        private void ComeOwnLandView_OnSkipButtonClick(object sender, RoutedEventArgs e)
-        {
-            //tính lượt của các player
-            PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            if (playersList[PlayerTurn].isRetention) PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers; if (playersList[PlayerTurn].isRetention)
-            {
-                Player player = playersList[PlayerTurn];
-                RemovePowersEffect(ref player);
-                playersList[PlayerTurn] = player;
-                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            }
-
-
-            sideBar.update(playersList, PlayerTurn);
-            But_xucxac.Visibility = Visibility.Visible;
-            dices.Content = null;
-            //animation faceout 
-
-            //Storyboard slide = Resources["OpenMenu"] as Storyboard;
-            //slide.Begin(notification);
-
-
-
-        }
-
-        //bán đất
-        private void ComeOwnLandView_OnBuyButtonClick(object sender, RoutedEventArgs e)
-        {
-            //nếu người chơi bán thì gọi lệnh bên dưới
-            //đóng băng tài khoản bán k đc cộng tiền
-            if (!playersList[PlayerTurn].isFreezeBank) playersList[PlayerTurn].money += lands[cellManager[playersList[PlayerTurn].position].index].landValue / 2;
-            playersList[PlayerTurn].RemoveLand(cellManager[playersList[PlayerTurn].position].index);
-            lands[cellManager[playersList[PlayerTurn].position].index].GetDefault();
-
-            sideBar.update(playersList, PlayerTurn);
-
-            //tính lượt của các player
-            PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            if (playersList[PlayerTurn].isRetention)
-            {
-                Player player = playersList[PlayerTurn];
-                RemovePowersEffect(ref player);
-                playersList[PlayerTurn] = player;
-                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            }
-
-
-            sideBar.update(playersList, PlayerTurn);
-            But_xucxac.Visibility = Visibility.Visible;
-            dices.Content = null;
-            //animation faceout 
-
-            //Storyboard slide = Resources["OpenMenu"] as Storyboard;
-            //slide.Begin(notification);
-
-
-        }
-
-        //nâng cấp
-        private void ComeOwnLandView_OnSellButtonClick(object sender, RoutedEventArgs e)
-        {
-            //nếu player đồng ý nâng cấp thì gọi lệnh bên dưới
-            if ((playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].Upgrade() || playersList[PlayerTurn].isLoseMoney) && !playersList[PlayerTurn].isFreezeBank)
-            {
-                int fee = 1;
-                if (!playersList[PlayerTurn].isLoseMoney)
-                {
-                    if (playersList[PlayerTurn].isUpgradeFee)
-                    {
-                        playersList[PlayerTurn].isUpgradeFee = false;
-                        fee = 2;
-                    }
-                    playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Upgrade() / fee;
-                    playersList[PlayerTurn].UpdateLand(cellManager[playersList[PlayerTurn].position].index);
-                }
-                else playersList[PlayerTurn].isLoseMoney = false;
-
-                sideBar.update(playersList, PlayerTurn);
-
-                //tính lượt của các player
-                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                if (playersList[PlayerTurn].isRetention)
-                {
-                    Player player = playersList[PlayerTurn];
-                    RemovePowersEffect(ref player);
-                    playersList[PlayerTurn] = player;
-                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                }
-                But_xucxac.Visibility = Visibility.Visible;
-                dices.Content = null;
-                //animation faceout 
-
-                //Storyboard slide = Resources["OpenMenu"] as Storyboard;
-                //slide.Begin(notification);
-
-
-            }
-            else MessageBox.Show("không đủ tiền");
-
-
-            sideBar.update(playersList, PlayerTurn);
-        }
-
-        //bỏ qua
-        private void ComeEmptyLandView_OnSkipButtonClick(object sender, RoutedEventArgs e)
+        private void OnSkipButtonClick(object sender, RoutedEventArgs e)
         {
             //tính lượt của các player
             PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
@@ -957,68 +817,40 @@ namespace Monopoly.Components
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             }
 
-
             sideBar.update(playersList, PlayerTurn);
             But_xucxac.Visibility = Visibility.Visible;
             dices.Content = null;
-
-            //animation faceout 
-            //Storyboard slide = Resources["OpenMenu"] as Storyboard;
-            //slide.Begin(notification);
-
-
-
-
         }
 
-        //mua đất
-        private void ComeEmptyLandView_OnBuyButtonClick(object sender, RoutedEventArgs e)
+        //Bán đất
+        private void SellLand_OnButtonCardClick(object sender, RoutedEventArgs e)
         {
-            //nếu người chơi mua thì gọi lệnh bên dưới
-            if ((playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].value || playersList[PlayerTurn].isLoseMoney) && !playersList[PlayerTurn].isFreezeBank)
-            {
-                if (!playersList[PlayerTurn].isLoseMoney)
-                    playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].value;
-                else playersList[PlayerTurn].isLoseMoney = false;
-
-                lands[cellManager[playersList[PlayerTurn].position].index].owner = PlayerTurn;
-                playersList[PlayerTurn].AddLand(lands[cellManager[playersList[PlayerTurn].position].index], cellManager[playersList[PlayerTurn].position].index);
-                sideBar.update(playersList, PlayerTurn);
-
-                Noti.Show(notiCenterMapArea, new NotiBuyLand(lands[cellManager[playersList[PlayerTurn].position].index].name), 2, (s) =>
+            ContenButtonCard Card = (ContenButtonCard)sender;
+            playersList[PlayerTurn].money += Card.land.landValue / 2;
+            for (int i = 0; i < playersList[PlayerTurn].lands.Count; i++)
+                if (playersList[PlayerTurn].lands[i].name == Card.land.name)
                 {
-                    //tính lượt của các player
-                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                    if (playersList[PlayerTurn].isRetention)
-                    {
-                        Player player = playersList[PlayerTurn];
-                        RemovePowersEffect(ref player);
-                        playersList[PlayerTurn] = player;
-                        PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                    }
-                    But_xucxac.Visibility = Visibility.Visible;
-                    dices.Content = null;
-                    sideBar.update(playersList, PlayerTurn);
-                });
+                    lands[playersList[PlayerTurn].indexLands[i]].GetDefault();
+                    playersList[PlayerTurn].RemoveLand(playersList[PlayerTurn].indexLands[i]);
+                    break;
+                }
 
-                
-                
-                //animation faceout 
-
-                //Storyboard slide = Resources["OpenMenu"] as Storyboard;
-                //slide.Begin(notification);
-
-
-
-            }
-            else
+            But_xucxac.Visibility = Visibility.Visible;
+            dices.Content = null;
+            sideBar.update(playersList, PlayerTurn);
+            PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+            if (playersList[PlayerTurn].isRetention)
             {
-                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền", "Red"), 1.5, (s) =>{});
+                Player _player = playersList[PlayerTurn];
+                RemovePowersEffect(ref _player);
+                playersList[PlayerTurn] = _player;
+                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             }
-            
         }
 
+        #endregion
 
+        #region Popup
 
         private void _1_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -1526,7 +1358,7 @@ namespace Monopoly.Components
             popup_right.IsOpen = true;
             textright.PopupText.Text = lands[20].description;
         }
-
-
     }
 }
+
+#endregion
