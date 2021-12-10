@@ -68,8 +68,15 @@ namespace Monopoly.Components
 
         //create value ramdom
         public Random random = new Random();
+
+        //số chấm xúc sắc đổ được
         public int dice = 0;
+
+        //lưu lại giao diện usingCard để khi nhấn nút hủy sd lại
         usingCard _usingCard;
+
+        //kiểm tra là lệnh bán do nợ hay bán để kiếm tiền sd
+        bool checkSellLand;
 
         #endregion
 
@@ -210,6 +217,7 @@ namespace Monopoly.Components
 
             sellLand.OnButtonCancleClick += UsingCard_OnButtonCancleClick;
 
+            checkSellLand = true;
             dices.Content = sellLand;
         }
 
@@ -253,7 +261,6 @@ namespace Monopoly.Components
                     if (turn[PlayerTurn] / 2 + 1 < 10) turn[PlayerTurn]++;
                     sideBar.update(playersList, PlayerTurn);
                 }
-
             }
         }
 
@@ -317,29 +324,22 @@ namespace Monopoly.Components
             else playersList[PlayerTurn].isLoseMoney = false;
             playersList[lands[cellManager[playersList[PlayerTurn].position].index].owner].money += lands[cellManager[playersList[PlayerTurn].position].index].Tax();
             sideBar.update(playersList, PlayerTurn);
-        }    
+        }
 
         //xử lý trả tiền khi không đủ tiền trả khi vào đất người khác
         void NotEnoughMoneyToPay()
         {
             //bán đến khi đủ tiền trả nợ
-            while (playersList[PlayerTurn].money < lands[cellManager[playersList[PlayerTurn].position].index].Tax())
+            ListLandPlayers listLandPlayers = new ListLandPlayers(playersList[PlayerTurn].lands);
+            SellLand sellLand = new SellLand(listLandPlayers);
+
+            for (int i = 0; i < listLandPlayers.contenButtonCards.Count; i++)
             {
-                ListLandPlayers listLandPlayers = new ListLandPlayers(playersList[PlayerTurn].lands);
-                SellLand sellLand = new SellLand(listLandPlayers);
-
-                for (int i = 0; i < listLandPlayers.contenButtonCards.Count; i++)
-                {
-                    listLandPlayers.contenButtonCards[i].OnButtonCardClick += SellLand_OnButtonCardClick;
-                }
-
-                dices.Content = sellLand;
+                listLandPlayers.contenButtonCards[i].OnButtonCardClick += SellLand_OnButtonCardClick;
             }
 
-            //tự động trả
-            playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Tax();
-            playersList[lands[cellManager[playersList[PlayerTurn].position].index].owner].money += lands[cellManager[playersList[PlayerTurn].position].index].Tax();
-            sideBar.update(playersList, PlayerTurn);
+            checkSellLand = false;
+            dices.Content = sellLand;
         }
 
         //xử lý khi đi vào ô đất của người khác
@@ -667,7 +667,7 @@ namespace Monopoly.Components
             else if (CheckContentBack == 2) dices.Content = playerUsing;
         }
 
-        // xử lý các sự kiện nếu sử dụng các thẻ trong dách sách thẻ 
+        // xử lý các sự kiện nếu sử dụng các thẻ trong dach sách thẻ 
         private void ChessBoard_OnButtonCardClick(object sender, RoutedEventArgs e)
         {
             ContenButtonCardPower Card = (ContenButtonCardPower)sender;
@@ -685,20 +685,9 @@ namespace Monopoly.Components
                 }
 
                 playersList[PlayerTurn] = player;
-                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-
-                if (playersList[PlayerTurn].isRetention)
-                {
-                    Player _player = playersList[PlayerTurn];
-                    RemovePowersEffect(ref _player);
-                    playersList[PlayerTurn] = _player;
-                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                }
-
-                But_xucxac.Visibility = Visibility.Visible;
+                ChangeTurn();
                 dices.Content = null;
                 sideBar.update(playersList, PlayerTurn);
-
             }
             else
             {
@@ -762,16 +751,7 @@ namespace Monopoly.Components
 
                     playersList[PlayerTurn] = playerUse;
                     playersList[i] = affectedPlayers;
-                    PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                    if (playersList[PlayerTurn].isRetention)
-                    {
-                        Player player = playersList[PlayerTurn];
-                        RemovePowersEffect(ref player);
-                        playersList[PlayerTurn] = player;
-                        PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-                    }
-
-                    But_xucxac.Visibility = Visibility.Visible;
+                    ChangeTurn();
                     dices.Content = null;
 
                     sideBar.update(playersList, PlayerTurn);
@@ -844,17 +824,22 @@ namespace Monopoly.Components
                     break;
                 }
 
-            But_xucxac.Visibility = Visibility.Visible;
             dices.Content = null;
-            sideBar.update(playersList, PlayerTurn);
-            PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            if (playersList[PlayerTurn].isRetention)
+
+            if (checkSellLand) PlayerUsing_OnSellButtonClick(sender, e);
+            else
             {
-                Player _player = playersList[PlayerTurn];
-                RemovePowersEffect(ref _player);
-                playersList[PlayerTurn] = _player;
-                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
+                //tự động trả nếu đủ tiền
+                if (playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].Tax())
+                {
+                    playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Tax();
+                    playersList[lands[cellManager[playersList[PlayerTurn].position].index].owner].money += lands[cellManager[playersList[PlayerTurn].position].index].Tax();
+                    ChangeTurn();
+                }
+                else NotEnoughMoneyToPay();
             }
+
+            sideBar.update(playersList, PlayerTurn);
         }
 
         #endregion
