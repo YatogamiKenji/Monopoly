@@ -7,6 +7,25 @@
              xmlns:components="clr-namespace:Monopoly.Components"
              mc:Ignorable="d" 
              d:DesignHeight="320" d:DesignWidth="400">
+    <UserControl.Resources>
+        <Style x:Key="ButtonCenterMap" TargetType="Button">
+            <Setter Property="Width" Value="134"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid x:Name="ListCard" Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="45"/>
@@ -19,6 +38,18 @@
                    FontWeight="Medium"
                    Padding="30 5 0 0"
                    Grid.Row="0" Margin="0,0,0,5"/>
-
+        <Button Content="Hủy" Grid.Row="2" VerticalAlignment="Center"  HorizontalAlignment="Center" Click="Button_Click">
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource ButtonCenterMap}">
+                    <Setter Property="Background" Value="#656565"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#414141"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </UserControl>

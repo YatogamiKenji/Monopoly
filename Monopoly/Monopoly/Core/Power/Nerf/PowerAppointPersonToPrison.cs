@@ -29,7 +29,12 @@ namespace Monopoly
             {
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
-                affectedPlayers.position = 10;
+
+                if (!affectedPlayers.isOutPrison)
+                {
+                    affectedPlayers.position = 10;
+                    affectedPlayers.isInPrison = true;
+                }
                 return true;
             }
             return false;
