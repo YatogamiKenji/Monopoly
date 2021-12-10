@@ -72,10 +72,11 @@
 
                 
                
-                <Canvas x:Name="_10" Grid.Row="0" Grid.Column="0" >
-                    <TextBlock Text="Đi tù" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" IsHitTestVisible="False"></TextBlock>
+                <Canvas x:Name="_10" Grid.Row="0" Grid.Column="0">
+              
                     <Border Height="80" Width="80" BorderThickness="1" CornerRadius="5">
                         <compoenent:ContentChessCell 
+                            x:Name="o10"
                             IsHitTestVisible ="False" 
                             ImageCell="/Monopoly;component/Images/planet/galaxy.jpg"
                             />

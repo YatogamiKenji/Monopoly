@@ -9,9 +9,11 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Monopoly.Components
 {
@@ -20,6 +22,9 @@ namespace Monopoly.Components
     /// </summary>
     public partial class ContentChessCell : UserControl
     {
+
+
+        private Storyboard sShaking; // sự kiện rung ô đất để lựa chọn;
         public ImageSource ImageCell
         {
             get { return (ImageSource)GetValue(ImageCellProperty); }
@@ -30,9 +35,39 @@ namespace Monopoly.Components
         public static readonly DependencyProperty ImageCellProperty =
             DependencyProperty.Register("ImageCell", typeof(ImageSource), typeof(ContentChessCell));
 
+        public static readonly RoutedEvent ButtonChessCellClickEvent =
+   EventManager.RegisterRoutedEvent(nameof(OnButtonChessCellClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContentChessCell));
+
+        public event RoutedEventHandler OnButtonChessCellClick
+        {
+            add { AddHandler(ButtonChessCellClickEvent, value); }
+            remove { RemoveHandler(ButtonChessCellClickEvent, value); }
+        }
+
         public ContentChessCell()
         {
             InitializeComponent();
+            //Storyboard s = (Storyboard) myrect.FindResource("rung");
+            //s.Begin();  // Start animation
+
+
+        }
+
+        private void ButChessCell_Click(object sender, RoutedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(ButtonChessCellClickEvent));
+        }
+
+        public void StartShaking()
+        {
+          
+            sShaking = (Storyboard)ButChessCell.FindResource("rung");
+            sShaking.Begin();
+        }
+        public void StopShaking()
+        {
+        
+            sShaking.Stop();
         }
     }
 }

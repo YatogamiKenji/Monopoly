@@ -58,7 +58,37 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Button Style="{DynamicResource RoundCorner}">
+        
+        <Button x:Name="ButChessCell" Style="{DynamicResource RoundCorner}" Click="ButChessCell_Click">
+
+            <Button.RenderTransformOrigin>
+                <Point X="0.5" Y="0.5"></Point>
+            </Button.RenderTransformOrigin>
+            
+            <Button.RenderTransform>
+                <RotateTransform/>
+            </Button.RenderTransform>
+
+            <Button.Resources>
+                
+                <Storyboard RepeatBehavior="Forever" x:Key="rung">
+
+                    <DoubleAnimation Storyboard.TargetName="ButChessCell" 
+                                             Storyboard.TargetProperty="RenderTransform.Angle"
+                                             From="-10" To="10"
+                                             Duration="0:0:0.3" BeginTime="0:0:0"/>
+
+                    <DoubleAnimation Storyboard.TargetName="ButChessCell" 
+                                             Storyboard.TargetProperty="RenderTransform.Angle"
+                                             From="10" To="-10"
+                                             Duration="0:0:0.3" BeginTime="0:0:0.3"/>
+
+                </Storyboard>
+
+
+            </Button.Resources>
+                                             
         </Button>
+    
     </Grid>
 </UserControl>

@@ -108,10 +108,25 @@ namespace Monopoly.Components
 
 
             cellPos = new List<Canvas>(40)
-            { _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_11,_12,_13,_14,_15,_16,_17,_18,_19,_20,_21,_22,_23,_24,_25,_26,_27,_28,_29,_30,_31,_32,_33,_34,_35,_36,_37,_38,_39 };
+            { _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14,_15,_16,_17,_18,_19,_20,_21,_22,_23,_24,_25,_26,_27,_28,_29,_30,_31,_32,_33,_34,_35,_36,_37,_38,_39 };
+
+
+            //test hieu ung rung lac o
+            o10.StartShaking();
+            o10.IsHitTestVisible = true;
+            o10.OnButtonChessCellClick += O10_OnButtonChessCellClick;
+           
+            
 
             turn = new List<int>();
             for (int i = 0; i < players.Count; i++) turn.Add(0);
+        }
+
+        private void O10_OnButtonChessCellClick(object sender, RoutedEventArgs e)
+        {
+            ContentChessCell cell10 = sender as ContentChessCell;
+            cell10.IsHitTestVisible = false;
+            cell10.StopShaking();
         }
 
         //khởi tạo player
