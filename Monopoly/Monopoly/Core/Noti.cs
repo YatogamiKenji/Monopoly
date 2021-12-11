@@ -37,19 +37,12 @@ namespace Monopoly
 
             notiBox.BeginAnimation(OpacityProperty, fadeInAnim);
 
-            SetTimeout(() => 
-            {
-                SetTimeout(() =>
-                {
-                    area.Content = null;
-                    actionAfter("timeout");
-                }, 0.2);
-                notiBox.BeginAnimation(OpacityProperty, fadeOutAnim);
-            }, existTime);
+            DispatcherTimer timer = new DispatcherTimer();
 
             System.Windows.Input.MouseButtonEventHandler handler = null;
             handler = (sender, e) =>
             {
+                timer.Stop();
                 SetTimeout(() =>
                 {
                     area.Content = null;
@@ -59,9 +52,20 @@ namespace Monopoly
                 area.MouseLeftButtonDown -= handler;
             };
             area.MouseLeftButtonDown += handler;
+
+            timer = SetTimeout(() =>
+            {
+                area.MouseLeftButtonDown -= handler;
+                SetTimeout(() =>
+                {
+                    area.Content = null;
+                    actionAfter("timeout");
+                }, 0.2);
+                notiBox.BeginAnimation(OpacityProperty, fadeOutAnim);
+            }, existTime);
         }
 
-        static public void SetTimeout(Action action, double timeout)
+        static public DispatcherTimer SetTimeout(Action action, double timeout)
         {
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(timeout);
@@ -71,6 +75,7 @@ namespace Monopoly
                 timer.Stop();
             };
             timer.Start();
+            return timer;
         }
     }
 }

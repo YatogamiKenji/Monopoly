@@ -20,64 +20,44 @@ using System.IO;
 
 namespace Monopoly.Components
 {
+    enum CenterMapView { Dice, ComeEmptyLand, ComeOwnLand, ComeLuck, ComePower, ComeChance, UseCard, UseCardToAnother, PlayerUsing, Prev}
+
     public partial class ChessBoard : UserControl
     {
         #region Danh sách biến
 
-        //lượt của player nào
-        public int PlayerTurn = 0;
+        public int PlayerTurn = 0; //lượt của player nào
 
-        //số vòng hiện tại
-        public List<int> turn;
+        public List<int> turn; //số vòng hiện tại
 
         //danh sách chứa các player
         public List<PlayerShow> players; // này chỉnh từ list canva thành PlayerShow, list này được lấy dữ liệu bên list PlayerShow của Setup
 
-        //chứa các ô trên bàn cờ ở trên thiết kế (XAML)
-        List<Border> cellPos;
+        List<Border> cellPos; //chứa các ô trên bàn cờ ở trên thiết kế (XAML)
 
-        //lưu dữ liệu của các player
-        List<Player> playersList = new List<Player>();
+        List<Player> playersList = new List<Player>(); //lưu dữ liệu của các player
 
-        //lưu dữ liệu của các ô trên bàn cờ
-        Cell[] cellManager = new Cell[40];
+        Cell[] cellManager = new Cell[40]; //lưu dữ liệu của các ô trên bàn cờ
 
-        //lưu dữ liệu đất
-        List<Land> lands = new List<Land>();
+        List<Land> lands = new List<Land>(); //lưu dữ liệu đất
+        
+        List<Chance> chances = new List<Chance>(); //lưu dữ liệu các thẻ cơ hội
 
-        //lưu dữ liệu các thẻ cơ hội
-        List<Chance> chances = new List<Chance>();
+        List<CommunityChest> communityChests = new List<CommunityChest>(); //lưu dữ liệu các thẻ khí vận
 
-        //lưu dữ liệu các thẻ khí vận
-        List<CommunityChest> communityChests = new List<CommunityChest>();
+        ListCardPlayers listCardPlayers = new ListCardPlayers(); //giao diện danh sách các thẻ của mỗi người chơi
 
-        //giao diện danh sách các thẻ của mỗi người chơi
-        ListCardPlayers listCardPlayers = new ListCardPlayers();
+        int NumberOfPlayers = 0; // Số lượng người chơi
 
-        // Số lượng người chơi
-        int NumberOfPlayers = 0;
+        PlayerUsing playerUsing = new PlayerUsing(); //biến này lưu compoenent khi đi vào các ô đặc biệt
 
-        //Biến lưu dices.Content trước đó đó là  ComeOwnLandView hay là ComePowerLandView để chuyển đổi trở lại khi hủy sử dụng thẻ
-        Object ContentDicesBack;
+        usingCard _usingCard; //lưu lại giao diện usingCard để khi nhấn nút hủy sd lại
 
-        //Biến kiểm tra dices.Content trước đó đó là gì để chuyển đổi trở lại khi hủy sử dụng thẻ
-        int CheckContentBack = 0;
+        bool checkSellLand; //kiểm tra là lệnh bán do nợ hay bán để kiếm tiền sd
 
-        //biến này lưu compoenent khi đi vào các ô đặc biệt
-        PlayerUsing playerUsing = new PlayerUsing();
+        Stack<CenterMapView> stackView = new Stack<CenterMapView>();
 
-        //create value ramdom
-        public Random random = new Random();
-
-        //số chấm xúc sắc đổ được
-        public int dice = 0;
-
-        //lưu lại giao diện usingCard để khi nhấn nút hủy sd lại
-        usingCard _usingCard;
-
-        //kiểm tra là lệnh bán do nợ hay bán để kiếm tiền sd
-        bool checkSellLand;
-
+        int dice;
         #endregion
 
         #region Init UI
@@ -120,6 +100,8 @@ namespace Monopoly.Components
 
             turn = new List<int>();
             for (int i = 0; i < players.Count; i++) turn.Add(0);
+
+            SwitchView(CenterMapView.Dice);
         }
 
         //private void O10_OnButtonChessCellClick(object sender, RoutedEventArgs e)
@@ -233,27 +215,103 @@ namespace Monopoly.Components
             sellLand.OnButtonCancleClick += UsingCard_OnButtonCancleClick;
 
             checkSellLand = true;
-            dices.Content = sellLand;
+            centerMapView.Content = sellLand;
         }
 
         //bỏ qua button
         private void PlayerUsing_OnSkipButtonClick(object sender, RoutedEventArgs e)
         {
-            dices.Content = null;
-            sideBar.update(playersList, PlayerTurn);
-            But_xucxac.Visibility = Visibility.Visible;
-            PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            if (playersList[PlayerTurn].isRetention)
-            {
-                Player _player = playersList[PlayerTurn];
-                RemovePowersEffect(ref _player);
-                playersList[PlayerTurn] = _player;
-                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            }
-            sideBar.update(playersList, PlayerTurn);
+            ChangeTurn();
         }
 
         #endregion
+
+        void SwitchView(CenterMapView view)
+        {
+            // Chuyển lại view trước đó
+            if (view == CenterMapView.Prev)
+            {
+                if (stackView.Count != 0)
+                    stackView.Pop(); // pop view hiện tại
+                if (stackView.Count != 0)
+                    SwitchView(stackView.Pop()); // Chuyển sang view trước
+                return;
+            }
+            // Dice view: xoá toàn bộ stack và chuyển view
+            if (view == CenterMapView.Dice)
+            {
+                stackView.Clear();
+                DiceView diceView = new DiceView();
+                diceView.OnSpinnedDice += HandleSpinnedDice;
+                centerMapView.Content = diceView;
+                return;
+            }
+
+            stackView.Push(view);
+            switch (view)
+            {
+                case CenterMapView.ComeEmptyLand:
+                    ComeEmptyLandView comeEmptyLandView = new ComeEmptyLandView(getCurrentLand());
+                    comeEmptyLandView.OnBuyButtonClick += ComeEmptyLandView_OnBuyButtonClick;
+                    comeEmptyLandView.OnSkipButtonClick += OnSkipButtonClick;
+                    comeEmptyLandView.OnUseCardButtonClick += OnUseCardButtonClick;
+                    centerMapView.Content = comeEmptyLandView;
+                    break;
+
+                case CenterMapView.ComeOwnLand:
+                    ComeOwnLandView comeOwnLandView = new ComeOwnLandView(getCurrentLand());
+                    comeOwnLandView.SetInfor(1);
+                    comeOwnLandView.OnSellButtonClick += ComeOwnLandView_OnSellButtonClick;
+                    comeOwnLandView.OnBuyButtonClick += ComeOwnLandView_OnBuyButtonClick;
+                    comeOwnLandView.OnSkipButtonClick += OnSkipButtonClick;
+                    comeOwnLandView.OnUseCardButtonClick += OnUseCardButtonClick;
+                    centerMapView.Content = comeOwnLandView;
+                    break;
+
+                case CenterMapView.ComePower:
+                    GotoPower();
+                    break;
+
+                case CenterMapView.ComeLuck:
+                    GotoCommunityChest();
+                    break;
+
+                case CenterMapView.ComeChance:
+                    GotoChance();
+                    break;
+
+                case CenterMapView.PlayerUsing:
+                    centerMapView.Content = playerUsing;
+                    break;
+
+                case CenterMapView.UseCard:
+                    InitUsingCard();
+                    break;
+
+                default:
+                    MessageBox.Show("Không xác định được view");
+                    break;
+            }
+        }
+
+        
+
+        Land getCurrentLand() { return lands[cellManager[playersList[PlayerTurn].position].index]; }
+
+
+        void InitUsingCard()
+        {
+            ListCardPlayers listCardPlayers = new ListCardPlayers(playersList[PlayerTurn].powers);
+            usingCard UsingCard = new usingCard(listCardPlayers);
+
+            for (int i = 0; i < listCardPlayers.contenButtonCards.Count; i++)
+            {
+                listCardPlayers.contenButtonCards[i].OnButtonCardClick += ChessBoard_OnButtonCardClick;
+            }
+            UsingCard.OnButtonCancleClick += UsingCard_OnButtonCancleClick;
+            _usingCard = UsingCard;
+            centerMapView.Content = UsingCard;
+        }
 
         #region Sự kiện xử lý khi quay xúc sắc
 
@@ -302,32 +360,6 @@ namespace Monopoly.Components
 
         #region Những xử lý khi đi vào ô đất
 
-        //khởi tạo compoenent ComeEmptyLandView
-        void InitComeEmptyLandView()
-        {
-            ComeEmptyLandView comeEmptyLandView = new ComeEmptyLandView(lands[cellManager[playersList[PlayerTurn].position].index]);
-            comeEmptyLandView.OnBuyButtonClick += ComeEmptyLandView_OnBuyButtonClick;
-            comeEmptyLandView.OnSkipButtonClick += OnSkipButtonClick;
-            comeEmptyLandView.OnUseCardButtonClick += OnUseCardButtonClick;
-            dices.Content = comeEmptyLandView;
-            ContentDicesBack = comeEmptyLandView;
-            CheckContentBack = 0;
-        }
-
-        //khởi tạo compoenent ComeOwnLandView
-        void InitComeOwnLandView()
-        {
-            ComeOwnLandView comeOwnLandView = new ComeOwnLandView(lands[cellManager[playersList[PlayerTurn].position].index]);
-            comeOwnLandView.SetInfor(1);
-            comeOwnLandView.OnSellButtonClick += ComeOwnLandView_OnSellButtonClick;
-            comeOwnLandView.OnBuyButtonClick += ComeOwnLandView_OnBuyButtonClick;
-            comeOwnLandView.OnSkipButtonClick += OnSkipButtonClick;
-            comeOwnLandView.OnUseCardButtonClick += OnUseCardButtonClick;
-            dices.Content = comeOwnLandView;
-            ContentDicesBack = comeOwnLandView;
-            CheckContentBack = 1;
-        }
-
         #region Trả thuế khi vào đất người khác
 
         //xử lý trả tiền khi đủ tiền trả khi vào đất người khác
@@ -354,7 +386,7 @@ namespace Monopoly.Components
             }
 
             checkSellLand = false;
-            dices.Content = sellLand;
+            centerMapView.Content = sellLand;
         }
 
         //xử lý khi đi vào ô đất của người khác
@@ -376,7 +408,6 @@ namespace Monopoly.Components
         //đổi lượt
         void ChangeTurn()
         {
-            But_xucxac.Visibility = Visibility.Visible;
             PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             if (playersList[PlayerTurn].isRetention)
             {
@@ -386,6 +417,11 @@ namespace Monopoly.Components
                 PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             }
             sideBar.update(playersList, PlayerTurn);
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Đến lượt " + playersList[PlayerTurn].name, "Blue"), 3, (s) =>
+            {
+                // bắt đầu thời gian đếm ngược
+            });
+            SwitchView(CenterMapView.Dice);
         }
 
         //đưa nhân vật vào tù
@@ -395,7 +431,6 @@ namespace Monopoly.Components
             playersList[PlayerTurn].isInPrison = true;
             Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[10]));
             Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[10]));
-            But_xucxac.Visibility = Visibility.Visible;
             PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
             if (playersList[PlayerTurn].isRetention)
             {
@@ -406,28 +441,6 @@ namespace Monopoly.Components
             }
 
             sideBar.update(playersList, PlayerTurn);
-        }
-
-        //hiện bảng playerusing
-        void ShowPlayerUsing()
-        {
-            dices.Content = playerUsing;
-            sideBar.update(playersList, PlayerTurn);
-            CheckContentBack = 2;
-        }
-
-        //sự kiện xoay súc sắc
-        void ShowDice()
-        {
-            dice = random.Next(1, 7);
-            dice = 17;
-            notification.content.Text = dice.ToString();
-            But_xucxac.Visibility = Visibility.Visible;
-            //animation faceout 
-            Storyboard slide = Resources["OpenMenu"] as Storyboard;
-            slide.Begin(notification);
-
-            But_xucxac.Visibility = Visibility.Collapsed;
         }
 
         //xử lý các hiệu ứng và thay đổi di chuyển
@@ -455,31 +468,29 @@ namespace Monopoly.Components
         void GoToLand()
         {
             //nếu đất trống thì hiện bản mua để người chơi lựa chọn
-            if (lands[cellManager[playersList[PlayerTurn].position].index].owner == -1) InitComeEmptyLandView();
+            if (getCurrentLand().owner == -1) SwitchView(CenterMapView.ComeEmptyLand);
 
             //nếu là đất của mình thì sẽ hiện bảng nâng cấp
-            else if (lands[cellManager[playersList[PlayerTurn].position].index].owner == PlayerTurn) InitComeOwnLandView();
+            else if (getCurrentLand().owner == PlayerTurn) SwitchView(CenterMapView.ComeOwnLand);
 
             //nếu là đất của người khác thì tự động trả thuế và thông báo lên (nếu có)
-            else if (lands[cellManager[playersList[PlayerTurn].position].index].owner != PlayerTurn) PayLandRent();
+            else if (getCurrentLand().owner != PlayerTurn) PayLandRent();
         }
 
         //đi đến ô cơ hội
         void GotoChance()
         {
             // Tiến hành random thẻ cơ hội
-            //ComeLuckLand comeLuckLand = new ComeLuckLand();
-            //dices.Content = comeLuckLand;
-            ShowPlayerUsing();
+
+            SwitchView(CenterMapView.PlayerUsing);
         }
 
         //đi đến ô khí vận
         void GotoCommunityChest()
         {
             // Tiến hành random thẻ khí vận
-            //ComeChanceCard comeChanceCard = new ComeChanceCard();
-            //dices.Content = comeChanceCard;
-            ShowPlayerUsing();
+            SwitchView(CenterMapView.PlayerUsing);
+
         }
 
         //đi đến ô quyền năng
@@ -489,7 +500,7 @@ namespace Monopoly.Components
             Power power = RandomPower();
             PowerCard powerCard = new PowerCard(power);
             ComeSpecialLand comeSpecialLand = new ComeSpecialLand(powerCard);       
-            dices.Content = comeSpecialLand;
+            centerMapView.Content = comeSpecialLand;
             playersList[PlayerTurn].AddPower(power);
             comeSpecialLand.OnOKButtonClick += ComeSpecialLand_OnOKButtonClick;
         }
@@ -500,20 +511,20 @@ namespace Monopoly.Components
             //đưa player đến ô vào tù
             if (!playersList[PlayerTurn].isOutPrison) PlayerToPrison();
 
-            ShowPlayerUsing();
+            SwitchView(CenterMapView.PlayerUsing);
         }
 
         //đi đến ô vào tù
         void GotoPrison()
         {
-            ShowPlayerUsing();
+            SwitchView(CenterMapView.PlayerUsing);
         }
 
         //đi đến ô bắt đầu
         void GotoStart()
         {
-            ShowPlayerUsing();
-        }    
+            SwitchView(CenterMapView.PlayerUsing);
+        }
 
         //đi đến ô thuế
         void GotoTax()
@@ -522,27 +533,27 @@ namespace Monopoly.Components
             if (!playersList[PlayerTurn].isLoseMoney)
                 playersList[PlayerTurn].money = Convert.ToInt32(Math.Ceiling(0.9 * playersList[PlayerTurn].money));
             else playersList[PlayerTurn].isLoseMoney = false;
-            ShowPlayerUsing();
+            SwitchView(CenterMapView.PlayerUsing);
         }
 
         //đi đến ô bãi đỗ xe
         void GotoParking()
         {
-            ShowPlayerUsing();
+            SwitchView(CenterMapView.PlayerUsing);
         }
 
         #endregion
 
-        //xử lý sự kiện khi xúc sắt quay
-        public void But_xucxac_Click(object sender, RoutedEventArgs e)
+        //xử lý sự kiện khi xúc xắc quay
+        private void HandleSpinnedDice(object sender, SpinnedDiceEventAgrs e)
         {
-            ShowDice();
-
+            dice = e.valueOfDice;
+            int valueOfDice = e.valueOfDice;
             // nếu người chơi đang ở trong tù thì phải đổ được 1 hoặc 6 mới được phép di chuyển ra ngoài
-            if ((playersList[PlayerTurn].isInPrison && (dice == 1 || dice == 6)) || !playersList[PlayerTurn].isInPrison)
+            if ((playersList[PlayerTurn].isInPrison && (valueOfDice == 1 || valueOfDice == 6)) || !playersList[PlayerTurn].isInPrison)
             {
                 ActivationEffect();
-                
+
                 if (cellManager[playersList[PlayerTurn].position].type == CellType.Dat) GoToLand();
                 else if (cellManager[playersList[PlayerTurn].position].type == CellType.CoHoi) GotoChance();
                 else if (cellManager[playersList[PlayerTurn].position].type == CellType.KhiVan) GotoCommunityChest();
@@ -579,14 +590,12 @@ namespace Monopoly.Components
                 Noti.Show(notiCenterMapArea, new NotiBuyLand(lands[cellManager[playersList[PlayerTurn].position].index].name), 2, (s) =>
                 {
                     ChangeTurn();
-                    dices.Content = null;
                 });
             }
             else
             {
                 Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền", "Red"), 1.5, (s) => { });
             }
-            sideBar.update(playersList, PlayerTurn);
         }
 
         #endregion
@@ -605,7 +614,6 @@ namespace Monopoly.Components
             sideBar.update(playersList, PlayerTurn);
 
             ChangeTurn();
-            dices.Content = null;
         }
 
         //nâng cấp
@@ -632,7 +640,6 @@ namespace Monopoly.Components
                 Noti.Show(notiCenterMapArea, new NotiBuyLand(lands[cellManager[playersList[PlayerTurn].position].index].name), 2, (s) =>
                 {
                     ChangeTurn();
-                    dices.Content = null;
                 });
             }
             else
@@ -650,7 +657,7 @@ namespace Monopoly.Components
         //nhấn ok khi nhận được thẻ
         private void ComeSpecialLand_OnOKButtonClick(object sender, RoutedEventArgs e)
         {
-            ShowPlayerUsing();
+            SwitchView(CenterMapView.PlayerUsing);
         }
 
         #endregion
@@ -660,24 +667,13 @@ namespace Monopoly.Components
         //sử dụng thẻ
         private void OnUseCardButtonClick(object sender, RoutedEventArgs e)
         {
-            ListCardPlayers listCardPlayers = new ListCardPlayers(playersList[PlayerTurn].powers);
-            usingCard UsingCard = new usingCard(listCardPlayers);
-
-            for (int i = 0; i < listCardPlayers.contenButtonCards.Count; i++)
-            {
-                listCardPlayers.contenButtonCards[i].OnButtonCardClick += ChessBoard_OnButtonCardClick;
-            }
-            UsingCard.OnButtonCancleClick += UsingCard_OnButtonCancleClick;
-            _usingCard = UsingCard;
-            dices.Content = UsingCard;
+            SwitchView(CenterMapView.UseCard);
         }
 
         // nếu đổi ý không sử dụng thẻ nữa
         private void UsingCard_OnButtonCancleClick(object sender, RoutedEventArgs e)
         {
-            if (CheckContentBack == 0) dices.Content = (ComeEmptyLandView)ContentDicesBack;
-            else if (CheckContentBack == 1) dices.Content = (ComeOwnLandView)ContentDicesBack;
-            else if (CheckContentBack == 2) dices.Content = playerUsing;
+            SwitchView(CenterMapView.Prev);
         }
 
         // xử lý các sự kiện nếu sử dụng các thẻ trong dach sách thẻ 
@@ -699,7 +695,7 @@ namespace Monopoly.Components
 
                 playersList[PlayerTurn] = player;
                 ChangeTurn();
-                dices.Content = null;
+                centerMapView.Content = null;
                 sideBar.update(playersList, PlayerTurn);
             }
             else
@@ -715,20 +711,20 @@ namespace Monopoly.Components
                     ButtonPlayer.NameCardImpact = Card.IDCard;
                     ButtonPlayer.OnButtonPlayerClick += ButtonPlayer_OnButtonPlayerClick;
                 }
-                dices.Content = useCardToAnother;
+                centerMapView.Content = useCardToAnother;
             }
         }
 
         //Thoát nếu không muốn sử dụng thẻ lên người khác nữa
         private void UseCardToAnother_OnButtonCancleClick(object sender, RoutedEventArgs e)
         {
-            dices.Content = _usingCard;
+            centerMapView.Content = _usingCard;
         }
 
         //xử lý sự kiện sau khi chọn được người hứng chịu hiệu ứng của thẻ quyền năng
         private void ButtonPlayer_OnButtonPlayerClick(object sender, RoutedEventArgs e)
         {
-            //throw new NotImplementedException();
+            
             ContentPlayer PickedPlayer = sender as ContentPlayer;
 
             for (int i = 0; i < playersList.Count; i++) // trong danh sách các người chơi 
@@ -765,7 +761,6 @@ namespace Monopoly.Components
                     playersList[PlayerTurn] = playerUse;
                     playersList[i] = affectedPlayers;
                     ChangeTurn();
-                    dices.Content = null;
 
                     sideBar.update(playersList, PlayerTurn);
                 }
@@ -821,7 +816,6 @@ namespace Monopoly.Components
         private void OnSkipButtonClick(object sender, RoutedEventArgs e)
         {
             ChangeTurn();
-            dices.Content = null;
         }
 
         //Bán đất
@@ -837,7 +831,7 @@ namespace Monopoly.Components
                     break;
                 }
 
-            dices.Content = null;
+            centerMapView.Content = null;
 
             if (checkSellLand) PlayerUsing_OnSellButtonClick(sender, e);
             else

@@ -630,22 +630,12 @@
                             />
                     </Border>
 
-                <Canvas x:Name="OGiuaBanCo" Background="Transparent" Grid.RowSpan="9" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="9" Width="540">
-                    <!--<Canvas.Background>
-                        <ImageBrush ImageSource="/Monopoly;component/Images/planet/galaxy.jpg" Stretch="UniformToFill"></ImageBrush>
-                    </Canvas.Background>-->
-                    <Button x:Name="But_xucxac"
-                        Width="100"
-                        Height="100"
-                        Content="Quay"
-                        FontSize ="30" Canvas.Left="220" Canvas.Top="420"
-                        Background="Orange" Click="But_xucxac_Click">
-                    </Button>
-                    <ContentControl x:Name="dices"
-                                    Canvas.Top="10"
-                                    Height="405"
-                                    Width="540"/>
-                </Canvas>
+                <!-- Vùng hiển thị các view -->
+                <Grid Grid.RowSpan="9" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="9" Width="540">
+                    <ContentControl x:Name="centerMapView"
+                                    Width="500"
+                                    Height="500"/>
+                </Grid>
                 <!--add the popupTop user control-->
 
                 <Popup x:Name="popup_top"
@@ -688,7 +678,8 @@
                     </Grid>
                 </Popup>
 
-
+                
+                <!-- Vùng hiển thị thông báo -->
                 <ContentControl Grid.Row="1" 
                                 Grid.Column="1"
                                 Grid.RowSpan="9"
@@ -696,7 +687,6 @@
                                 x:Name="notiCenterMapArea"/>
 
             </Grid>
-            <compoenent:messboxDice x:Name="notification" Panel.ZIndex="2"  Width="200" Height="200" Margin="275,-176,275,36" Grid.Column="3" Canvas.Left="-28" Canvas.Top="-66"/>
 
         </Canvas>
 
