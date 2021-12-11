@@ -13,6 +13,15 @@ namespace Monopoly
 {
     public class Noti : Control
     {
+
+        /// <summary>
+        /// Hiển thị thông báo
+        /// Tham số:
+        /// + ContentControl area: Nơi hiển thị thông báo
+        /// + UIElement notiBox: Component thông báo sẽ hiển thị
+        /// + double existTime: thời gian tồn tại của thông báo
+        /// + Action<string> actionAfter: Một hàm được gọi khi thông báo biến mất. Đối số của hàm là một chuỗi, giá trị là timeout nếu thông báo biến mất do hết thời gian, giá trị là click nếu thông báo biến mất do Click vào area
+        /// </summary>
         static public void Show(ContentControl area, UIElement notiBox, double existTime, Action<string> actionAfter)
         {
             DoubleAnimation fadeInAnim = new DoubleAnimation(1, new Duration(TimeSpan.FromSeconds(0.25)));

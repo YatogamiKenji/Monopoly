@@ -1527,6 +1527,9 @@ namespace Monopoly.Components
             textright.PopupText.Text = lands[20].description;
         }
 
-
+        private void DiceView_OnSpinnedDice(object sender, SpinnedDiceEventAgrs agrs)
+        {
+            MessageBox.Show(agrs.valueOfDice + "");
+        }
     }
 }

@@ -350,7 +350,7 @@
                         </Border.Background>
                     </Border>
                 </Canvas>
-                <Canvas x:Name="OGiuaBanCo" Background="Transparent" Grid.RowSpan="9" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="9" Width="540">
+                <Grid x:Name="OGiuaBanCo" Background="Transparent" Grid.RowSpan="9" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="9" Width="540">
                     <!--<Canvas.Background>
                         <ImageBrush ImageSource="/Monopoly;component/Images/planet/galaxy.jpg" Stretch="UniformToFill"></ImageBrush>
                     </Canvas.Background>-->
@@ -365,7 +365,8 @@
                                     Canvas.Top="10"
                                     Height="362"
                                     Width="439" Canvas.Left="52"/>
-                </Canvas>
+                    <compoenent:DiceView OnSpinnedDice="DiceView_OnSpinnedDice"/>
+                </Grid>
                 <!--add the popupTop user control-->
 
                 <Popup x:Name="popup_top"

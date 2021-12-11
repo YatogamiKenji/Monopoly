@@ -55,6 +55,8 @@
     <None Remove="Images\cell\cell.png" />
     <None Remove="Images\cell\cell_highlight.png" />
     <None Remove="Images\coin\coin1.png" />
+    <None Remove="Images\dice\needle.png" />
+    <None Remove="Images\dice\wheel.png" />
     <None Remove="Images\falling-star-icon.png" />
     <None Remove="Images\icon\alien-ship-icon.png" />
     <None Remove="Images\icon\black-hole-icon.png" />
@@ -191,6 +193,12 @@
     <Resource Include="Images\cell\cell.png" />
     <Resource Include="Images\cell\cell_highlight.png" />
     <Resource Include="Images\coin\coin1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\dice\needle.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\dice\wheel.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\icon\alien-ship-icon.png" />

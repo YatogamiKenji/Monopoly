@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Monopoly.Components.DiceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Monopoly.Components"
+             xmlns:layout="clr-namespace:Monopoly.Layouts"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <layout:PanelCenterMap x:Name="thisPanel" Title="QUAY XÚC XẮC" CountdownStr="00 : 00">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!-- Hien thi xuc xac -->
+            <StackPanel Margin="0 20 0 0">
+                <Grid Height="47">
+                    <Image Source="/Monopoly;component/Images/dice/needle.png"/>
+                </Grid>
+                <Grid Width="235" Height="235">
+                    <Image Source="/Monopoly;component/Images/dice/wheel.png"
+                           x:Name="wheel"/>
+                </Grid>
+            </StackPanel>
+
+            <Button Grid.Row="1" 
+                    Style="{StaticResource BtnStyle1Yellow}"
+                    Click="btnSpin_Click"
+                    x:Name="btnSpin">
+                <Button.Content>
+                    <TextBlock Style="{StaticResource BtnStyle1Text}"
+                               Text="QUAY" />
+                </Button.Content>
+            </Button>
+        </Grid>
+    </layout:PanelCenterMap>
+</UserControl>
