@@ -18,7 +18,9 @@
                          Canvas.Top="31" 
                          FontWeight="Bold"
                          Background="LightGray" 
-                         IsHitTestVisible="False"></TextBox>
+                         IsHitTestVisible="False"
+                         HorizontalAlignment="Center"></TextBox>
+                       
             </Canvas>
         </Button>
     </Grid>

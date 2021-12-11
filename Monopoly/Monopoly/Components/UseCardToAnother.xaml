@@ -32,7 +32,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <TextBlock Height="26" Text="Thời gian còn lại 60s" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" ></TextBlock>
-            <TextBlock Height="40" Text="Bạn muốn sử dụng thẻ 'X' lên ai?" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Height="40" Text="Bạn muốn sử dụng thẻ này lên ai?" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center"></TextBlock>
         </StackPanel>
         <Button Content="Hủy" Grid.Row="1" VerticalAlignment="Top"  HorizontalAlignment="Center" Click="Button_Click" Margin="0,213,0,0">
             <Button.Style>
