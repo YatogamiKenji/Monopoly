@@ -25,6 +25,7 @@ namespace Monopoly.Components
         public centerChessBoard()
         {
             InitializeComponent();
+            
         }
         public Random random = new Random();
         public int dice = 0;

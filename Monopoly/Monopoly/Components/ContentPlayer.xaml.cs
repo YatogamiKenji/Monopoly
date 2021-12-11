@@ -47,6 +47,15 @@ namespace Monopoly.Components
             remove { RemoveHandler(ButtonPlayerClickEvent, value); }
         }
 
+        public ImageSource ImagePlayer
+        {
+            get { return (ImageSource)GetValue(ImagePlayerProperty); }
+            set { SetValue(ImagePlayerProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ImagePlayerProperty =
+            DependencyProperty.Register("ImagePlayer", typeof(ImageSource), typeof(ContentPlayer));
 
         public ContentPlayer()
         {

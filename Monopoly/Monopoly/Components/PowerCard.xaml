@@ -8,15 +8,15 @@
              mc:Ignorable="d" 
              d:DesignHeight="131" d:DesignWidth="101">
 
-    <Grid Width="101" Height="131">
+    <Grid Width="auto" Height="auto">
         <Image Source="/Monopoly;component/Images/card/power_card_violet.png"
                Stretch="Fill"/>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="55"/>
-                <RowDefinition Height="14"/>
-                <RowDefinition Height="28" />
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="55*"/>
+                <RowDefinition Height="14*"/>
+                <RowDefinition Height="28*" />
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0"

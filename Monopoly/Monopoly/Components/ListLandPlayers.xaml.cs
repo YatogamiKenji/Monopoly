@@ -21,7 +21,7 @@ namespace Monopoly.Components
     public partial class ListLandPlayers : UserControl
     {
         List<Land> Lands;
-        public List<ContenButtonCard> contenButtonCards;
+        public List<ContenButtonCardLand> contenButtonCards;
 
         public ListLandPlayers()
         {
@@ -32,7 +32,7 @@ namespace Monopoly.Components
         {
             InitializeComponent();
             Lands = lands;
-            contenButtonCards = new List<ContenButtonCard>();
+            contenButtonCards = new List<ContenButtonCardLand>();
             createPowersCards();
         }
 
@@ -49,7 +49,7 @@ namespace Monopoly.Components
                 }
                 for (int i = 0; i < Lands.Count; i++)
                 {
-                    ContenButtonCard butCard = new ContenButtonCard(new LandCard(Lands[i]), Lands[i]);
+                    ContenButtonCardLand butCard = new ContenButtonCardLand(new LandCard(Lands[i]), Lands[i]);
                     butCard.Margin = new Thickness(2, 2, 2, 2);
                     butCard.Width = 110;
                     butCard.Height = 145;

@@ -58,9 +58,7 @@ namespace Monopoly.Components
         // Khởi tạo có 2 người chơi
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            //Cont_Players = new List<ContentPlayer>();
-            //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 1" });
-            //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 2" });
+            
 
             ShowPlayers = new List<PlayerShow>();
             ShowPlayers.Add(ShowPlayer1);
@@ -70,10 +68,7 @@ namespace Monopoly.Components
         // Khởi tạo có 3 người chơi
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            //Cont_Players = new List<ContentPlayer>();
-            //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 1" });
-            //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 2" });
-            //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 3" });
+         
 
             ShowPlayers = new List<PlayerShow>();
             ShowPlayers.Add(ShowPlayer1);
@@ -83,11 +78,6 @@ namespace Monopoly.Components
         // Khởi tạo có 4 người chơi
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            //Cont_Players = new List<ContentPlayer>();
-            //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 1" });
-            //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 2" });
-            //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 3" });
-            //Cont_Players.Add(new ContentPlayer { NamePlayer = "Player 4" });
 
             ShowPlayers = new List<PlayerShow>();
             ShowPlayers.Add(ShowPlayer1);

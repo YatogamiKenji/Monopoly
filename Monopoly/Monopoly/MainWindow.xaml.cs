@@ -28,8 +28,7 @@ namespace Monopoly
         public MainWindow()
         {
             InitializeComponent();
-           // Power x = new PowerCancelPowerCard ();
-            //MessageBox.Show(x.GetType().FullName);
+         
             
         }
     }

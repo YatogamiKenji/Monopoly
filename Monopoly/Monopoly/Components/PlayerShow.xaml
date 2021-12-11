@@ -11,11 +11,13 @@
         
         <Canvas x:Name="NenCanVas" Width="20" Height="20" Background="{Binding BackgroundPlayer, ElementName=root}">
         <Image Height="25" Width="25" Source="{Binding BackgroundPlayer, ElementName=root}" Stretch="UniformToFill"></Image>
-            <!--<TextBlock Text="{Binding Title, ElementName=root}" 
+
+            <TextBlock Text="{Binding Title, ElementName=root}" 
                        Canvas.Left="6" 
                        Canvas.Top="2"
                        FontWeight="Heavy"
-                      />-->
+                      />
+
         </Canvas>
    
 </UserControl>
