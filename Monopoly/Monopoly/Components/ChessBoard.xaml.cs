@@ -34,7 +34,7 @@ namespace Monopoly.Components
         public List<PlayerShow> players; // này chỉnh từ list canva thành PlayerShow, list này được lấy dữ liệu bên list PlayerShow của Setup
 
         //chứa các ô trên bàn cờ ở trên thiết kế (XAML)
-        List<Canvas> cellPos;
+        List<Border> cellPos;
 
         //lưu dữ liệu của các player
         List<Player> playersList = new List<Player>();
@@ -107,7 +107,7 @@ namespace Monopoly.Components
             InitPlayerUsing();
 
 
-            cellPos = new List<Canvas>(40)
+            cellPos = new List<Border>(40)
             { _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14,_15,_16,_17,_18,_19,_20,_21,_22,_23,_24,_25,_26,_27,_28,_29,_30,_31,_32,_33,_34,_35,_36,_37,_38,_39 };
 
 
@@ -195,7 +195,7 @@ namespace Monopoly.Components
                 }
             }
         }
-
+        
         //khởi tạo lại vị trí của các player trên bàn cờ
         public void InitPlayer()
         {
@@ -420,7 +420,7 @@ namespace Monopoly.Components
         void ShowDice()
         {
             dice = random.Next(1, 7);
-
+            dice = 17;
             notification.content.Text = dice.ToString();
             But_xucxac.Visibility = Visibility.Visible;
             //animation faceout 
@@ -488,9 +488,7 @@ namespace Monopoly.Components
             //Tiến hành random thẻ quyền năng
             Power power = RandomPower();
             PowerCard powerCard = new PowerCard(power);
-            ComeSpecialLand comeSpecialLand = new ComeSpecialLand();
-            comeSpecialLand.Title = "Ô QUYỀN NĂNG";
-            comeSpecialLand.PicCard.Content = powerCard;
+            ComeSpecialLand comeSpecialLand = new ComeSpecialLand(powerCard);       
             dices.Content = comeSpecialLand;
             playersList[PlayerTurn].AddPower(power);
             comeSpecialLand.OnOKButtonClick += ComeSpecialLand_OnOKButtonClick;

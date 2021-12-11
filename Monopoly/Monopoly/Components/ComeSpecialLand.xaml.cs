@@ -20,7 +20,6 @@ namespace Monopoly.Components
     /// </summary>
     public partial class ComeSpecialLand : UserControl
     {
-        public UserControl PicCard; //= new UserControl(); // hình ảnh của thẻ nhận được;
 
         public string Title
         {
@@ -31,16 +30,18 @@ namespace Monopoly.Components
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register("Title", typeof(string), typeof(ComeSpecialLand), new PropertyMetadata("Tên ô"));
 
-        public ComeSpecialLand()
+        public ComeSpecialLand(PowerCard powerCard)
         {
             InitializeComponent();
-            PicCard = new UserControl();
-            Grid.SetRow(PicCard, 1);
-            PicCard.HorizontalAlignment = HorizontalAlignment.Center;
-            PicCard.VerticalAlignment = VerticalAlignment.Top;
-            PicCard.Width = 155;
-            PicCard.Height = 220;
-            NoticeTakeCard.Children.Add(PicCard);
+            Title = "Ô QUYỀN NĂNG";
+             
+            Grid.SetRow(powerCard, 1);
+
+            powerCard.Height = 210;
+            powerCard.Width = 160;
+           powerCard.HorizontalAlignment = HorizontalAlignment.Center;
+           powerCard.VerticalAlignment = VerticalAlignment.Top;     
+            NoticeTakeCard.Children.Add(powerCard);
         }
 
 

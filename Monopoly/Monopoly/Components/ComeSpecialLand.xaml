@@ -51,10 +51,7 @@
             FontSize="20"
             FontWeight="Bold"
             Foreground="Red"/>
-        <!--<UserControl Grid.Row="1"
-                      HorizontalAlignment="Center"  Width="155"
-                      Height="203">
-        </UserControl>-->
+        
         <Button Content="OK" Grid.Row="2"  Click="Button_OK" Margin="0,0,20,12" >
             <Button.Style>
                 <Style TargetType="Button" BasedOn="{StaticResource ButtonCenterMap}">
@@ -68,7 +65,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <!--<Button Grid.Row="2" Background="red" HorizontalAlignment="Right" Width="70" Height="30"/>-->
+       
 
 
 
