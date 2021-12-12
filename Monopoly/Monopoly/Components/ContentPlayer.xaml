@@ -10,17 +10,17 @@
     <Grid>
         <Button Click="ChoosePlayer">
             <Canvas>
-                <Image/>
-                <Ellipse Width="30" Height="30" Fill="Red" Canvas.Left="-15" Canvas.Top="-50"></Ellipse>
-                <Rectangle Width="30" Height="40" Fill="Red" Canvas.Left="-15" Canvas.Top="-20"></Rectangle>
+                <Image Height="86" Source="{Binding ImagePlayer, ElementName = root}" Stretch="UniformToFill" Canvas.Left="-46" Canvas.Top="-69"/>
+                <!--<Ellipse Width="30" Height="30" Fill="Red" Canvas.Left="-15" Canvas.Top="-50"></Ellipse>
+                <Rectangle Width="30" Height="40" Fill="Red" Canvas.Left="-15" Canvas.Top="-20"></Rectangle>-->
+
                 <TextBox Text="{Binding NamePlayer, ElementName=root}" 
-                         Canvas.Left="-24"
-                         Canvas.Top="31" 
+                         Canvas.Left="-13"
+                         Canvas.Top="33" 
                          FontWeight="Bold"
                          Background="LightGray" 
-                         IsHitTestVisible="False"
-                         HorizontalAlignment="Center"></TextBox>
-                       
+                         IsHitTestVisible="False"/>
+
             </Canvas>
         </Button>
     </Grid>

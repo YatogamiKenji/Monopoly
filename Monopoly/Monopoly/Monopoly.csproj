@@ -8,6 +8,17 @@
 
   <ItemGroup>
     <None Remove="Images\alien-ship-icon.png" />
+    <None Remove="Images\avatar\avatar1.jpg" />
+    <None Remove="Images\avatar\avatar2.jpg" />
+    <None Remove="Images\avatar\avatar3.jpg" />
+    <None Remove="Images\avatar\avatar4.jpg" />
+    <None Remove="Images\avatar\avatar5.jpg" />
+    <None Remove="Images\avatar\avatar6.jpg" />
+    <None Remove="Images\avatar\avatar7.jpg" />
+    <None Remove="Images\avatar\circle-avatar1.jpg" />
+    <None Remove="Images\avatar\circle-avatar2.jpg" />
+    <None Remove="Images\avatar\circle-avatar3.jpg" />
+    <None Remove="Images\avatar\circle-avatar4.jpg" />
     <None Remove="Images\background\5509862.jpg" />
     <None Remove="Images\background\bg.jpg" />
     <None Remove="Images\background\bg_setup.jpg" />
@@ -137,6 +148,39 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\avatar\avatar1.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\avatar\avatar2.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\avatar\avatar3.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\avatar\avatar4.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\avatar\avatar5.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\avatar\avatar6.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\avatar\avatar7.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\avatar\circle-avatar1.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\avatar\circle-avatar2.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\avatar\circle-avatar3.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\avatar\circle-avatar4.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\background\bg.jpg" />
     <Resource Include="Images\background\bg_setup.jpg" />
     <Resource Include="Images\background\spaceImg.jpg" />

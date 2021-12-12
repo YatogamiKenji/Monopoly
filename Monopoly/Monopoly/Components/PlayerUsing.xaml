@@ -31,7 +31,11 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid Background="White">
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="/Monopoly;component/Images/panel/panel_center_map.png"></ImageBrush>
+        </Grid.Background>
+            
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>

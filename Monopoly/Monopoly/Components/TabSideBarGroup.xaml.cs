@@ -63,7 +63,7 @@ namespace Monopoly.Components
         {
             for (int i = 0; i < Players?.Count; i++)
             {
-                TabSideBar t = new TabSideBar(i, new BitmapImage(new Uri(@"/Monopoly;component/Image/bgCardEx.png", UriKind.Relative)), Players[i].name, Players[i].money);
+                TabSideBar t = new TabSideBar(i, new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/circle-avatar" + (i + 1).ToString() + ".jpg", UriKind.Relative)), Players[i].name, Players[i].money);
                 Grid.SetColumn(t, i);
                 if (SelectedId == i)
                 {
