@@ -88,6 +88,14 @@ namespace Monopoly
             set { _indexLands = value; }
         }
 
+        // Danh sách chứa vị trí của mảnh đất trên bàn cờ
+        private List<int> _indexCells;
+        public List<int> indexCells
+        {
+            get { return _indexCells; }
+            set { _indexCells = value; }
+        }
+
         // Danh sách quyền năng đang còn tác dụng trên người chơi
         private List<Power> _powersEffect;
         public List<Power> powersEffect
@@ -107,6 +115,7 @@ namespace Monopoly
             _powersEffect = new List<Power>();
             _lands = new List<Land>();
             _indexLands = new List<int>();
+            _indexCells = new List<int>();
             _isInPrison = false;
             _isDoubleStart = false;
             _isLoseMoney = false;
@@ -124,6 +133,7 @@ namespace Monopoly
             _powersEffect = new List<Power>();
             _lands = new List<Land>();
             _indexLands = new List<int>();
+            _indexCells = new List<int>();
             _isInPrison = false;
             _isDoubleStart = false;
             _isLoseMoney = false;
@@ -143,10 +153,11 @@ namespace Monopoly
         }
 
         // Thêm đất vào khi mua
-        public void AddLand(Land land, int index)
+        public void AddLand(Land land, int indexL, int indexC)
         {
             _lands.Add(land);
-            _indexLands.Add(index);
+            _indexLands.Add(indexL);
+            _indexCells.Add(indexC);
         }
 
         // Xóa bỏ mảnh đất sau khi bán

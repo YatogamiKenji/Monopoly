@@ -48,6 +48,7 @@ namespace Monopoly
             if (_numberTurns > 0)
             {
                 _numberTurns--;
+                playerUse.isTeleport = true;
             }
             if (_numberTurns == 0) playerUse.RemovePowerEffect(name);
         }

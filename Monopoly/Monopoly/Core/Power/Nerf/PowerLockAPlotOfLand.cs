@@ -26,7 +26,7 @@ namespace Monopoly
             _numberTurns = 2;
             description = "Khóa 1 hành tinh của một người chơi trong vòng 2 lượt";
             type = false;
-            usingLand = false;
+            usingLand = true;
         }
 
         public PowerLockAPlotOfLand(int index) : base()
@@ -36,7 +36,7 @@ namespace Monopoly
             _numberTurns = 2;
             description = "Khóa 1 hành tinh của một người chơi trong vòng 2 lượt";
             type = false;
-            usingLand = false;
+            usingLand = true;
             this.index = index;
         }
 
@@ -64,25 +64,15 @@ namespace Monopoly
             }
             if (_numberTurns == 0)
             {
-                playerUse.RemovePowerEffect(name);
-                for (int i = 0; i < playerUse.lands.Count; i++)
-                    if (playerUse.indexLands[i] == index)
-                    {
-                        playerUse.lands[i].isLock = false;
-                        break;
-                    }
+                playerUse.lands[index].isLock = false;
+                playerUse.RemovePower(name);
             }
         }
 
         public override void PowerFunction(ref Player playerUse, int index)
         {
-            for (int i = 0; i < playerUse.lands.Count; i++)
-                if (playerUse.indexLands[i] == index)
-                {
-                    playerUse.lands[i].isLock = true;
-                    playerUse.AddPowersEffect(new PowerLockAPlotOfLand(index));
-                    break;
-                }
+            playerUse.lands[index].isLock = true;
+            playerUse.AddPowersEffect(new PowerLockAPlotOfLand(index));
         }
     }
 }

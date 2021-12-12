@@ -51,13 +51,13 @@ namespace Monopoly.Components
 
         PlayerUsing playerUsing = new PlayerUsing(); //biến này lưu compoenent khi đi vào các ô đặc biệt
 
-        usingCard _usingCard; //lưu lại giao diện usingCard để khi nhấn nút hủy sd lại
-
         bool checkSellLand; //kiểm tra là lệnh bán do nợ hay bán để kiếm tiền sd
 
         Stack<CenterMapView> stackView = new Stack<CenterMapView>();
 
+        //chỉ số của xúc sắc
         int dice;
+
         #endregion
 
         #region Init UI
@@ -86,30 +86,14 @@ namespace Monopoly.Components
 
             InitPlayerUsing();
 
-
             cellPos = new List<Border>(40)
             { _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14,_15,_16,_17,_18,_19,_20,_21,_22,_23,_24,_25,_26,_27,_28,_29,_30,_31,_32,_33,_34,_35,_36,_37,_38,_39 };
-
-
-            //test hieu ung rung lac o
-            //o10.StartShaking();
-            //o10.IsHitTestVisible = true;
-            //o10.OnButtonChessCellClick += O10_OnButtonChessCellClick;
-           
-            
 
             turn = new List<int>();
             for (int i = 0; i < players.Count; i++) turn.Add(0);
 
             SwitchView(CenterMapView.Dice);
         }
-
-        //private void O10_OnButtonChessCellClick(object sender, RoutedEventArgs e)
-        //{
-        //    ContentChessCell cell10 = sender as ContentChessCell;
-        //    cell10.IsHitTestVisible = false;
-        //    cell10.StopShaking();
-        //}
 
         //khởi tạo player
         public void InitPlayerClass()
@@ -130,20 +114,23 @@ namespace Monopoly.Components
 
             sideBar.update(playersList, PlayerTurn);
 
+            playersList[0].AddPower(new PowerDoublePriceLandForever());
             playersList[0].AddPower(new PowerAppointPersonToPrison());
             playersList[0].AddPower(new PowerSplitDice());
+            playersList[0].AddPower(new PowerDoubleDice());
+            playersList[0].AddPower(new PowerLockAPlotOfLand());
+            playersList[0].AddPower(new PowerTeleport());
             playersList[0].AddPower(new PowerSplitDice());
             playersList[0].AddPower(new PowerSplitDice());
-            playersList[0].AddPower(new PowerSplitDice());
-            playersList[0].AddPower(new PowerSplitDice());
-            playersList[0].AddPower(new PowerSplitDice());
-            playersList[0].AddPower(new PowerSplitDice());
-            playersList[0].AddLand(lands[0], 0);
-            playersList[0].AddLand(lands[1], 0);
-            playersList[0].AddLand(lands[2], 0);
-            playersList[0].AddLand(lands[3], 0);
-            playersList[0].AddLand(lands[4], 0);
-            playersList[0].AddLand(lands[5], 0);
+            playersList[0].AddLand(lands[0], 0, 1);
+            playersList[0].AddLand(lands[1], 1, 2);
+            playersList[0].AddLand(lands[2], 2, 4);
+            playersList[0].AddLand(lands[3], 3, 5);
+            playersList[0].AddLand(lands[4], 4, 6);
+            playersList[0].AddLand(lands[5], 5, 8);
+            playersList[1].AddLand(lands[6], 6, 9);
+            playersList[1].AddLand(lands[7], 7, 11);
+            playersList[1].AddLand(lands[8], 8, 12);
         }
 
         //khởi tạo data
@@ -221,6 +208,7 @@ namespace Monopoly.Components
         //bỏ qua button
         private void PlayerUsing_OnSkipButtonClick(object sender, RoutedEventArgs e)
         {
+            centerMapView.Content = null;
             ChangeTurn();
         }
 
@@ -288,17 +276,18 @@ namespace Monopoly.Components
                     InitUsingCard();
                     break;
 
+                case CenterMapView.UseCardToAnother:
+                    InitUsingCardToAnother();
+                    break;
+
                 default:
                     MessageBox.Show("Không xác định được view");
                     break;
             }
         }
 
-        
-
         Land getCurrentLand() { return lands[cellManager[playersList[PlayerTurn].position].index]; }
-
-
+        
         void InitUsingCard()
         {
             ListCardPlayers listCardPlayers = new ListCardPlayers(playersList[PlayerTurn].powers);
@@ -309,7 +298,6 @@ namespace Monopoly.Components
                 listCardPlayers.contenButtonCards[i].OnButtonCardClick += ChessBoard_OnButtonCardClick;
             }
             UsingCard.OnButtonCancleClick += UsingCard_OnButtonCancleClick;
-            _usingCard = UsingCard;
             centerMapView.Content = UsingCard;
         }
 
@@ -340,11 +328,33 @@ namespace Monopoly.Components
         //sử lý khi trên người có tác dụng của thẻ PowerTeleport
         void UsingPowerTeleport()
         {
-            int index = 0;
-            //mở sự kiện để chọn ô
-            //sau khi chọn xong vị trí được lưu vào index
-            //sử lý khi người chơi đ ngang ô bắt đầu
-            if (index >= 0 && index < 13 && playersList[PlayerTurn].position > 30)
+            for (int i = 1; i <= dice; i++) 
+            {
+                ContentChessCell contentChessCell = (ContentChessCell)cellPos[playersList[PlayerTurn].position + i].Child;
+                contentChessCell.OnButtonChessCellClick += TeleportClick;
+                contentChessCell.StartShaking();
+                contentChessCell.IsHitTestVisible = true;
+            }   
+        }
+
+        private void TeleportClick(object sender, RoutedEventArgs e)
+        {
+            ContentChessCell chessCell = sender as ContentChessCell;
+            Border parentChessCell = (Border)chessCell.Parent;
+
+            int index = -1;
+
+            for (int i = 1; i <= dice; i++)
+            {
+                ContentChessCell contentChessCell = (ContentChessCell)cellPos[playersList[PlayerTurn].position + i].Child;
+                contentChessCell.OnButtonChessCellClick -= TeleportClick;
+                contentChessCell.StopShaking();
+                contentChessCell.IsHitTestVisible = false;
+                if (Grid.GetColumn(cellPos[playersList[PlayerTurn].position + i]) == Grid.GetColumn(parentChessCell) && Grid.GetRow(cellPos[playersList[PlayerTurn].position + i]) == Grid.GetRow(parentChessCell)) index = playersList[PlayerTurn].position + i;
+            }
+
+            //sử lý khi đi qua ô bắt đầu
+            if (index >= 0 && index < 13 && playersList[PlayerTurn].position > 28)
             {
                 if (playersList[PlayerTurn].isDoubleStart) playersList[PlayerTurn].money += 2000 * (turn[PlayerTurn] / 2 + 1);
                 else playersList[PlayerTurn].money += 1000 * (turn[PlayerTurn] / 2 + 1);
@@ -356,6 +366,7 @@ namespace Monopoly.Components
             playersList[PlayerTurn].position = index;
             Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[index]));
             Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[index]));
+            ChangeTurn();
         }
 
         #region Những xử lý khi đi vào ô đất
@@ -481,7 +492,6 @@ namespace Monopoly.Components
         void GotoChance()
         {
             // Tiến hành random thẻ cơ hội
-
             SwitchView(CenterMapView.PlayerUsing);
         }
 
@@ -490,7 +500,6 @@ namespace Monopoly.Components
         {
             // Tiến hành random thẻ khí vận
             SwitchView(CenterMapView.PlayerUsing);
-
         }
 
         //đi đến ô quyền năng
@@ -548,9 +557,9 @@ namespace Monopoly.Components
         private void HandleSpinnedDice(object sender, SpinnedDiceEventAgrs e)
         {
             dice = e.valueOfDice;
-            int valueOfDice = e.valueOfDice;
+
             // nếu người chơi đang ở trong tù thì phải đổ được 1 hoặc 6 mới được phép di chuyển ra ngoài
-            if ((playersList[PlayerTurn].isInPrison && (valueOfDice == 1 || valueOfDice == 6)) || !playersList[PlayerTurn].isInPrison)
+            if ((playersList[PlayerTurn].isInPrison && (dice == 1 || dice == 6)) || !playersList[PlayerTurn].isInPrison)
             {
                 ActivationEffect();
 
@@ -584,7 +593,7 @@ namespace Monopoly.Components
                 else playersList[PlayerTurn].isLoseMoney = false;
 
                 lands[cellManager[playersList[PlayerTurn].position].index].owner = PlayerTurn;
-                playersList[PlayerTurn].AddLand(lands[cellManager[playersList[PlayerTurn].position].index], cellManager[playersList[PlayerTurn].position].index);
+                playersList[PlayerTurn].AddLand(lands[cellManager[playersList[PlayerTurn].position].index], cellManager[playersList[PlayerTurn].position].index, playersList[PlayerTurn].position);
                 sideBar.update(playersList, PlayerTurn);
 
                 Noti.Show(notiCenterMapArea, new NotiBuyLand(lands[cellManager[playersList[PlayerTurn].position].index].name), 2, (s) =>
@@ -676,63 +685,117 @@ namespace Monopoly.Components
             SwitchView(CenterMapView.Prev);
         }
 
-        // xử lý các sự kiện nếu sử dụng các thẻ trong dach sách thẻ 
-        private void ChessBoard_OnButtonCardClick(object sender, RoutedEventArgs e)
-        {
-            ContenButtonCardPower Card = (ContenButtonCardPower)sender;
+        ContenButtonCardPower Card;
+        Power usingPower = new Power();
+        Player usingPlayer = new Player();
+        int indexPlayer;
 
-            if (Card.power.type)
+        void UsingCardOnYourself()
+        {
+            centerMapView.Content = null;
+            usingPlayer = playersList[PlayerTurn];
+            Power power = Card.power;
+            if (power.Using(ref usingPlayer, dice))
             {
-                Player player = playersList[PlayerTurn];
-                Power power = Card.power;
-                if (power.Using(ref player, dice)) power.PowerFunction(ref player);
+                power.PowerFunction(ref usingPlayer);
 
                 // nếu thẻ power đó có sử dụng đến đất
                 if (power.usingLand)
                 {
-                    power.PowerFunction(ref player, 0);
+                    usingPower = power;
+                    for (int i = 0; i < usingPlayer.lands.Count; i++)
+                    {
+                        ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[i]].Child;
+                        contentChessCell.OnButtonChessCellClick += UsingCardOnYourselfClick;
+                        contentChessCell.StartShaking();
+                        contentChessCell.IsHitTestVisible = true;
+                    }
                 }
-
-                playersList[PlayerTurn] = player;
-                ChangeTurn();
-                centerMapView.Content = null;
-                sideBar.update(playersList, PlayerTurn);
+                else
+                {
+                    playersList[PlayerTurn] = usingPlayer;
+                    SwitchView(CenterMapView.Dice);
+                    sideBar.update(playersList, PlayerTurn);
+                    ChangeTurn();
+                }
             }
             else
             {
-                ListContentPlayers candidatePlayers = new ListContentPlayers(playersList, PlayerTurn);
-
-                UseCardToAnother useCardToAnother = new UseCardToAnother(candidatePlayers);
-                useCardToAnother.OnButtonCancleClick += UseCardToAnother_OnButtonCancleClick;
-
-                foreach (ContentPlayer ButtonPlayer in useCardToAnother.haha.ListButtonPlayers)
-                {
-                    ButtonPlayer.power = Card.power;
-                    ButtonPlayer.NameCardImpact = Card.IDCard;
-                    ButtonPlayer.OnButtonPlayerClick += ButtonPlayer_OnButtonPlayerClick;
-                }
-                centerMapView.Content = useCardToAnother;
+                MessageBox.Show("k đủ tiền");
+                SwitchView(CenterMapView.Prev);
             }
+        }
+
+        private void UsingCardOnYourselfClick(object sender, RoutedEventArgs e)
+        {
+            ContentChessCell chessCell = sender as ContentChessCell;
+            Border parentChessCell = (Border)chessCell.Parent;
+
+            int index = -1;
+
+            for (int i = 0; i < usingPlayer.indexCells.Count; i++)
+            {
+                ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[i]].Child;
+                contentChessCell.OnButtonChessCellClick -= UsingCardOnYourselfClick;
+                contentChessCell.StopShaking();
+                contentChessCell.IsHitTestVisible = false;
+                if (Grid.GetColumn(cellPos[usingPlayer.indexCells[i]]) == Grid.GetColumn(parentChessCell) && Grid.GetRow(cellPos[usingPlayer.indexCells[i]]) == Grid.GetRow(parentChessCell)) index = i;
+            }
+
+            usingPower.PowerFunction(ref usingPlayer, index);
+            playersList[PlayerTurn] = usingPlayer;
+
+            ChangeTurn();
+        }
+
+        void InitUsingCardToAnother()
+        {
+            ListContentPlayers candidatePlayers = new ListContentPlayers(playersList, PlayerTurn);
+
+            UseCardToAnother useCardToAnother = new UseCardToAnother(candidatePlayers);
+            useCardToAnother.OnButtonCancleClick += UseCardToAnother_OnButtonCancleClick;
+
+            foreach (ContentPlayer ButtonPlayer in useCardToAnother.haha.ListButtonPlayers)
+            {
+                ButtonPlayer.power = Card.power;
+                ButtonPlayer.NameCardImpact = Card.IDCard;
+                ButtonPlayer.OnButtonPlayerClick += ButtonPlayer_OnButtonPlayerClick;
+            }
+            centerMapView.Content = useCardToAnother;
+        }
+
+        // xử lý các sự kiện nếu sử dụng các thẻ trong dach sách thẻ 
+        private void ChessBoard_OnButtonCardClick(object sender, RoutedEventArgs e)
+        {
+            Card = (ContenButtonCardPower)sender;
+
+            //thẻ sử dụng lên bản thân
+            if (Card.power.type) UsingCardOnYourself();
+
+            //thẻ sử dụng lên người khác
+            else SwitchView(CenterMapView.UseCardToAnother);
         }
 
         //Thoát nếu không muốn sử dụng thẻ lên người khác nữa
         private void UseCardToAnother_OnButtonCancleClick(object sender, RoutedEventArgs e)
         {
-            centerMapView.Content = _usingCard;
+            SwitchView(CenterMapView.Prev);
         }
 
         //xử lý sự kiện sau khi chọn được người hứng chịu hiệu ứng của thẻ quyền năng
         private void ButtonPlayer_OnButtonPlayerClick(object sender, RoutedEventArgs e)
         {
-            
+            centerMapView.Content = null;
             ContentPlayer PickedPlayer = sender as ContentPlayer;
-
+            usingPower = PickedPlayer.power;
             for (int i = 0; i < playersList.Count; i++) // trong danh sách các người chơi 
             {
                 if (playersList[i].name == PickedPlayer.NamePlayer) // xác định người chơi nào bị chọn
                 {
                     Player playerUse = playersList[PlayerTurn];
                     Player affectedPlayers = playersList[i];
+                    usingPlayer = playersList[i];
+                    indexPlayer = i;
                     if (PickedPlayer.power.Using(ref playerUse, ref affectedPlayers, dice) && !affectedPlayers.isImmune)
                     {
                         PickedPlayer.power.PowerFunction(ref affectedPlayers);
@@ -749,22 +812,58 @@ namespace Monopoly.Components
                         // nếu thẻ power đó có sử dụng đến đất
                         if (PickedPlayer.power.usingLand)
                         {
-                            PickedPlayer.power.PowerFunction(ref affectedPlayers, 0);
+                            for (int j = 0; j < usingPlayer.lands.Count; j++)
+                            {
+                                ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[j]].Child;
+                                contentChessCell.OnButtonChessCellClick += UseCardToAnotherClick;
+                                contentChessCell.StartShaking();
+                                contentChessCell.IsHitTestVisible = true;
+                            }
+
                             if (PickedPlayer.NameCardImpact == "PowerStealLand")
                             {
                                 lands[cellManager[0].index].owner = PlayerTurn;
-                                playerUse.AddLand(lands[cellManager[0].index], cellManager[0].index);
+                                playerUse.AddLand(lands[cellManager[0].index], cellManager[0].index, 0);
                             }
                         }
+                        else
+                        {
+                            playersList[PlayerTurn] = playerUse;
+                            playersList[i] = affectedPlayers;
+                            SwitchView(CenterMapView.Dice);
+                            sideBar.update(playersList, PlayerTurn);
+                            ChangeTurn();
+                        }
                     }
-
-                    playersList[PlayerTurn] = playerUse;
-                    playersList[i] = affectedPlayers;
-                    ChangeTurn();
-
-                    sideBar.update(playersList, PlayerTurn);
+                    else
+                    {
+                        MessageBox.Show("k đủ tiền");
+                        SwitchView(CenterMapView.Prev);
+                    }
+                    break;
                 }
             }
+        }
+
+        private void UseCardToAnotherClick(object sender, RoutedEventArgs e)
+        {
+            ContentChessCell chessCell = sender as ContentChessCell;
+            Border parentChessCell = (Border)chessCell.Parent;
+
+            int index = -1;
+
+            for (int i = 0; i < usingPlayer.indexCells.Count; i++)
+            {
+                ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[i]].Child;
+                contentChessCell.OnButtonChessCellClick -= UseCardToAnotherClick;
+                contentChessCell.StopShaking();
+                contentChessCell.IsHitTestVisible = false;
+                if (Grid.GetColumn(cellPos[usingPlayer.indexCells[i]]) == Grid.GetColumn(parentChessCell) && Grid.GetRow(cellPos[usingPlayer.indexCells[i]]) == Grid.GetRow(parentChessCell)) index = i;
+            }
+
+            usingPower.PowerFunction(ref usingPlayer, index);
+            playersList[indexPlayer] = usingPlayer;
+            ChangeTurn();
         }
 
         #endregion

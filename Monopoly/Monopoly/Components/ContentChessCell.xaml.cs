@@ -66,7 +66,6 @@ namespace Monopoly.Components
         }
         public void StopShaking()
         {
-        
             sShaking.Stop();
         }
     }
