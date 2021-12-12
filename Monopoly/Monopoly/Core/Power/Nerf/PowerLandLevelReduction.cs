@@ -25,7 +25,7 @@ namespace Monopoly
 
         public override bool Using(ref Player playerUse, ref Player affectedPlayers, int dice)
         {
-            if (playerUse.money > dice * value)
+            if (playerUse.money >= dice * value)
             {
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
@@ -37,12 +37,7 @@ namespace Monopoly
 
         public override void PowerFunction(ref Player playerUse, int index)
         {
-            for (int i = 0; i < playerUse.lands.Count; i++)
-                if (playerUse.indexLands[i] == index)
-                {
-                    playerUse.lands[i].LowerLevel();
-                    break;
-                }
+            playerUse.lands[index].LowerLevel();
         }
     }
 }

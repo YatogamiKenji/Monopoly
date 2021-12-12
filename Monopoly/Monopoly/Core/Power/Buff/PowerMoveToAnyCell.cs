@@ -27,7 +27,6 @@ namespace Monopoly
         {
             if (playerUse.money >= dice * value)
             {
-                playerUse.AddPowersEffect(new PowerMoveToAnyCell());
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
                 return true;
