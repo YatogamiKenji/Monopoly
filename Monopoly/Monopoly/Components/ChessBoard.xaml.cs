@@ -136,16 +136,17 @@ namespace Monopoly.Components
             playersList[0].AddPower(new PowerSplitDice());
             playersList[0].AddPower(new PowerStealLand());
             playersList[0].AddPower(new PowerTeleportPersonToTheTax());
-            playersList[0].AddLand(lands[0], 0, 1);
-            playersList[0].AddLand(lands[1], 1, 2);
-            playersList[0].AddLand(lands[2], 2, 4);
-            playersList[0].AddLand(lands[3], 3, 5);
-            playersList[0].AddLand(lands[4], 4, 6);
-            playersList[0].AddLand(lands[5], 5, 8);
+            //playersList[0].AddLand(lands[0], 0, 1);
+            //playersList[0].AddLand(lands[1], 1, 2);
+            //playersList[0].AddLand(lands[2], 2, 4);
+            //playersList[0].AddLand(lands[3], 3, 5);
+            //playersList[0].AddLand(lands[4], 4, 6);
+            //playersList[0].AddLand(lands[5], 5, 8);
             playersList[1].AddPower(new PowerCancelPowerCard());
-            playersList[1].AddLand(lands[6], 6, 9);
-            playersList[1].AddLand(lands[7], 7, 11);
-            playersList[1].AddLand(lands[8], 8, 12);
+            playersList[1].AddPower(new PowerSplitDice());
+            //playersList[1].AddLand(lands[6], 6, 9);
+            //playersList[1].AddLand(lands[7], 7, 11);
+            //playersList[1].AddLand(lands[8], 8, 12);
         }
 
         //khởi tạo data
@@ -519,7 +520,17 @@ namespace Monopoly.Components
                     if (!playersList[PlayerTurn].isTeleport) Goto();
                     sideBar.update(playersList, PlayerTurn);
                 }
-                else ChangeTurn();
+                else
+                {
+                    if (playersList[PlayerTurn].isInPrison && MessageBox.Show("bạn có muốn trả tiền để đi không", "thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
+                    {
+                        playersList[PlayerTurn].money -= 1000;
+                        ActivationEffect();
+                        if (!playersList[PlayerTurn].isTeleport) Goto();
+                        sideBar.update(playersList, PlayerTurn);
+                    }
+                    else ChangeTurn();
+                }
             });
         }
 
@@ -729,6 +740,7 @@ namespace Monopoly.Components
             {
                 usingPower.PowerFunction(ref usingPlayer, index);
                 playersList[PlayerTurn] = usingPlayer;
+                if (usingPower.GetType().Name == "PowerHalveUpgradeFee") lands[playersList[PlayerTurn].indexLands[index]].Upgrade();
                 ChangeTurn();
             });
         }
@@ -774,12 +786,14 @@ namespace Monopoly.Components
             centerMapView.Content = null;
             ContentPlayer PickedPlayer = sender as ContentPlayer;
             usingPower = PickedPlayer.power;
+            Player playerUse = playersList[PlayerTurn];
+            Player affectedPlayers = new Player();
+
             for (int i = 0; i < playersList.Count; i++) // trong danh sách các người chơi 
             {
-                if (playersList[i].name == PickedPlayer.NamePlayer) // xác định người chơi nào bị chọn
+                if (!playersList[i].isImmune && playersList[i].name == PickedPlayer.NamePlayer) // xác định người chơi nào bị chọn
                 {
-                    Player playerUse = playersList[PlayerTurn];
-                    Player affectedPlayers = playersList[i];
+                    affectedPlayers = playersList[i];
                     usingPlayer = playersList[i];
                     indexPlayer = i;
                     if (PickedPlayer.power.Using(ref playerUse, ref affectedPlayers, dice) && !affectedPlayers.isImmune)
@@ -828,6 +842,13 @@ namespace Monopoly.Components
                     }
                     break;
                 }
+                else if (playersList[i].isImmune && playersList[i].name == PickedPlayer.NamePlayer)
+                {
+                    usingPower.Using(ref playerUse, ref affectedPlayers, dice);
+                    playersList[PlayerTurn] = playerUse;
+                    ChangeTurn();
+                    break;
+                }   
             }
         }
 
