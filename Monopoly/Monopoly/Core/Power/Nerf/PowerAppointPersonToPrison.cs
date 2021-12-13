@@ -16,6 +16,7 @@ namespace Monopoly
             description = "Chỉ định 1 người chơi bất kỳ vào tù";
             type = false;
             usingLand = false;
+            icon = "/Monopoly;component/Images/Power/PowerAppointPersonToPrison.jpg";
         }
 
         public PowerAppointPersonToPrison(string name, int value, string description) : base(name, value, description)

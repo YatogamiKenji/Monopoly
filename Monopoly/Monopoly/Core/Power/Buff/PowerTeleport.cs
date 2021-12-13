@@ -24,6 +24,7 @@ namespace Monopoly
             type = true;
             usingLand = false;
             _numberTurns = 5;
+            icon = "/Monopoly;component/Images/Power/PowerMoveToAnyCell.jpg";
         }
 
         public PowerTeleport(string name, int value, string description) : base(name, value, description)

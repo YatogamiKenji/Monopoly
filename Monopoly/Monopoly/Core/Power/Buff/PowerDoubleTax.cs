@@ -16,6 +16,7 @@ namespace Monopoly
             description = "Tăng gấp đôi giá trị thuế của một hành tinh";
             type = true;
             usingLand = true;
+            icon = "/Monopoly;component/Images/Power/PowerDoubleTax.png";
         }
 
         public PowerDoubleTax(string name, int value, string description) : base(name, value, description)

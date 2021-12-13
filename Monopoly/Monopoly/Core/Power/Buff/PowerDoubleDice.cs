@@ -25,6 +25,7 @@ namespace Monopoly
             description = "Nhân đôi xúc xắc trong vòng 7 lượt";
             type = true;
             usingLand = false;
+            icon = "/Monopoly;component/Images/Power/PowerDoubleDice.jpg";
         }
 
         public PowerDoubleDice(string name, int value, string description) : base(name, value, description)

@@ -16,6 +16,7 @@ namespace Monopoly
             description = "Hủy bỏ 1 quyền năng trên tay người khác";
             type = false;
             usingLand = false;
+            icon = "/Monopoly;component/Images/Power/PowerCancelPowerCard.jpg";
         }
 
         public PowerCancelPowerCard(string name, int value, string description) : base(name, value, description)

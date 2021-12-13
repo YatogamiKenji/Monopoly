@@ -25,6 +25,7 @@ namespace Monopoly
             description = "Miễn nhiễm với bất kỳ hiệu ứng bất lợi nào trong vòng 5 lượt";
             type = true;
             usingLand = false;
+            icon = "/Monopoly;component/Images/Power/PowerRemoveAdverseEffects.jpg";
         }
 
         public PowerRemoveAdverseEffects(string name, int value, string description) : base(name, value, description)

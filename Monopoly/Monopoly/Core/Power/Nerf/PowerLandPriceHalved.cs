@@ -25,6 +25,7 @@ namespace Monopoly
             description = "Giảm 50% giá trị hành tinh của một người chơi trong vòng 2 lượt";
             type = false;
             usingLand = true;
+            icon = "/Monopoly;component/Images/Power/PowerLandPriceHalved.jpg";
         }
 
         public PowerLandPriceHalved(int index) : base()

@@ -16,6 +16,7 @@ namespace Monopoly
             description = "Dịch chuyển đến một ô được người chơi chỉ định trên bàn cờ";
             type = true;
             usingLand = false;
+            icon = "/Monopoly;component/Images/Power/PowerMoveToAnyCell.jpg";
         }
 
         public PowerMoveToAnyCell(string name, int value, string description) : base(name, value, description)

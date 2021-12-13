@@ -16,6 +16,7 @@ namespace Monopoly
             description = "Giảm 2 level hành tinh của người khác";
             type = false;
             usingLand = true;
+            icon = "/Monopoly;component/Images/Power/PowerLandLevelReduction.jpg";
         }
 
         public PowerLandLevelReduction(string name, int value, string description) : base(name, value, description)

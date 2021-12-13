@@ -114,25 +114,38 @@ namespace Monopoly.Components
 
             sideBar.update(playersList, PlayerTurn);
 
-            playersList[0].AddPower(new PowerMoveToAnyCell());
-            playersList[0].AddPower(new PowerDoublePriceLandForever());
-            playersList[0].AddPower(new PowerAppointPersonToPrison());
-            playersList[0].AddPower(new PowerSplitDice());
+            //PowerStart();
+
             playersList[0].AddPower(new PowerDoubleDice());
-            playersList[0].AddPower(new PowerLockAPlotOfLand());
+            playersList[0].AddPower(new PowerDoublePriceLandForever());
+            playersList[0].AddPower(new PowerDoubleTax());
+            playersList[0].AddPower(new PowerDoubleTheValueStarting());
+            playersList[0].AddPower(new PowerExemptFromPrison());
+            playersList[0].AddPower(new PowerHalveUpgradeFee());
+            playersList[0].AddPower(new PowerMoveToAnyCell());
+            playersList[0].AddPower(new PowerRemoveAdverseEffects());
+            playersList[0].AddPower(new PowerRemoveLoseMoneyNext());
             playersList[0].AddPower(new PowerTeleport());
+            playersList[0].AddPower(new PowerAppointPersonToPrison());
+            playersList[0].AddPower(new PowerCancelPowerCard());
+            playersList[0].AddPower(new PowerFreezeBankAccounts());
+            playersList[0].AddPower(new PowerHoldAPerson());
+            playersList[0].AddPower(new PowerLandLevelReduction());
             playersList[0].AddPower(new PowerLandPriceHalved());
+            playersList[0].AddPower(new PowerLockAPlotOfLand());
+            playersList[0].AddPower(new PowerSplitDice());
             playersList[0].AddPower(new PowerStealLand());
+            playersList[0].AddPower(new PowerTeleportPersonToTheTax());
             playersList[0].AddLand(lands[0], 0, 1);
             playersList[0].AddLand(lands[1], 1, 2);
             playersList[0].AddLand(lands[2], 2, 4);
             playersList[0].AddLand(lands[3], 3, 5);
             playersList[0].AddLand(lands[4], 4, 6);
             playersList[0].AddLand(lands[5], 5, 8);
+            playersList[1].AddPower(new PowerCancelPowerCard());
             playersList[1].AddLand(lands[6], 6, 9);
             playersList[1].AddLand(lands[7], 7, 11);
             playersList[1].AddLand(lands[8], 8, 12);
-            playersList[1].AddPower(new PowerCancelPowerCard());
         }
 
         //khởi tạo data
@@ -178,6 +191,16 @@ namespace Monopoly.Components
                 BanCo.Children.Add(players[i]);
             }
         }
+
+        void PowerStart()
+        {
+            for (int i = 0; i < NumberOfPlayers; i++)
+            {
+                for (int j = 0; j < 3; j++) playersList[i].AddPower(RandomPower());
+                sideBar.update(playersList, i);
+            }
+        }
+
         #endregion
 
         #region Init PlayerUsing
@@ -227,7 +250,7 @@ namespace Monopoly.Components
                 playersList[PlayerTurn].position = (playersList[PlayerTurn].position + 1) % 40;
                 Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersList[PlayerTurn].position]));
                 Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersList[PlayerTurn].position]));
-
+                
                 //xử lý khi đi ngang ô bắt đầu
                 if (cellManager[playersList[PlayerTurn].position].type == CellType.BatDau)
                 {
@@ -279,10 +302,13 @@ namespace Monopoly.Components
                 sideBar.update(playersList, PlayerTurn);
             }
 
-            playersList[PlayerTurn].position = index;
-            Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[index]));
-            Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[index]));
-            ChangeTurn();
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đã sử dụng hiệu ứng của thẻ Teleport để di\n chuyển đến ô ", "Green"), 2.5, (str) =>
+            {
+                playersList[PlayerTurn].position = index;
+                Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[index]));
+                Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[index]));
+                Goto();
+            });
         }
 
         #region Trả thuế khi vào đất người khác
@@ -426,7 +452,7 @@ namespace Monopoly.Components
             comeSpecialLand.OnOKButtonClick += ComeSpecialLand_OnOKButtonClick;
         }
 
-        //đi đến ô ở tù
+        //đi đến ô tù
         void GotoInPrison()
         {
             //đưa player đến ô vào tù
@@ -465,29 +491,36 @@ namespace Monopoly.Components
 
         #endregion
 
+        //Các thao tác khi đi vào các ô trên bàn cờ
+        void Goto()
+        {
+            if (cellManager[playersList[PlayerTurn].position].type == CellType.Dat) GoToLand();
+            else if (cellManager[playersList[PlayerTurn].position].type == CellType.CoHoi) GotoChance();
+            else if (cellManager[playersList[PlayerTurn].position].type == CellType.KhiVan) GotoCommunityChest();
+            else if (cellManager[playersList[PlayerTurn].position].type == CellType.QuyenNang) GotoPower();
+            else if (cellManager[playersList[PlayerTurn].position].type == CellType.OTu) GotoPrison();
+            else if (cellManager[playersList[PlayerTurn].position].type == CellType.VaoTu) GotoInPrison();
+            else if (cellManager[playersList[PlayerTurn].position].type == CellType.Thue) GotoTax();
+            else if (cellManager[playersList[PlayerTurn].position].type == CellType.BaiDoXe) GotoParking();
+            else if (cellManager[playersList[PlayerTurn].position].type == CellType.BatDau) GotoStart();
+        }
+
         //xử lý sự kiện khi xúc xắc quay
         private void HandleSpinnedDice(object sender, SpinnedDiceEventAgrs e)
         {
             dice = e.valueOfDice;
 
-            // nếu người chơi đang ở trong tù thì phải đổ được 1 hoặc 6 mới được phép di chuyển ra ngoài
-            if ((playersList[PlayerTurn].isInPrison && (dice == 1 || dice == 6)) || !playersList[PlayerTurn].isInPrison)
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn quay được " + dice, "Blue"), 1.5, (str) =>
             {
-                ActivationEffect();
-
-                if (cellManager[playersList[PlayerTurn].position].type == CellType.Dat) GoToLand();
-                else if (cellManager[playersList[PlayerTurn].position].type == CellType.CoHoi) GotoChance();
-                else if (cellManager[playersList[PlayerTurn].position].type == CellType.KhiVan) GotoCommunityChest();
-                else if (cellManager[playersList[PlayerTurn].position].type == CellType.QuyenNang) GotoPower();
-                else if (cellManager[playersList[PlayerTurn].position].type == CellType.OTu) GotoPrison();
-                else if (cellManager[playersList[PlayerTurn].position].type == CellType.VaoTu) GotoInPrison();
-                else if (cellManager[playersList[PlayerTurn].position].type == CellType.Thue) GotoTax();
-                else if (cellManager[playersList[PlayerTurn].position].type == CellType.BaiDoXe) GotoParking();
-                else if (cellManager[playersList[PlayerTurn].position].type == CellType.BatDau) GotoStart();
-
-                sideBar.update(playersList, PlayerTurn);
-            }
-            else ChangeTurn();
+                // nếu người chơi đang ở trong tù thì phải đổ được 1 hoặc 6 mới được phép di chuyển ra ngoài
+                if ((playersList[PlayerTurn].isInPrison && (dice == 1 || dice == 6)) || !playersList[PlayerTurn].isInPrison)
+                {
+                    ActivationEffect();
+                    if (!playersList[PlayerTurn].isTeleport) Goto();
+                    sideBar.update(playersList, PlayerTurn);
+                }
+                else ChangeTurn();
+            });
         }
 
         #endregion
@@ -543,15 +576,9 @@ namespace Monopoly.Components
             //nếu player đồng ý nâng cấp thì gọi lệnh bên dưới
             if ((playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].Upgrade() || playersList[PlayerTurn].isLoseMoney) && !playersList[PlayerTurn].isFreezeBank)
             {
-                int fee = 1;
                 if (!playersList[PlayerTurn].isLoseMoney)
                 {
-                    if (playersList[PlayerTurn].isUpgradeFee)
-                    {
-                        playersList[PlayerTurn].isUpgradeFee = false;
-                        fee = 2;
-                    }
-                    playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Upgrade() / fee;
+                    playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Upgrade();
                     playersList[PlayerTurn].UpdateLand(cellManager[playersList[PlayerTurn].position].index);
                 }
                 else playersList[PlayerTurn].isLoseMoney = false;
@@ -612,7 +639,8 @@ namespace Monopoly.Components
             if (power.Using(ref usingPlayer, dice))
             {
                 power.PowerFunction(ref usingPlayer);
-                
+
+
                 if (Card.IDCard == "PowerMoveToAnyCell")
                 {
                     for (int i = 0; i < 40; i++)
@@ -622,7 +650,7 @@ namespace Monopoly.Components
                         contentChessCell.StartShaking();
                         contentChessCell.IsHitTestVisible = true;
                     }
-                }    
+                }
 
                 // nếu thẻ power đó có sử dụng đến đất
                 else if (power.usingLand)
@@ -638,16 +666,21 @@ namespace Monopoly.Components
                 }
                 else
                 {
-                    playersList[PlayerTurn] = usingPlayer;
-                    SwitchView(CenterMapView.Dice);
-                    sideBar.update(playersList, PlayerTurn);
-                    ChangeTurn();
+                    Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * power.value + " khi sử dụng thẻ " + power.name, "Green"), 2.5, (str) =>
+                    {
+                        playersList[PlayerTurn] = usingPlayer;
+                        SwitchView(CenterMapView.Dice);
+                        sideBar.update(playersList, PlayerTurn);
+                        ChangeTurn();
+                    });
                 }
             }
             else
             {
-                MessageBox.Show("k đủ tiền");
-                SwitchView(CenterMapView.Prev);
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền để sử dụng thẻ", "Red"), 1.5, (str) =>
+                {
+                    SwitchView(CenterMapView.Prev);
+                });
             }
         }
 
@@ -672,7 +705,7 @@ namespace Monopoly.Components
             Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[index]));
             Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[index]));
             playersList[PlayerTurn] = usingPlayer;
-            ChangeTurn();
+            Goto();
         }
 
         //xử lý sự kiện sau khi chọn được mảnh đất áp dụng power
@@ -692,9 +725,12 @@ namespace Monopoly.Components
                 if (Grid.GetColumn(cellPos[usingPlayer.indexCells[i]]) == Grid.GetColumn(parentChessCell) && Grid.GetRow(cellPos[usingPlayer.indexCells[i]]) == Grid.GetRow(parentChessCell)) index = i;
             }
 
-            usingPower.PowerFunction(ref usingPlayer, index);
-            playersList[PlayerTurn] = usingPlayer;
-            ChangeTurn();
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ " + usingPower.name + " lên hành tinh " + usingPlayer.lands[index].name, "Green"), 2.5, (str) =>
+            {
+                usingPower.PowerFunction(ref usingPlayer, index);
+                playersList[PlayerTurn] = usingPlayer;
+                ChangeTurn();
+            });
         }
 
         //khởi tạo UseCardToAnother
@@ -757,6 +793,7 @@ namespace Monopoly.Components
                             if (playersList[i].position == 10) playersList[PlayerTurn].isInPrison = true;
                             Grid.SetRow(players[i], Grid.GetRow(cellPos[playersList[i].position]));
                             Grid.SetColumn(players[i], Grid.GetColumn(cellPos[playersList[i].position]));
+                            Goto();
                         }
 
                         // nếu thẻ power đó có sử dụng đến đất
@@ -772,24 +809,29 @@ namespace Monopoly.Components
                         }
                         else
                         {
-                            playersList[PlayerTurn] = playerUse;
-                            playersList[i] = affectedPlayers;
-                            SwitchView(CenterMapView.Dice);
-                            sideBar.update(playersList, PlayerTurn);
-                            ChangeTurn();
+                            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ " + usingPower.name + " lên người chơi " + usingPlayer.name, "Green"), 2.5, (str) =>
+                            {
+                                playersList[PlayerTurn] = playerUse;
+                                playersList[i] = affectedPlayers;
+                                SwitchView(CenterMapView.Dice);
+                                sideBar.update(playersList, PlayerTurn);
+                                ChangeTurn();
+                            });
                         }
                     }
                     else
                     {
-                        MessageBox.Show("k đủ tiền");
-                        SwitchView(CenterMapView.Prev);
+                        Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền để sử dụng thẻ", "Red"), 1.5, (str) =>
+                        {
+                            SwitchView(CenterMapView.Prev);
+                        });
                     }
                     break;
                 }
             }
         }
 
-        //xử lý sau khi chọn được mảnh đâts của người khác muốn áp dụng hiệu ứng
+        //xử lý sau khi chọn được mảnh đất của người khác muốn áp dụng hiệu ứng
         private void UseCardToAnotherClick(object sender, RoutedEventArgs e)
         {
             ContentChessCell chessCell = sender as ContentChessCell;
@@ -812,9 +854,13 @@ namespace Monopoly.Components
                 playersList[PlayerTurn].AddLand(lands[usingPlayer.indexLands[index]], usingPlayer.indexLands[index], usingPlayer.indexCells[index]);
             }
 
-            usingPower.PowerFunction(ref usingPlayer, index);
-            playersList[indexPlayer] = usingPlayer;
-            ChangeTurn();
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ " 
+                + usingPower.name + " lên hành tinh " + usingPlayer.lands[index].name + " của người chơi " + usingPlayer.name, "Green"), 2.5, (str) =>
+            {
+                usingPower.PowerFunction(ref usingPlayer, index);
+                playersList[indexPlayer] = usingPlayer;
+                ChangeTurn();
+            });
         }
 
         #endregion

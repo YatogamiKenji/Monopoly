@@ -15,7 +15,8 @@ namespace Monopoly
             name = "Giảm tiền nâng cấp";
             description = "Giảm một nữa tiền nâng cấp nhà";
             type = true;
-            usingLand = false;
+            usingLand = true;
+            icon = "/Monopoly;component/Images/Power/PowerHalveUpgradeFee.jpg";
         }
 
         public PowerHalveUpgradeFee(string name, int value, string description) : base(name, value, description)
@@ -27,7 +28,6 @@ namespace Monopoly
         {
             if (playerUse.money >= dice * value)
             {
-                playerUse.AddPowersEffect(new PowerHalveUpgradeFee());
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;
                 return true;
@@ -35,10 +35,12 @@ namespace Monopoly
             return false;
         }
 
-        public override void PowerFunction(ref Player playerUse)
+        public override void PowerFunction(ref Player playerUse, int index)
         {
-            playerUse.RemovePowerEffect(name);
-            playerUse.isUpgradeFee = true;
+            if (playerUse.money >= playerUse.lands[index].Upgrade(playerUse.lands[index].level) / 2)
+            {
+                playerUse.money -= playerUse.lands[index].Upgrade() / 2;
+            }    
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Monopoly
             description = "Miễn vào tù trong vòng 10 lượt";
             type = true;
             usingLand = false;
+            icon = "/Monopoly;component/Images/Power/PowerExemptFromPrison.png";
         }
 
         public PowerExemptFromPrison(string name, int value, string description) : base(name, value, description)

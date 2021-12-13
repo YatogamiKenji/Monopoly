@@ -143,7 +143,6 @@ namespace Monopoly
         public void Init()
         {
             _isOutPrison = false;
-            _isUpgradeFee = false;
             _isDoubleDice = false;
             _isSplitDice = false;
             _isImmune = false;
@@ -234,14 +233,6 @@ namespace Monopoly
         {
             get { return _isDoubleStart; }
             set { _isDoubleStart = value; }
-        }
-
-        // kiểm tra giảm 1 nữa tiền nâng cấp tiếp theo
-        private bool _isUpgradeFee;
-        public bool isUpgradeFee
-        {
-            get { return _isUpgradeFee; }
-            set { _isUpgradeFee = value; }
         }
 
         // kiểm tra miễn nhiễm

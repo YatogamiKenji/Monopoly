@@ -25,6 +25,7 @@ namespace Monopoly
             description = "Giữ chân 1 người tại vị trí cũ trong vòng 5 lượt";
             type = false;
             usingLand = false;
+            icon = "/Monopoly;component/Images/Power/PowerHoldAPerson.jpg";
         }
 
         public PowerHoldAPerson(string name, int value, string description) : base(name, value, description)

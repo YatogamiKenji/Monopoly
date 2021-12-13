@@ -27,6 +27,7 @@ namespace Monopoly
             description = "Khóa 1 hành tinh của một người chơi trong vòng 2 lượt";
             type = false;
             usingLand = true;
+            icon = "/Monopoly;component/Images/Power/PowerLockAPlotOfLand.jpg";
         }
 
         public PowerLockAPlotOfLand(int index) : base()

@@ -16,6 +16,7 @@ namespace Monopoly
             description = "Biến một ô đất của ai đó thành của mình";
             type = false;
             usingLand = true;
+            icon = "/Monopoly;component/Images/Power/PowerStealLand.png";
         }
 
         public PowerStealLand(string name, int value, string description) : base(name, value, description)

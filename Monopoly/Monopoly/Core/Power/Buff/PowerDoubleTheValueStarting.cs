@@ -16,6 +16,7 @@ namespace Monopoly
             description = "Tăng gấp đôi giá trị nhận được khi đi qua cổng dịch chuyển";
             type = true;
             usingLand = false;
+            icon = "/Monopoly;component/Images/Power/PowerDoubleTheValueStarting.jpg";
         }
 
         public PowerDoubleTheValueStarting(string name, int value, string description) : base(name, value, description)

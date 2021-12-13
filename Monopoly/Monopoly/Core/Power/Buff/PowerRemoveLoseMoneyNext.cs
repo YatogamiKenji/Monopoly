@@ -16,6 +16,7 @@ namespace Monopoly
             description = "Loại bỏ lần mất tiền tiếp theo";
             type = true;
             usingLand = false;
+            icon = "/Monopoly;component/Images/Power/PowerRemoveLoseMoneyNext.jpg";
         }
 
         public PowerRemoveLoseMoneyNext(string name, int value, string description) : base(name, value, description)

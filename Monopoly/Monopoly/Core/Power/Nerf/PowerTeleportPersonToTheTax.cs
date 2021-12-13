@@ -16,6 +16,7 @@ namespace Monopoly
             description = "Dịch chuyển một người chơi đến ô thuế và trả thuế gấp đôi";
             type = false;
             usingLand = false;
+            icon = "/Monopoly;component/Images/Power/PowerTeleportPersonToTheTax.jpg";
         }
 
         public PowerTeleportPersonToTheTax(string name, int value, string description) : base(name, value, description)
