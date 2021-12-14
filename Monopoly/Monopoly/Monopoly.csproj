@@ -50,6 +50,7 @@
     <None Remove="Images\btn\style2\btn_style2_yellow_large.png" />
     <None Remove="Images\card\card_blue.png" />
     <None Remove="Images\card\card_green.png" />
+    <None Remove="Images\card\card_highlight.png" />
     <None Remove="Images\card\card_red.png" />
     <None Remove="Images\card\card_violet.png" />
     <None Remove="Images\card\card_yellow.png" />
@@ -221,6 +222,7 @@
     <Resource Include="Images\btn\style2\btn_style2_yellow_large.png" />
     <Resource Include="Images\card\card_blue.png" />
     <Resource Include="Images\card\card_green.png" />
+    <Resource Include="Images\card\card_highlight.png" />
     <Resource Include="Images\card\card_red.png" />
     <Resource Include="Images\card\card_violet.png" />
     <Resource Include="Images\card\card_yellow.png" />

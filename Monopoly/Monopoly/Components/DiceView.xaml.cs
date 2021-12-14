@@ -61,7 +61,7 @@ namespace Monopoly.Components
 
             Noti.SetTimeout(() =>
             {
-                int num = 7-((randAngle % 360)/60+1);
+                int num = 7 - (((randAngle % 360) / 60) + 1);
                 RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = num });
             }, 1.6);
         }

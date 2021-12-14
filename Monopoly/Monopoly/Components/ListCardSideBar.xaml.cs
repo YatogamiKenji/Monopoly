@@ -62,8 +62,6 @@ namespace Monopoly.Components
                 powerCard.Description = card.description;
                 //powerCard.ImgSource = card.ImgSource;
                 powerCard.Price = card.value;
-                powerCard.Width = 101;
-                powerCard.Height = 131;
                 powerCard.Margin = new Thickness(2, 0, 2, 0);
                 listCardSideBarPanel.Children.Add(powerCard);
             }
