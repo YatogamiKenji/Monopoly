@@ -11,12 +11,18 @@
     <layout:PanelCenterMap x:Name="thisPanel" Title="SỬ DỤNG THẺ">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="170"/>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="140"/>
                 <RowDefinition />
-                <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Width="400" Margin="0 10 0 0">
-                <ScrollViewer Height="148" HorizontalScrollBarVisibility = "Visible" VerticalScrollBarVisibility = "Hidden">
+            <Grid Grid.Row="0" Margin="0 10 0 0">
+                <Image Source="/Monopoly;component/Images/panel/list_card_usecardview.png"
+                       Width="380"
+                       Height="156"/>
+                <ScrollViewer Height="150"
+                              Width="358"
+                              HorizontalScrollBarVisibility = "Visible" 
+                              VerticalScrollBarVisibility = "Hidden">
                     <StackPanel
                         x:Name="listCardUseCardView"
                         Orientation="Horizontal">
@@ -24,9 +30,15 @@
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
-            <Grid Grid.Row="1" Width="400" Margin="0 10 0 0">
-                <StackPanel>
-                    <TextBlock x:Name="mainDescription" Foreground="White"/>
+            <Grid Grid.Row="1" Width="400" Margin="0 0 0 0">
+                <Image Source="/Monopoly;component/Images/panel/detail_description_card.png"
+                       Height="134"
+                       Width="364"/>
+                <StackPanel Width="350" Height="110" Margin="10 10 10 0">
+                    <TextBlock x:Name="mainDescription"
+                               Foreground="White"
+                               FontSize="16"
+                               TextWrapping="Wrap"/>
                 </StackPanel>
             </Grid>
 

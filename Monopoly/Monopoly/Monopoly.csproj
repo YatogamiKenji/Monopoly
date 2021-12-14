@@ -138,6 +138,8 @@
     <None Remove="Images\message_box_center_map\message_box_center_map_blue.png" />
     <None Remove="Images\message_box_center_map\message_box_center_map_green.png" />
     <None Remove="Images\message_box_center_map\message_box_center_map_red.png" />
+    <None Remove="Images\panel\detail_description_card.png" />
+    <None Remove="Images\panel\list_card_usecardview.png" />
     <None Remove="Images\panel\panel_center_map.png" />
     <None Remove="Images\planet\galaxy.jpg" />
     <None Remove="Images\planet\planet1.jpg" />
@@ -169,6 +171,7 @@
     <None Remove="Images\planet\planet8.jpg" />
     <None Remove="Images\planet\planet9.jpg" />
     <None Remove="Images\player\player_blue.png" />
+    <None Remove="Images\player\player_button.png" />
     <None Remove="Images\player\player_green.png" />
     <None Remove="Images\player\player_red.png" />
     <None Remove="Images\player\player_violet.png" />
@@ -481,6 +484,8 @@
     <Resource Include="Images\message_box_center_map\message_box_center_map_blue.png" />
     <Resource Include="Images\message_box_center_map\message_box_center_map_green.png" />
     <Resource Include="Images\message_box_center_map\message_box_center_map_red.png" />
+    <Resource Include="Images\panel\detail_description_card.png" />
+    <Resource Include="Images\panel\list_card_usecardview.png" />
     <Resource Include="Images\panel\panel_center_map.png" />
     <Resource Include="Images\planet\galaxy.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -570,6 +575,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\player\player_blue.png" />
+    <Resource Include="Images\player\player_button.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\player\player_green.png" />
     <Resource Include="Images\player\player_red.png" />
     <Resource Include="Images\player\player_violet.png" />

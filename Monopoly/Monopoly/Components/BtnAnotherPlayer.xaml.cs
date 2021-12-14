@@ -50,7 +50,7 @@ namespace Monopoly.Components
 
         // Using a DependencyProperty as the backing store for ImgSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty AvatarProperty =
-            DependencyProperty.Register("ImgSource", typeof(ImageSource), typeof(BtnAnotherPlayer), new PropertyMetadata());
+            DependencyProperty.Register("Avatar", typeof(ImageSource), typeof(BtnAnotherPlayer), new PropertyMetadata());
         
         public string PlayerName
         {
