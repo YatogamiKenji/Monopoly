@@ -136,17 +136,17 @@ namespace Monopoly.Components
             playersList[0].AddPower(new PowerSplitDice());
             playersList[0].AddPower(new PowerStealLand());
             playersList[0].AddPower(new PowerTeleportPersonToTheTax());
-            //playersList[0].AddLand(lands[0], 0, 1);
-            //playersList[0].AddLand(lands[1], 1, 2);
-            //playersList[0].AddLand(lands[2], 2, 4);
-            //playersList[0].AddLand(lands[3], 3, 5);
-            //playersList[0].AddLand(lands[4], 4, 6);
-            //playersList[0].AddLand(lands[5], 5, 8);
+            playersList[0].AddLand(lands[0], 0, 1);
+            playersList[0].AddLand(lands[1], 1, 2);
+            playersList[0].AddLand(lands[2], 2, 4);
+            playersList[0].AddLand(lands[3], 3, 5);
+            playersList[0].AddLand(lands[4], 4, 6);
+            playersList[0].AddLand(lands[5], 5, 8);
             playersList[1].AddPower(new PowerCancelPowerCard());
             playersList[1].AddPower(new PowerSplitDice());
-            //playersList[1].AddLand(lands[6], 6, 9);
-            //playersList[1].AddLand(lands[7], 7, 11);
-            //playersList[1].AddLand(lands[8], 8, 12);
+            playersList[1].AddLand(lands[6], 6, 9);
+            playersList[1].AddLand(lands[7], 7, 11);
+            playersList[1].AddLand(lands[8], 8, 12);
         }
 
         //khởi tạo data
@@ -520,17 +520,14 @@ namespace Monopoly.Components
                     if (!playersList[PlayerTurn].isTeleport) Goto();
                     sideBar.update(playersList, PlayerTurn);
                 }
-                else
+                else if (playersList[PlayerTurn].isInPrison && MessageBox.Show("bạn có muốn trả tiền để đi không", "thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
                 {
-                    if (playersList[PlayerTurn].isInPrison && MessageBox.Show("bạn có muốn trả tiền để đi không", "thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
-                    {
-                        playersList[PlayerTurn].money -= 1000;
-                        ActivationEffect();
-                        if (!playersList[PlayerTurn].isTeleport) Goto();
-                        sideBar.update(playersList, PlayerTurn);
-                    }
-                    else ChangeTurn();
+                    playersList[PlayerTurn].money -= 1000;
+                    ActivationEffect();
+                    if (!playersList[PlayerTurn].isTeleport) Goto();
+                    sideBar.update(playersList, PlayerTurn);
                 }
+                else ChangeTurn();
             });
         }
 
@@ -651,7 +648,6 @@ namespace Monopoly.Components
             {
                 power.PowerFunction(ref usingPlayer);
 
-
                 if (Card.IDCard == "PowerMoveToAnyCell")
                 {
                     for (int i = 0; i < 40; i++)
@@ -664,7 +660,7 @@ namespace Monopoly.Components
                 }
 
                 // nếu thẻ power đó có sử dụng đến đất
-                else if (power.usingLand)
+                else if (power.usingLand && usingPlayer.lands.Count > 0)
                 {
                     usingPower = power;
                     for (int i = 0; i < usingPlayer.lands.Count; i++)
@@ -686,6 +682,14 @@ namespace Monopoly.Components
                     });
                 }
             }
+            else if (playersList[PlayerTurn].money >= power.value * dice && power.usingLand && usingPlayer.lands.Count == 0) 
+            {
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không có bất kỳ hành tinh nào để sử dụng", "Red"), 2.5, (str) =>
+                {
+                    SwitchView(CenterMapView.Prev);
+                    SwitchView(CenterMapView.UseCard);
+                });
+            } 
             else
             {
                 Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền để sử dụng thẻ", "Red"), 1.5, (str) =>
@@ -811,7 +815,7 @@ namespace Monopoly.Components
                         }
 
                         // nếu thẻ power đó có sử dụng đến đất
-                        if (PickedPlayer.power.usingLand)
+                        if (PickedPlayer.power.usingLand && affectedPlayers.lands.Count > 0)
                         {
                             for (int j = 0; j < usingPlayer.lands.Count; j++)
                             {
@@ -832,6 +836,20 @@ namespace Monopoly.Components
                                 ChangeTurn();
                             });
                         }
+                    }
+                    else if (playersList[PlayerTurn].money >= PickedPlayer.power.value * dice && PickedPlayer.power.usingLand && affectedPlayers.lands.Count == 0) 
+                    {
+                        Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Người chơi " + affectedPlayers.name + " không có bất kỳ hành tinh nào", "Red"), 2.5, (str) =>
+                        {
+                            SwitchView(CenterMapView.Prev);
+                        });
+                    }
+                    else if (playersList[PlayerTurn].money >= PickedPlayer.power.value * dice && PickedPlayer.power.GetType().Name == "PowerCancelPowerCard" && affectedPlayers.powers.Count == 0)
+                    {
+                        Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Người chơi " + affectedPlayers.name + " không có bất kỳ thẻ quyền năng nào", "Red"), 2.5, (str) =>
+                        {
+                            SwitchView(CenterMapView.Prev);
+                        });
                     }
                     else
                     {

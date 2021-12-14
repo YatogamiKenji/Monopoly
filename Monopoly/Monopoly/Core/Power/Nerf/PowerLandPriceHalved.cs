@@ -48,7 +48,7 @@ namespace Monopoly
 
         public override bool Using(ref Player playerUse, ref Player affectedPlayers, int dice)
         {
-            if (playerUse.money > dice * value)
+            if (playerUse.money > dice * value && affectedPlayers.lands.Count > 0) 
             {
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;

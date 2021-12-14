@@ -8,6 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Audios\LevelUp1.wav" />
+    <None Remove="Audios\LevelUp2.wav" />
+    <None Remove="Audios\PowerUp.wav" />
+    <None Remove="Audios\sound1.wav" />
+    <None Remove="Audios\sound2.wav" />
+    <None Remove="Audios\sound3.wav" />
+    <None Remove="Audios\sound4.wav" />
+    <None Remove="Audios\sound5.wav" />
+    <None Remove="Audios\sound6.wav" />
+    <None Remove="Audios\sound7.wav" />
+    <None Remove="Audios\sound8.wav" />
+    <None Remove="Audios\sound9.wav" />
     <None Remove="Images\alien-ship-icon.png" />
     <None Remove="Images\avatar\avatar1.jpg" />
     <None Remove="Images\avatar\avatar2.jpg" />
@@ -204,14 +216,46 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Audios\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Audios\LevelUp1.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\LevelUp2.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\PowerUp.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound1.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound2.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound3.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound4.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound5.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound6.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound7.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound8.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound9.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\avatar\avatar1.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
