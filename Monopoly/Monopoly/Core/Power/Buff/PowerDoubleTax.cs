@@ -16,6 +16,7 @@ namespace Monopoly
             description = "Tăng gấp đôi giá trị thuế của một hành tinh";
             type = true;
             usingLand = true;
+            icon = "/Monopoly;component/Images/Power/PowerDoubleTax.png";
         }
 
         public PowerDoubleTax(string name, int value, string description) : base(name, value, description)
@@ -25,7 +26,7 @@ namespace Monopoly
 
         public override bool Using(ref Player playerUse, int dice)
         {
-            if (playerUse.money >= dice * value)
+            if (playerUse.money >= dice * value && playerUse.lands.Count > 0) 
             {
                 playerUse.AddPowersEffect(new PowerDoubleTax());
                 playerUse.RemovePower(name);

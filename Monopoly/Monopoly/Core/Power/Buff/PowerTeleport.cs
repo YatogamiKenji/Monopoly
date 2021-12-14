@@ -19,11 +19,12 @@ namespace Monopoly
         public PowerTeleport():base()
         {
             value = 900;
-            name = "Dịch chuyển";
+            name = "Di chuyển";
             description = "Dịch chuyển đến 1 ô bất kỳ trong phạm vi xúc sắc đổ được";
             type = true;
             usingLand = false;
             _numberTurns = 5;
+            icon = "/Monopoly;component/Images/Power/PowerMoveToAnyCell.jpg";
         }
 
         public PowerTeleport(string name, int value, string description) : base(name, value, description)

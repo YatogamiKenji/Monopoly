@@ -80,7 +80,7 @@
                     <compoenent:ContentChessCell 
                             x:Name="o10"
                             IsHitTestVisible ="False" 
-                            ImageCell="/Monopoly;component/Images/planet/galaxy.jpg"
+                            ImageCell="/Monopoly;component/Images/SpecialCell/InPrison.jpg"
                             />
                 </Border>
 
@@ -124,7 +124,7 @@
 
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
-                            ImageCell="/Monopoly;component/Images/planet/galaxy.jpg"
+                            ImageCell="/Monopoly;component/Images/SpecialCell/Chance.jpg"
                             />
                 </Border>
                 <Border  x:Name="_6"
@@ -180,7 +180,7 @@
 
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
-                            ImageCell="/Monopoly;component/Images/planet/galaxy.jpg"
+                            ImageCell="/Monopoly;component/Images/SpecialCell/Tax.jpg"
                             />
                 </Border>
                 <Border  x:Name="_2" 
@@ -221,7 +221,7 @@
 
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
-                            ImageCell="/Monopoly;component/Images/planet/galaxy.jpg"
+                            ImageCell="/Monopoly;component/Images/SpecialCell/Start.jpg"
                             />
                 </Border>
                 <Border x:Name="_11" 
@@ -263,7 +263,7 @@
 
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
-                            ImageCell="/Monopoly;component/Images/planet/galaxy.jpg" 
+                            ImageCell="/Monopoly;component/Images/SpecialCell/CommunityChest.jpg" 
                             />
                 </Border>
                 <Border x:Name="_14" 
@@ -320,7 +320,7 @@
 
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
-                            ImageCell="/Monopoly;component/Images/planet/galaxy.jpg"
+                            ImageCell="/Monopoly;component/Images/SpecialCell/Power.jpg"
                             />
                 </Border>
                 <Border x:Name="_18" 
@@ -360,7 +360,7 @@
 
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
-                            ImageCell="/Monopoly;component/Images/planet/galaxy.jpg"
+                            ImageCell="/Monopoly;component/Images/SpecialCell/ParkingLot.jpg"
                             />
                 </Border>
                 <Border  x:Name="_39" 
@@ -403,7 +403,7 @@
 
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
-                            ImageCell="/Monopoly;component/Images/planet/galaxy.jpg"
+                            ImageCell="/Monopoly;component/Images/SpecialCell/Tax.jpg"
                             />
                 </Border>
                 <Border x:Name="_36"
@@ -459,7 +459,7 @@
 
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
-                            ImageCell="/Monopoly;component/Images/planet/galaxy.jpg" 
+                            ImageCell="/Monopoly;component/Images/SpecialCell/Power.jpg" 
                             />
                 </Border>
                 <Border x:Name="_32"
@@ -500,7 +500,7 @@
 
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
-                            ImageCell="/Monopoly;component/Images/planet/galaxy.jpg"
+                            ImageCell="/Monopoly;component/Images/SpecialCell/GotoPrison.jpg"
                             />
                 </Border>
                 <Border x:Name="_21"
@@ -542,7 +542,7 @@
 
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
-                            ImageCell="/Monopoly;component/Images/planet/galaxy.jpg"
+                            ImageCell="/Monopoly;component/Images/SpecialCell/Chance.jpg"
                             />
                 </Border>
                 <Border x:Name="_24"
@@ -598,7 +598,7 @@
 
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
-                            ImageCell="/Monopoly;component/Images/planet/galaxy.jpg"
+                            ImageCell="/Monopoly;component/Images/SpecialCell/CommunityChest.jpg"
                             />
                 </Border>
                 <Border x:Name="_28" 

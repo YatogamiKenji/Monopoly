@@ -49,14 +49,14 @@ namespace Monopoly.Components
         public static readonly DependencyProperty PriceProperty =
             DependencyProperty.Register("Price", typeof(int), typeof(PowerCard), new PropertyMetadata(0));
 
-        public ImageSource ImgSource
+        public String ImgSource
         {
-            get { return (ImageSource)GetValue(ImgSourceProperty); }
+            get { return (String)GetValue(ImgSourceProperty); }
             set { SetValue(ImgSourceProperty, value); }
         }
         // Using a DependencyProperty as the backing store for ImgSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ImgSourceProperty =
-            DependencyProperty.Register("ImgSource", typeof(ImageSource), typeof(PowerCard));
+            DependencyProperty.Register("ImgSource", typeof(String), typeof(PowerCard));
 
         public PowerCard()
         {
@@ -69,7 +69,7 @@ namespace Monopoly.Components
             Title = power.name;
             Description = power.description;
             Price = power.value;
-            //ImgSource = imgSource;
+            ImgSource = power.icon;
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Monopoly
             description = "Biến một ô đất của ai đó thành của mình";
             type = false;
             usingLand = true;
+            icon = "/Monopoly;component/Images/Power/PowerStealLand.png";
         }
 
         public PowerStealLand(string name, int value, string description) : base(name, value, description)
@@ -25,7 +26,7 @@ namespace Monopoly
 
         public override bool Using(ref Player playerUse, ref Player affectedPlayers, int dice)
         {
-            if (playerUse.money >= dice * value)
+            if (playerUse.money >= dice * value && affectedPlayers.lands.Count > 0) 
             {
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;

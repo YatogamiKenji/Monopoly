@@ -16,6 +16,7 @@ namespace Monopoly
             description = "Hủy bỏ 1 quyền năng trên tay người khác";
             type = false;
             usingLand = false;
+            icon = "/Monopoly;component/Images/Power/PowerCancelPowerCard.jpg";
         }
 
         public PowerCancelPowerCard(string name, int value, string description) : base(name, value, description)
@@ -25,7 +26,7 @@ namespace Monopoly
 
         public override bool Using(ref Player playerUse, ref Player affectedPlayers, int dice)
         {
-            if (playerUse.money >= dice * value)
+            if (playerUse.money >= dice * value && affectedPlayers.powers.Count > 0) 
             {
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;

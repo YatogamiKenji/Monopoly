@@ -4,9 +4,22 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>CuteAstronautAndPlanet.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Audios\LevelUp1.wav" />
+    <None Remove="Audios\LevelUp2.wav" />
+    <None Remove="Audios\PowerUp.wav" />
+    <None Remove="Audios\sound1.wav" />
+    <None Remove="Audios\sound2.wav" />
+    <None Remove="Audios\sound3.wav" />
+    <None Remove="Audios\sound4.wav" />
+    <None Remove="Audios\sound5.wav" />
+    <None Remove="Audios\sound6.wav" />
+    <None Remove="Audios\sound7.wav" />
+    <None Remove="Audios\sound8.wav" />
+    <None Remove="Audios\sound9.wav" />
     <None Remove="Images\alien-ship-icon.png" />
     <None Remove="Images\avatar\avatar1.jpg" />
     <None Remove="Images\avatar\avatar2.jpg" />
@@ -64,6 +77,42 @@
     <None Remove="Images\card\power_card_red.png" />
     <None Remove="Images\card\power_card_violet.png" />
     <None Remove="Images\card\power_card_yellow.png" />
+    <None Remove="Images\Card_Icon\Card1.jpg" />
+    <None Remove="Images\Card_Icon\Card10.jpg" />
+    <None Remove="Images\Card_Icon\Card11.jpg" />
+    <None Remove="Images\Card_Icon\Card12.jpg" />
+    <None Remove="Images\Card_Icon\Card13.jpg" />
+    <None Remove="Images\Card_Icon\Card14.jpg" />
+    <None Remove="Images\Card_Icon\Card15.jpg" />
+    <None Remove="Images\Card_Icon\Card16.jpg" />
+    <None Remove="Images\Card_Icon\Card17.jpg" />
+    <None Remove="Images\Card_Icon\Card18.jpg" />
+    <None Remove="Images\Card_Icon\Card19.jpg" />
+    <None Remove="Images\Card_Icon\Card2.jpg" />
+    <None Remove="Images\Card_Icon\Card20.png" />
+    <None Remove="Images\Card_Icon\Card21.jpg" />
+    <None Remove="Images\Card_Icon\Card22.jpg" />
+    <None Remove="Images\Card_Icon\Card23.jpg" />
+    <None Remove="Images\Card_Icon\Card24.jpg" />
+    <None Remove="Images\Card_Icon\Card25.jpg" />
+    <None Remove="Images\Card_Icon\Card26.jpg" />
+    <None Remove="Images\Card_Icon\Card27.jpg" />
+    <None Remove="Images\Card_Icon\Card28.png" />
+    <None Remove="Images\Card_Icon\Card29.png" />
+    <None Remove="Images\Card_Icon\Card3.jpg" />
+    <None Remove="Images\Card_Icon\Card30.jpg" />
+    <None Remove="Images\Card_Icon\Card31.jpg" />
+    <None Remove="Images\Card_Icon\Card32.jpg" />
+    <None Remove="Images\Card_Icon\Card33.jpg" />
+    <None Remove="Images\Card_Icon\Card34.png" />
+    <None Remove="Images\Card_Icon\Card35.png" />
+    <None Remove="Images\Card_Icon\Card36.jpg" />
+    <None Remove="Images\Card_Icon\Card4.jpg" />
+    <None Remove="Images\Card_Icon\Card5.jpg" />
+    <None Remove="Images\Card_Icon\Card6.jpg" />
+    <None Remove="Images\Card_Icon\Card7.jpg" />
+    <None Remove="Images\Card_Icon\Card8.jpg" />
+    <None Remove="Images\Card_Icon\Card9.jpg" />
     <None Remove="Images\cell\cell.png" />
     <None Remove="Images\cell\cell_highlight.png" />
     <None Remove="Images\coin\coin1.png" />
@@ -125,6 +174,25 @@
     <None Remove="Images\player\player_violet.png" />
     <None Remove="Images\player\player_yellow.png" />
     <None Remove="Images\pluto-icon.png" />
+    <None Remove="Images\Power\PowerAppointPersonToPrison.jpg" />
+    <None Remove="Images\Power\PowerCancelPowerCard.jpg" />
+    <None Remove="Images\Power\PowerDoubleDice.jpg" />
+    <None Remove="Images\Power\PowerDoublePriceLandForever.png" />
+    <None Remove="Images\Power\PowerDoubleTax.png" />
+    <None Remove="Images\Power\PowerDoubleTheValueStarting.jpg" />
+    <None Remove="Images\Power\PowerExemptFromPrison.png" />
+    <None Remove="Images\Power\PowerFreezeBankAccounts.png" />
+    <None Remove="Images\Power\PowerHalveUpgradeFee.jpg" />
+    <None Remove="Images\Power\PowerHoldAPerson.jpg" />
+    <None Remove="Images\Power\PowerLandLevelReduction.jpg" />
+    <None Remove="Images\Power\PowerLandPriceHalved.jpg" />
+    <None Remove="Images\Power\PowerLockAPlotOfLand.jpg" />
+    <None Remove="Images\Power\PowerMoveToAnyCell.jpg" />
+    <None Remove="Images\Power\PowerRemoveAdverseEffects.jpg" />
+    <None Remove="Images\Power\PowerRemoveLoseMoneyNext.jpg" />
+    <None Remove="Images\Power\PowerSplitDice.jpg" />
+    <None Remove="Images\Power\PowerStealLand.png" />
+    <None Remove="Images\Power\PowerTeleportPersonToTheTax.jpg" />
     <None Remove="Images\rocket-launch-icon.png" />
     <None Remove="Images\rocket.png" />
     <None Remove="Images\sidebar\list_card_sidebar.png" />
@@ -136,12 +204,16 @@
     <None Remove="Images\sidebar\tab_sidebar_selected.png" />
     <None Remove="Images\space-shuttle-launch-icon.png" />
     <None Remove="Images\spaceImg.jpg" />
+    <None Remove="Images\SpecialCell\Chance.jpg" />
+    <None Remove="Images\SpecialCell\CommunityChest.jpg" />
+    <None Remove="Images\SpecialCell\GotoPrison.jpg" />
+    <None Remove="Images\SpecialCell\InPrison.jpg" />
+    <None Remove="Images\SpecialCell\ParkingLot.jpg" />
+    <None Remove="Images\SpecialCell\Power.jpg" />
+    <None Remove="Images\SpecialCell\Start.jpg" />
+    <None Remove="Images\SpecialCell\Tax.jpg" />
     <None Remove="Images\sputnik-2-icon.png" />
     <None Remove="Images\telescope-icon.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Audios\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -149,6 +221,42 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Audios\LevelUp1.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\LevelUp2.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\PowerUp.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound1.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound2.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound3.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound4.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound5.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound6.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound7.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound8.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Audios\sound9.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\avatar\avatar1.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -236,6 +344,114 @@
     <Resource Include="Images\card\power_card_red.png" />
     <Resource Include="Images\card\power_card_violet.png" />
     <Resource Include="Images\card\power_card_yellow.png" />
+    <Resource Include="Images\Card_Icon\Card1.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card10.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card11.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card12.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card13.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card14.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card15.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card16.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card17.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card18.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card19.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card2.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card20.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card21.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card22.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card23.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card24.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card25.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card26.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card27.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card28.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card29.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card3.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card30.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card31.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card32.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card33.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card34.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card35.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card36.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card4.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card5.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card6.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card7.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card8.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card9.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\cell\cell.png" />
     <Resource Include="Images\cell\cell_highlight.png" />
     <Resource Include="Images\coin\coin1.png">
@@ -358,6 +574,63 @@
     <Resource Include="Images\player\player_red.png" />
     <Resource Include="Images\player\player_violet.png" />
     <Resource Include="Images\player\player_yellow.png" />
+    <Resource Include="Images\Power\PowerAppointPersonToPrison.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerCancelPowerCard.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerDoubleDice.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerDoublePriceLandForever.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerDoubleTax.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerDoubleTheValueStarting.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerExemptFromPrison.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerFreezeBankAccounts.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerHalveUpgradeFee.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerHoldAPerson.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerLandLevelReduction.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerLandPriceHalved.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerLockAPlotOfLand.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerMoveToAnyCell.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerRemoveAdverseEffects.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerRemoveLoseMoneyNext.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerSplitDice.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerStealLand.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Power\PowerTeleportPersonToTheTax.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\sidebar\list_card_sidebar.png" />
     <Resource Include="Images\sidebar\list_land_sidebar.png" />
     <Resource Include="Images\sidebar\money_sidebar.png" />
@@ -365,6 +638,30 @@
     <Resource Include="Images\sidebar\tab_sidebar.png" />
     <Resource Include="Images\sidebar\tab_sidebar_disable.png" />
     <Resource Include="Images\sidebar\tab_sidebar_selected.png" />
+    <Resource Include="Images\SpecialCell\Chance.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SpecialCell\CommunityChest.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SpecialCell\GotoPrison.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SpecialCell\InPrison.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SpecialCell\ParkingLot.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SpecialCell\Power.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SpecialCell\Start.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\SpecialCell\Tax.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

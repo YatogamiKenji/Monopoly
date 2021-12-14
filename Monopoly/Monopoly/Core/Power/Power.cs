@@ -40,6 +40,13 @@ namespace Monopoly
             set { _usingLand = value; }
         }
 
+        private string _icon;
+        public string icon
+        {
+            get { return _icon; }
+            set { _icon = value; }
+        }
+
         //mô tả thẻ quyền năng :v
         private string _description;
         public string description

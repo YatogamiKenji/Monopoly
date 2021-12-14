@@ -27,6 +27,7 @@ namespace Monopoly
             description = "Khóa 1 hành tinh của một người chơi trong vòng 2 lượt";
             type = false;
             usingLand = true;
+            icon = "/Monopoly;component/Images/Power/PowerLockAPlotOfLand.jpg";
         }
 
         public PowerLockAPlotOfLand(int index) : base()
@@ -47,7 +48,7 @@ namespace Monopoly
 
         public override bool Using(ref Player playerUse, ref Player affectedPlayers, int dice)
         {
-            if (playerUse.money >= dice * value)
+            if (playerUse.money >= dice * value && affectedPlayers.lands.Count > 0) 
             {
                 playerUse.RemovePower(name);
                 playerUse.money -= dice * value;

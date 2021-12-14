@@ -25,6 +25,7 @@ namespace Monopoly
             description = "Đóng băng tài khoản của người khác trong vòng 2 lượt";
             type = false;
             usingLand = true;
+            icon = "/Monopoly;component/Images/Power/PowerFreezeBankAccounts.png";
         }
 
         public PowerFreezeBankAccounts(string name, int value, string description) : base(name, value, description)

@@ -156,25 +156,25 @@ namespace Monopoly
         // Giá cần để nâng cấp lên level tiếp theo
         public int Upgrade()
         {
-            if (_level == 1)
+            if (_level == 0)
             {
                 _landValue += Convert.ToInt32(Math.Ceiling(1.4 * _value));
                 _level++;
                 return Convert.ToInt32(Math.Ceiling(1.4 * _value));
             }
-            else if (_level == 2)
+            else if (_level == 1)
             {
                 _landValue += Convert.ToInt32(Math.Ceiling(1.6 * _value));
                 _level++;
                 return Convert.ToInt32(Math.Ceiling(1.6 * _value));
             }
-            else if (_level == 3)
+            else if (_level == 2)
             {
                 _landValue += Convert.ToInt32(Math.Ceiling(1.8 * _value));
                 _level++;
                 return Convert.ToInt32(Math.Ceiling(1.8 * _value));
             }
-            else if (_level == 4)
+            else if (_level == 3)
             {
                 _landValue += 2 * _value;
                 _level++;
