@@ -28,62 +28,7 @@ namespace Monopoly.Components
             set { _land = value; }
         }
 
-        public string NameOfLand
-        {
-            get { return (string)GetValue(NameOfLandProperty); }
-            set { SetValue(NameOfLandProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for NameOfLand.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty NameOfLandProperty =
-            DependencyProperty.Register("NameOfLand", typeof(string), typeof(ComeEmptyLandView), new PropertyMetadata(""));
-
-        public String ImgSource
-        {
-            get { return (String)GetValue(ImgSourceProperty); }
-            set { SetValue(ImgSourceProperty, value); }
-        }
-        // Using a DependencyProperty as the backing store for ImgSource.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ImgSourceProperty =
-            DependencyProperty.Register("ImgSource", typeof(String), typeof(ComeEmptyLandView));
-
-
-
-        public int Price
-        {
-            get { return (int)GetValue(PriceProperty); }
-            set { SetValue(PriceProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Price.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PriceProperty =
-            DependencyProperty.Register("Price", typeof(int), typeof(ComeEmptyLandView), new PropertyMetadata(0));
-
-
-
-
-        public List<int> PriceLevel
-        {
-            get { return (List<int>)GetValue(PriceLevelProperty); }
-            set { SetValue(PriceLevelProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for PriceLevel.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PriceLevelProperty =
-            DependencyProperty.Register("PriceLevel", typeof(List<int>), typeof(ComeEmptyLandView));
-
-
-
-
-        public List<int> PriceTax
-        {
-            get { return (List<int>)GetValue(PriceTaxProperty); }
-            set { SetValue(PriceTaxProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for PriceTax.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PriceTaxProperty =
-            DependencyProperty.Register("PriceTax", typeof(List<int>), typeof(ComeEmptyLandView));
+        
 
 
         public static readonly RoutedEvent BuyButtonClickEvent =
@@ -132,55 +77,14 @@ namespace Monopoly.Components
             RaiseEvent(new RoutedEventArgs(SkipButtonClickEvent));
         }
 
-
-        public ComeEmptyLandView()
-        {
-            InitializeComponent();
-            NameOfLand = "Tên đất mặc định";
-            PriceLevel = new List<int>() { 0, 0, 0, 0, 0 };
-            PriceTax = new List<int>() { 0, 0, 0, 0, 0 };
-        }
-
         public ComeEmptyLandView(Land land)
         {
+            this.DataContext = this;
             InitializeComponent();
             _land = land;
-            SetInfor();
+            landPriceButtonText.Text = _land.value.ToString();
+            thisLandCard.setInfor(_land);
         }
 
-        public ComeEmptyLandView(string nameOfLand, String imgSource, int price, List<int> priceLevel, List<int> priceTax)
-        {
-            InitializeComponent();
-            NameOfLand = nameOfLand;
-            ImgSource = imgSource;
-            Price = price;
-            PriceLevel = priceLevel;
-            PriceTax = priceTax;
-        }
-
-        public void SetInfor(string nameOfLand, String imgSource, int price, List<int> priceLevel, List<int> priceTax)
-        {
-            NameOfLand = nameOfLand;
-            ImgSource = imgSource;
-            Price = price;
-            PriceLevel = priceLevel;
-            PriceTax = priceTax;
-        }
-
-        public void SetInfor()
-        {
-            NameOfLand = _land.name;
-            Price = _land.value;
-            ImgSource = @"/Monopoly;component" + land.avatar;
-            List<int> value = new List<int>();
-            List<int> tax = new List<int>();
-            for (int i = 1; i < 6; i++)
-            {
-                value.Add(_land.Upgrade(i));
-                tax.Add(_land.Tax(i));
-            }
-            PriceLevel = value;
-            PriceTax = tax;
-        }
     }
 }

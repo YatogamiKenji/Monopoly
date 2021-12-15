@@ -116,6 +116,8 @@
     <None Remove="Images\cell\cell.png" />
     <None Remove="Images\cell\cell_highlight.png" />
     <None Remove="Images\coin\coin1.png" />
+    <None Remove="Images\coin\coin2.png" />
+    <None Remove="Images\coin\coin3.png" />
     <None Remove="Images\dice\needle.png" />
     <None Remove="Images\dice\wheel.png" />
     <None Remove="Images\falling-star-icon.png" />
@@ -458,6 +460,12 @@
     <Resource Include="Images\cell\cell.png" />
     <Resource Include="Images\cell\cell_highlight.png" />
     <Resource Include="Images\coin\coin1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\coin\coin2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\coin\coin3.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\dice\needle.png">

@@ -559,22 +559,10 @@ namespace Monopoly.Components
         #region Các sự kiện của ComeOwnLandView
 
         //bán đất
-        private void ComeOwnLandView_OnBuyButtonClick(object sender, RoutedEventArgs e)
+        private void ComeOwnLandView_OnUpgradeButtonClick(object sender, RoutedEventArgs e)
         {
-            //nếu người chơi bán thì gọi lệnh bên dưới
-            //đóng băng tài khoản bán k đc cộng tiền
-            if (!playersList[PlayerTurn].isFreezeBank) playersList[PlayerTurn].money += lands[cellManager[playersList[PlayerTurn].position].index].landValue / 2;
-            playersList[PlayerTurn].RemoveLand(cellManager[playersList[PlayerTurn].position].index);
-            lands[cellManager[playersList[PlayerTurn].position].index].GetDefault();
+            
 
-            sideBar.update(playersList, PlayerTurn);
-
-            ChangeTurn();
-        }
-
-        //nâng cấp
-        private void ComeOwnLandView_OnSellButtonClick(object sender, RoutedEventArgs e)
-        {
             //nếu player đồng ý nâng cấp thì gọi lệnh bên dưới
             if ((playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].Upgrade() || playersList[PlayerTurn].isLoseMoney) && !playersList[PlayerTurn].isFreezeBank)
             {
@@ -595,9 +583,23 @@ namespace Monopoly.Components
             else
             {
                 Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền", "Red"), 1.5, (s) => { });
-            } 
-                
+            }
+
             sideBar.update(playersList, PlayerTurn);
+        }
+
+        //nâng cấp
+        private void ComeOwnLandView_OnSellButtonClick(object sender, RoutedEventArgs e)
+        {
+            //nếu người chơi bán thì gọi lệnh bên dưới
+            //đóng băng tài khoản bán k đc cộng tiền
+            if (!playersList[PlayerTurn].isFreezeBank) playersList[PlayerTurn].money += lands[cellManager[playersList[PlayerTurn].position].index].landValue / 2;
+            playersList[PlayerTurn].RemoveLand(cellManager[playersList[PlayerTurn].position].index);
+            lands[cellManager[playersList[PlayerTurn].position].index].GetDefault();
+
+            sideBar.update(playersList, PlayerTurn);
+
+            ChangeTurn();
         }
 
         #endregion
@@ -899,10 +901,9 @@ namespace Monopoly.Components
                     break;
 
                 case CenterMapView.ComeOwnLand:
-                    ComeOwnLandView comeOwnLandView = new ComeOwnLandView(getCurrentLand());
-                    comeOwnLandView.SetInfor(1);
+                    ComeOwnLandView comeOwnLandView = new ComeOwnLandView(getCurrentLand(), 1);
                     comeOwnLandView.OnSellButtonClick += ComeOwnLandView_OnSellButtonClick;
-                    comeOwnLandView.OnBuyButtonClick += ComeOwnLandView_OnBuyButtonClick;
+                    comeOwnLandView.OnUpgradeButtonClick += ComeOwnLandView_OnUpgradeButtonClick;
                     comeOwnLandView.OnSkipButtonClick += EndTurn;
                     comeOwnLandView.OnUseCardButtonClick += SwitchToUseCardView;
                     centerMapView.Content = comeOwnLandView;

@@ -4,294 +4,86 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Monopoly.Components"
-             x:Name="root"
+             xmlns:component="clr-namespace:Monopoly.Components"
+             xmlns:layout="clr-namespace:Monopoly.Layouts"
              mc:Ignorable="d" 
-             d:DesignHeight="370" d:DesignWidth="405">
+             d:DesignHeight="500" d:DesignWidth="500">
 
-    <UserControl.Resources>
-        <Style x:Key="ButtonCenterMap" TargetType="Button">
-            <Setter Property="Width" Value="134"/>
-            <Setter Property="Height" Value="48"/>
-            <Setter Property="Margin" Value="0 12 0 0"/>
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="0">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Monopoly;component/Images/panel/panel_center_map.png"></ImageBrush>
-        </Grid.Background>
-        
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <layout:PanelCenterMap x:Name="thisPanel" Title="HÀNH TINH TRỐNG" CountdownStr="00 : 00">
 
-        <!-- HEADING -->
-        <TextBlock 
-            Grid.Row="0"
-            Margin="18 18 18 8"
-            Text="BẠN ĐI VÀO HÀNH TINH TRỐNG, BẠN CÓ MUỐN MUA KHÔNG?"
-            TextAlignment="Center"
-            TextWrapping="Wrap"
-            FontSize="18"
-            FontWeight="Bold"/>
-
-        <!-- BODY -->
-        <Grid Grid.Row="1" VerticalAlignment="Bottom" Margin="20 0 20 20">
+        <Grid VerticalAlignment="Bottom" Margin="40 0 40 20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <!-- Card -->
-            <Grid Grid.Column="0" Background="Gray" Height="270" Width="180">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-
-
-                <TextBlock Grid.Row="0"
-                    Text="{Binding NameOfLand, ElementName=root}"
-                    FontSize="18"
-                    FontWeight="Bold"
-                    Foreground="White"
-                    TextWrapping="NoWrap"
-                    TextTrimming="CharacterEllipsis"
-                    Background="Red"
-                    Padding="4 2 0 2"/>
-
-                <StackPanel Grid.Row="1">
-                    <Image Source="{Binding ImgSource, ElementName=root}" Stretch="UniformToFill"/>
-                </StackPanel>
-
-
-                <StackPanel Grid.Row="2" Background="#E0DCDC">
-                    <!-- price -->
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-                        <TextBlock Text="Giá đất: "
-                                   FontSize="12"
-                                   Margin="6 2"/>
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding Price, ElementName=root}"
-                                       Margin="2 0 2 0"
-                                       Foreground="DarkOrange"
-                                       FontSize="14"
-                                       FontWeight="Bold"/>
-                            <Image Source="/Monopoly;component/Image/coinIcon.png"
-                                   Height="13"
-                                   Width="13"
-                                   Margin="0 1 0  0"/>
-                        </StackPanel>
-                    </StackPanel>
-
-                    <!-- table -->
-                    <Grid Margin="4 5 4 5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="3*"/>
-                            <ColumnDefinition Width="3*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Nâng cấp" FontSize="12"/>
-                        <TextBlock Grid.Column="2" Grid.Row="0" Text="Thuế" FontSize="12"/>
-                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Cấp 1:" FontSize="12" Foreground="#3D3D3D" Margin="0 1 0 0"/>
-                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Cấp 2" FontSize="12" Foreground="#3D3D3D" Margin="0 2 0 0"/>
-                        <TextBlock Grid.Column="0" Grid.Row="3" Text="Cấp 3:" FontSize="12" Foreground="#3D3D3D" Margin="0 2 0 0"/>
-                        <TextBlock Grid.Column="0" Grid.Row="4" Text="Cấp 4:" FontSize="12" Foreground="#3D3D3D" Margin="0 2 0 0"/>
-                        <TextBlock Grid.Column="0" Grid.Row="5" Text="Cấp 5:" FontSize="12" Foreground="#3D3D3D" Margin="0 2 0 0"/>
-
-                        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding PriceLevel[0], ElementName=root}"
-                                       Foreground="DarkOrange"
-                                       FontSize="14"
-                                       FontWeight="Bold"/>
-                            <Image Source="/Monopoly;component/Image/coinIcon.png"
-                                   Height="13"
-                                   Width="13"
-                                   Margin="2 2 0  0"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding PriceLevel[1], ElementName=root}"
-                                       Foreground="DarkOrange"
-                                       FontSize="14"
-                                       FontWeight="Bold"/>
-                            <Image Source="/Monopoly;component/Image/coinIcon.png"
-                                   Height="13"
-                                   Width="13"
-                                   Margin="2 2 0  0"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding PriceLevel[2], ElementName=root}"
-                                       Foreground="DarkOrange"
-                                       FontSize="14"
-                                       FontWeight="Bold"/>
-                            <Image Source="/Monopoly;component/Image/coinIcon.png"
-                                   Height="13"
-                                   Width="13"
-                                   Margin="2 2 0  0"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding PriceLevel[3], ElementName=root}"
-                                       Foreground="DarkOrange"
-                                       FontSize="14"
-                                       FontWeight="Bold"/>
-                            <Image Source="/Monopoly;component/Image/coinIcon.png"
-                                   Height="13"
-                                   Width="13"
-                                   Margin="2 2 0  0"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding PriceLevel[4], ElementName=root}"
-                                       Foreground="DarkOrange"
-                                       FontSize="14"
-                                       FontWeight="Bold"/>
-                            <Image Source="/Monopoly;component/Image/coinIcon.png"
-                                   Height="13"
-                                   Width="13"
-                                   Margin="2 2 0  0"/>
-                        </StackPanel>
-
-
-                        <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding PriceTax[0], ElementName=root}"
-                                       Foreground="DarkOrange"
-                                       FontSize="14"
-                                       FontWeight="Bold"/>
-                            <Image Source="/Monopoly;component/Image/coinIcon.png"
-                                   Height="13"
-                                   Width="13"
-                                   Margin="2 2 0  0"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding PriceTax[1], ElementName=root}"
-                                       Foreground="DarkOrange"
-                                       FontSize="14"
-                                       FontWeight="Bold"/>
-                            <Image Source="/Monopoly;component/Image/coinIcon.png"
-                                   Height="13"
-                                   Width="13"
-                                   Margin="2 2 0  0"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="2" Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding PriceTax[2], ElementName=root}"
-                                       Foreground="DarkOrange"
-                                       FontSize="14"
-                                       FontWeight="Bold"/>
-                            <Image Source="/Monopoly;component/Image/coinIcon.png"
-                                   Height="13"
-                                   Width="13"
-                                   Margin="2 2 0  0"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="2" Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding PriceTax[3], ElementName=root}"
-                                       Foreground="DarkOrange"
-                                       FontSize="14"
-                                       FontWeight="Bold"/>
-                            <Image Source="/Monopoly;component/Image/coinIcon.png"
-                                   Height="13"
-                                   Width="13"
-                                   Margin="2 2 0  0"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="2" Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding PriceTax[4], ElementName=root}"
-                                       Foreground="DarkOrange"
-                                       FontSize="14"
-                                       FontWeight="Bold"/>
-                            <Image Source="/Monopoly;component/Image/coinIcon.png"
-                                   Height="13"
-                                   Width="13"
-                                   Margin="2 2 0  0"/>
-                        </StackPanel>
-
-
-
-                    </Grid>
-                </StackPanel>
-            </Grid>
+            <component:LandCardDetail x:Name="thisLandCard" />
 
             <!-- Right Group -->
             <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom">
 
 
-                <Button Content="SỬ DỤNG THẺ" Click="UseCardButtonClickFunc">
-                    <Button.Style>
-                        <Style TargetType="Button" BasedOn="{StaticResource ButtonCenterMap}">
-                            <Setter Property="Background" Value="#aac11e"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#92A61B"/>
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
+                <Button Style="{StaticResource BtnStyle1Yellow}"
+                        Margin="0 0 0 8"
+                        Click="UseCardButtonClickFunc">
+                    <Button.Content>
+                        <TextBlock Text="SỬ DỤNG THẺ" Style="{StaticResource BtnStyle1Text}"/>
+                    </Button.Content>
                 </Button>
 
-                <Button Click="BuyButtonClickFunc">
+                <Button Style="{StaticResource BtnStyle1Green}"
+                        Margin="0 0 0 8"
+                        Click="BuyButtonClickFunc">
                     <Button.Content>
-                        <StackPanel>
-                            <TextBlock Text="MUA" TextAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Grid>
+                            <TextBlock Text="MUA">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock" BasedOn="{StaticResource BtnStyle1Text}">
+                                        <Setter Property="Opacity" Value="1"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                                                <Setter Property="Opacity" Value="0"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <StackPanel Orientation="Horizontal"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
                                 <TextBlock
-                                    Text="{Binding Price, ElementName=root}"
-                                    Margin="0 0 4 0"
-                                    Foreground="DarkOrange"
-                                    FontSize="16"
-                                    FontWeight="Bold"/>
+                                    Text=""
+                                    Style="{StaticResource BtnStyle1Text}"
+                                    Foreground="Yellow"
+                                    x:Name="landPriceButtonText"
+                                    FontSize="16"/>
                                 <Image
-                                    Source="/Monopoly;component/Image/coinIcon.png"
+                                    Source="/Monopoly;component/Images/coin/coin2.png"
                                     Height="14"
                                     Width="14"
-                                    Margin="0 1 0  0"/>
+                                    Margin="3 2 0  0"/>
+                                <StackPanel.Style>
+                                    <Style TargetType="StackPanel">
+                                        <Setter Property="Opacity" Value="0"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                                                <Setter Property="Opacity" Value="1"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </StackPanel.Style>
                             </StackPanel>
-                        </StackPanel>
+                        </Grid>
                     </Button.Content>
-                    <Button.Style>
-                        <Style TargetType="Button" BasedOn="{StaticResource ButtonCenterMap}">
-                            <Setter Property="Background" Value="#339b0f"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28750D"/>
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
                 </Button>
-                <Button Content="BỎ QUA" Click="SkipButtonClickFunc">
-                    <Button.Style>
-                        <Style TargetType="Button" BasedOn="{StaticResource ButtonCenterMap}">
-                            <Setter Property="Background" Value="#656565"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#414141"/>
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
+                <Button Style="{StaticResource BtnStyle1Blue}"
+                        Click="SkipButtonClickFunc">
+                    <Button.Content>
+                        <TextBlock Text="BỎ QUA" Style="{StaticResource BtnStyle1Text}"/>
+                    </Button.Content>
                 </Button>
             </StackPanel>
         </Grid>
-    </Grid>
+    </layout:PanelCenterMap>
 </UserControl>

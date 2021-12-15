@@ -75,12 +75,13 @@
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                 <TextBlock
                                                     Text="{Binding currentPriceCard}"
-                                                    Style="{StaticResource BtnStyle1Text}"/>
+                                                    Style="{StaticResource BtnStyle1Text}"
+                                                    FontSize="16"/>
                                                 <Image
-                                                    Source="/Monopoly;component/Image/coinIcon.png"
+                                                    Source="/Monopoly;component/Images/coin/coin3.png"
                                                     Height="14"
                                                     Width="14"
-                                                    Margin="0 1 0  0"/>
+                                                    Margin="3 2 0 0"/>
                                             </StackPanel>
                                         </Setter.Value>
                                     </Setter>
