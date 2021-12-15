@@ -20,22 +20,6 @@ namespace Monopoly.Components
     /// </summary>
     public partial class PlayerUsing : UserControl
     {
-        public static readonly RoutedEvent SellButtonClickEvent =
-            EventManager.RegisterRoutedEvent(nameof(OnSellButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(PlayerUsing));
-
-        public event RoutedEventHandler OnSellButtonClick
-        {
-            add { AddHandler(SellButtonClickEvent, value); }
-            remove { RemoveHandler(SellButtonClickEvent, value); }
-        }
-
-        private void SellButtonClickFunc(object sender, RoutedEventArgs e)
-        {
-            RaiseEvent(new RoutedEventArgs(SellButtonClickEvent));
-        }
-
-
-
         public static readonly RoutedEvent UseCardButtonClickEvent =
             EventManager.RegisterRoutedEvent(nameof(OnUseCardButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(PlayerUsing));
 
@@ -49,8 +33,6 @@ namespace Monopoly.Components
         {
             RaiseEvent(new RoutedEventArgs(UseCardButtonClickEvent));
         }
-
-
 
         public static readonly RoutedEvent SkipButtonClickEvent =
             EventManager.RegisterRoutedEvent(nameof(OnSkipButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(PlayerUsing));
