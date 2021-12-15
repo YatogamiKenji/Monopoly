@@ -136,17 +136,17 @@ namespace Monopoly.Components
             playersList[0].AddPower(new PowerSplitDice());
             playersList[0].AddPower(new PowerStealLand());
             playersList[0].AddPower(new PowerTeleportPersonToTheTax());
-            playersList[0].AddLand(lands[0], 0, 1);
-            playersList[0].AddLand(lands[1], 1, 2);
-            playersList[0].AddLand(lands[2], 2, 4);
-            playersList[0].AddLand(lands[3], 3, 5);
-            playersList[0].AddLand(lands[4], 4, 6);
-            playersList[0].AddLand(lands[5], 5, 8);
+            //playersList[0].AddLand(lands[0], 0, 1);
+            //playersList[0].AddLand(lands[1], 1, 2);
+            //playersList[0].AddLand(lands[2], 2, 4);
+            //playersList[0].AddLand(lands[3], 3, 5);
+            //playersList[0].AddLand(lands[4], 4, 6);
+            //playersList[0].AddLand(lands[5], 5, 8);
             playersList[1].AddPower(new PowerCancelPowerCard());
             playersList[1].AddPower(new PowerSplitDice());
-            playersList[1].AddLand(lands[6], 6, 9);
-            playersList[1].AddLand(lands[7], 7, 11);
-            playersList[1].AddLand(lands[8], 8, 12);
+            //playersList[1].AddLand(lands[6], 6, 9);
+            //playersList[1].AddLand(lands[7], 7, 11);
+            //playersList[1].AddLand(lands[8], 8, 12);
         }
 
         //khởi tạo data
@@ -317,6 +317,7 @@ namespace Monopoly.Components
             else playersList[PlayerTurn].isLoseMoney = false;
             playersList[lands[cellManager[playersList[PlayerTurn].position].index].owner].money += lands[cellManager[playersList[PlayerTurn].position].index].Tax();
             sideBar.update(playersList, PlayerTurn);
+            SwitchView(CenterMapView.PlayerUsing);
         }
 
         //xử lý trả tiền khi không đủ tiền trả khi vào đất người khác
@@ -343,8 +344,6 @@ namespace Monopoly.Components
                 || playersList[PlayerTurn].isLoseMoney) EnoughMoneyToPay();
             //nếu không đủ tiền xử lý sự kiện bán đất, bán nhà để trả nợ
             else NotEnoughMoneyToPay();
-
-            ChangeTurn();
         }
 
         #endregion
@@ -448,7 +447,7 @@ namespace Monopoly.Components
         //đi đến ô vào tù
         void GotoPrison()
         {
-            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đi đến ô vào tù và được đưa đến ô ở tù " + dice, "Red"), 2.5, (str) =>
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đi đến ô vào tù và được đưa đến ô ở tù ", "Red"), 2.5, (str) =>
             {
                 //đưa player đến ô vào tù
                 if (!playersList[PlayerTurn].isOutPrison) PlayerToPrison();
@@ -466,11 +465,14 @@ namespace Monopoly.Components
         //đi đến ô thuế
         void GotoTax()
         {
-            //phạt 10% số tiền hiện có khi đi vào ô thuế
-            if (!playersList[PlayerTurn].isLoseMoney)
-                playersList[PlayerTurn].money = Convert.ToInt32(Math.Ceiling(0.9 * playersList[PlayerTurn].money));
-            else playersList[PlayerTurn].isLoseMoney = false;
-            SwitchView(CenterMapView.PlayerUsing);
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đi đến thuế và bị phạt 10% số tiền hiện có ", "Red"), 2.5, (str) =>
+            {
+                //phạt 10% số tiền hiện có khi đi vào ô thuế
+                if (!playersList[PlayerTurn].isLoseMoney)
+                    playersList[PlayerTurn].money = Convert.ToInt32(Math.Ceiling(0.9 * playersList[PlayerTurn].money));
+                else playersList[PlayerTurn].isLoseMoney = false;
+                SwitchView(CenterMapView.PlayerUsing);
+            });
         }
 
         //đi đến ô bãi đỗ xe
@@ -559,7 +561,7 @@ namespace Monopoly.Components
             //nếu người chơi bán thì gọi lệnh bên dưới
             //đóng băng tài khoản bán k đc cộng tiền
             if (!playersList[PlayerTurn].isFreezeBank) playersList[PlayerTurn].money += lands[cellManager[playersList[PlayerTurn].position].index].landValue / 2;
-            playersList[PlayerTurn].RemoveLand(cellManager[playersList[PlayerTurn].position].index);
+            playersList[PlayerTurn].RemoveLand(lands[cellManager[playersList[PlayerTurn].position].index].name);
             lands[cellManager[playersList[PlayerTurn].position].index].GetDefault();
 
             sideBar.update(playersList, PlayerTurn);
@@ -568,21 +570,21 @@ namespace Monopoly.Components
         }
 
         //nâng cấp
-        private void ComeOwnLandView_OnSellButtonClick(object sender, RoutedEventArgs e)
+        private void UpgradeLand(object sender, RoutedEventArgs e)
         {
             //nếu player đồng ý nâng cấp thì gọi lệnh bên dưới
-            if ((playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].Upgrade() || playersList[PlayerTurn].isLoseMoney) && !playersList[PlayerTurn].isFreezeBank)
+            if ((playersList[PlayerTurn].money >= lands[cellManager[playersList[PlayerTurn].position].index].Upgrade(lands[cellManager[playersList[PlayerTurn].position].index].level + 1) 
+                || playersList[PlayerTurn].isLoseMoney) && !playersList[PlayerTurn].isFreezeBank) 
             {
                 if (!playersList[PlayerTurn].isLoseMoney)
                 {
                     playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Upgrade();
-                    playersList[PlayerTurn].UpdateLand(cellManager[playersList[PlayerTurn].position].index);
                 }
                 else playersList[PlayerTurn].isLoseMoney = false;
 
                 sideBar.update(playersList, PlayerTurn);
 
-                Noti.Show(notiCenterMapArea, new NotiBuyLand(lands[cellManager[playersList[PlayerTurn].position].index].name), 2, (s) =>
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Nâng cấp thành công", "Green"), 2, (s) =>
                 {
                     ChangeTurn();
                 });
@@ -722,7 +724,6 @@ namespace Monopoly.Components
             {
                 usingPower.PowerFunction(ref usingPlayer, index);
                 playersList[PlayerTurn] = usingPlayer;
-                if (usingPower.GetType().Name == "PowerHalveUpgradeFee") lands[playersList[PlayerTurn].indexLands[index]].Upgrade();
                 ChangeTurn();
             });
         }
@@ -896,7 +897,7 @@ namespace Monopoly.Components
                 case CenterMapView.ComeOwnLand:
                     ComeOwnLandView comeOwnLandView = new ComeOwnLandView(getCurrentLand());
                     comeOwnLandView.SetInfor(1);
-                    comeOwnLandView.OnSellButtonClick += ComeOwnLandView_OnSellButtonClick;
+                    comeOwnLandView.OnSellButtonClick += UpgradeLand;
                     comeOwnLandView.OnBuyButtonClick += ComeOwnLandView_OnBuyButtonClick;
                     comeOwnLandView.OnSkipButtonClick += EndTurn;
                     comeOwnLandView.OnUseCardButtonClick += SwitchToUseCardView;
@@ -1001,7 +1002,7 @@ namespace Monopoly.Components
                 if (playersList[PlayerTurn].lands[i].name == Card.land.name)
                 {
                     lands[playersList[PlayerTurn].indexLands[i]].GetDefault();
-                    playersList[PlayerTurn].RemoveLand(i);
+                    playersList[PlayerTurn].RemoveLand(playersList[PlayerTurn].lands[i].name);
                     break;
                 }
 
@@ -1015,7 +1016,7 @@ namespace Monopoly.Components
                 {
                     playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Tax();
                     playersList[lands[cellManager[playersList[PlayerTurn].position].index].owner].money += lands[cellManager[playersList[PlayerTurn].position].index].Tax();
-                    ChangeTurn();
+                    SwitchView(CenterMapView.PlayerUsing);
                 }
                 else NotEnoughMoneyToPay();
             }

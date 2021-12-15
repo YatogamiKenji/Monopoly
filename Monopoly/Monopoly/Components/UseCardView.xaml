@@ -53,7 +53,7 @@
                         Margin="0 0 4 0"
                         Click="CancleButtonClickFunc">
                     <Button.Content>
-                        <TextBlock Text="HUỶ" Style="{StaticResource BtnStyle1Text}" />
+                        <TextBlock Text="HỦY" Style="{StaticResource BtnStyle1Text}" />
                     </Button.Content>
                 </Button>
                 
@@ -77,10 +77,10 @@
                                                     Text="{Binding currentPriceCard}"
                                                     Style="{StaticResource BtnStyle1Text}"/>
                                                 <Image
-                                                    Source="/Monopoly;component/Image/coinIcon.png"
+                                                    Source="/Monopoly;component/Images/coin/coin1.png"
                                                     Height="14"
                                                     Width="14"
-                                                    Margin="0 1 0  0"/>
+                                                    Margin="5 1 0  0"/>
                                             </StackPanel>
                                         </Setter.Value>
                                     </Setter>

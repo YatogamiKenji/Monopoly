@@ -37,7 +37,7 @@ namespace Monopoly
 
         public override void PowerFunction(ref Player playerUse, int index)
         {
-            if (playerUse.money >= playerUse.lands[index].Upgrade(playerUse.lands[index].level) / 2)
+            if (playerUse.money >= playerUse.lands[index].Upgrade(playerUse.lands[index].level + 1) / 2)
             {
                 playerUse.money -= playerUse.lands[index].Upgrade() / 2;
             }    

@@ -44,15 +44,15 @@ namespace Monopoly.Components
             DependencyProperty.Register("Description", typeof(string), typeof(ChanceCard), new PropertyMetadata("Mô tả mặc định"));
 
 
-        public ImageSource ImgSource
+        public String ImgSource
         {
-            get { return (ImageSource)GetValue(ImgSourceProperty); }
+            get { return (String)GetValue(ImgSourceProperty); }
             set { SetValue(ImgSourceProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for ImgSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ImgSourceProperty =
-            DependencyProperty.Register("ImgSource", typeof(ImageSource), typeof(ChanceCard));
+            DependencyProperty.Register("ImgSource", typeof(String), typeof(ChanceCard));
 
 
         public ChanceCard()
