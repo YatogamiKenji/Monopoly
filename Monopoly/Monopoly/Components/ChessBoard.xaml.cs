@@ -375,14 +375,6 @@ namespace Monopoly.Components
             playersList[PlayerTurn].isInPrison = true;
             Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[10]));
             Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[10]));
-            PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            if (playersList[PlayerTurn].isRetention)
-            {
-                Player _player = playersList[PlayerTurn];
-                RemovePowersEffect(ref _player);
-                playersList[PlayerTurn] = _player;
-                PlayerTurn = (PlayerTurn + 1) % NumberOfPlayers;
-            }
 
             sideBar.update(playersList, PlayerTurn);
         }
@@ -450,16 +442,19 @@ namespace Monopoly.Components
         //đi đến ô tù
         void GotoInPrison()
         {
-            //đưa player đến ô vào tù
-            if (!playersList[PlayerTurn].isOutPrison) PlayerToPrison();
-
             SwitchView(CenterMapView.PlayerUsing);
         }
 
         //đi đến ô vào tù
         void GotoPrison()
         {
-            SwitchView(CenterMapView.PlayerUsing);
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đi đến ô vào tù và được đưa đến ô ở tù " + dice, "Red"), 2.5, (str) =>
+            {
+                //đưa player đến ô vào tù
+                if (!playersList[PlayerTurn].isOutPrison) PlayerToPrison();
+
+                SwitchView(CenterMapView.PlayerUsing);
+            });
         }
 
         //đi đến ô bắt đầu
@@ -493,8 +488,8 @@ namespace Monopoly.Components
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.CoHoi) GotoChance();
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.KhiVan) GotoCommunityChest();
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.QuyenNang) GotoPower();
-            else if (cellManager[playersList[PlayerTurn].position].type == CellType.OTu) GotoPrison();
-            else if (cellManager[playersList[PlayerTurn].position].type == CellType.VaoTu) GotoInPrison();
+            else if (cellManager[playersList[PlayerTurn].position].type == CellType.OTu) GotoInPrison();
+            else if (cellManager[playersList[PlayerTurn].position].type == CellType.VaoTu) GotoPrison();
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.Thue) GotoTax();
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.BaiDoXe) GotoParking();
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.BatDau) GotoStart();
