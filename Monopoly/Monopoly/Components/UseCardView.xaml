@@ -53,7 +53,7 @@
                         Margin="0 0 4 0"
                         Click="CancleButtonClickFunc">
                     <Button.Content>
-                        <TextBlock Text="HUỶ" Style="{StaticResource BtnStyle1Text}" />
+                        <TextBlock Text="HỦY" Style="{StaticResource BtnStyle1Text}" />
                     </Button.Content>
                 </Button>
                 

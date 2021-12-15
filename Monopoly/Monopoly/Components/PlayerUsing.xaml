@@ -66,20 +66,6 @@
                     </Style>
                 </Button.Style>
             </Button>
-
-            <Button Click="SellButtonClickFunc" Content="BÁN HÀNH TINH" Width="180">
-                <Button.Style>
-                    <Style TargetType="Button" BasedOn="{StaticResource ButtonCenterMap}">
-                        <Setter Property="Background" Value="#339b0f"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#28750D"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
             <Button Content="BỎ QUA" Click="SkipButtonClickFunc" Width="180">
                 <Button.Style>
                     <Style TargetType="Button" BasedOn="{StaticResource ButtonCenterMap}">

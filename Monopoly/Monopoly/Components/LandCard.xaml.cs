@@ -80,7 +80,7 @@ namespace Monopoly.Components
             Title = land.name;
             Level = land.level;
             Tax = land.Tax();
-            Value = land.value;
+            Value = land.landValue;
             ImgSource = @"/Monopoly;component" + land.avatar;
         }
 

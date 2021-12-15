@@ -108,7 +108,7 @@ namespace Monopoly
         public Player()
         {
             _name = "";
-            _money = 10000;
+            _money = 10000000;
             _position = 0;
             _isOutPrisonCard = false;
             _powers = new List<Power>();
@@ -160,6 +160,19 @@ namespace Monopoly
         }
 
         // Xóa bỏ mảnh đất sau khi bán
+        public void RemoveLand(string name)
+        {
+            for (int i = 0; i < _lands.Count; i++)
+                if (_lands[i].name == name)
+                {
+                    _lands.RemoveAt(i);
+                    _indexLands.RemoveAt(i);
+                    _indexCells.RemoveAt(i);
+                    break;
+                }
+        }
+
+        // Xóa bỏ mảnh đất sau khi bán
         public void RemoveLand(int index)
         {
             _lands.RemoveAt(index);
@@ -197,16 +210,6 @@ namespace Monopoly
                 if (_powersEffect[i].name == name)
                 {
                     _powersEffect.RemoveAt(i);
-                    break;
-                }
-        }
-
-        public void UpdateLand(int index)
-        {
-            for (int i = 0; i < _indexLands.Count; i++)
-                if (_indexLands[i] == index)
-                {
-                    lands[i].Upgrade();
                     break;
                 }
         }

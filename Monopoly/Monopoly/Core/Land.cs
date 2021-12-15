@@ -153,7 +153,7 @@ namespace Monopoly
             return tax * Convert.ToInt32(Math.Ceiling(1.08 * _value));
         }
 
-        // Giá cần để nâng cấp lên level tiếp theo
+        // Nâng cấp lên level tiếp theo
         public int Upgrade()
         {
             if (_level == 0)
