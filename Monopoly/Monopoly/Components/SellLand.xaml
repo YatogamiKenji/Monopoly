@@ -26,7 +26,10 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid x:Name="ListCard" Background="AliceBlue">
+    <Grid x:Name="ListCard">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Monopoly;component/Images/panel/panel_center_map.png"></ImageBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="45"/>
             <RowDefinition/>
@@ -38,18 +41,33 @@
                    FontWeight="Medium"
                    Padding="30 5 0 0"
                    Grid.Row="0" Margin="0,0,0,5"/>
-        <Button Content="Hủy" Grid.Row="2" VerticalAlignment="Center"  HorizontalAlignment="Center" Click="Button_Click">
-            <Button.Style>
-                <Style TargetType="Button" BasedOn="{StaticResource ButtonCenterMap}">
-                    <Setter Property="Background" Value="#656565"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#414141"/>
-                            <Setter Property="Cursor" Value="Hand"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center"  HorizontalAlignment="Center">
+            <Button Content="Phá Sản" Margin="0 0 10 0" Click="ButtonBankrupt_Click">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource ButtonCenterMap}">
+                        <Setter Property="Background" Value="#656565"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#414141"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Content="Hủy" Margin="10 0 0 0" Click="ButtonCancel_Click">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonCenterMap}">
+                        <Setter Property="Background" Value="#656565"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#414141"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>

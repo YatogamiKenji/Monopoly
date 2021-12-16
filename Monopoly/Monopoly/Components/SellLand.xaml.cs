@@ -41,9 +41,23 @@ namespace Monopoly.Components
             remove { RemoveHandler(ButtonCancleClickEvent, value); }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(ButtonCancleClickEvent));
+        }
+
+        public static readonly RoutedEvent ButtonBankrupClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnButtonBankruptClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContenButtonCardLand));
+
+        public event RoutedEventHandler OnButtonBankruptClick
+        {
+            add { AddHandler(ButtonBankrupClickEvent, value); }
+            remove { RemoveHandler(ButtonBankrupClickEvent, value); }
+        }
+
+        private void ButtonBankrupt_Click(object sender, RoutedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(ButtonBankrupClickEvent));
         }
     }
 }

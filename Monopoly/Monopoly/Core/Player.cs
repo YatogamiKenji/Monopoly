@@ -119,6 +119,7 @@ namespace Monopoly
             _isInPrison = false;
             _isDoubleStart = false;
             _isLoseMoney = false;
+            _isLoser = false;
             Init();
         }
 
@@ -137,6 +138,7 @@ namespace Monopoly
             _isInPrison = false;
             _isDoubleStart = false;
             _isLoseMoney = false;
+            _isLoser = false;
             Init();
         }
 
@@ -277,5 +279,32 @@ namespace Monopoly
             get { return _isTeleport; }
             set { _isTeleport = value; }
         }
+
+        //kiểm tra xem thử người chơi có thua chưa
+        private bool _isLoser;
+        public bool isLoser
+        {
+            get { return _isLoser; }
+            set { _isLoser = value; }
+        }
+
+        //Trả lại tất cả khi người chơi thua cuộc
+        public void Loser()
+        {
+            _isLoser = true;
+            _money = 0;
+            _position = 0;
+            _isOutPrisonCard = false;
+            _powers.Clear();
+            _powersEffect.Clear();
+            _lands.Clear();
+            _indexLands.Clear();
+            _indexCells.Clear();
+            _isInPrison = false;
+            _isDoubleStart = false;
+            _isLoseMoney = false;
+            _isLoser = false;
+            Init();
+        }    
     }
 }
