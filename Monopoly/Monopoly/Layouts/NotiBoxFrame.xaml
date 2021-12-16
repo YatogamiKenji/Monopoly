@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Monopoly.Layouts">
+    <local:NotiColorToImageConverter x:Key="NotiColorToImageConverter"/>
+    <Style TargetType="local:NotiBoxFrame">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:NotiBoxFrame" >
+                    <Grid Width="500" Height="116">
+                        <Grid>
+                            <Image Source="{TemplateBinding ColorFrame, Converter={StaticResource NotiColorToImageConverter}}"
+                                   Stretch="Fill"/>
+                        </Grid>
+                        <Grid Margin="50 15">
+                            <ContentPresenter />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

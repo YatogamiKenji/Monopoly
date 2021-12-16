@@ -570,7 +570,7 @@ namespace Monopoly.Components
         {
             dice = e.valueOfDice;
 
-            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn quay được " + dice, "Blue"), 1.5, (str) =>
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn quay được *" + dice + "*", "Blue"), 1.5, (str) =>
             {
                 // nếu người chơi đang ở trong tù thì phải đổ được 1 hoặc 6 mới được phép di chuyển ra ngoài
                 if ((playersList[PlayerTurn].isInPrison && (dice == 1 || dice == 6)) || !playersList[PlayerTurn].isInPrison)
@@ -608,7 +608,7 @@ namespace Monopoly.Components
                 playersList[PlayerTurn].AddLand(lands[cellManager[playersList[PlayerTurn].position].index], cellManager[playersList[PlayerTurn].position].index, playersList[PlayerTurn].position);
                 sideBar.update(playersList, PlayerTurn);
 
-                Noti.Show(notiCenterMapArea, new NotiBuyLand(lands[cellManager[playersList[PlayerTurn].position].index].name), 2, (s) =>
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đã mua hành tinh *"+getCurrentLand().name+"*", "Green"), 2, (s) =>
                 {
                     ChangeTurn();
                 });
@@ -638,7 +638,7 @@ namespace Monopoly.Components
 
                 sideBar.update(playersList, PlayerTurn);
 
-                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Nâng cấp thành công", "Green"), 2, (s) =>
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Đã nâng cấp *"+getCurrentLand().name+"* lên *cấp "+getCurrentLand().level, "Green"), 2.5, (s) =>
                 {
                     ChangeTurn();
                 });
@@ -662,7 +662,10 @@ namespace Monopoly.Components
 
             sideBar.update(playersList, PlayerTurn);
 
-            ChangeTurn();
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đã bán hành tinh *" + getCurrentLand().name + "*", "Green"), 2, (s) =>
+            {
+                ChangeTurn();
+            });
         }
 
         #endregion

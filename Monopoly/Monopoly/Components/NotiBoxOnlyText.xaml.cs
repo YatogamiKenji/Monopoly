@@ -59,7 +59,21 @@ namespace Monopoly.Components
         {
             this.DataContext = this;
             InitializeComponent();
-            Text = text;
+            if (text != "")
+            {
+                bool isBold = false;
+                if (text[0] == '*')
+                    isBold = true;
+                string[] listText = text.Split("*");
+                foreach (string t in listText)
+                {
+                    Run run = new Run(t);
+                    if (isBold)
+                        run.FontWeight = FontWeights.SemiBold;
+                    notiText.Inlines.Add(run);
+                    isBold = !isBold;
+                }
+            }
             Color = color;
         }
     }

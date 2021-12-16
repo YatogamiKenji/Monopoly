@@ -5,11 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Monopoly.Components"
              xmlns:component="clr-namespace:Monopoly.Components"
+             xmlns:layout="clr-namespace:Monopoly.Layouts"
              mc:Ignorable="d" 
-             x:Name="root"
              d:DesignHeight="116" d:DesignWidth="500">
-    <component:NotiBoxFrame ColorFrame="{Binding Color}">
+    <layout:NotiBoxFrame ColorFrame="{Binding Color}">
         <TextBlock Text="{Binding Text}"
-                   Style="{StaticResource NotiText}"/>
-    </component:NotiBoxFrame>
+                   Style="{StaticResource NotiText}"
+                   x:Name="notiText"/>
+    </layout:NotiBoxFrame>
 </UserControl>
