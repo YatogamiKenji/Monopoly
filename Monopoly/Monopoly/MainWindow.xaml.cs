@@ -28,8 +28,22 @@ namespace Monopoly
         public MainWindow()
         {
             InitializeComponent();
-         
-            
+        }
+
+        private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+            this.DragMove();
+        }
+
+        private void Image_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void Image_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
         }
     }
 }
