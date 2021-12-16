@@ -7,11 +7,54 @@
         xmlns:component="clr-namespace:Monopoly.Components"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
+        WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Title="Monopoly" Height="760" Width="1280">
+        Title="Monopoly" Height="750" Width="1280">
     <Grid>
-        <component:ViewStart/>
-       
-      
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown"
+                   HorizontalAlignment="Stretch" LastChildFill="False" VerticalAlignment="Top" Height="35">
+            <DockPanel.Background>
+                <ImageBrush ImageSource="/Monopoly;component/Images/controlbar/controlbar.jpg" Stretch="UniformToFill"></ImageBrush>
+            </DockPanel.Background>
+            <Image Margin="5 0" Source="/Monopoly;component/Images/controlbar/CuteAstronaut.png"></Image>
+            <TextBlock Margin="5 0" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Left" Text="Monopoly" Foreground="Aqua" FontSize="15"></TextBlock>
+            
+            <Image DockPanel.Dock="Right" Source="/Monopoly;component/Images/controlbar/x.png"
+                   Cursor="Hand"                  
+                   PreviewMouseDown="Image_PreviewMouseDown_1"
+                   Margin="0 0 15 0">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Width" Value="15"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="Image.IsMouseOver" Value="True">
+                                <Setter Property="Width" Value="18"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <Image DockPanel.Dock="Right" Source="/Monopoly;component/Images/controlbar/-.png" 
+                   PreviewMouseDown="Image_PreviewMouseDown"
+                   Margin="0 0 10 0" Cursor="Hand">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Width" Value="15"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="Image.IsMouseOver" Value="True">
+                                <Setter Property="Width" Value="18"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </DockPanel>
+        <Grid Grid.Row="1">
+            <component:ViewStart/>
+        </Grid>
     </Grid>
 </Window>

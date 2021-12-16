@@ -20,6 +20,7 @@
     <None Remove="Audios\sound7.wav" />
     <None Remove="Audios\sound8.wav" />
     <None Remove="Audios\sound9.wav" />
+    <None Remove="CuteAstronautAndPlanet.ico" />
     <None Remove="Images\alien-ship-icon.png" />
     <None Remove="Images\avatar\avatar1.jpg" />
     <None Remove="Images\avatar\avatar2.jpg" />
@@ -119,6 +120,10 @@
     <None Remove="Images\coin\coin1.png" />
     <None Remove="Images\coin\coin2.png" />
     <None Remove="Images\coin\coin3.png" />
+    <None Remove="Images\controlbar\-.png" />
+    <None Remove="Images\controlbar\controlbar.jpg" />
+    <None Remove="Images\controlbar\CuteAstronaut.png" />
+    <None Remove="Images\controlbar\x.png" />
     <None Remove="Images\dice\needle.png" />
     <None Remove="Images\dice\wheel.png" />
     <None Remove="Images\falling-star-icon.png" />
@@ -263,6 +268,9 @@
     <Resource Include="Audios\sound9.wav">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="CuteAstronautAndPlanet.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\avatar\avatar1.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -298,7 +306,9 @@
     </Resource>
     <Resource Include="Images\background\bg.jpg" />
     <Resource Include="Images\background\bg_setup.jpg" />
-    <Resource Include="Images\background\spaceImg.jpg" />
+    <Resource Include="Images\background\spaceImg.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\btn\style1\btn_style1_blue.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -470,6 +480,18 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\coin\coin3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\controlbar\-.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\controlbar\controlbar.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\controlbar\CuteAstronaut.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\controlbar\x.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\dice\needle.png">
