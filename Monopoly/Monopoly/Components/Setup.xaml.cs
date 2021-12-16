@@ -38,11 +38,24 @@ namespace Monopoly.Components
         public PlayerShow ShowPlayer3;
         public PlayerShow ShowPlayer4;
         public int countplayer;
+        public static Setup instance;
+        OpenFileDialog op1 = new OpenFileDialog();
+        OpenFileDialog op2 = new OpenFileDialog();
+        OpenFileDialog op3 = new OpenFileDialog();
+        OpenFileDialog op4 = new OpenFileDialog();
+        public OpenFileDialog imgplayer1;
+        public OpenFileDialog imgplayer2;
+        public OpenFileDialog imgplayer3;
+        public OpenFileDialog imgplayer4;
         public Setup()
         {
             InitializeComponent();
             ShowPlayers = new List<PlayerShow>();
-
+            instance = this;
+            imgplayer1 = op1;
+            imgplayer2 = op2;
+            imgplayer3 = op3;
+            imgplayer4 = op4;
 
         }
 
@@ -151,69 +164,63 @@ namespace Monopoly.Components
             ShowPlayer4 = new PlayerShow { Title = nameplayer4.Text, Margin = new Thickness(35, 10, 25, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative)) };
 
         }
-        public imgplayer imgplayer1 = new imgplayer();
+        
         private void createImg_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
-            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+           
+            op1.Title = "Select a picture";
+            op1.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
               "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
               "Portable Network Graphic (*.png)|*.png";
-            if (op.ShowDialog() == true)
+            if (op1.ShowDialog() == true)
             {
-                imgPhoto1.Source = new BitmapImage(new Uri(op.FileName));
+                imgPhoto1.Source = new BitmapImage(new Uri(op1.FileName));
             }
            
-            imgplayer1.Avatarplayer = op.FileName;
-            MessageBox.Show(imgplayer1.Avatarplayer);
+           
         }
 
         private void createImg2_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
-            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+            
+            op2.Title = "Select a picture";
+            op2.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
               "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
               "Portable Network Graphic (*.png)|*.png";
-            if (op.ShowDialog() == true)
+            if (op2.ShowDialog() == true)
             {
-                imgPhoto2.Source = new BitmapImage(new Uri(op.FileName));
+                imgPhoto2.Source = new BitmapImage(new Uri(op2.FileName));
             }
 
         }
 
         private void createImg3_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
-            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+            
+            op3.Title = "Select a picture";
+            op3.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
               "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
               "Portable Network Graphic (*.png)|*.png";
-            if (op.ShowDialog() == true)
+            if (op3.ShowDialog() == true)
             {
-                imgPhoto3.Source = new BitmapImage(new Uri(op.FileName));
+                imgPhoto3.Source = new BitmapImage(new Uri(op3.FileName));
             }
 
         }
 
         private void createImg4_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
-            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+          
+            op4.Title = "Select a picture";
+            op4.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
               "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
               "Portable Network Graphic (*.png)|*.png";
-            if (op.ShowDialog() == true)
+            if (op4.ShowDialog() == true)
             {
-                imgPhoto4.Source = new BitmapImage(new Uri(op.FileName));
+                imgPhoto4.Source = new BitmapImage(new Uri(op4.FileName));
             }
 
         }
-        public class imgplayer
-        {
-            private string avatarplayer;
-
-            public string Avatarplayer { get => avatarplayer; set => avatarplayer = value; }
-        }
+       
     }
 }
