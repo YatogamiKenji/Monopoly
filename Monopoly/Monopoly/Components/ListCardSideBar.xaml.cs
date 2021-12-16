@@ -57,11 +57,7 @@ namespace Monopoly.Components
 
             foreach (var card in powers)
             {
-                PowerCard powerCard = new PowerCard();
-                powerCard.Title = card.name;
-                powerCard.Description = card.description;
-                //powerCard.ImgSource = card.ImgSource;
-                powerCard.Price = card.value;
+                PowerCard powerCard = new PowerCard(card);
                 powerCard.Margin = new Thickness(2, 0, 2, 0);
                 listCardSideBarPanel.Children.Add(powerCard);
             }

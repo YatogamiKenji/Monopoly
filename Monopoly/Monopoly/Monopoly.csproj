@@ -107,6 +107,7 @@
     <None Remove="Images\Card_Icon\Card34.png" />
     <None Remove="Images\Card_Icon\Card35.png" />
     <None Remove="Images\Card_Icon\Card36.jpg" />
+    <None Remove="Images\Card_Icon\Card37.jpg" />
     <None Remove="Images\Card_Icon\Card4.jpg" />
     <None Remove="Images\Card_Icon\Card5.jpg" />
     <None Remove="Images\Card_Icon\Card6.jpg" />
@@ -437,6 +438,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Card_Icon\Card36.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Card_Icon\Card37.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Card_Icon\Card4.jpg">

@@ -60,5 +60,12 @@ namespace Monopoly.Components
             InitializeComponent();
         }
 
+        public ChanceCard(Chance chance)
+        {
+            InitializeComponent();
+            Title = chance.name;
+            Description = chance.description;
+            ImgSource = chance.icon;
+        }
     }
 }

@@ -75,12 +75,11 @@ namespace Monopoly.Components
         public void Init()
         {
             InitData();
-
             InitPlayer();
-
             InitPlayerClass();
-
             InitPlayerUsing();
+            InitListChance();
+            InitListCommunityChest();
 
             cellPos = new List<Border>(40)
             { _0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12,_13,_14,_15,_16,_17,_18,_19,_20,_21,_22,_23,_24,_25,_26,_27,_28,_29,_30,_31,_32,_33,_34,_35,_36,_37,_38,_39 };
@@ -127,17 +126,17 @@ namespace Monopoly.Components
             playersList[0].AddPower(new PowerSplitDice());
             playersList[0].AddPower(new PowerStealLand());
             playersList[0].AddPower(new PowerTeleportPersonToTheTax());
-            //playersList[0].AddLand(lands[0], 0, 1);
-            //playersList[0].AddLand(lands[1], 1, 2);
-            //playersList[0].AddLand(lands[2], 2, 4);
-            //playersList[0].AddLand(lands[3], 3, 5);
-            //playersList[0].AddLand(lands[4], 4, 6);
-            //playersList[0].AddLand(lands[5], 5, 8);
+            playersList[0].AddLand(lands[0], 0, 1);
+            playersList[0].AddLand(lands[1], 1, 2);
+            playersList[0].AddLand(lands[2], 2, 4);
+            playersList[0].AddLand(lands[3], 3, 5);
+            playersList[0].AddLand(lands[4], 4, 6);
+            playersList[0].AddLand(lands[5], 5, 8);
             playersList[1].AddPower(new PowerCancelPowerCard());
             playersList[1].AddPower(new PowerSplitDice());
-            //playersList[1].AddLand(lands[6], 6, 9);
-            //playersList[1].AddLand(lands[7], 7, 11);
-            //playersList[1].AddLand(lands[8], 8, 12);
+            playersList[1].AddLand(lands[6], 6, 9);
+            playersList[1].AddLand(lands[7], 7, 11);
+            playersList[1].AddLand(lands[8], 8, 12);
         }
 
         //khởi tạo data
@@ -194,15 +193,46 @@ namespace Monopoly.Components
             }
         }
 
-        #endregion
-
-        #region Init PlayerUsing
-
         //khởi tạo compoenent Player Using
         void InitPlayerUsing()
         {
             playerUsing.OnUseCardButtonClick += SwitchToUseCardView;
             playerUsing.OnSkipButtonClick += EndTurn;
+        }
+
+        //khởi tạo list cơ hội
+        void InitListChance()
+        {
+            chances.Add(new ChanceBeingAttacked());
+            chances.Add(new ChanceErrorMap());
+            chances.Add(new ChanceFlyTooFast());
+            chances.Add(new ChanceGoToAsgard());
+            chances.Add(new ChanceGoToDevil());
+            chances.Add(new ChanceGotoPrison());
+            chances.Add(new ChanceGoToStart());
+            chances.Add(new ChanceGoToValoran());
+            chances.Add(new ChanceMeetMinerals());
+            chances.Add(new ChanceMeetSpaceJunk());
+            chances.Add(new ChanceOutPrison());
+            chances.Add(new ChancePickUpTreasure());
+            chances.Add(new ChanceRescueShipDistress());
+        }
+
+        //khởi tạo list khí vận
+        void InitListCommunityChest()
+        {
+            communityChests.Add(new CommunityChestBankError());
+            communityChests.Add(new CommunityChestBribe());
+            communityChests.Add(new CommunityChestFuelCharger());
+            communityChests.Add(new CommunityChestGoToPrison());
+            communityChests.Add(new CommunityChestGoToStart());
+            communityChests.Add(new CommunityChestHomeRepair());
+            communityChests.Add(new CommunityChestMeetSpacePirate());
+            communityChests.Add(new CommunityChestNoSpeedControl());
+            communityChests.Add(new CommunityChestOvertime());
+            communityChests.Add(new CommunityChestUpgrade());
+            communityChests.Add(new CommunityChestWedding());
+            communityChests.Add(new CommunityChestWinTheRace());
         }
 
         #endregion
@@ -384,18 +414,52 @@ namespace Monopoly.Components
             else if (getCurrentLand().owner != PlayerTurn) PayLandRent();
         }
 
+        bool isChangePosition;
+
         //đi đến ô cơ hội
         void GotoChance()
         {
             // Tiến hành random thẻ cơ hội
-            SwitchView(CenterMapView.PlayerUsing);
+            Random random = new Random();
+            Chance chance = chances[random.Next(0, 13)];
+            isChangePosition = chance.isChangePosition;
+            ChanceCard chanceCard = new ChanceCard(chance);
+            ComeSpecialLand comeSpecialLand = new ComeSpecialLand(chanceCard);
+            centerMapView.Content = comeSpecialLand;
+            comeSpecialLand.OnOKButtonClick += SpecialLandOKButtonClick;
+            Player player = playersList[PlayerTurn];
+            chance.Using(ref player);
         }
 
         //đi đến ô khí vận
         void GotoCommunityChest()
         {
             // Tiến hành random thẻ khí vận
-            SwitchView(CenterMapView.PlayerUsing);
+            Random random = new Random();
+            CommunityChest communityChest = communityChests[random.Next(0, 12)];
+            isChangePosition = communityChest.isChangePosition;
+            LuckCard luckCard = new LuckCard(communityChest);
+            ComeSpecialLand comeSpecialLand = new ComeSpecialLand(luckCard);
+            centerMapView.Content = comeSpecialLand;
+            comeSpecialLand.OnOKButtonClick += SpecialLandOKButtonClick;
+            Player player = playersList[PlayerTurn];
+            communityChest.Using(ref player);
+            if (communityChest.GetType().Name == "CommunityChestWedding") CommunityChestWeddingEvent();
+            else if (communityChest.GetType().Name == "CommunityChestBribe") CommunityChestBribeEvent();
+        }
+
+        void CommunityChestWeddingEvent()
+        {
+            playersList[PlayerTurn].money += 500 * (NumberOfPlayers - 1);
+            for (int i = 0; i < NumberOfPlayers; i++)
+                if (i != PlayerTurn) playersList[i].money -= 500;
+        }
+
+        void CommunityChestBribeEvent()
+        {
+            playersList[PlayerTurn].money -= 500 * (NumberOfPlayers - 1);
+            for (int i = 0; i < NumberOfPlayers; i++)
+                if (i != PlayerTurn) playersList[i].money += 500;
         }
 
         //đi đến ô quyền năng
@@ -577,6 +641,21 @@ namespace Monopoly.Components
         private void SpecialLandOKButtonClick(object sender, RoutedEventArgs e)
         {
             SwitchView(CenterMapView.PlayerUsing);
+
+            //Cập nhật lại vị trí
+            if (isChangePosition)
+            {
+                Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersList[PlayerTurn].position]));
+                Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersList[PlayerTurn].position]));
+
+                if (playersList[PlayerTurn].position == 0)
+                {
+                    if (playersList[PlayerTurn].isDoubleStart) playersList[PlayerTurn].money += 2000 * (turn[PlayerTurn] / 2 + 1);
+                    else playersList[PlayerTurn].money += 1000 * (turn[PlayerTurn] / 2 + 1);
+                    if (turn[PlayerTurn] / 2 + 1 < 10) turn[PlayerTurn]++;
+                }
+                Goto();
+            }
         }
 
         #endregion
@@ -695,7 +774,7 @@ namespace Monopoly.Components
             Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ " + usingPower.name + " lên hành tinh " + usingPlayer.lands[index].name, "Green"), 2.5, (str) =>
             {
                 usingPower.PowerFunction(ref usingPlayer, index);
-                playersList[PlayerTurn] = usingPlayer;
+                //playersList[PlayerTurn] = usingPlayer;
                 ChangeTurn();
             });
         }
@@ -716,6 +795,7 @@ namespace Monopoly.Components
         // Chọn một người để sử dụng
         private void UseCardToAnotherView_OnButtonPlayerClick(object sender, BtnAnotherPlayerClickEventArgs e)
         {
+            centerMapView.Content = null;
             Player PickedPlayer = playersList[e.idPlayer];
             Player playerUse = playersList[PlayerTurn];
             Player affectedPlayers = new Player();
@@ -755,8 +835,8 @@ namespace Monopoly.Components
                         {
                             Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ " + usingPower.name + " lên người chơi " + usingPlayer.name, "Green"), 2.5, (str) =>
                             {
-                                playersList[PlayerTurn] = playerUse;
-                                playersList[i] = affectedPlayers;
+                                //playersList[PlayerTurn] = playerUse;
+                                //playersList[i] = affectedPlayers;
                                 SwitchView(CenterMapView.Dice);
                                 sideBar.update(playersList, PlayerTurn);
                                 ChangeTurn();
@@ -789,7 +869,7 @@ namespace Monopoly.Components
                 else if (playersList[i].isImmune && playersList[i].name == PickedPlayer.name)
                 {
                     usingPower.Using(ref playerUse, ref affectedPlayers, dice);
-                    playersList[PlayerTurn] = playerUse;
+                    //playersList[PlayerTurn] = playerUse;
                     ChangeTurn();
                     break;
                 }   
@@ -823,7 +903,7 @@ namespace Monopoly.Components
                 + usingPower.name + " lên hành tinh " + usingPlayer.lands[index].name + " của người chơi " + usingPlayer.name, "Green"), 2.5, (str) =>
             {
                 usingPower.PowerFunction(ref usingPlayer, index);
-                playersList[indexPlayer] = usingPlayer;
+                //playersList[indexPlayer] = usingPlayer;
                 ChangeTurn();
             });
         }

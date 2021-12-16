@@ -58,5 +58,13 @@ namespace Monopoly.Components
         {
             InitializeComponent();
         }
+
+        public LuckCard(CommunityChest communityChest)
+        {
+            InitializeComponent();
+            Title = communityChest.name;
+            Description = communityChest.description;
+            ImgSource = communityChest.icon;
+        }
     }
 }

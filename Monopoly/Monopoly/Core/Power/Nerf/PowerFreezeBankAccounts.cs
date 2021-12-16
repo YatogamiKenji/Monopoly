@@ -24,7 +24,7 @@ namespace Monopoly
             _numberTurns = 2;
             description = "Đóng băng tài khoản của người khác trong vòng 2 lượt";
             type = false;
-            usingLand = true;
+            usingLand = false;
             icon = "/Monopoly;component/Images/Power/PowerFreezeBankAccounts.png";
         }
 
