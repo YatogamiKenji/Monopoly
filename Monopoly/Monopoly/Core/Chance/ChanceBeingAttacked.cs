@@ -11,7 +11,7 @@ namespace Monopoly
         public ChanceBeingAttacked()
         {
             name = "Bị tấn công";
-            description = "Bị tấn công (Gặp phải dân Istanlao tấn công sửa chữa tàu)";
+            description = "Bị tấn công (Gặp phải dân Istanlao tấn công) trả tiền sửa chữa tàu 2500";
             icon = "/Monopoly;component/Images/Card_Icon/Card5.jpg";
             isChangePosition = false;
         }

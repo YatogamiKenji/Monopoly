@@ -54,6 +54,8 @@ namespace Monopoly.Components
 
         int dice; //chỉ số của xúc sắc
 
+        int bankrupt = 0;
+
         #endregion
 
         #region Init UI
@@ -357,6 +359,11 @@ namespace Monopoly.Components
             {
                 playersList[PlayerTurn].Loser();
                 BanCo.Children.Remove(players[PlayerTurn]);
+                bankrupt++;
+                if (NumberOfPlayers - bankrupt == 1)
+                {
+                    //mở component thông báo người chiến thắng
+                }    
                 ChangeTurn();
             });
         }
@@ -437,7 +444,7 @@ namespace Monopoly.Components
             else if (getCurrentLand().owner != PlayerTurn) PayLandRent();
         }
 
-        bool isChangePosition;
+        bool isChangePosition = false;
 
         //đi đến ô cơ hội
         void GotoChance()
@@ -452,6 +459,7 @@ namespace Monopoly.Components
             comeSpecialLand.OnOKButtonClick += SpecialLandOKButtonClick;
             Player player = playersList[PlayerTurn];
             chance.Using(ref player);
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText(chance.description, "Blue"), 3, (s) => { });
         }
 
         //đi đến ô khí vận
@@ -467,6 +475,7 @@ namespace Monopoly.Components
             comeSpecialLand.OnOKButtonClick += SpecialLandOKButtonClick;
             Player player = playersList[PlayerTurn];
             communityChest.Using(ref player);
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText(communityChest.description, "Blue"), 3, (s) => { });
             if (communityChest.GetType().Name == "CommunityChestWedding") CommunityChestWeddingEvent();
             else if (communityChest.GetType().Name == "CommunityChestBribe") CommunityChestBribeEvent();
         }
@@ -678,6 +687,7 @@ namespace Monopoly.Components
                     if (turn[PlayerTurn] / 2 + 1 < 10) turn[PlayerTurn]++;
                 }
                 Goto();
+                isChangePosition = false;
             }
         }
 

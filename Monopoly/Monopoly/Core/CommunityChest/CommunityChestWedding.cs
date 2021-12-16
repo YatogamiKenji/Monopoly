@@ -11,7 +11,7 @@ namespace Monopoly
         public CommunityChestWedding()
         {
             name = "Tổ chức đám cưới";
-            description = "Tổ chức đám cưới mỗi người -500";
+            description = "Tổ chức đám cưới, mỗi người trả tiền mừng -500";
             icon = "/Monopoly;component/Images/Card_Icon/Card15.jpg";
             isChangePosition = false;
         }

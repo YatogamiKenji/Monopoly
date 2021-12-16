@@ -19,6 +19,7 @@ namespace Monopoly
         public override void Using(ref Player playerUse)
         {
             playerUse.position = 10;
+            playerUse.isInPrison = true;
         }
     }
 }

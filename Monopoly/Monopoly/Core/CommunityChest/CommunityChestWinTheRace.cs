@@ -11,7 +11,7 @@ namespace Monopoly
         public CommunityChestWinTheRace()
         {
             name = "Thắng giải đua tàu vũ trụ";
-            description = "Thắng giải đua tàu vũ trụ";
+            description = "Thắng giải đua tàu vũ trụ thưởng 2000";
             icon = "/Monopoly;component/Images/Card_Icon/Card34.jpg";
             isChangePosition = false;
         }

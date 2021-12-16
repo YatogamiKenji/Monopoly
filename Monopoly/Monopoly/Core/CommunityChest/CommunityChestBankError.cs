@@ -11,7 +11,7 @@ namespace Monopoly
         public CommunityChestBankError()
         {
             name = "Nhà Bank liên vũ trụ lỗi tiền";
-            description = "Nhà Bank liên vũ trụ lỗi tiền";
+            description = "Nhà Bank liên vũ trụ lỗi tiền thưởng 3000";
             icon = "/Monopoly;component/Images/Card_Icon/Card7.jpg";
             isChangePosition = false;
         }

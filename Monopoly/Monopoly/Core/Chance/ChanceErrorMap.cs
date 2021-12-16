@@ -11,7 +11,7 @@ namespace Monopoly
         public ChanceErrorMap()
         {
             name = "Bản đồ bị lỗi";
-            description = "Đi lùi 4 bước";
+            description = "Bản đồ bị lỗi đi lùi 4 bước";
             icon = "/Monopoly;component/Images/Card_Icon/Card21.jpg";
             isChangePosition = true;
         }

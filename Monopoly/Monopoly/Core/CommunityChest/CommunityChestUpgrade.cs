@@ -11,7 +11,7 @@ namespace Monopoly
         public CommunityChestUpgrade()
         {
             name = "Nâng cấp tàu";
-            description = "Nâng cấp tàu";
+            description = "Nâng cấp tàu trả 2500";
             icon = "/Monopoly;component/Images/Card_Icon/Card4.jpg";
             isChangePosition = false;
         }
