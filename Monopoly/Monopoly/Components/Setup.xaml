@@ -184,6 +184,14 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5"/>
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="240,-354,240,774" To="240,210,240,210" DecelerationRatio="0.9" Duration="0:0:1"/>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5"/>
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0" To="0,720,0,-300" DecelerationRatio="0.9" Duration="0:0:1"/>
+        </Storyboard>
     </UserControl.Resources>
     <Grid Width="1280" Height="720">
         <Grid.Background>
@@ -530,9 +538,135 @@
             </Grid>
         </Popup>
 
+        <Grid Background="AliceBlue" x:Name="createName" Width="800" Height="300" Margin="240,-354,240,774">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Background="Aqua" Grid.Column="0" x:Name="player1" Margin="10">
+                <Button x:Name="createImg"
+                   Background="Transparent"
+                   BorderThickness="1"
+                   BorderBrush="Black"
+                Width="100"
+                Height="100" 
+                Margin="40,50,40,130"
+               Click="createImg_Click"
+                 Panel.ZIndex="100"   />
+                <Image  Source="/Monopoly;component/Images/avatar/avatar1.jpg"
+                Width="100"
+                Height="100" 
+                Margin="40,50,40,130" 
+                Name="imgPhoto1"
+                Stretch="Fill" />
+                <Border Height="40"
+                Width="150"
+                BorderThickness="1"
+                BorderBrush="Black" 
+                Margin="15,165,15,75"/>
+                <TextBox Background="Transparent"
+                 x:Name="nameplayer1"
+                 Text=""
+                 Height="40"
+                 Width="150" 
+                 Margin="15,165,15,75"  
+                   />
+            </Grid>
+            <Grid Background="Aqua" Grid.Column="1" x:Name="player2" Margin="10">
+                <Button x:Name="createImg2"
+                   Background="Transparent"
+                   BorderThickness="1"
+                   BorderBrush="Black"
+                Width="100"
+                Height="100" 
+                Margin="40,50,40,130"
+               Click="createImg2_Click"
+                 Panel.ZIndex="100"   />
+                <Image  Source="/Monopoly;component/Images/avatar/avatar1.jpg"
+                Width="100"
+                Height="100" 
+                Margin="40,50,40,130" 
+                Name="imgPhoto2"
+                Stretch="Fill" />
+                <Border Height="40"
+                Width="150"
+                BorderThickness="1"
+                BorderBrush="Black" 
+                Margin="15,165,15,75"/>
+                <TextBox Background="Transparent"
+                 x:Name="nameplayer2"
+                 Text=""
+                 Height="40"
+                 Width="150" 
+                 Margin="15,165,15,75"  
+                   />
+            </Grid>
+            <Grid Background="Aqua" Grid.Column="2" x:Name="player3" Margin="10">
+                <Button x:Name="createImg3"
+                   Background="Transparent"
+                   BorderThickness="1"
+                   BorderBrush="Black"
+                Width="100"
+                Height="100" 
+                Margin="40,50,40,130"
+               Click="createImg3_Click"
+                 Panel.ZIndex="100"   />
+                <Image  Source="/Monopoly;component/Images/avatar/avatar1.jpg"
+                Width="100"
+                Height="100" 
+                Margin="40,50,40,130" 
+                Name="imgPhoto3"
+                Stretch="Fill" />
+                <Border Height="40"
+                Width="150"
+                BorderThickness="1"
+                BorderBrush="Black" 
+                Margin="15,165,15,75"/>
+                <TextBox Background="Transparent"
+                 x:Name="nameplayer3"
+                 Text=""
+                 Height="40"
+                 Width="150" 
+                 Margin="15,165,15,75"  
+                   />
+            </Grid>
+            <Grid Background="Aqua" Grid.Column="3" x:Name="player4" Margin="10">
+                <Button x:Name="createImg4"
+                   Background="Transparent"
+                   BorderThickness="1"
+                   BorderBrush="Black"
+                Width="100"
+                Height="100" 
+                Margin="40,50,40,130"
+               Click="createImg4_Click"
+                 Panel.ZIndex="100"   />
+                <Image  Source="/Monopoly;component/Images/avatar/avatar1.jpg"
+                Width="100"
+                Height="100" 
+                Margin="40,50,40,130" 
+                Name="imgPhoto4"
+                Stretch="Fill" />
+                <Border Height="40"
+                Width="150"
+                BorderThickness="1"
+                BorderBrush="Black" 
+                Margin="15,165,15,75"/>
+                <TextBox Background="Transparent"
+                 x:Name="nameplayer4"
+                 Text=""
+                 Height="40"
+                 Width="150" 
+                 Margin="15,165,15,75"  
+                   />
+            </Grid>
+
+            <Button x:Name="ok" Content="ok" Width="100" Height="50" Grid.ColumnSpan="2" Grid.Column="1" Margin="150,250,150,0" Click="ok_Click"/>
+        </Grid>
         <ContentControl x:Name="back"/>
         <ContentControl x:Name="chess"/>
-
+        
     </Grid>
 
 </UserControl>

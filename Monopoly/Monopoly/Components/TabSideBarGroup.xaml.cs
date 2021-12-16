@@ -58,9 +58,10 @@ namespace Monopoly.Components
             SelectedId = turn;
             createTab();
         }
-
+        public Setup.imgplayer imgplayer1 = new Setup.imgplayer();
         private void createTab()
         {
+            
             for (int i = 0; i < Players?.Count; i++)
             {
                 TabSideBar t = new TabSideBar(i, new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/circle-avatar" + (i + 1).ToString() + ".jpg", UriKind.Relative)), Players[i].name, Players[i].money);
