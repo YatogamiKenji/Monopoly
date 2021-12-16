@@ -43,6 +43,7 @@ namespace Monopoly.Components
         OpenFileDialog op2 = new OpenFileDialog();
         OpenFileDialog op3 = new OpenFileDialog();
         OpenFileDialog op4 = new OpenFileDialog();
+        
         public OpenFileDialog imgplayer1;
         public OpenFileDialog imgplayer2;
         public OpenFileDialog imgplayer3;
@@ -52,11 +53,15 @@ namespace Monopoly.Components
             InitializeComponent();
             ShowPlayers = new List<PlayerShow>();
             instance = this;
+            
             imgplayer1 = op1;
             imgplayer2 = op2;
             imgplayer3 = op3;
             imgplayer4 = op4;
-
+            //op1.InitialDirectory = @"/Monopoly;component/Images/avatar" ;
+            //op2.InitialDirectory = @"/Monopoly;component/Images/avatar";
+            //op3.InitialDirectory = @"/Monopoly;component/Images/avatar";
+            //op4.InitialDirectory = @"/Monopoly;component/Images/avatar";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -69,6 +74,7 @@ namespace Monopoly.Components
         //Chuyển sang giao diện bàn cờ chính
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            
             if (countplayer == 2)
             {
                 ShowPlayers.Add(ShowPlayer1);
@@ -98,6 +104,7 @@ namespace Monopoly.Components
         // Khởi tạo có 2 người chơi
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            
             Storyboard slide = Resources["OpenMenu"] as Storyboard;
             slide.Begin(createName);
             countplayer = 2;
@@ -162,7 +169,7 @@ namespace Monopoly.Components
             ShowPlayer2 = new PlayerShow { Title = nameplayer2.Text, Margin = new Thickness(35, 10, 25, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative)) };
             ShowPlayer3 = new PlayerShow { Title = nameplayer3.Text, Margin = new Thickness(10, 10, 50, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_blue.png", UriKind.Relative)) };
             ShowPlayer4 = new PlayerShow { Title = nameplayer4.Text, Margin = new Thickness(35, 10, 25, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative)) };
-
+            
         }
         
         private void createImg_Click(object sender, RoutedEventArgs e)
