@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation.Peers;
+using System.Windows.Automation.Provider;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -44,6 +46,12 @@ namespace Monopoly.Components
         public DiceView()
         {
             InitializeComponent();
+            Loaded += (s, e) =>
+            {
+                this.Focusable = true;
+                this.Focus();
+                addEventCheat();
+            };
         }
 
         private void btnSpin_Click(object sender, RoutedEventArgs e)
@@ -61,9 +69,37 @@ namespace Monopoly.Components
 
             Noti.SetTimeout(() =>
             {
-                int num = 7 - (((randAngle % 360) / 60) + 1);
+                int num = 7 - ((randAngle % 360 / 60) + 1);
                 RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = num });
             }, 1.6);
+        }
+
+        // Thực hiện Click vào cái nút quay
+        public void clickBtnSpin()
+        {
+            ButtonAutomationPeer peer = new ButtonAutomationPeer(btnSpin);
+            IInvokeProvider invokeProv = peer.GetPattern(PatternInterface.Invoke) as IInvokeProvider;
+            invokeProv.Invoke();
+        }
+
+        // Cheat: Trong Diceview, khi ấn các phím số số từ 1 đến 6 sẽ cho ra kết quả xúc xắc tương ứng
+        private void addEventCheat()
+        {
+            KeyDown += (s, e) =>
+            {
+                if (e.Key == Key.D1)
+                    RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = 1 });
+                if (e.Key == Key.D2)
+                    RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = 2 });
+                if (e.Key == Key.D3)
+                    RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = 3 });
+                if (e.Key == Key.D4)
+                    RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = 4 });
+                if (e.Key == Key.D5)
+                    RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = 5 });
+                if (e.Key == Key.D6)
+                    RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = 6 });
+            };
         }
     }
 }
