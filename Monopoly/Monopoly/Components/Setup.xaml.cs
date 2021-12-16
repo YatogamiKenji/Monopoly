@@ -27,8 +27,6 @@ namespace Monopoly.Components
     public partial class Setup : UserControl
     {
 
-
-
         // List<ContentPlayer> Cont_Player;   // List các Components của ContentPlayer
         List<PlayerShow> ShowPlayers; //= new List<PlayerShow>();   // List các các Components của PlayerShow, PlayerShow là để show hình hình ảnh ngưởi chơi trên bàn cờ
 
@@ -37,8 +35,11 @@ namespace Monopoly.Components
         public PlayerShow ShowPlayer2;
         public PlayerShow ShowPlayer3;
         public PlayerShow ShowPlayer4;
+        
         public int countplayer;
+        
         public static Setup instance;
+        
         OpenFileDialog op1 = new OpenFileDialog();
         OpenFileDialog op2 = new OpenFileDialog();
         OpenFileDialog op3 = new OpenFileDialog();
