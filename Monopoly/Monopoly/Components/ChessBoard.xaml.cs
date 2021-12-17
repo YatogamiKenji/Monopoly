@@ -67,7 +67,7 @@ namespace Monopoly.Components
         Player usingPlayer = new Player();
         int indexPlayer;
 
-        double countDown = 5; // Thời gian đếm ngược ở mỗi view
+        double countDown = 10; // Thời gian đếm ngược ở mỗi view
         DispatcherTimer countDownTimer; // Đồng hồ điều khiển thời gian đếm ngược
 
 
@@ -136,7 +136,7 @@ namespace Monopoly.Components
             sideBar.Players = playersList;
             sideBar.update(playersList, PlayerTurn);
 
-            //PowerStart();
+            PowerStart();
 
             playersList[0].AddPower(new PowerDoubleDice());
             playersList[0].AddPower(new PowerDoublePriceLandForever());
@@ -158,12 +158,12 @@ namespace Monopoly.Components
             playersList[0].AddPower(new PowerSplitDice());
             playersList[0].AddPower(new PowerStealLand());
             playersList[0].AddPower(new PowerTeleportPersonToTheTax());
-            playersList[0].AddLand(lands[0], 0, 1);
-            playersList[0].AddLand(lands[1], 1, 2);
-            playersList[0].AddLand(lands[2], 2, 4);
-            playersList[0].AddLand(lands[3], 3, 5);
-            playersList[0].AddLand(lands[4], 4, 6);
-            playersList[0].AddLand(lands[5], 5, 8);
+            //playersList[0].AddLand(lands[0], 0, 1);
+            //playersList[0].AddLand(lands[1], 1, 2);
+            //playersList[0].AddLand(lands[2], 2, 4);
+            //playersList[0].AddLand(lands[3], 3, 5);
+            //playersList[0].AddLand(lands[4], 4, 6);
+            //playersList[0].AddLand(lands[5], 5, 8);
             playersList[1].AddPower(new PowerDoubleDice());
             playersList[1].AddPower(new PowerDoublePriceLandForever());
             playersList[1].AddPower(new PowerDoubleTax());
@@ -184,9 +184,9 @@ namespace Monopoly.Components
             playersList[1].AddPower(new PowerSplitDice());
             playersList[1].AddPower(new PowerStealLand());
             playersList[1].AddPower(new PowerTeleportPersonToTheTax());
-            playersList[1].AddLand(lands[6], 6, 9);
-            playersList[1].AddLand(lands[7], 7, 11);
-            playersList[1].AddLand(lands[8], 8, 12);
+            //playersList[1].AddLand(lands[6], 6, 9);
+            //playersList[1].AddLand(lands[7], 7, 11);
+            //playersList[1].AddLand(lands[8], 8, 12);
         }
 
         //khởi tạo data
@@ -237,10 +237,8 @@ namespace Monopoly.Components
         void PowerStart()
         {
             for (int i = 0; i < NumberOfPlayers; i++)
-            {
                 for (int j = 0; j < 3; j++) playersList[i].AddPower(RandomPower());
-                sideBar.update(playersList, i);
-            }
+            sideBar.update(playersList, 0);
         }
 
         //khởi tạo compoenent Player Using
@@ -599,15 +597,16 @@ namespace Monopoly.Components
                 if (i != PlayerTurn) playersList[i].money += 500;
         }
 
+        Power randomPower;
+
         //đi đến ô quyền năng
         void GotoPower()
         {
             //Tiến hành random thẻ quyền năng
-            Power power = RandomPower();
-            PowerCard powerCard = new PowerCard(power);
+            randomPower = RandomPower();
+            PowerCard powerCard = new PowerCard(randomPower);
             ComeSpecialLand comeSpecialLand = new ComeSpecialLand(powerCard);       
             centerMapView.Content = comeSpecialLand;
-            playersList[PlayerTurn].AddPower(power);
             comeSpecialLand.OnOKButtonClick += SpecialLandOKButtonClick;
         }
 
@@ -793,23 +792,46 @@ namespace Monopoly.Components
         //nhấn ok khi nhận được thẻ
         private void SpecialLandOKButtonClick(object sender, RoutedEventArgs e)
         {
-            SwitchView(CenterMapView.PlayerUsing);
-
-            //Cập nhật lại vị trí
-            if (isChangePosition)
+            if (playersList[PlayerTurn].powers.Count >= 5 && (playersList[PlayerTurn].position == 17 || playersList[PlayerTurn].position == 33))
             {
-                Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersList[PlayerTurn].position]));
-                Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersList[PlayerTurn].position]));
-
-                if (playersList[PlayerTurn].position == 0)
-                {
-                    if (playersList[PlayerTurn].isDoubleStart) playersList[PlayerTurn].money += 2000 * (turn[PlayerTurn] / 2 + 1);
-                    else playersList[PlayerTurn].money += 1000 * (turn[PlayerTurn] / 2 + 1);
-                    if (turn[PlayerTurn] / 2 + 1 < 10) turn[PlayerTurn]++;
-                }
-                Goto();
-                isChangePosition = false;
+                RemovePowerView removePowerView = new RemovePowerView(playersList[PlayerTurn]);
+                removePowerView.OnRemoveCardButtonClick += RemovePowerView_OnRemoveCardButtonClick;
+                removePowerView.OnCancleButtonClick += RemovePowerView_OnCancleButtonClick;
+                centerMapView.Content = removePowerView;
             }
+            else
+            {
+                SwitchView(CenterMapView.PlayerUsing);
+
+                //Cập nhật lại vị trí
+                if (isChangePosition)
+                {
+                    Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersList[PlayerTurn].position]));
+                    Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersList[PlayerTurn].position]));
+
+                    if (playersList[PlayerTurn].position == 0)
+                    {
+                        if (playersList[PlayerTurn].isDoubleStart) playersList[PlayerTurn].money += 2000 * (turn[PlayerTurn] / 2 + 1);
+                        else playersList[PlayerTurn].money += 1000 * (turn[PlayerTurn] / 2 + 1);
+                        if (turn[PlayerTurn] / 2 + 1 < 10) turn[PlayerTurn]++;
+                    }
+                    Goto();
+                    isChangePosition = false;
+                }
+            }
+        }
+
+        private void RemovePowerView_OnCancleButtonClick(object sender, RoutedEventArgs e)
+        {
+            SwitchView(CenterMapView.PlayerUsing);
+        }
+
+        private void RemovePowerView_OnRemoveCardButtonClick(object sender, RemoveCardButtonClickEventArgs e)
+        {
+            playersList[PlayerTurn].RemovePower(e.power.name);
+            playersList[PlayerTurn].AddPower(randomPower);
+            sideBar.update(playersList, PlayerTurn);
+            SwitchView(CenterMapView.PlayerUsing);
         }
 
         #endregion
