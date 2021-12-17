@@ -68,5 +68,41 @@ namespace Monopoly.Components
         {
             sShaking.Stop();
         }
+        
+        // set màu phân biệt ô đất của người chơi khi mua đất
+        public void MarkLand(int indexPlayer)
+        {
+            
+            Border markLand = (Border)ButChessCell.Template.FindName("ColorLandPlayer", ButChessCell);
+
+            if (indexPlayer == 0)
+            {
+                markLand.Background = Brushes.Red;
+            }
+           else if(indexPlayer == 1)
+            {
+                markLand.Background = Brushes.Violet;
+            }
+            else if (indexPlayer == 2)
+            {
+                markLand.Background = Brushes.Blue;
+            }
+            else if (indexPlayer == 3)
+            {
+                markLand.Background = Brushes.Yellow;
+            }
+
+        }
+        //Thêm sao vào ô cờ
+        public void AddStar(int LevelLand)
+        {
+            Grid starLevel = (Grid)ButChessCell.Template.FindName("gridStarLevel", ButChessCell);
+            var imageStarSource = new BitmapImage(new Uri( @"/Monopoly;component/Images/cell/player_land_star.png", UriKind.Relative));
+            var imageStar = new Image { Source = imageStarSource };
+            Grid.SetRow(imageStar, 5 - LevelLand);
+            starLevel.Children.Add(imageStar);
+
+
+        }
     }
 }

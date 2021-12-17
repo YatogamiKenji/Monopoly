@@ -56,7 +56,15 @@
             FontWeight="Bold"
             Foreground="Red"/>
 
-        <Button Content="OK" Grid.Row="2"  Click="Button_OK" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <Button Grid.Row="2" Style="{StaticResource BtnStyle1Yellow}"
+                        Margin="0 0 0 8"
+                        Click="Button_OK">
+            <Button.Content>
+                <TextBlock Text="OK"   Style="{StaticResource BtnStyle1Text}"/>
+            </Button.Content>
+        </Button>
+
+        <!--<Button  Content="OK" Grid.Row="2"  Click="Button_OK" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Button.Style>
                 <Style TargetType="Button" BasedOn="{StaticResource ButtonCenterMap}">
                     <Setter Property="Background" Value="#656565"/>
@@ -68,9 +76,7 @@
                     </Style.Triggers>
                 </Style>
             </Button.Style>
-        </Button>
-
-
+        </Button>-->
 
 
     </Grid>
