@@ -7,14 +7,17 @@
              x:Name="root"
              mc:Ignorable="d" 
              d:DesignHeight="60" d:DesignWidth="80">
-    <UserControl.Resources>
+    <UserControl.Resources >
         <Style x:Key="RoundCorner" TargetType="{x:Type Button}">
+            <Style.Resources>
+                
+            </Style.Resources>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="1"/>
             <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
+                <Setter.Value >
+                    <ControlTemplate x:Name="userControl" TargetType="{x:Type Button}">
                         <Grid x:Name="grid">
                             <Border x:Name="border" CornerRadius="5" BorderBrush="Black" BorderThickness="1">
                                 <Border.Background>
@@ -24,9 +27,43 @@
                                           VerticalAlignment="Center"
                                           TextElement.FontWeight="Bold">
                                 </ContentPresenter>
+                                
+                            </Border>
+                            <Border CornerRadius="5" BorderBrush="Black" BorderThickness="1">
+
+                                <Grid Margin="1,0,0,1" >
+
+                                    <Grid.ColumnDefinitions >
+                                        <ColumnDefinition Width="10*"/>
+                                        <ColumnDefinition Width="58*"/>
+                                        <ColumnDefinition Width="10*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    
+                                    <Grid Grid.Column="0">
+                                        <Border x:Name="ColorLandPlayer"  CornerRadius="5" Margin="-1,0,1,-1"></Border>
+                                    </Grid>
+
+                                    <Grid x:Name="gridStarLevel" Grid.Column="2">
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <!--<Image Grid.Row="4" Source="/Monopoly;component/Images/cell/player_land_star.png"  ></Image>
+                                        <Image Grid.Row="3" Source="/Monopoly;component/Images/cell/player_land_star.png"  ></Image>
+                                        <Image Grid.Row="2" Source="/Monopoly;component/Images/cell/player_land_star.png"  ></Image>
+                                        <Image Grid.Row="1" Source="/Monopoly;component/Images/cell/player_land_star.png"  ></Image>
+                                        <Image Grid.Row="0" Source="/Monopoly;component/Images/cell/player_land_star.png"  ></Image>-->
+                                    </Grid>
+                                </Grid>
                             </Border>
 
                         </Grid>
+                                                  
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="Background" TargetName="border">
@@ -53,24 +90,28 @@
 
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
+                    
                 </Setter.Value>
+                
+                
             </Setter>
         </Style>
     </UserControl.Resources>
+    
     <Grid>
-        
+
         <Button x:Name="ButChessCell" Style="{DynamicResource RoundCorner}" Click="ButChessCell_Click">
 
             <Button.RenderTransformOrigin>
                 <Point X="0.5" Y="0.5"></Point>
             </Button.RenderTransformOrigin>
-            
+
             <Button.RenderTransform>
                 <RotateTransform/>
             </Button.RenderTransform>
 
             <Button.Resources>
-                
+
                 <Storyboard RepeatBehavior="Forever" x:Key="rung">
 
                     <DoubleAnimation Storyboard.TargetName="ButChessCell" 
@@ -84,11 +125,10 @@
                                              Duration="0:0:0.3" BeginTime="0:0:0.3"/>
 
                 </Storyboard>
-
-
             </Button.Resources>
-                                             
+
+
         </Button>
-    
+
     </Grid>
 </UserControl>

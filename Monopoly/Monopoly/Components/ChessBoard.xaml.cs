@@ -608,6 +608,9 @@ namespace Monopoly.Components
                 playersList[PlayerTurn].AddLand(lands[cellManager[playersList[PlayerTurn].position].index], cellManager[playersList[PlayerTurn].position].index, playersList[PlayerTurn].position);
                 sideBar.update(playersList, PlayerTurn);
 
+                // đánh dấu ô đất đã mua bằng màu của người chơi
+                ContentChessCell contentChessCell = (ContentChessCell)cellPos[playersList[PlayerTurn].position].Child;
+                contentChessCell.MarkLand(PlayerTurn);
                 Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đã mua hành tinh *"+getCurrentLand().name+"*", "Green"), 2, (s) =>
                 {
                     ChangeTurn();
@@ -637,6 +640,10 @@ namespace Monopoly.Components
                 else playersList[PlayerTurn].isLoseMoney = false;
 
                 sideBar.update(playersList, PlayerTurn);
+
+                // thêm sao vào ô đất
+                ContentChessCell contentChessCell = (ContentChessCell)cellPos[playersList[PlayerTurn].position].Child;
+                contentChessCell.AddStar(lands[cellManager[playersList[PlayerTurn].position].index].level);
 
                 Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Đã nâng cấp *"+getCurrentLand().name+"* lên *cấp "+getCurrentLand().level, "Green"), 2.5, (s) =>
                 {

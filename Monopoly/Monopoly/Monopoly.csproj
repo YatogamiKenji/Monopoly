@@ -117,6 +117,8 @@
     <None Remove="Images\Card_Icon\Card9.jpg" />
     <None Remove="Images\cell\cell.png" />
     <None Remove="Images\cell\cell_highlight.png" />
+    <None Remove="Images\cell\player_land_green.png" />
+    <None Remove="Images\cell\player_land_star.png" />
     <None Remove="Images\coin\coin1.png" />
     <None Remove="Images\coin\coin2.png" />
     <None Remove="Images\coin\coin3.png" />
@@ -224,6 +226,7 @@
     <None Remove="Images\SpecialCell\Start.jpg" />
     <None Remove="Images\SpecialCell\Tax.jpg" />
     <None Remove="Images\sputnik-2-icon.png" />
+    <None Remove="Images\star\ImageStar_level.jpg" />
     <None Remove="Images\telescope-icon.png" />
   </ItemGroup>
 
@@ -473,6 +476,8 @@
     </Resource>
     <Resource Include="Images\cell\cell.png" />
     <Resource Include="Images\cell\cell_highlight.png" />
+    <Resource Include="Images\cell\player_land_green.png" />
+    <Resource Include="Images\cell\player_land_star.png" />
     <Resource Include="Images\coin\coin1.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -704,6 +709,7 @@
     <Resource Include="Images\SpecialCell\Tax.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\star\ImageStar_level.jpg" />
   </ItemGroup>
 
 </Project>
