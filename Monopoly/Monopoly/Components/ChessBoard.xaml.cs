@@ -657,15 +657,23 @@ namespace Monopoly.Components
                     if (!playersList[PlayerTurn].isTeleport) Goto();
                     sideBar.update(playersList, PlayerTurn);
                 }
-                else if (playersList[PlayerTurn].isInPrison && MessageBox.Show("bạn có muốn trả tiền để đi không", "thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
+                else
                 {
-                    playersList[PlayerTurn].money -= 1000;
-                    ActivationEffect();
-                    if (!playersList[PlayerTurn].isTeleport) Goto();
-                    sideBar.update(playersList, PlayerTurn);
+                    PayPrison payPrison = new PayPrison();
+                    payPrison.OnOkButtonClick += PayPrison_OnOkButtonClick;
+                    payPrison.OnSkipButtonClick += EndTurn;
+                    centerMapView.Content = payPrison;
                 }
-                else ChangeTurn();
             });
+        }
+
+        //trả tiền để được đi tiếp
+        private void PayPrison_OnOkButtonClick(object sender, RoutedEventArgs e)
+        {
+            playersList[PlayerTurn].money -= 1000;
+            sideBar.update(playersList, PlayerTurn);
+            ActivationEffect();
+            if (!playersList[PlayerTurn].isTeleport) Goto();
         }
 
         #endregion
