@@ -18,7 +18,8 @@ namespace Monopoly
 
         public override void Using(ref Player playerUse)
         {
-            playerUse.isOutPrisonCard = true;
+            if (!playerUse.isOutPrison) playerUse.isOutPrisonCard = true;
+            else playerUse.money += 1000;
         }
     }
 }

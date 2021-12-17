@@ -49,6 +49,10 @@ namespace Monopoly.Components
         public OpenFileDialog imgplayer2;
         public OpenFileDialog imgplayer3;
         public OpenFileDialog imgplayer4;
+
+        bool gameMode = true; //chọn chế độ chơi (true: Unlimied, false: Setup)
+        int numberTurns = 0; //số lượt chơi ở chế độ Setup
+
         public Setup()
         {
             InitializeComponent();
@@ -80,7 +84,7 @@ namespace Monopoly.Components
             {
                 ShowPlayers.Add(ShowPlayer1);
                 ShowPlayers.Add(ShowPlayer2);
-                ChessBoard board = new ChessBoard(ShowPlayers);
+                ChessBoard board = new ChessBoard(ShowPlayers, gameMode, numberTurns);
                 chess.Content = board;
             }
             else if (countplayer == 3)
@@ -88,7 +92,7 @@ namespace Monopoly.Components
                 ShowPlayers.Add(ShowPlayer1);
                 ShowPlayers.Add(ShowPlayer2);
                 ShowPlayers.Add(ShowPlayer3);
-                ChessBoard board = new ChessBoard(ShowPlayers);
+                ChessBoard board = new ChessBoard(ShowPlayers, gameMode, numberTurns);
                 chess.Content = board;
             }
             else if (countplayer == 4)
@@ -97,7 +101,7 @@ namespace Monopoly.Components
                 ShowPlayers.Add(ShowPlayer2);
                 ShowPlayers.Add(ShowPlayer3);
                 ShowPlayers.Add(ShowPlayer4);
-                ChessBoard board = new ChessBoard(ShowPlayers);
+                ChessBoard board = new ChessBoard(ShowPlayers, gameMode, numberTurns);
                 chess.Content = board;
             }
         }
@@ -115,6 +119,7 @@ namespace Monopoly.Components
 
 
         }
+
         // Khởi tạo có 3 người chơi
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
@@ -124,6 +129,7 @@ namespace Monopoly.Components
             player4.Visibility = Visibility.Collapsed;
 
         }
+
         // Khởi tạo có 4 người chơi
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
@@ -134,16 +140,20 @@ namespace Monopoly.Components
 
 
         }
+
         //Khởi tạo chế độ Setup
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-
+            gameMode = false;
+            numberTurns = 3;
         }
+
         //Khởi tạo chế độ Limited
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-
+            gameMode = true;
         }
+
         private void Button_MouseEnter(object sender, MouseEventArgs e)
         {
             rocketstart.PlacementTarget = start;
