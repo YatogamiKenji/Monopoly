@@ -24,7 +24,7 @@ namespace Monopoly.Components
 
     public delegate void SpinnedDiceEventHandler(object sender, SpinnedDiceEventAgrs agrs);
 
-    public partial class DiceView : UserControl
+    public partial class DiceView : BaseCenterMapView
     {
 
         public static RoutedEvent SpinnedDiceEvent =
@@ -32,14 +32,18 @@ namespace Monopoly.Components
 
         public event SpinnedDiceEventHandler OnSpinnedDice
         {
-            add
-            {
-                AddHandler(SpinnedDiceEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(SpinnedDiceEvent, value);
-            }
+            add { AddHandler(SpinnedDiceEvent, value);}
+            remove { RemoveHandler(SpinnedDiceEvent, value); }
+        }
+
+
+        public static readonly RoutedEvent ButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(DiceView));
+
+        public event RoutedEventHandler OnButtonClick
+        {
+            add { AddHandler(ButtonClickEvent, value); }
+            remove { RemoveHandler(ButtonClickEvent, value); }
         }
 
         Random rand = new Random();
@@ -56,6 +60,7 @@ namespace Monopoly.Components
 
         private void btnSpin_Click(object sender, RoutedEventArgs e)
         {
+            RaiseEvent(new RoutedEventArgs(ButtonClickEvent));
 
             btnSpin.Style = FindResource("BtnStyle1Gray") as Style;
             btnSpin.IsEnabled = false;

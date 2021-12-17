@@ -18,7 +18,7 @@ namespace Monopoly.Components
     /// <summary>
     /// Interaction logic for ComeEmptyLandView.xaml
     /// </summary>
-    public partial class ComeEmptyLandView : UserControl
+    public partial class ComeEmptyLandView : BaseCenterMapView
     {
 
         private Land _land;
