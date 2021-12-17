@@ -550,6 +550,8 @@ namespace Monopoly.Components
         //đi đến ô cơ hội
         void GotoChance()
         {
+            countDown = 20;
+
             // Tiến hành random thẻ cơ hội
             Random random = new Random();
             Chance chance = chances[random.Next(0, 13)];
@@ -566,6 +568,8 @@ namespace Monopoly.Components
         //đi đến ô khí vận
         void GotoCommunityChest()
         {
+            countDown = 20;
+
             // Tiến hành random thẻ khí vận
             Random random = new Random();
             CommunityChest communityChest = communityChests[random.Next(0, 12)];
@@ -602,6 +606,7 @@ namespace Monopoly.Components
         //đi đến ô quyền năng
         void GotoPower()
         {
+            countDown = 20;
             //Tiến hành random thẻ quyền năng
             randomPower = RandomPower();
             PowerCard powerCard = new PowerCard(randomPower);
@@ -661,9 +666,9 @@ namespace Monopoly.Components
         {
             countDown = 30; // Giá trị mặc định
             if (cellManager[playersList[PlayerTurn].position].type == CellType.Dat) GoToLand();
-            else if (cellManager[playersList[PlayerTurn].position].type == CellType.CoHoi) GotoChance();
-            else if (cellManager[playersList[PlayerTurn].position].type == CellType.KhiVan) GotoCommunityChest();
-            else if (cellManager[playersList[PlayerTurn].position].type == CellType.QuyenNang) GotoPower();
+            else if (cellManager[playersList[PlayerTurn].position].type == CellType.CoHoi) SwitchView(CenterMapView.ComeChance);
+            else if (cellManager[playersList[PlayerTurn].position].type == CellType.KhiVan) SwitchView(CenterMapView.ComeLuck);
+            else if (cellManager[playersList[PlayerTurn].position].type == CellType.QuyenNang) SwitchView(CenterMapView.ComePower);
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.OTu) GotoInPrison();
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.VaoTu) GotoPrison();
             else if (cellManager[playersList[PlayerTurn].position].type == CellType.Thue) GotoTax();

@@ -18,7 +18,7 @@ namespace Monopoly.Components
     /// <summary>
     /// Interaction logic for ComeSpecialLand.xaml
     /// </summary>
-    public partial class ComeSpecialLand : UserControl
+    public partial class ComeSpecialLand : BaseCenterMapView
     {
 
         public string Title
@@ -46,44 +46,40 @@ namespace Monopoly.Components
 
         public ComeSpecialLand(PowerCard powerCard)
         {
+            this.DataContext = this;
             InitializeComponent();
             Title = "Ô QUYỀN NĂNG";
 
             Grid.SetRow(powerCard, 1);
-
-            powerCard.Height = 210;
-            powerCard.Width = 160;
-            powerCard.HorizontalAlignment = HorizontalAlignment.Center;
-            powerCard.VerticalAlignment = VerticalAlignment.Top;
             NoticeTakeCard.Children.Add(powerCard);
+
+            mainDescription.Text = powerCard.Description;
         }
 
         public ComeSpecialLand(ChanceCard chanceCard)
         {
+            this.DataContext = this;
             InitializeComponent();
-            Title = "Ô Cơ Hội";
+            Title = "Ô CƠ HỘI";
 
             Grid.SetRow(chanceCard, 1);
-
-            chanceCard.Height = 210;
-            chanceCard.Width = 160;
-            chanceCard.HorizontalAlignment = HorizontalAlignment.Center;
-            chanceCard.VerticalAlignment = VerticalAlignment.Top;
             NoticeTakeCard.Children.Add(chanceCard);
+
+            mainDescription.Text = chanceCard.Description;
+
         }
 
         public ComeSpecialLand(LuckCard luckCard)
         {
+            this.DataContext = this;
             InitializeComponent();
-            Title = "Ô Khí Vận";
+            Title = "Ô KHÍ VẬN";
 
             Grid.SetRow(luckCard, 1);
-
-            luckCard.Height = 210;
-            luckCard.Width = 160;
-            luckCard.HorizontalAlignment = HorizontalAlignment.Center;
-            luckCard.VerticalAlignment = VerticalAlignment.Top;
             NoticeTakeCard.Children.Add(luckCard);
+
+            mainDescription.Text = luckCard.Description;
+
         }
     }
 }
