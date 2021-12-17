@@ -18,7 +18,7 @@ namespace Monopoly.Components
     /// <summary>
     /// Interaction logic for UseCardToAnotherView.xaml
     /// </summary>
-    public partial class UseCardToAnotherView : UserControl
+    public partial class UseCardToAnotherView : BaseCenterMapView
     {
         public static readonly RoutedEvent CancleButtonClickEvent =
             EventManager.RegisterRoutedEvent(nameof(OnCancleButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UseCardToAnotherView));

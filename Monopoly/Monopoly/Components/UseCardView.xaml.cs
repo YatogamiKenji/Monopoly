@@ -19,7 +19,7 @@ namespace Monopoly.Components
     /// Interaction logic for UseCardView.xaml
     /// </summary>
     public delegate void UseACardButtonClickEventHandler(object sender, UseACardButtonClickEventArgs agrs);
-    public partial class UseCardView : UserControl
+    public partial class UseCardView : BaseCenterMapView
     {
         public static readonly RoutedEvent CancleButtonClickEvent =
             EventManager.RegisterRoutedEvent(nameof(OnCancleButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UseCardView));

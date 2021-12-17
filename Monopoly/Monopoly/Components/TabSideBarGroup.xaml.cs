@@ -148,7 +148,6 @@ namespace Monopoly.Components
                 }
                
                 
-                
             }
         }
     }

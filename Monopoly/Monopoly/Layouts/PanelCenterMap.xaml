@@ -25,8 +25,7 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     FontSize="18"
-                                    Foreground="White"
-                                    x:Name="countdownText"/>
+                                    Foreground="White"/>
                             <Grid Grid.Row="2">
                                 <ContentPresenter />
                             </Grid>
