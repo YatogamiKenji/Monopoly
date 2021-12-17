@@ -44,8 +44,7 @@ namespace Monopoly.Components
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register("Title", typeof(string), typeof(PlayerShow), new PropertyMetadata(""));
 
-
-
+        
         public ImageSource BackgroundPlayer
         {
             get { return (ImageSource)GetValue(BackgroundPlayerProperty); }

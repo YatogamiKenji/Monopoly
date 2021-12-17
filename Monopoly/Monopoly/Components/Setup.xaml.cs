@@ -109,7 +109,9 @@ namespace Monopoly.Components
         // Khởi tạo có 2 người chơi
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
+            chose3.Visibility = Visibility.Collapsed;
+            chose4.Visibility = Visibility.Collapsed;
+            chose2.Visibility = Visibility.Visible;
             Storyboard slide = Resources["OpenMenu"] as Storyboard;
             slide.Begin(createName);
             countplayer = 2;
@@ -122,6 +124,9 @@ namespace Monopoly.Components
         // Khởi tạo có 3 người chơi
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            chose2.Visibility = Visibility.Collapsed;
+            chose4.Visibility = Visibility.Collapsed;
+            chose3.Visibility = Visibility.Visible;
             Storyboard slide = Resources["OpenMenu"] as Storyboard;
             slide.Begin(createName);
             countplayer = 3;
@@ -134,6 +139,9 @@ namespace Monopoly.Components
         // Khởi tạo có 4 người chơi
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
+            chose3.Visibility = Visibility.Collapsed;
+            chose2.Visibility = Visibility.Collapsed;
+            chose4.Visibility = Visibility.Visible;
             Storyboard slide = Resources["OpenMenu"] as Storyboard;
             slide.Begin(createName);
             countplayer = 4;
@@ -178,10 +186,10 @@ namespace Monopoly.Components
 
             ShowPlayers = new List<PlayerShow>();
 
-            ShowPlayer1 = new PlayerShow { Title = nameplayer1.Text, Margin = new Thickness(10, 10, 50, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_blue.png", UriKind.Relative)) };
-            ShowPlayer2 = new PlayerShow { Title = nameplayer2.Text, Margin = new Thickness(35, 10, 25, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative)) };
-            ShowPlayer3 = new PlayerShow { Title = nameplayer3.Text, Margin = new Thickness(10, 10, 50, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_blue.png", UriKind.Relative)) };
-            ShowPlayer4 = new PlayerShow { Title = nameplayer4.Text, Margin = new Thickness(35, 10, 25, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative)) };
+            ShowPlayer1 = new PlayerShow { Title = nameplayer1.Text , Margin = new Thickness(10, 10, 50, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_blue.png", UriKind.Relative)) };
+            ShowPlayer2 = new PlayerShow { Title = nameplayer2.Text , Margin = new Thickness(35, 10, 25, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative)) };
+            ShowPlayer3 = new PlayerShow { Title = nameplayer3.Text , Margin = new Thickness(10, 10, 50, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_blue.png", UriKind.Relative)) };
+            ShowPlayer4 = new PlayerShow { Title = nameplayer4.Text , Margin = new Thickness(35, 10, 25, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative)) };
 
         }
 

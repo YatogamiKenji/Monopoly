@@ -36,6 +36,7 @@
     <None Remove="Images\background\5509862.jpg" />
     <None Remove="Images\background\bg.jpg" />
     <None Remove="Images\background\bg_setup.jpg" />
+    <None Remove="Images\background\setup_bg.jpg" />
     <None Remove="Images\background\spaceImg.jpg" />
     <None Remove="Images\bg_chessBoard.jpg" />
     <None Remove="Images\bg_setup.jpg" />
@@ -140,6 +141,7 @@
     <None Remove="Images\icon\space-shuttle-launch-icon.png" />
     <None Remove="Images\icon\sputnik-2-icon.png" />
     <None Remove="Images\icon\telescope-icon.png" />
+    <None Remove="Images\icon\upload.png" />
     <None Remove="Images\land_card_detail\land_card_detail_blue.png" />
     <None Remove="Images\land_card_detail\land_card_detail_green.png" />
     <None Remove="Images\land_card_detail\land_card_detail_red.png" />
@@ -152,6 +154,7 @@
     <None Remove="Images\panel\detail_description_card.png" />
     <None Remove="Images\panel\list_card_usecardview.png" />
     <None Remove="Images\panel\panel_center_map.png" />
+    <None Remove="Images\panel\panel_setup1.jpg" />
     <None Remove="Images\planet\galaxy.jpg" />
     <None Remove="Images\planet\planet1.jpg" />
     <None Remove="Images\planet\planet10.jpg" />
@@ -310,6 +313,7 @@
     </Resource>
     <Resource Include="Images\background\bg.jpg" />
     <Resource Include="Images\background\bg_setup.jpg" />
+    <Resource Include="Images\background\setup_bg.jpg" />
     <Resource Include="Images\background\spaceImg.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -519,6 +523,7 @@
     <Resource Include="Images\icon\space-shuttle-launch-icon.png" />
     <Resource Include="Images\icon\sputnik-2-icon.png" />
     <Resource Include="Images\icon\telescope-icon.png" />
+    <Resource Include="Images\icon\upload.png" />
     <Resource Include="Images\land_card_detail\land_card_detail_blue.png" />
     <Resource Include="Images\land_card_detail\land_card_detail_green.png" />
     <Resource Include="Images\land_card_detail\land_card_detail_red.png" />
@@ -530,6 +535,7 @@
     <Resource Include="Images\panel\detail_description_card.png" />
     <Resource Include="Images\panel\list_card_usecardview.png" />
     <Resource Include="Images\panel\panel_center_map.png" />
+    <Resource Include="Images\panel\panel_setup1.jpg" />
     <Resource Include="Images\planet\galaxy.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
