@@ -48,7 +48,7 @@
                            FontSize="18"
                            Margin="20 0 0 0"
                            Foreground="White"/>
-                <Grid Margin="10 2 10 2">
+                <Grid Margin="13 4 12 0">
                     <component:ListCardSideBar x:Name="listCardSideBar"/>
                 </Grid>
             </StackPanel>
@@ -60,13 +60,13 @@
             <Image Source="/Monopoly;component/Images/sidebar/list_land_sidebar.png"
                    Stretch="Fill"/>
 
-            <StackPanel>
+            <StackPanel >
                 <TextBlock x:Name="landHeading"
                            Text="Đất (3): "
                            FontSize="18"
                            Margin="20 2 0 0"
                            Foreground="White"/>
-                <Grid Margin="10 2 10 2">
+                <Grid Margin="10 4 10 2"  Height="220">
                     <ContentControl x:Name="listLandCard"/>
                 </Grid>
             </StackPanel>

@@ -6,8 +6,9 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Height="250">
-        <ScrollViewer HorizontalScrollBarVisibility = "Hidden" VerticalScrollBarVisibility = "Visible">
+    <Grid>
+        <ScrollViewer HorizontalScrollBarVisibility = "Hidden" VerticalScrollBarVisibility = "Visible"
+                      Width="320">
             <Grid x:Name="listLandCardSideBarGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

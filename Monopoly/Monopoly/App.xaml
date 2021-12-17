@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="/Styles/BtnStyle1.xaml" />
                 <ResourceDictionary Source="/Styles/CardStyle.xaml" />
                 <ResourceDictionary Source="/Styles/NotiStyle.xaml" />
+                <ResourceDictionary Source="/Styles/ScrollBarStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

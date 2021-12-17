@@ -19,8 +19,9 @@
                 <Image Source="/Monopoly;component/Images/panel/list_card_usecardview.png"
                        Width="380"
                        Height="156"/>
-                <ScrollViewer Height="150"
-                              Width="358"
+                <ScrollViewer Height="154"
+                              Width="352"
+                              Margin="2 2 0 0"
                               HorizontalScrollBarVisibility = "Visible" 
                               VerticalScrollBarVisibility = "Hidden">
                     <StackPanel
