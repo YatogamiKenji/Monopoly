@@ -65,7 +65,7 @@ namespace Monopoly.Components
             btnSpin.Style = FindResource("BtnStyle1Gray") as Style;
             btnSpin.IsEnabled = false;
 
-            int randAngle = 720 + rand.Next(0, 6)*60 + (rand.Next(0, 11) - 10);
+            int randAngle = 720 + rand.Next(0, 6)*60 + (rand.Next(0, 21) - 10);
             DoubleAnimation rotateAnim = new DoubleAnimation(0, (double)randAngle, new Duration(TimeSpan.FromSeconds(1.5)));
             rotateAnim.EasingFunction = new PowerEase { EasingMode = EasingMode.EaseInOut };
             wheel.RenderTransform = new RotateTransform();
@@ -74,7 +74,7 @@ namespace Monopoly.Components
 
             Noti.SetTimeout(() =>
             {
-                int num = 7 - ((randAngle % 360 / 60) + 1);
+                int num = 7 - (((randAngle-30) % 360 / 60) + 1);
                 RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = num });
             }, 1.6);
         }
