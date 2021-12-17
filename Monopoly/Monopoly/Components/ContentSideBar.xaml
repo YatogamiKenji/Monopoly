@@ -29,9 +29,9 @@
                            FontSize="28"
                            FontWeight="SemiBold"/>
                     <Image Source="/Monopoly;component/Images/coin/coin1.png"
-                       Height="25"
-                       Width="25"
-                       Margin="5 5 0  0"/>
+                       Height="22"
+                       Width="22"
+                       Margin="1 5 0  0"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

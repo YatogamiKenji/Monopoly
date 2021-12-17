@@ -49,12 +49,12 @@
                         Opacity="0.8"/>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="{Binding Tax, ElementName=root}"
-                           Margin="2 0 1 0"
+                           Margin="2 0 2 0"
                            Foreground="Yellow"
                            FontSize="10"/>
-                        <Image Source="/Monopoly;component/Image/coinIcon.png"
-                       Height="8"
-                       Width="8"
+                        <Image Source="/Monopoly;component/Images/coin/coin2.png"
+                       Height="10"
+                       Width="10"
                        Margin="0 1 0  0"/>
                     </StackPanel>
                 </StackPanel>
@@ -69,12 +69,12 @@
                         Opacity="0.8"/>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="{Binding Value, ElementName=root}"
-                           Margin="2 0 1 0"
+                           Margin="2 0 2 0"
                            Foreground="Yellow"
                            FontSize="10"/>
-                        <Image Source="/Monopoly;component/Image/coinIcon.png"
-                       Height="8"
-                       Width="8"
+                        <Image Source="/Monopoly;component/Images/coin/coin2.png"
+                       Height="10"
+                       Width="10"
                        Margin="0 1 0  0"/>
                     </StackPanel>
                 </StackPanel>

@@ -19,8 +19,6 @@
                 Width="59"
                 Margin="0 10 0 0">
                 
-                <!--<Image Source="{Binding ImgSource, ElementName=root}"
-                   Stretch="UniformToFill"/>-->
                 <Border.Clip>
                     <EllipseGeometry Center="29 29" RadiusX="30" RadiusY="30" />
                 </Border.Clip>
@@ -47,9 +45,9 @@
                         Foreground="White"
                         FontSize="12"/>
                 <Image 
-                Source="/Monopoly;component/Image/coinIcon.png"
-                Height="8"
-                Width="8"
+                Source="/Monopoly;component/Images/coin/coin3.png"
+                Height="12"
+                Width="12"
                 Margin="0 1 0  0"/>
             </StackPanel>
 
