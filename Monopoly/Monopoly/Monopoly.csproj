@@ -125,6 +125,7 @@
     <None Remove="Images\controlbar\-.png" />
     <None Remove="Images\controlbar\controlbar.jpg" />
     <None Remove="Images\controlbar\CuteAstronaut.png" />
+    <None Remove="Images\controlbar\Monopoly.png" />
     <None Remove="Images\controlbar\x.png" />
     <None Remove="Images\dice\needle.png" />
     <None Remove="Images\dice\wheel.png" />
@@ -494,6 +495,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\controlbar\CuteAstronaut.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\controlbar\Monopoly.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\controlbar\x.png">

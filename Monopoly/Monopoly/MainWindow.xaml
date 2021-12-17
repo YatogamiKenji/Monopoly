@@ -22,8 +22,9 @@
                 <ImageBrush ImageSource="/Monopoly;component/Images/controlbar/controlbar.jpg" Stretch="UniformToFill"></ImageBrush>
             </DockPanel.Background>
             <Image Margin="5 0" Source="/Monopoly;component/Images/controlbar/CuteAstronaut.png"></Image>
-            <TextBlock Margin="5 0" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Left" Text="Monopoly" Foreground="Aqua" FontSize="15"></TextBlock>
-            
+            <!--<TextBlock Margin="5 0" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Left" Text="Monopoly" Foreground="Aqua" FontSize="15"></TextBlock>-->
+            <Image Source="/Monopoly;component/Images/controlbar/Monopoly.png"></Image>
+
             <Image DockPanel.Dock="Right" Source="/Monopoly;component/Images/controlbar/x.png"
                    Cursor="Hand"                  
                    PreviewMouseDown="Image_PreviewMouseDown_1"
