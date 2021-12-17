@@ -9,7 +9,8 @@
         ResizeMode="CanMinimize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Title="Monopoly" Height="750" Width="1280">
+        Title="Monopoly" Height="750" Width="1280"
+        Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"></RowDefinition>

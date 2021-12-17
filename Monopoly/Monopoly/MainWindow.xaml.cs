@@ -45,5 +45,10 @@ namespace Monopoly
         {
             this.Close();
         }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            if (MessageBox.Show("Bạn thực sự muốn thoát?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No) e.Cancel = true;
+        }
     }
 }
