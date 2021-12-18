@@ -70,9 +70,9 @@
                            FontSize="30">
                 </TextBlock>
                 <StackPanel Orientation="Horizontal" Margin="0 0 50 50" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <TextBlock Text="YES" Cursor="Hand" FontSize="30" Foreground="Red" MouseDown="Yes_MouseDown"></TextBlock>
-                    <TextBlock Text="/" Cursor="Hand" FontSize="30" Foreground="Red"></TextBlock>
-                    <TextBlock Text="NO" Cursor="Hand" FontSize="30" Foreground="Red" MouseDown="No_MouseDown"></TextBlock>
+                    <TextBlock Text="YES" Cursor="Hand" FontSize="30" Foreground="Red" MouseDown="Yes_MouseDown" Width="73"></TextBlock>
+                    <!--<TextBlock Text="/" Cursor="Hand" FontSize="30" Foreground="Red"></TextBlock>-->
+                    <TextBlock Text="NO" Cursor="Hand" FontSize="30" Foreground="Red" MouseDown="No_MouseDown" Width="45"></TextBlock>
                 </StackPanel>
             </Grid>
         </Grid>

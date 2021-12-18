@@ -381,6 +381,7 @@ namespace Monopoly.Components
         void NotEnoughMoneyToPay()
         {
             //bán đến khi đủ tiền trả nợ
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền để trả!","Red"), 3, (s) =>{ });
             SellLand sellLand = new SellLand(playersList[PlayerTurn]);
             sellLand.OnBankruptButtonClick += OnButtonBankruptClick;
             sellLand.OnCancleButtonClick += SellLand_OnButtonCancleClick;
@@ -641,7 +642,7 @@ namespace Monopoly.Components
         //đi đến ô vào tù
         void GotoPrison()
         {
-            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đi đến ô vào tù và được đưa đến ô ở tù ", "Red"), 2.5, (str) =>
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đi đến ô vào tù và bị đưa đến ô ở tù ", "Red"), 2.5, (str) =>
             {
                 //đưa player đến ô vào tù
                 if (!playersList[PlayerTurn].isOutPrison) PlayerToPrison();
@@ -673,6 +674,7 @@ namespace Monopoly.Components
         //đi đến ô bãi đỗ xe
         void GotoParking()
         {
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText(" Trạm nghỉ ", "Green"), 2.5, (str) => { });
             SwitchView(CenterMapView.PlayerUsing);
         }
 
@@ -720,7 +722,8 @@ namespace Monopoly.Components
         //trả tiền để được đi tiếp
         private void PayPrison_OnOkButtonClick(object sender, RoutedEventArgs e)
         {
-            playersList[PlayerTurn].money -= 1000;
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đã trả 1000 tiền bảo lãnh để ra khỏi tù", "Blue"), 1.5, (str) => { });
+           playersList[PlayerTurn].money -= 1000;
             sideBar.update(playersList, PlayerTurn);
             ActivationEffect();
             if (!playersList[PlayerTurn].isTeleport) Goto();
