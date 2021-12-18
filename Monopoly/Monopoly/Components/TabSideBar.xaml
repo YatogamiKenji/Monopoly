@@ -22,10 +22,15 @@
                 <Border.Clip>
                     <EllipseGeometry Center="29 29" RadiusX="30" RadiusY="30" />
                 </Border.Clip>
-                <Image Source="{Binding ImgSource, ElementName=root}"
-                   Stretch="UniformToFill">
-                    
-                </Image>
+                <Grid>
+                    <Image Source="{Binding ImgSource, ElementName=root}" Stretch="UniformToFill"/>
+                    <Image Source="{Binding IconPlayerImg, ElementName=root}"
+                           Stretch="UniformToFill"
+                           Width="20"
+                           Height="20"
+                           VerticalAlignment="Bottom"
+                           Margin="0 0 0 -4"/>
+                </Grid>
             </Border>
 
             <!-- Name Player -->

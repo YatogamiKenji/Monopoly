@@ -41,12 +41,12 @@ namespace Monopoly.Components
             InitializeComponent();
             for (int i = 0; i < players.Count; i++)
             {
-                if (i != turn)
+                if (i != turn && players[i].isLoser == false)
                 {
                     BtnAnotherPlayer btnAnotherPlayer =
                         new BtnAnotherPlayer(
                             i,
-                            new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/circle-avatar" + (i + 1) + ".jpg", UriKind.Relative)),
+                            new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/avatar/" + players[i].avatar, UriKind.Relative)),
                             players[i].name,
                             players[i].money
                         );

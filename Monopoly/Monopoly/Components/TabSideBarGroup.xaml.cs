@@ -44,110 +44,53 @@ namespace Monopoly.Components
         public static readonly DependencyProperty PlayersProperty =
             DependencyProperty.Register("Players", typeof(List<Player>), typeof(TabSideBarGroup));
 
-        public static TabSideBarGroup instance;
-        
+        public List<PlayerShow> IconPlayers
+        {
+            get { return (List<PlayerShow>)GetValue(IconPlayersProperty); }
+            set { SetValue(IconPlayersProperty, value); }
+        }
+        // Using a DependencyProperty as the backing store for Players.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconPlayersProperty =
+            DependencyProperty.Register("IconPlayers", typeof(List<PlayerShow>), typeof(TabSideBarGroup));
+
         public TabSideBarGroup()
         {
             InitializeComponent();
             createTab();
-            instance = this;
         }
 
-        public TabSideBarGroup(List<Player> players, int turn)
+        public TabSideBarGroup(List<Player> players, int turn, List<PlayerShow> iconPlayers)
         {
             InitializeComponent();
             Players = players;
             SelectedId = turn;
+            IconPlayers = iconPlayers;
             createTab();
         }
        
 
         private void createTab()
         {
-            TabSideBar t1;
-            TabSideBar t2;
-            TabSideBar t3;
-            TabSideBar t4;
             for (int i = 0; i < Players?.Count; i++)
             {
-                switch(i)
+                TabSideBar t = new TabSideBar
+                (
+                    i,
+                    new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/" + Players[i].avatar, UriKind.Relative)),
+                    Players[i].name,
+                    Players[i].money,
+                    IconPlayers[i].BackgroundPlayer
+                );
+                Grid.SetColumn(t, i);
+                if (SelectedId == i)
                 {
-                    case 0:
-                        if(Setup.instance.imgplayer1.FileName == "")
-                        {
-                            t1 = new TabSideBar(i, new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/avatar1.jpg", UriKind.Relative)), Players[i].name, Players[i].money);
-                        } 
-                        else
-                        {
-                            t1 = new TabSideBar(i, new BitmapImage(new Uri(Setup.instance.imgplayer1.FileName)), Players[i].name, Players[i].money);
-
-                            
-                        }
-                        Grid.SetColumn(t1, i);
-                        if (SelectedId == i)
-                        {
-                            t1.SetBg("selected");
-                        }
-                        gridTabSideBarGroup.Children.Add(t1);
-                        break;
-                    case 1:
-                        if(Setup.instance.imgplayer2.FileName == "")
-                        {
-                            t2 = new TabSideBar(i, new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/avatar1.jpg", UriKind.Relative)), Players[i].name, Players[i].money);
-                        }
-                        else
-                        {
-                            t2 = new TabSideBar(i, new BitmapImage(new Uri(Setup.instance.imgplayer2.FileName)), Players[i].name, Players[i].money);
-
-                            
-                        }
-                        Grid.SetColumn(t2, i);
-                        if (SelectedId == i)
-                        {
-                            t2.SetBg("selected");
-                        }
-                        gridTabSideBarGroup.Children.Add(t2);
-                        break;
-                    case 2:
-                        if (Setup.instance.imgplayer3.FileName == "")
-                        {
-                            t3 = new TabSideBar(i, new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/avatar1.jpg", UriKind.Relative)), Players[i].name, Players[i].money);
-                        }
-                        else
-                        {
-                            t3 = new TabSideBar(i, new BitmapImage(new Uri(Setup.instance.imgplayer3.FileName)), Players[i].name, Players[i].money);
-
-                           
-                        }
-                        Grid.SetColumn(t3, i);
-                        if (SelectedId == i)
-                        {
-                            t3.SetBg("selected");
-                        }
-                        gridTabSideBarGroup.Children.Add(t3);
-                        break;
-                    case 3:
-                        if (Setup.instance.imgplayer4.FileName == "")
-                        {
-                            t4 = new TabSideBar(i, new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/avatar1.jpg", UriKind.Relative)), Players[i].name, Players[i].money);
-                        }
-                        else
-                        {
-                            t4 = new TabSideBar(i, new BitmapImage(new Uri(Setup.instance.imgplayer4.FileName)), Players[i].name, Players[i].money);
-
-                            
-                        }
-                        Grid.SetColumn(t4, i);
-                        if (SelectedId == i)
-                        {
-                            t4.SetBg("selected");
-                        }
-                        gridTabSideBarGroup.Children.Add(t4);
-                        break;
-
+                    t.SetBg("selected");
                 }
-               
-                
+                if (Players[i].isLoser)
+                {
+                    t.SetBg("disable");
+                }
+                gridTabSideBarGroup.Children.Add(t);
             }
         }
     }

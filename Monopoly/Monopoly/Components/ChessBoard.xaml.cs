@@ -134,6 +134,7 @@ namespace Monopoly.Components
 
             NumberOfPlayers = players.Count;
             sideBar.Players = playersList;
+            sideBar.IconPlayers = players;
             sideBar.update(playersList, PlayerTurn);
 
             PowerStart();

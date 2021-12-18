@@ -46,6 +46,15 @@ namespace Monopoly.Components
         public static readonly DependencyProperty PlayersProperty =
             DependencyProperty.Register("Players", typeof(List<Player>), typeof(SideBar));
 
+        public List<PlayerShow> IconPlayers
+        {
+            get { return (List<PlayerShow>)GetValue(IconPlayersProperty); }
+            set { SetValue(IconPlayersProperty, value); }
+        }
+        // Using a DependencyProperty as the backing store for Players.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconPlayersProperty =
+            DependencyProperty.Register("IconPlayers", typeof(List<PlayerShow>), typeof(SideBar));
+
         public SideBar(List<Player> players, int turn)
         {
             InitializeComponent();
@@ -65,7 +74,7 @@ namespace Monopoly.Components
         {
             Players = players;
             SelectedId = turn;
-            TabSideBarGroup tabs = new TabSideBarGroup(Players, SelectedId);
+            TabSideBarGroup tabs = new TabSideBarGroup(Players, SelectedId, IconPlayers);
             tabGroup.Content = tabs;
 
             if (Players != null)

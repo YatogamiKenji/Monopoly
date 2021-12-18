@@ -67,19 +67,36 @@ namespace Monopoly.Components
         public static readonly DependencyProperty MoneyProperty =
             DependencyProperty.Register("Money", typeof(int), typeof(TabSideBar), new PropertyMetadata(0));
 
-        public TabSideBar(int id, ImageSource imgSource, string playerName, int money)
+
+
+        public ImageSource IconPlayerImg
+        {
+            get { return (ImageSource)GetValue(IconPlayerImgProperty); }
+            set { SetValue(IconPlayerImgProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IconPlayerImg.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconPlayerImgProperty =
+            DependencyProperty.Register("IconPlayerImg", typeof(ImageSource), typeof(TabSideBar), new PropertyMetadata());
+
+
+
+        public TabSideBar(int id, ImageSource imgSource, string playerName, int money, ImageSource iconPlayerImg)
         {
             InitializeComponent();
             Id = id;
             ImgSource = imgSource;
             PlayerName = playerName;
             Money = money;
+            IconPlayerImg = iconPlayerImg;
         }
 
         public void SetBg(string state)
         {
             if (state == "selected")
                 imgBg.Source = new BitmapImage(new Uri(@"/Monopoly;component/Images/sidebar/tab_sidebar_selected.png", UriKind.Relative));
+            else if (state == "disable")
+                imgBg.Source = new BitmapImage(new Uri(@"/Monopoly;component/Images/sidebar/tab_sidebar_disable.png", UriKind.Relative));
             else
                 imgBg.Source = new BitmapImage(new Uri(@"/Monopoly;component/Images/sidebar/tab_sidebar.png", UriKind.Relative));
         }
