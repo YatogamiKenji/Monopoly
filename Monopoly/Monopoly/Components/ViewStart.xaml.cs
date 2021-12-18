@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using Monopoly.Components;
 using System.Windows.Controls.Primitives;
 using System.Windows.Threading;
+using System.IO;
+
 namespace Monopoly.Components
 {
     /// <summary>
@@ -22,6 +24,8 @@ namespace Monopoly.Components
     /// </summary>
     public partial class ViewStart : UserControl
     {
+        MediaPlayer mp = new MediaPlayer();
+
         public ViewStart()
         {
             InitializeComponent();
@@ -29,12 +33,15 @@ namespace Monopoly.Components
 
         private void QUIT_Click(object sender, RoutedEventArgs e)
         {
+            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonBack.mp3"));
+            mp.Play();
             Window.GetWindow(this).Close();
         }
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-
+            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
+            mp.Play();
             Setup setup = new Setup();
             views.Content = setup;
         }

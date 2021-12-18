@@ -24,10 +24,21 @@ namespace Monopoly
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    { 
+    {
+        MediaPlayer mp = new MediaPlayer();
+
         public MainWindow()
         {
             InitializeComponent();
+            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\background.mp3"));
+            mp.MediaEnded += Mp_MediaEnded;
+            mp.Play();
+        }
+
+        private void Mp_MediaEnded(object sender, EventArgs e)
+        {
+            mp.Position = TimeSpan.Zero;
+            mp.Play();
         }
 
         private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

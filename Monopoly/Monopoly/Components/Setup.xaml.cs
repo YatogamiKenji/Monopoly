@@ -17,6 +17,8 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
+using System.IO;
+
 namespace Monopoly.Components
 {
     /// <summary>
@@ -26,6 +28,7 @@ namespace Monopoly.Components
 
     public partial class Setup : UserControl
     {
+        MediaPlayer mp = new MediaPlayer();
 
         // List<ContentPlayer> Cont_Player;   // List các Components của ContentPlayer
         List<PlayerShow> ShowPlayers; //= new List<PlayerShow>();   // List các các Components của PlayerShow, PlayerShow là để show hình hình ảnh ngưởi chơi trên bàn cờ
@@ -71,14 +74,18 @@ namespace Monopoly.Components
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonBack.mp3"));
+            mp.Play();
+
             ViewStart start = new ViewStart();
             back.Content = start;
-
         }
 
         //Chuyển sang giao diện bàn cờ chính
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
+            mp.Play();
 
             if (countplayer == 2)
             {
@@ -109,6 +116,8 @@ namespace Monopoly.Components
         // Khởi tạo có 2 người chơi
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
+            mp.Play();
             chose3.Visibility = Visibility.Collapsed;
             chose4.Visibility = Visibility.Collapsed;
             chose2.Visibility = Visibility.Visible;
@@ -124,6 +133,8 @@ namespace Monopoly.Components
         // Khởi tạo có 3 người chơi
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
+            mp.Play();
             chose2.Visibility = Visibility.Collapsed;
             chose4.Visibility = Visibility.Collapsed;
             chose3.Visibility = Visibility.Visible;
@@ -139,6 +150,8 @@ namespace Monopoly.Components
         // Khởi tạo có 4 người chơi
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
+            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
+            mp.Play();
             chose3.Visibility = Visibility.Collapsed;
             chose2.Visibility = Visibility.Collapsed;
             chose4.Visibility = Visibility.Visible;
@@ -154,6 +167,8 @@ namespace Monopoly.Components
         //Khởi tạo chế độ Setup
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
+            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
+            mp.Play();
             gameMode = false;
             numberTurns = 3;
         }
@@ -161,6 +176,8 @@ namespace Monopoly.Components
         //Khởi tạo chế độ Limited
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
+            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
+            mp.Play();
             gameMode = true;
         }
 
@@ -181,6 +198,9 @@ namespace Monopoly.Components
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
+            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
+            mp.Play();
+
             Storyboard slide = Resources["CloseMenu"] as Storyboard;
             slide.Begin(createName);
 
