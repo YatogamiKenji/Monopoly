@@ -16,48 +16,126 @@ using System.Windows.Shapes;
 namespace Monopoly.Components
 {
     /// <summary>
-    /// Interaction logic for SellLand.xaml
+    /// Interaction logic for UseCardView.xaml
     /// </summary>
-    public partial class SellLand : UserControl
+    public delegate void SellLandButtonClickEventHandler(object sender, SellLandButtonClickEventArgs agrs);
+
+    public partial class SellLand : BaseCenterMapView
     {
-        public SellLand()
+        public static readonly RoutedEvent CancleButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnCancleButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(SellLand));
+        
+        public event RoutedEventHandler OnCancleButtonClick
         {
+            add { AddHandler(CancleButtonClickEvent, value); }
+            remove { RemoveHandler(CancleButtonClickEvent, value); }
+        }
+
+        public static readonly RoutedEvent BankruptButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnBankruptButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(SellLand));
+
+        public event RoutedEventHandler OnBankruptButtonClick
+        {
+            add { AddHandler(BankruptButtonClickEvent, value); }
+            remove { RemoveHandler(BankruptButtonClickEvent, value); }
+        }
+
+        public static RoutedEvent SellLandButtonClickEvent =
+           EventManager.RegisterRoutedEvent("OnSellLandButtonClick", RoutingStrategy.Bubble, typeof(SellLandButtonClickEventHandler), typeof(SellLand));
+        
+        public event SellLandButtonClickEventHandler OnSellLandButtonClick
+        {
+            add
+            {
+                AddHandler(SellLandButtonClickEvent, value);
+            }
+            remove
+            {
+                RemoveHandler(SellLandButtonClickEvent, value);
+            }
+        }
+
+        public Player player
+        {
+            get { return (Player)GetValue(playerProperty); }
+            set { SetValue(playerProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for player.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty playerProperty =
+            DependencyProperty.Register("player", typeof(Player), typeof(SellLand));
+
+        private int selectedIndex = 0;
+        private List<BtnLandCard> listBtnCard = new List<BtnLandCard>();
+
+        private int _currentPriceCard;
+        public int currentPriceCard
+        {
+            get { return _currentPriceCard; }
+            set { _currentPriceCard = value; }
+        }
+
+        public SellLand(Player currentPlayer)
+        {
+            this.DataContext = this;
             InitializeComponent();
+            player = currentPlayer;
+            if (player.lands != null)
+            {
+                List<Land> lands = player.lands;
+                for (int i = 0; i < lands.Count; i++)
+                    listBtnCard.Add(new BtnLandCard(lands[i], i));
+
+                for (int i = 0; i < listBtnCard.Count; i++)
+                {
+                    listBtnCard[i].OnBtnLandCardClick += SellLand_OnBtnLandCardClick;
+                    listBtnCard[i].Margin = new Thickness(2, 2, 2, 2);
+                    listCardUseCardView.Children.Add(listBtnCard[i]);
+                }
+
+                listBtnCard[selectedIndex].IsSelected = true;
+                updateLandDetailInfo();
+            }
+
         }
 
-        public SellLand(ListLandPlayers listLandPlayers)
+        private void SellLand_OnBtnLandCardClick(object sender, BtnLandCardClickEventArgs e)
         {
-            InitializeComponent();
-            Grid.SetRow(listLandPlayers, 1);
-            ListCard.Children.Add(listLandPlayers);
+            selectedIndex = e.idCard;
+
+            // Highlight thẻ được chọn
+            for (int i = 0; i < listBtnCard.Count; i++)
+            {
+                listBtnCard[i].IsSelected = false;
+            }
+            listBtnCard[selectedIndex].IsSelected = true;
+
+            // Upate thông tin chi tiết
+            updateLandDetailInfo();
         }
 
-        public static readonly RoutedEvent ButtonCancleClickEvent =
-            EventManager.RegisterRoutedEvent(nameof(OnButtonCancleClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContenButtonCardLand));
-
-        public event RoutedEventHandler OnButtonCancleClick
+        void updateLandDetailInfo()
         {
-            add { AddHandler(ButtonCancleClickEvent, value); }
-            remove { RemoveHandler(ButtonCancleClickEvent, value); }
+            currentPriceCard = player.lands[selectedIndex].value / 2;
+            mainDescription.Text = player.lands[selectedIndex].description + "Giá trị: " + player.lands[selectedIndex].value;
         }
 
-        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        private void CancleButtonClickFunc(object sender, RoutedEventArgs e)
         {
-            RaiseEvent(new RoutedEventArgs(ButtonCancleClickEvent));
+            RaiseEvent(new RoutedEventArgs(CancleButtonClickEvent));
         }
 
-        public static readonly RoutedEvent ButtonBankrupClickEvent =
-            EventManager.RegisterRoutedEvent(nameof(OnButtonBankruptClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContenButtonCardLand));
-
-        public event RoutedEventHandler OnButtonBankruptClick
+        private void BankruptButtonClickFunc(object sender, RoutedEventArgs e)
         {
-            add { AddHandler(ButtonBankrupClickEvent, value); }
-            remove { RemoveHandler(ButtonBankrupClickEvent, value); }
+            RaiseEvent(new RoutedEventArgs(BankruptButtonClickEvent));
         }
 
-        private void ButtonBankrupt_Click(object sender, RoutedEventArgs e)
+        private void SellLandButtonClickFunc(object sender, RoutedEventArgs e)
         {
-            RaiseEvent(new RoutedEventArgs(ButtonBankrupClickEvent));
+            RaiseEvent(new SellLandButtonClickEventArgs(SellLandButtonClickEvent, this)
+            {
+                land = player.lands[selectedIndex]
+            });
         }
     }
 }

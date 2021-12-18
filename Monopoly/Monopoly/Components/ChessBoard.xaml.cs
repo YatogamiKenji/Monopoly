@@ -158,12 +158,12 @@ namespace Monopoly.Components
             playersList[0].AddPower(new PowerSplitDice());
             playersList[0].AddPower(new PowerStealLand());
             playersList[0].AddPower(new PowerTeleportPersonToTheTax());
-            //playersList[0].AddLand(lands[0], 0, 1);
-            //playersList[0].AddLand(lands[1], 1, 2);
-            //playersList[0].AddLand(lands[2], 2, 4);
-            //playersList[0].AddLand(lands[3], 3, 5);
-            //playersList[0].AddLand(lands[4], 4, 6);
-            //playersList[0].AddLand(lands[5], 5, 8);
+            playersList[0].AddLand(lands[0], 0, 1);
+            playersList[0].AddLand(lands[1], 1, 2);
+            playersList[0].AddLand(lands[2], 2, 4);
+            playersList[0].AddLand(lands[3], 3, 5);
+            playersList[0].AddLand(lands[4], 4, 6);
+            playersList[0].AddLand(lands[5], 5, 8);
             playersList[1].AddPower(new PowerDoubleDice());
             playersList[1].AddPower(new PowerDoublePriceLandForever());
             playersList[1].AddPower(new PowerDoubleTax());
@@ -184,9 +184,9 @@ namespace Monopoly.Components
             playersList[1].AddPower(new PowerSplitDice());
             playersList[1].AddPower(new PowerStealLand());
             playersList[1].AddPower(new PowerTeleportPersonToTheTax());
-            //playersList[1].AddLand(lands[6], 6, 9);
-            //playersList[1].AddLand(lands[7], 7, 11);
-            //playersList[1].AddLand(lands[8], 8, 12);
+            playersList[1].AddLand(lands[6], 6, 9);
+            playersList[1].AddLand(lands[7], 7, 11);
+            playersList[1].AddLand(lands[8], 8, 12);
         }
 
         //khởi tạo data
@@ -381,17 +381,32 @@ namespace Monopoly.Components
         void NotEnoughMoneyToPay()
         {
             //bán đến khi đủ tiền trả nợ
-            ListLandPlayers listLandPlayers = new ListLandPlayers(playersList[PlayerTurn].lands);
-            SellLand sellLand = new SellLand(listLandPlayers);
-            sellLand.OnButtonBankruptClick += OnButtonBankruptClick;
-            sellLand.OnButtonCancleClick += SellLand_OnButtonCancleClick;
-
-            for (int i = 0; i < listLandPlayers.contenButtonCards.Count; i++)
-            {
-                listLandPlayers.contenButtonCards[i].OnButtonCardClick += SellLand_OnButtonCardClick;
-            }
+            SellLand sellLand = new SellLand(playersList[PlayerTurn]);
+            sellLand.OnBankruptButtonClick += OnButtonBankruptClick;
+            sellLand.OnCancleButtonClick += SellLand_OnButtonCancleClick;
+            sellLand.OnSellLandButtonClick += SellLand_OnSellLandButtonClick;
 
             centerMapView.Content = sellLand;
+        }
+
+        //bán đất
+        private void SellLand_OnSellLandButtonClick(object sender, SellLandButtonClickEventArgs e)
+        {
+            Land land = e.land;
+            playersList[PlayerTurn].money += land.landValue / 2;
+            playersList[PlayerTurn].RemoveLand(land.name);
+
+            centerMapView.Content = null;
+            //tự động trả nếu đủ tiền
+            if (playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].Tax())
+            {
+                playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Tax();
+                playersList[lands[cellManager[playersList[PlayerTurn].position].index].owner].money += lands[cellManager[playersList[PlayerTurn].position].index].Tax();
+                NotEnoughMoneyToPay();
+            }
+            else NotEnoughMoneyToPay();
+
+            sideBar.update(playersList, PlayerTurn);
         }
 
         private void SellLand_OnButtonCancleClick(object sender, RoutedEventArgs e)
@@ -405,6 +420,7 @@ namespace Monopoly.Components
             else NotEnoughMoneyToPay();
         }
 
+        //sự kiện người chơi nhấn phá sản
         private void OnButtonBankruptClick(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Bạn thực sự phá sản?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -417,6 +433,7 @@ namespace Monopoly.Components
                     if (NumberOfPlayers - bankrupt == 1)
                     {
                         //mở component thông báo người chiến thắng
+                        MessageBox.Show("Win");
                     }
                     ChangeTurn();
                 });
@@ -1223,32 +1240,6 @@ namespace Monopoly.Components
 
         // Kết thúc lượt
         private void EndTurn(object sender, RoutedEventArgs e) { ChangeTurn(); }
-
-        //Bán đất
-        private void SellLand_OnButtonCardClick(object sender, RoutedEventArgs e)
-        {
-            ContenButtonCardLand Card = (ContenButtonCardLand)sender;
-            playersList[PlayerTurn].money += Card.land.landValue / 2;
-            for (int i = 0; i < playersList[PlayerTurn].lands.Count; i++)
-                if (playersList[PlayerTurn].lands[i].name == Card.land.name)
-                {
-                    lands[playersList[PlayerTurn].indexLands[i]].GetDefault();
-                    playersList[PlayerTurn].RemoveLand(playersList[PlayerTurn].lands[i].name);
-                    break;
-                }
-
-            centerMapView.Content = null;
-            //tự động trả nếu đủ tiền
-            if (playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].Tax())
-            {
-                playersList[PlayerTurn].money -= lands[cellManager[playersList[PlayerTurn].position].index].Tax();
-                playersList[lands[cellManager[playersList[PlayerTurn].position].index].owner].money += lands[cellManager[playersList[PlayerTurn].position].index].Tax();
-                NotEnoughMoneyToPay();
-            }
-            else NotEnoughMoneyToPay();
-
-            sideBar.update(playersList, PlayerTurn);
-        }
 
         private void CountDownTimer_Tick(object sender, EventArgs e)
         {
