@@ -134,7 +134,8 @@ namespace Monopoly.Components
         {
             RaiseEvent(new SellLandButtonClickEventArgs(SellLandButtonClickEvent, this)
             {
-                land = player.lands[selectedIndex]
+                land = player.lands[selectedIndex],
+                index = selectedIndex
             });
         }
     }

@@ -42,6 +42,7 @@ namespace Monopoly
     public class SellLandButtonClickEventArgs : RoutedEventArgs
     {
         public Land land { get; set; }
+        public int index { get; set; }
 
         public SellLandButtonClickEventArgs()
         {

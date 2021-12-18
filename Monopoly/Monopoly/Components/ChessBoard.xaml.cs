@@ -396,6 +396,9 @@ namespace Monopoly.Components
             Land land = e.land;
             playersList[PlayerTurn].money += land.landValue / 2;
             playersList[PlayerTurn].RemoveLand(land.name);
+            lands[cellManager[playersList[PlayerTurn].indexCells[e.index]].index].GetDefault();
+            ContentChessCell contentChessCell = (ContentChessCell)cellPos[playersList[PlayerTurn].indexCells[e.index]].Child;
+            contentChessCell.MarkLand(-1);
 
             centerMapView.Content = null;
             //tự động trả nếu đủ tiền
@@ -1065,6 +1068,7 @@ namespace Monopoly.Components
                         });
                     }
                     sideBar.update(playersList, i);
+                    sideBar.update(playersList, PlayerTurn);
                     break;
                 }
                 else if (playersList[i].isImmune && playersList[i].name == PickedPlayer.name)
