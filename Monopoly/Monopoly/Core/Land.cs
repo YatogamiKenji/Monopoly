@@ -132,25 +132,27 @@ namespace Monopoly
         // Thuế phải trả khi đi vào ô đất
         public int Tax()
         {
-            int tax = 1;
+            double tax = 1;
             if (_isDoubleTax) tax = 2;
-            if (_level >= 1 && _level <= 3) return tax * Convert.ToInt32(Math.Ceiling(0.1 * _landValue));
-            return tax * Convert.ToInt32(Math.Ceiling(0.2 * _landValue));
+            if (_isDoublePrice) tax *= 2;
+            if (_isReduceValue) tax /= 2;
+            if (_level >= 0 && _level <= 3) return (int)tax * Convert.ToInt32(Math.Ceiling(0.1 * _landValue));
+            return (int)tax * Convert.ToInt32(Math.Ceiling(0.2 * _landValue));
         }
 
         // Thuế từng level
         public int Tax(int level)
         {
-            int tax = 1;
+            double tax = 1;
             if (_isDoubleTax) tax = 2;
             if (_isDoublePrice) tax *= 2;
             if (_isReduceValue) tax /= 2;
-            if (level == 0) return tax * Convert.ToInt32(Math.Ceiling(0.1 * _value));
-            else if (level == 1) return tax * Convert.ToInt32(Math.Ceiling(0.24 * _value));
-            else if (level == 2) return tax * Convert.ToInt32(Math.Ceiling(0.4 * _value));
-            else if (level == 3) return tax * Convert.ToInt32(Math.Ceiling(0.58 * _value));
-            else if (level == 4) return tax * Convert.ToInt32(Math.Ceiling(0.78 * _value));
-            return tax * Convert.ToInt32(Math.Ceiling(1.08 * _value));
+            if (level == 0) return (int)tax * Convert.ToInt32(Math.Ceiling(0.1 * _value));
+            else if (level == 1) return (int)tax * Convert.ToInt32(Math.Ceiling(0.24 * _value));
+            else if (level == 2) return (int)tax * Convert.ToInt32(Math.Ceiling(0.4 * _value));
+            else if (level == 3) return (int)tax * Convert.ToInt32(Math.Ceiling(0.58 * _value));
+            else if (level == 4) return (int)tax * Convert.ToInt32(Math.Ceiling(0.78 * _value));
+            return (int)tax * Convert.ToInt32(Math.Ceiling(1.08 * _value));
         }
 
         // Nâng cấp lên level tiếp theo

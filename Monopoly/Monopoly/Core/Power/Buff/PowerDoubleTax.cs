@@ -38,12 +38,7 @@ namespace Monopoly
 
         public override void PowerFunction(ref Player playerUse, int index)
         {
-            for (int i=0;i<playerUse.lands.Count;i++)
-                if (playerUse.indexLands[i] == index)
-                {
-                    playerUse.lands[i].isDoubleTax = true;
-                    break;
-                }    
+            playerUse.lands[index].isDoubleTax = true;
         }
     }
 }

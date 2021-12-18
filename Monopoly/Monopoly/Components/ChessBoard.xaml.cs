@@ -966,7 +966,7 @@ namespace Monopoly.Components
                 Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ " + usingPower.name + " lên hành tinh " + usingPlayer.lands[index].name, "Green"), 2.5, (str) =>
                 {
                     usingPower.PowerFunction(ref usingPlayer, index);
-                    chessCell.AddStar(lands[usingPlayer.indexCells[index]].level);
+                    if (usingPower.GetType().Name == "PowerHalveUpgradeFee") chessCell.AddStar(lands[usingPlayer.indexCells[index]].level);
                     //playersList[PlayerTurn] = usingPlayer;
                     ChangeTurn();
                 });
