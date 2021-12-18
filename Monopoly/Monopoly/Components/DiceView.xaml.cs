@@ -61,7 +61,8 @@ namespace Monopoly.Components
         private void btnSpin_Click(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(ButtonClickEvent));
-
+            Sound.StartButton();
+            Sound.Spinning();
             btnSpin.Style = FindResource("BtnStyle1Gray") as Style;
             btnSpin.IsEnabled = false;
 

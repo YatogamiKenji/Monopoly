@@ -39,6 +39,7 @@ namespace Monopoly.Components
 
         private void UpgradeButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.Upgrade();
             RaiseEvent(new RoutedEventArgs(UpgradeButtonClickEvent));
         }
 
@@ -55,6 +56,7 @@ namespace Monopoly.Components
 
         private void UseCardButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.ButtonUsePower();
             RaiseEvent(new RoutedEventArgs(UseCardButtonClickEvent));
         }
 
@@ -71,6 +73,7 @@ namespace Monopoly.Components
 
         private void SkipButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.BackButton();
             RaiseEvent(new RoutedEventArgs(SkipButtonClickEvent));
         }
 
@@ -86,6 +89,7 @@ namespace Monopoly.Components
 
         private void SellButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.BuyButton();
             RaiseEvent(new RoutedEventArgs(SellButtonClickEvent));
         }
         public ComeOwnLandView(Land land, int fee)

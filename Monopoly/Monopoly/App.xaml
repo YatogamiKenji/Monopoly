@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="/Styles/NotiStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ScrollBarStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <FontFamily x:Key="mainFont">/Monopoly;component/font/HP-Yard Regular.ttf#HP-Yard</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

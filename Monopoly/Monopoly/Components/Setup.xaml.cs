@@ -73,8 +73,7 @@ namespace Monopoly.Components
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonBack.mp3"));
-            mp.Play();
+            Sound.BackButton();
 
             ViewStart start = new ViewStart();
             back.Content = start;
@@ -83,8 +82,7 @@ namespace Monopoly.Components
         //Chuyển sang giao diện bàn cờ chính
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
-            mp.Play();
+            Sound.StartButton();
 
             if (countplayer == 2)
             {
@@ -115,8 +113,7 @@ namespace Monopoly.Components
         // Khởi tạo có 2 người chơi
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
-            mp.Play();
+            Sound.StartButton();
             chose3.Visibility = Visibility.Collapsed;
             chose4.Visibility = Visibility.Collapsed;
             chose2.Visibility = Visibility.Visible;
@@ -132,8 +129,7 @@ namespace Monopoly.Components
         // Khởi tạo có 3 người chơi
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
-            mp.Play();
+            Sound.StartButton();
             chose2.Visibility = Visibility.Collapsed;
             chose4.Visibility = Visibility.Collapsed;
             chose3.Visibility = Visibility.Visible;
@@ -149,8 +145,7 @@ namespace Monopoly.Components
         // Khởi tạo có 4 người chơi
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
-            mp.Play();
+            Sound.StartButton();
             chose3.Visibility = Visibility.Collapsed;
             chose2.Visibility = Visibility.Collapsed;
             chose4.Visibility = Visibility.Visible;
@@ -166,8 +161,7 @@ namespace Monopoly.Components
         //Khởi tạo chế độ Setup
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
-            mp.Play();
+            Sound.StartButton();
             gameMode = false;
             numberTurns = 3;
         }
@@ -175,8 +169,7 @@ namespace Monopoly.Components
         //Khởi tạo chế độ Limited
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
-            mp.Play();
+            Sound.StartButton();
             gameMode = true;
         }
 
@@ -197,8 +190,7 @@ namespace Monopoly.Components
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
-            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
-            mp.Play();
+            Sound.StartButton();
 
             Storyboard slide = Resources["CloseMenu"] as Storyboard;
             slide.Begin(createName);
@@ -270,12 +262,7 @@ namespace Monopoly.Components
 
         private void TextChangedFuntion(object sender, TextChangedEventArgs e)
         {
-            new System.Threading.Thread(() => 
-            {
-                MediaPlayer play = new MediaPlayer();
-                play.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\type.wav"));
-                play.Play();
-            }).Start();
+            Sound.Type();
         }
     }
 }

@@ -103,6 +103,7 @@ namespace Monopoly.Components
 
         private void CancleButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.BackButton();
             RaiseEvent(new RoutedEventArgs(CancleButtonClickEvent));
         }
 

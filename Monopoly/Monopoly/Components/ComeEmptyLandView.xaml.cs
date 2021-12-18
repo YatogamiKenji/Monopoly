@@ -28,8 +28,6 @@ namespace Monopoly.Components
             set { _land = value; }
         }
 
-        
-
 
         public static readonly RoutedEvent BuyButtonClickEvent =
             EventManager.RegisterRoutedEvent(nameof(OnBuyButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ComeEmptyLandView));
@@ -42,6 +40,7 @@ namespace Monopoly.Components
 
         private void BuyButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.BuyButton();
             RaiseEvent(new RoutedEventArgs(BuyButtonClickEvent));
         }
 
@@ -58,6 +57,7 @@ namespace Monopoly.Components
 
         private void UseCardButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.ButtonUsePower();
             RaiseEvent(new RoutedEventArgs(UseCardButtonClickEvent));
         }
 
@@ -74,6 +74,7 @@ namespace Monopoly.Components
 
         private void SkipButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.BackButton();
             RaiseEvent(new RoutedEventArgs(SkipButtonClickEvent));
         }
 
