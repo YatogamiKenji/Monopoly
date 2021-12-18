@@ -63,16 +63,42 @@
             <Grid Height="300" Margin="0 0 0 50"
                   HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Image Source="/Monopoly;component/Images/panel/alert-box.png"></Image>
-                <TextBlock Text="Bạn thật sự muốn thoát?"
+                <TextBlock Text="ARE YOU SURE? YOU WANT TO QUIT?"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Foreground="Red"
-                           FontSize="30">
+                           FontSize="30"
+                           Width="300"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap"
+                           FontFamily="{StaticResource mainFont}">
                 </TextBlock>
                 <StackPanel Orientation="Horizontal" Margin="0 0 50 50" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <TextBlock Text="YES" Cursor="Hand" FontSize="30" Foreground="Red" MouseDown="Yes_MouseDown"></TextBlock>
-                    <TextBlock Text="/" Cursor="Hand" FontSize="30" Foreground="Red"></TextBlock>
-                    <TextBlock Text="NO" Cursor="Hand" FontSize="30" Foreground="Red" MouseDown="No_MouseDown"></TextBlock>
+                    <TextBlock Text="YES" Cursor="Hand" Foreground="Red" FontFamily="{StaticResource mainFont}" MouseDown="Yes_MouseDown">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="30"></Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="TextBlock.IsMouseOver" Value="True">
+                                        <Setter Property="FontSize" Value="33"></Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Text="/" FontSize="30" FontFamily="{StaticResource mainFont}" Foreground="#D83E1A"></TextBlock>
+                    <TextBlock Text="NO" Cursor="Hand" Foreground="WhiteSmoke" FontFamily="{StaticResource mainFont}" MouseDown="No_MouseDown">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="30"></Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="TextBlock.IsMouseOver" Value="True">
+                                        <Setter Property="FontSize" Value="33"></Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                 </StackPanel>
             </Grid>
         </Grid>

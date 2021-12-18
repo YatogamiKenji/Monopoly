@@ -31,6 +31,7 @@ namespace Monopoly.Components
 
         private void UseCardButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.ButtonUsePower();
             RaiseEvent(new RoutedEventArgs(UseCardButtonClickEvent));
         }
 
@@ -45,6 +46,7 @@ namespace Monopoly.Components
 
         private void SkipButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.BackButton();
             RaiseEvent(new RoutedEventArgs(SkipButtonClickEvent));
         }
 

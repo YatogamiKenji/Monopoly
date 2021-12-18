@@ -31,6 +31,7 @@ namespace Monopoly.Components
 
         private void OkButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.BuyButton();
             RaiseEvent(new RoutedEventArgs(OkButtonClickEvent));
         }
 
@@ -45,6 +46,7 @@ namespace Monopoly.Components
 
         private void SkipButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.BackButton();
             RaiseEvent(new RoutedEventArgs(SkipButtonClickEvent));
         }
 

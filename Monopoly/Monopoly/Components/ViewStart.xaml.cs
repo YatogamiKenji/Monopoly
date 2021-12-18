@@ -33,15 +33,13 @@ namespace Monopoly.Components
 
         private void QUIT_Click(object sender, RoutedEventArgs e)
         {
-            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonBack.mp3"));
-            mp.Play();
+            Sound.BackButton();
             Window.GetWindow(this).Close();
         }
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\buttonStart.mp3"));
-            mp.Play();
+            Sound.StartButton();
             Setup setup = new Setup();
             views.Content = setup;
         }

@@ -158,12 +158,12 @@ namespace Monopoly.Components
             playersList[0].AddPower(new PowerSplitDice());
             playersList[0].AddPower(new PowerStealLand());
             playersList[0].AddPower(new PowerTeleportPersonToTheTax());
-            playersList[0].AddLand(lands[0], 0, 1);
-            playersList[0].AddLand(lands[1], 1, 2);
-            playersList[0].AddLand(lands[2], 2, 4);
-            playersList[0].AddLand(lands[3], 3, 5);
-            playersList[0].AddLand(lands[4], 4, 6);
-            playersList[0].AddLand(lands[5], 5, 8);
+            //playersList[0].AddLand(lands[0], 0, 1);
+            //playersList[0].AddLand(lands[1], 1, 2);
+            //playersList[0].AddLand(lands[2], 2, 4);
+            //playersList[0].AddLand(lands[3], 3, 5);
+            //playersList[0].AddLand(lands[4], 4, 6);
+            //playersList[0].AddLand(lands[5], 5, 8);
             playersList[1].AddPower(new PowerDoubleDice());
             playersList[1].AddPower(new PowerDoublePriceLandForever());
             playersList[1].AddPower(new PowerDoubleTax());
@@ -184,9 +184,9 @@ namespace Monopoly.Components
             playersList[1].AddPower(new PowerSplitDice());
             playersList[1].AddPower(new PowerStealLand());
             playersList[1].AddPower(new PowerTeleportPersonToTheTax());
-            playersList[1].AddLand(lands[6], 6, 9);
-            playersList[1].AddLand(lands[7], 7, 11);
-            playersList[1].AddLand(lands[8], 8, 12);
+            //playersList[1].AddLand(lands[6], 6, 9);
+            //playersList[1].AddLand(lands[7], 7, 11);
+            //playersList[1].AddLand(lands[8], 8, 12);
         }
 
         //khởi tạo data
@@ -860,6 +860,8 @@ namespace Monopoly.Components
 
         #region Xử lý các sự kiện liên quan đến sử dụng thẻ Power
 
+        bool checkUseCell;
+
         //xử lý những thẻ sử dụng lên bản thân
         void UsingCardOnYourself(Power power)
         {
@@ -884,6 +886,7 @@ namespace Monopoly.Components
                 else if (power.usingLand && usingPlayer.lands.Count > 0)
                 {
                     usingPower = power;
+                    checkUseCell = true;
                     for (int i = 0; i < usingPlayer.lands.Count; i++)
                     {
                         ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[i]].Child;
@@ -941,26 +944,30 @@ namespace Monopoly.Components
         //xử lý sự kiện sau khi chọn được mảnh đất áp dụng power
         private void UsingCardOnYourselfClick(object sender, RoutedEventArgs e)
         {
-            ContentChessCell chessCell = sender as ContentChessCell;
-            Border parentChessCell = (Border)chessCell.Parent;
-
-            int index = -1;
-
-            for (int i = 0; i < usingPlayer.indexCells.Count; i++)
+            if (checkUseCell)
             {
-                ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[i]].Child;
-                contentChessCell.OnButtonChessCellClick -= UsingCardOnYourselfClick;
-                contentChessCell.StopShaking();
-                contentChessCell.IsHitTestVisible = false;
-                if (Grid.GetColumn(cellPos[usingPlayer.indexCells[i]]) == Grid.GetColumn(parentChessCell) && Grid.GetRow(cellPos[usingPlayer.indexCells[i]]) == Grid.GetRow(parentChessCell)) index = i;
+                ContentChessCell chessCell = sender as ContentChessCell;
+                Border parentChessCell = (Border)chessCell.Parent;
+
+                int index = -1;
+                checkUseCell = false;
+                for (int i = 0; i < usingPlayer.indexCells.Count; i++)
+                {
+                    ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[i]].Child;
+                    contentChessCell.OnButtonChessCellClick -= UsingCardOnYourselfClick;
+                    contentChessCell.StopShaking();
+                    contentChessCell.IsHitTestVisible = false;
+                    if (Grid.GetColumn(cellPos[usingPlayer.indexCells[i]]) == Grid.GetColumn(parentChessCell) && Grid.GetRow(cellPos[usingPlayer.indexCells[i]]) == Grid.GetRow(parentChessCell)) index = i;
+                }
+
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ " + usingPower.name + " lên hành tinh " + usingPlayer.lands[index].name, "Green"), 2.5, (str) =>
+                {
+                    usingPower.PowerFunction(ref usingPlayer, index);
+                    chessCell.AddStar(lands[usingPlayer.indexCells[index]].level);
+                    //playersList[PlayerTurn] = usingPlayer;
+                    ChangeTurn();
+                });
             }
-
-            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ " + usingPower.name + " lên hành tinh " + usingPlayer.lands[index].name, "Green"), 2.5, (str) =>
-            {
-                usingPower.PowerFunction(ref usingPlayer, index);
-                //playersList[PlayerTurn] = usingPlayer;
-                ChangeTurn();
-            });
         }
 
         // Sử dụng 1 thẻ
@@ -1007,6 +1014,7 @@ namespace Monopoly.Components
                         // nếu thẻ power đó có sử dụng đến đất
                         if (usingPower.usingLand && affectedPlayers.lands.Count > 0)
                         {
+                            checkUseCell = true;
                             for (int j = 0; j < usingPlayer.lands.Count; j++)
                             {
                                 ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[j]].Child;
@@ -1065,34 +1073,37 @@ namespace Monopoly.Components
         //xử lý sau khi chọn được mảnh đất của người khác muốn áp dụng hiệu ứng
         private void UseCardToAnotherClick(object sender, RoutedEventArgs e)
         {
-            ContentChessCell chessCell = sender as ContentChessCell;
-            Border parentChessCell = (Border)chessCell.Parent;
-
-            int index = -1;
-
-            for (int i = 0; i < usingPlayer.indexCells.Count; i++)
+            if (checkUseCell)
             {
-                ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[i]].Child;
-                contentChessCell.OnButtonChessCellClick -= UseCardToAnotherClick;
-                contentChessCell.StopShaking();
-                contentChessCell.IsHitTestVisible = false;
-                if (Grid.GetColumn(cellPos[usingPlayer.indexCells[i]]) == Grid.GetColumn(parentChessCell) && Grid.GetRow(cellPos[usingPlayer.indexCells[i]]) == Grid.GetRow(parentChessCell)) index = i;
-            }
+                ContentChessCell chessCell = sender as ContentChessCell;
+                Border parentChessCell = (Border)chessCell.Parent;
 
-            if (usingPower.GetType().Name == "PowerStealLand")
-            {
-                lands[usingPlayer.indexLands[index]].owner = PlayerTurn;
-                playersList[PlayerTurn].AddLand(lands[usingPlayer.indexLands[index]], usingPlayer.indexLands[index], usingPlayer.indexCells[index]);
-                sideBar.update(playersList, PlayerTurn);
-            }
+                int index = -1;
+                checkUseCell = false;
+                for (int i = 0; i < usingPlayer.indexCells.Count; i++)
+                {
+                    ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[i]].Child;
+                    contentChessCell.OnButtonChessCellClick -= UseCardToAnotherClick;
+                    contentChessCell.StopShaking();
+                    contentChessCell.IsHitTestVisible = false;
+                    if (Grid.GetColumn(cellPos[usingPlayer.indexCells[i]]) == Grid.GetColumn(parentChessCell) && Grid.GetRow(cellPos[usingPlayer.indexCells[i]]) == Grid.GetRow(parentChessCell)) index = i;
+                }
 
-            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ " 
-                + usingPower.name + " lên hành tinh " + usingPlayer.lands[index].name + " của người chơi " + usingPlayer.name, "Green"), 2.5, (str) =>
-            {
-                usingPower.PowerFunction(ref usingPlayer, index);
+                if (usingPower.GetType().Name == "PowerStealLand")
+                {
+                    lands[usingPlayer.indexLands[index]].owner = PlayerTurn;
+                    playersList[PlayerTurn].AddLand(lands[usingPlayer.indexLands[index]], usingPlayer.indexLands[index], usingPlayer.indexCells[index]);
+                    sideBar.update(playersList, PlayerTurn);
+                }
+
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ "
+                    + usingPower.name + " lên hành tinh " + usingPlayer.lands[index].name + " của người chơi " + usingPlayer.name, "Green"), 2.5, (str) =>
+                {
+                    usingPower.PowerFunction(ref usingPlayer, index);
                 //playersList[indexPlayer] = usingPlayer;
                 ChangeTurn();
-            });
+                });
+            }
         }
 
         #endregion

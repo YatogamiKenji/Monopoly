@@ -118,11 +118,13 @@ namespace Monopoly.Components
 
         private void CancleButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.BackButton();
             RaiseEvent(new RoutedEventArgs(CancleButtonClickEvent));
         }
 
         private void UseACardButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.ButtonUsePower();
             RaiseEvent(new UseACardButtonClickEventArgs(UseACardButtonClickEvent, this)
             {
                 power = player.powers[selectedIndex],

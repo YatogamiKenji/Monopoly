@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Audios\Power.mp3" />
     <None Remove="CuteAstronautAndPlanet.ico" />
+    <None Remove="font\HP-Yard Regular.ttf" />
     <None Remove="Images\alien-ship-icon.png" />
     <None Remove="Images\avatar\avatar1.jpg" />
     <None Remove="Images\avatar\avatar2.jpg" />
@@ -228,7 +230,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Audios\Power.mp3">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="CuteAstronautAndPlanet.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="font\HP-Yard Regular.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\avatar\avatar1.jpg">

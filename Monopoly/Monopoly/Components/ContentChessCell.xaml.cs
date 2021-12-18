@@ -36,7 +36,7 @@ namespace Monopoly.Components
             DependencyProperty.Register("ImageCell", typeof(ImageSource), typeof(ContentChessCell));
 
         public static readonly RoutedEvent ButtonChessCellClickEvent =
-   EventManager.RegisterRoutedEvent(nameof(OnButtonChessCellClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContentChessCell));
+            EventManager.RegisterRoutedEvent(nameof(OnButtonChessCellClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContentChessCell));
 
         public event RoutedEventHandler OnButtonChessCellClick
         {
@@ -93,6 +93,7 @@ namespace Monopoly.Components
             }
 
         }
+
         //Thêm sao vào ô cờ
         public void AddStar(int LevelLand)
         {
