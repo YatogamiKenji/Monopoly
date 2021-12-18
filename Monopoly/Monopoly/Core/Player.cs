@@ -177,9 +177,14 @@ namespace Monopoly
         // Xóa bỏ mảnh đất sau khi bán
         public void RemoveLand(int index)
         {
-            _lands.RemoveAt(index);
-            _indexLands.RemoveAt(index);
-            _indexCells.RemoveAt(index);
+            for (int i = 0; i < _lands.Count; i++)
+                if (_indexLands[i] == index)
+                {
+                    _lands.RemoveAt(i);
+                    _indexLands.RemoveAt(i);
+                    _indexCells.RemoveAt(i);
+                    break;
+                }
         }
 
         // Thêm các quyền năng đang sở hữu

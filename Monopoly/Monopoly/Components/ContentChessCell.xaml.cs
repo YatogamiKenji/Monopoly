@@ -91,6 +91,10 @@ namespace Monopoly.Components
             {
                 markLand.Background = Brushes.Yellow;
             }
+            else
+            {
+                markLand.Background = Brushes.Transparent;
+            }    
 
         }
 
@@ -102,8 +106,6 @@ namespace Monopoly.Components
             var imageStar = new Image { Source = imageStarSource };
             Grid.SetRow(imageStar, 5 - LevelLand);
             starLevel.Children.Add(imageStar);
-
-
         }
     }
 }

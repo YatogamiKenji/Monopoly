@@ -802,6 +802,8 @@ namespace Monopoly.Components
             playersList[PlayerTurn].RemoveLand(cellManager[playersList[PlayerTurn].position].index);
             lands[cellManager[playersList[PlayerTurn].position].index].GetDefault();
 
+            ContentChessCell contentChessCell = (ContentChessCell)cellPos[playersList[PlayerTurn].position].Child;
+            contentChessCell.MarkLand(-1);
             sideBar.update(playersList, PlayerTurn);
 
             Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đã bán hành tinh *" + getCurrentLand().name + "*", "Green"), 2, (s) =>
@@ -876,6 +878,7 @@ namespace Monopoly.Components
 
                 if (power.name == "Dịch chuyển")
                 {
+                    usingPlayer.isInPrison = false;
                     for (int i = 0; i < 40; i++)
                     {
                         ContentChessCell contentChessCell = (ContentChessCell)cellPos[i].Child;
@@ -967,6 +970,7 @@ namespace Monopoly.Components
                 {
                     usingPower.PowerFunction(ref usingPlayer, index);
                     if (usingPower.GetType().Name == "PowerHalveUpgradeFee") chessCell.AddStar(lands[usingPlayer.indexCells[index]].level);
+                    
                     //playersList[PlayerTurn] = usingPlayer;
                     ChangeTurn();
                 });
@@ -1096,6 +1100,7 @@ namespace Monopoly.Components
                 {
                     lands[usingPlayer.indexLands[index]].owner = PlayerTurn;
                     playersList[PlayerTurn].AddLand(lands[usingPlayer.indexLands[index]], usingPlayer.indexLands[index], usingPlayer.indexCells[index]);
+                    chessCell.MarkLand(PlayerTurn);
                     sideBar.update(playersList, PlayerTurn);
                 }
 
@@ -1103,8 +1108,12 @@ namespace Monopoly.Components
                     + usingPower.name + " lên hành tinh " + usingPlayer.lands[index].name + " của người chơi " + usingPlayer.name, "Green"), 2.5, (str) =>
                 {
                     usingPower.PowerFunction(ref usingPlayer, index);
-                //playersList[indexPlayer] = usingPlayer;
-                ChangeTurn();
+                    if (usingPower.GetType().Name == "PowerStealLand")
+                    {
+                        chessCell.AddStar(lands[index].level);
+                    }
+                    //playersList[indexPlayer] = usingPlayer;
+                    ChangeTurn();
                 });
             }
         }
