@@ -269,5 +269,14 @@ namespace Monopoly.Components
 
         }
 
+        private void TextChangedFuntion(object sender, TextChangedEventArgs e)
+        {
+            new System.Threading.Thread(() => 
+            {
+                MediaPlayer play = new MediaPlayer();
+                play.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\type.wav"));
+                play.Play();
+            }).Start();
+        }
     }
 }

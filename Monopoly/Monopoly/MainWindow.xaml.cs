@@ -33,6 +33,7 @@ namespace Monopoly
             mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\background.mp3"));
             mp.MediaEnded += Mp_MediaEnded;
             mp.Play();
+            QuitBox.Visibility = Visibility.Hidden;
         }
 
         private void Mp_MediaEnded(object sender, EventArgs e)
@@ -54,12 +55,17 @@ namespace Monopoly
 
         private void Image_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
         {
+            QuitBox.Visibility = Visibility.Visible;
+        }
+
+        private void Yes_MouseDown(object sender, MouseButtonEventArgs e)
+        {
             this.Close();
         }
 
-        private void Window_Closing(object sender, CancelEventArgs e)
+        private void No_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (MessageBox.Show("Bạn thực sự muốn thoát?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No) e.Cancel = true;
+            QuitBox.Visibility = Visibility.Hidden;
         }
     }
 }

@@ -9,8 +9,7 @@
         ResizeMode="CanMinimize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Title="Monopoly" Height="750" Width="1280"
-        Closing="Window_Closing">
+        Title="Monopoly" Height="750" Width="1280">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"></RowDefinition>
@@ -57,6 +56,25 @@
         </DockPanel>
         <Grid Grid.Row="1">
             <component:ViewStart/>
+        </Grid>
+
+        <Grid Grid.Row="2" Name="QuitBox">
+            <Grid Background="Transparent"></Grid>
+            <Grid Height="300" Margin="0 0 0 50"
+                  HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Source="/Monopoly;component/Images/panel/alert-box.png"></Image>
+                <TextBlock Text="Bạn thật sự muốn thoát?"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="Red"
+                           FontSize="30">
+                </TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="0 0 50 50" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <TextBlock Text="YES" Cursor="Hand" FontSize="30" Foreground="Red" MouseDown="Yes_MouseDown"></TextBlock>
+                    <TextBlock Text="/" Cursor="Hand" FontSize="30" Foreground="Red"></TextBlock>
+                    <TextBlock Text="NO" Cursor="Hand" FontSize="30" Foreground="Red" MouseDown="No_MouseDown"></TextBlock>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
