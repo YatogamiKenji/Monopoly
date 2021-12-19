@@ -382,6 +382,7 @@
                                  BorderThickness="2"
                                  BorderBrush="AliceBlue"
                                  TextChanged="TextChangedFuntion"
+                                 TabIndex="0"
                         x:Name="nameplayer1"
                         Text=""
                         Height="40"
@@ -419,6 +420,7 @@
                                  BorderBrush="AliceBlue"
                                  TextChanged="TextChangedFuntion"
                                  BorderThickness="2"
+                                 TabIndex="2"
                                 Text=""
                                 Height="40"
                                 Width="150" 
@@ -432,7 +434,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Grid Background="Transparent" Grid.Row="0" x:Name="player2" Margin="10,20,10,0">
+                    <Grid Background="Transparent" Grid.Row="0" x:Name="player2" Margin="10,20,10,0" Height="195" VerticalAlignment="Top">
                         <Button x:Name="createImg2"
                         Background="Transparent"
                         BorderThickness="1"
@@ -464,6 +466,7 @@
                                  BorderBrush="AliceBlue"
                                  TextChanged="TextChangedFuntion"
                                 Height="40"
+                                 TabIndex="1"
                                 Width="150" 
                                 Margin="0,150,0,0" />
                     </Grid>
@@ -497,6 +500,7 @@
                                  BorderBrush="AliceBlue"
                                  BorderThickness="2"
                                  TextChanged="TextChangedFuntion"
+                                 TabIndex="3"
                         x:Name="nameplayer4"
                         Text=""
                         Height="40"
