@@ -30,7 +30,7 @@ namespace Monopoly
         public MainWindow()
         {
             InitializeComponent();
-            mp.Open(new Uri(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Audios\background.mp3"));
+            mp.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\background.mp3"));
             mp.MediaEnded += Mp_MediaEnded;
             mp.Play();
             QuitBox.Visibility = Visibility.Hidden;

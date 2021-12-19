@@ -8,8 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Audios\background.mp3" />
+    <None Remove="Audios\buttonBack.mp3" />
+    <None Remove="Audios\buttonStart.mp3" />
+    <None Remove="Audios\Buy.mp3" />
     <None Remove="Audios\Power.mp3" />
+    <None Remove="Audios\spinning.mp3" />
+    <None Remove="Audios\type.wav" />
+    <None Remove="Audios\Upgrade.mp3" />
     <None Remove="CuteAstronautAndPlanet.ico" />
+    <None Remove="Data\Land.json" />
     <None Remove="font\HP-Yard Regular.ttf" />
     <None Remove="Images\alien-ship-icon.png" />
     <None Remove="Images\avatar\avatar1.jpg" />
@@ -225,13 +233,40 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Audios\background.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Audios\buttonBack.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Audios\buttonStart.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Audios\Buy.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Audios\spinning.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Audios\type.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Audios\Upgrade.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Land.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Audios\Power.mp3">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    <Content Include="Audios\Power.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="CuteAstronautAndPlanet.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
