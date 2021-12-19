@@ -370,11 +370,13 @@
                                 Margin="0,0,0,0" 
                                 Name="imgPhoto1"
                                 Stretch="Fill" />
+                        
                         <Border Height="40"
                                 Width="150"
                                 BorderThickness="1"
                                 BorderBrush="Black" 
                                 Margin="0,150,0,0"/>
+                        
                         <TextBox Background="Transparent"
                                  Foreground="Tomato"
                                  FontSize="15"

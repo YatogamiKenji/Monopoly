@@ -1107,19 +1107,24 @@ namespace Monopoly.Components
                     playersList[PlayerTurn].AddLand(lands[usingPlayer.indexLands[index]], usingPlayer.indexLands[index], usingPlayer.indexCells[index]);
                     chessCell.MarkLand(PlayerTurn);
                     sideBar.update(playersList, PlayerTurn);
+
+                    Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ "
+                  + usingPower.name + " lên hành tinh " + usingPlayer.lands[index].name + " của người chơi " + usingPlayer.name, "Green"), 2.5, (str) =>
+                  {
+                      usingPower.PowerFunction(ref usingPlayer, index);        
+                      chessCell.AddStar(lands[index].level);
+                   
+                    ChangeTurn();
+                  });
                 }
 
-                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ "
-                    + usingPower.name + " lên hành tinh " + usingPlayer.lands[index].name + " của người chơi " + usingPlayer.name, "Green"), 2.5, (str) =>
+                if(usingPower.GetType().Name == "PowerLandLevelReduction")
                 {
-                    usingPower.PowerFunction(ref usingPlayer, index);
-                    if (usingPower.GetType().Name == "PowerStealLand")
-                    {
-                        chessCell.AddStar(lands[index].level);
-                    }
-                    //playersList[indexPlayer] = usingPlayer;
+                    chessCell.subStar(2);
                     ChangeTurn();
-                });
+                }
+
+              
             }
         }
 
