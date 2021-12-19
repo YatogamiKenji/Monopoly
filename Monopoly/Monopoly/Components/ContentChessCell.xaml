@@ -53,11 +53,7 @@
                                             <RowDefinition Height="*"/>
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
-                                        <!--<Image Grid.Row="4" Source="/Monopoly;component/Images/cell/player_land_star.png"  ></Image>
-                                        <Image Grid.Row="3" Source="/Monopoly;component/Images/cell/player_land_star.png"  ></Image>
-                                        <Image Grid.Row="2" Source="/Monopoly;component/Images/cell/player_land_star.png"  ></Image>
-                                        <Image Grid.Row="1" Source="/Monopoly;component/Images/cell/player_land_star.png"  ></Image>
-                                        <Image Grid.Row="0" Source="/Monopoly;component/Images/cell/player_land_star.png"  ></Image>-->
+                                     
                                     </Grid>
                                 </Grid>
                             </Border>

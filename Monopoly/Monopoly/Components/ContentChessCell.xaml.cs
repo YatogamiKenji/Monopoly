@@ -47,9 +47,7 @@ namespace Monopoly.Components
         public ContentChessCell()
         {
             InitializeComponent();
-            //Storyboard s = (Storyboard) myrect.FindResource("rung");
-            //s.Begin();  // Start animation
-
+        
 
         }
 
@@ -75,6 +73,8 @@ namespace Monopoly.Components
             
             Border markLand = (Border)ButChessCell.Template.FindName("ColorLandPlayer", ButChessCell);
 
+            //  MessageBox.Show(markLand.Background.ToString());
+            
             if (indexPlayer == 0)
             {
                 markLand.Background = Brushes.Red;
@@ -106,6 +106,15 @@ namespace Monopoly.Components
             var imageStar = new Image { Source = imageStarSource };
             Grid.SetRow(imageStar, 5 - LevelLand);
             starLevel.Children.Add(imageStar);
+        }
+        //Loại bỏ đánh dấu và sao khi bán đát
+
+        public void RemoveMarkLand()
+        {
+            Border markLand = (Border)ButChessCell.Template.FindName("ColorLandPlayer", ButChessCell);
+            markLand.Background = Brushes.Transparent;
+            Grid starLevel = (Grid)ButChessCell.Template.FindName("gridStarLevel", ButChessCell);
+            starLevel.Children.Clear();
         }
     }
 }

@@ -221,7 +221,6 @@
     <None Remove="Images\SpecialCell\Start.jpg" />
     <None Remove="Images\SpecialCell\Tax.jpg" />
     <None Remove="Images\sputnik-2-icon.png" />
-    <None Remove="Images\star\ImageStar_level.jpg" />
     <None Remove="Images\telescope-icon.png" />
   </ItemGroup>
 
@@ -683,7 +682,6 @@
     <Resource Include="Images\SpecialCell\Tax.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\star\ImageStar_level.jpg" />
   </ItemGroup>
 
 </Project>

@@ -399,7 +399,7 @@ namespace Monopoly.Components
             playersList[PlayerTurn].RemoveLand(land.name);
             lands[cellManager[playersList[PlayerTurn].indexCells[e.index]].index].GetDefault();
             ContentChessCell contentChessCell = (ContentChessCell)cellPos[playersList[PlayerTurn].indexCells[e.index]].Child;
-            contentChessCell.MarkLand(-1);
+            contentChessCell.RemoveMarkLand();
 
             centerMapView.Content = null;
             //tự động trả nếu đủ tiền

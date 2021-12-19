@@ -49,6 +49,7 @@
             TextAlignment="Center"
             TextWrapping="Wrap"
             FontSize="18"
+            Foreground="#fff"
             FontWeight="Bold"/>
 
         <!-- BODY -->
