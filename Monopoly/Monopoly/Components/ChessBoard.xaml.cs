@@ -308,6 +308,8 @@ namespace Monopoly.Components
                     if (turn[PlayerTurn] / 2 + 1 < 10) turn[PlayerTurn]++;
                     sideBar.update(playersList, PlayerTurn);
                 }
+
+                Wait(500);
             }
         }
 
@@ -1288,6 +1290,24 @@ namespace Monopoly.Components
                     ((DiceView)centerMapView.Content).clickBtnSpin();
                 else
                     ChangeTurn();
+            }
+        }
+
+        public static void Wait(int milliseconds)
+        {
+            DispatcherTimer timer1 = new DispatcherTimer();
+            if (milliseconds == 0 || milliseconds < 0) return;
+            timer1.Interval = TimeSpan.FromMilliseconds(milliseconds);
+            timer1.IsEnabled = true;
+            timer1.Start();
+            timer1.Tick += (s, e) =>
+            {
+                timer1.IsEnabled = false;
+                timer1.Stop();
+            };
+            while (timer1.IsEnabled)
+            {
+                Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(delegate { }));
             }
         }
 
