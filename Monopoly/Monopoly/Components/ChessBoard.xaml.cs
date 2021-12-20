@@ -65,7 +65,6 @@ namespace Monopoly.Components
         //các biến để di truyền dữ liệu giữa các hàm
         Power usingPower = new Power();
         Player usingPlayer = new Player();
-        int indexPlayer;
 
         double countDown = 10; // Thời gian đếm ngược ở mỗi view
         DispatcherTimer countDownTimer; // Đồng hồ điều khiển thời gian đếm ngược
@@ -1001,88 +1000,70 @@ namespace Monopoly.Components
         private void UseCardToAnotherView_OnButtonPlayerClick(object sender, BtnAnotherPlayerClickEventArgs e)
         {
             centerMapView.Content = null;
-            Player PickedPlayer = playersList[e.idPlayer];
             Player playerUse = playersList[PlayerTurn];
-            Player affectedPlayers = new Player();
-            for (int i = 0; i < playersList.Count; i++) // trong danh sách các người chơi 
+            Player affectedPlayers = playersList[e.idPlayer];
+            usingPlayer = playersList[e.idPlayer];
+            if (usingPower.Using(ref playerUse, ref affectedPlayers, dice) && !affectedPlayers.isImmune)
             {
-                if (playersList[i].name == PickedPlayer.name) // xác định người chơi nào bị chọn
+                usingPower.PowerFunction(ref affectedPlayers);
+
+                //những thẻ di chuyển người chơi nên cần update lại vị trí
+                if (usingPower.GetType().Name == "PowerAppointPersonToPrison" || usingPower.GetType().Name == "PowerTeleportPersonToTheTax")
                 {
-                    affectedPlayers = playersList[i];
-                    usingPlayer = playersList[i];
-                    indexPlayer = i;
-                    if (usingPower.Using(ref playerUse, ref affectedPlayers, dice) && !affectedPlayers.isImmune)
-                    {
-                        usingPower.PowerFunction(ref affectedPlayers);
-
-                        //những thẻ di chuyển người chơi nên cần update lại vị trí
-                        if (usingPower.name == "Vào tù" ||
-                            usingPower.name == "Ép buộc")
-                        {
-                            if (playersList[i].position == 10) playersList[PlayerTurn].isInPrison = true;
-                            Grid.SetRow(players[i], Grid.GetRow(cellPos[playersList[i].position]));
-                            Grid.SetColumn(players[i], Grid.GetColumn(cellPos[playersList[i].position]));
-                            Goto();
-                        }
-
-                        // nếu thẻ power đó có sử dụng đến đất
-                        if (usingPower.usingLand && affectedPlayers.lands.Count > 0)
-                        {
-                            checkUseCell = true;
-                            for (int j = 0; j < usingPlayer.lands.Count; j++)
-                            {
-                                ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[j]].Child;
-                                contentChessCell.OnButtonChessCellClick += UseCardToAnotherClick;
-                                contentChessCell.StartShaking();
-                                contentChessCell.IsHitTestVisible = true;
-                            }
-                        }
-                        else
-                        {
-                            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ " + usingPower.name + " lên người chơi " + usingPlayer.name, "Green"), 2.5, (str) =>
-                            {
-                                //playersList[PlayerTurn] = playerUse;
-                                //playersList[i] = affectedPlayers;
-                                SwitchView(CenterMapView.Dice);
-                                sideBar.update(playersList, PlayerTurn);
-                                ChangeTurn();
-                            });
-                        }
-                    }
-                    else if (playersList[PlayerTurn].money >= usingPower.value * dice && usingPower.usingLand && affectedPlayers.lands.Count == 0) 
-                    {
-                        Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Người chơi " + affectedPlayers.name + " không có bất kỳ hành tinh nào", "Red"), 2.5, (str) =>
-                        {
-                            SwitchView(CenterMapView.Prev);
-                            SwitchView(CenterMapView.UseCardToAnother);
-                        });
-                    }
-                    else if (playersList[PlayerTurn].money >= usingPower.value * dice && usingPower.GetType().Name == "PowerCancelPowerCard" && affectedPlayers.powers.Count == 0)
-                    {
-                        Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Người chơi " + affectedPlayers.name + " không có bất kỳ thẻ quyền năng nào", "Red"), 2.5, (str) =>
-                        {
-                            SwitchView(CenterMapView.Prev);
-                        });
-                    }
-                    else
-                    {
-                        Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền để sử dụng thẻ", "Red"), 1.5, (str) =>
-                        {
-                            SwitchView(CenterMapView.Prev);
-                        });
-                    }
-                    sideBar.update(playersList, i);
-                    sideBar.update(playersList, PlayerTurn);
-                    break;
+                    if (playersList[e.idPlayer].position == 10) playersList[PlayerTurn].isInPrison = true;
+                    Grid.SetRow(players[e.idPlayer], Grid.GetRow(cellPos[playersList[e.idPlayer].position]));
+                    Grid.SetColumn(players[e.idPlayer], Grid.GetColumn(cellPos[playersList[e.idPlayer].position]));
+                    Goto();
                 }
-                else if (playersList[i].isImmune && playersList[i].name == PickedPlayer.name)
+
+                // nếu thẻ power đó có sử dụng đến đất
+                if (usingPower.usingLand && affectedPlayers.lands.Count > 0)
                 {
-                    usingPower.Using(ref playerUse, ref affectedPlayers, dice);
-                    //playersList[PlayerTurn] = playerUse;
-                    ChangeTurn();
-                    break;
-                }   
+                    checkUseCell = true;
+                    for (int j = 0; j < usingPlayer.lands.Count; j++)
+                    {
+                        ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[j]].Child;
+                        contentChessCell.OnButtonChessCellClick += UseCardToAnotherClick;
+                        contentChessCell.StartShaking();
+                        contentChessCell.IsHitTestVisible = true;
+                    }
+                }
+                else
+                {
+                    Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ " + usingPower.name + " lên người chơi " + usingPlayer.name, "Green"), 2.5, (str) =>
+                    {
+                        //playersList[PlayerTurn] = playerUse;
+                        //playersList[i] = affectedPlayers;
+                        SwitchView(CenterMapView.Dice);
+                        sideBar.update(playersList, PlayerTurn);
+                        ChangeTurn();
+                    });
+                }
             }
+            else if (playersList[PlayerTurn].money >= usingPower.value * dice && usingPower.usingLand && affectedPlayers.lands.Count == 0)
+            {
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Người chơi " + affectedPlayers.name + " không có bất kỳ hành tinh nào", "Red"), 2.5, (str) =>
+                {
+                    SwitchView(CenterMapView.Prev);
+                    SwitchView(CenterMapView.UseCardToAnother);
+                });
+            }
+            else if (playersList[PlayerTurn].money >= usingPower.value * dice && usingPower.GetType().Name == "PowerCancelPowerCard" && affectedPlayers.powers.Count == 0)
+            {
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Người chơi " + affectedPlayers.name + " không có bất kỳ thẻ quyền năng nào", "Red"), 2.5, (str) =>
+                {
+                    SwitchView(CenterMapView.Prev);
+                });
+            }
+            else if (playersList[PlayerTurn].money < usingPower.value * dice) 
+            {
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền để sử dụng thẻ", "Red"), 1.5, (str) =>
+                {
+                    SwitchView(CenterMapView.Prev);
+                });
+            }
+            sideBar.update(playersList, e.idPlayer);
+            sideBar.update(playersList, PlayerTurn);
         }
 
         //xử lý sau khi chọn được mảnh đất của người khác muốn áp dụng hiệu ứng
@@ -1117,8 +1098,6 @@ namespace Monopoly.Components
                   + usingPower.name + " lên hành tinh " + usingPlayer.lands[index].name + " của người chơi " + usingPlayer.name, "Green"), 2.5, (str) =>
                   {
                       usingPower.PowerFunction(ref usingPlayer, index);
-                      chessCell.AddStar(lands[index].level);
-
                       ChangeTurn();
                   });
             }

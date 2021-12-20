@@ -124,7 +124,7 @@ namespace Monopoly.Components
             Grid starLevel = (Grid)ButChessCell.Template.FindName("gridStarLevel", ButChessCell);
             for (int i = 0; i < numStar; i++)
             {
-                if(starLevel.Children.Count >= numStar)
+                if(starLevel.Children.Count > 0)
                 {
                     starLevel.Children.RemoveAt(i);
                 }
