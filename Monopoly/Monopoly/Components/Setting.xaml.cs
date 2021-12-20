@@ -10,21 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Monopoly.Components;
 
-namespace Monopoly
+namespace Monopoly.Components
 {
     /// <summary>
-    /// Interaction logic for SettingWindow.xaml
+    /// Interaction logic for Setting.xaml
     /// </summary>
-    public partial class SettingWindow : Window
+    public partial class Setting : UserControl
     {
-        public SettingWindow()
+        public Setting()
         {
-            InitializeComponent();         
-            MusicSlider.Value = Sound.GetBGMVolume()*100;
-            SoundEffectSlider.Value = Sound.GetSEVolume()*100;
+            InitializeComponent();
+            MusicSlider.Value = Sound.GetBGMVolume() * 100;
+            SoundEffectSlider.Value = Sound.GetSEVolume() * 100;
         }
 
         private void MusicSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -36,9 +36,19 @@ namespace Monopoly
         {
             Sound.SetSEVolume(SoundEffectSlider.Value / 100);
         }
+
+        public static readonly RoutedEvent OkButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnOkButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Setting));
+
+        public event RoutedEventHandler OnOkButtonClick
+        {
+            add { AddHandler(OkButtonClickEvent, value); }
+            remove { RemoveHandler(OkButtonClickEvent, value); }
+        }
+
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            RaiseEvent(new RoutedEventArgs(OkButtonClickEvent));
         }
     }
 }
