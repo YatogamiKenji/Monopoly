@@ -4,13 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Monopoly.Components"
+             xmlns:compoenent="clr-namespace:Monopoly.Components"
              x:Name="root"
              mc:Ignorable="d" 
              d:DesignHeight="60" d:DesignWidth="80">
     <UserControl.Resources >
         <Style x:Key="RoundCorner" TargetType="{x:Type Button}">
             <Style.Resources>
-                
+
             </Style.Resources>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -27,7 +28,7 @@
                                           VerticalAlignment="Center"
                                           TextElement.FontWeight="Bold">
                                 </ContentPresenter>
-                                
+
                             </Border>
                             <Border CornerRadius="5" BorderBrush="Black" BorderThickness="1">
 
@@ -38,8 +39,8 @@
                                         <ColumnDefinition Width="58*"/>
                                         <ColumnDefinition Width="10*"/>
                                     </Grid.ColumnDefinitions>
-                                    
-                                    
+
+
                                     <Grid Grid.Column="0">
                                         <Border x:Name="ColorLandPlayer"  CornerRadius="5" Margin="-1,0,1,-1"></Border>
                                     </Grid>
@@ -53,13 +54,13 @@
                                             <RowDefinition Height="*"/>
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
-                                     
+
                                     </Grid>
                                 </Grid>
                             </Border>
 
                         </Grid>
-                                                  
+
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="Background" TargetName="border">
@@ -86,17 +87,16 @@
 
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
-                    
+
                 </Setter.Value>
-                
-                
+
+
             </Setter>
         </Style>
     </UserControl.Resources>
-    
-    <Grid>
 
-        <Button x:Name="ButChessCell" Style="{DynamicResource RoundCorner}" Click="ButChessCell_Click">
+    <Grid>
+        <Button x:Name="ButChessCell" Style="{DynamicResource RoundCorner}" Click="ButChessCell_Click" MouseEnter="ButChessCell_MouseEnter" MouseLeave="ButChessCell_MouseLeave">
 
             <Button.RenderTransformOrigin>
                 <Point X="0.5" Y="0.5"></Point>
@@ -125,6 +125,8 @@
 
 
         </Button>
-
+        <compoenent:popup x:Name="popup" angle="{Binding ang ,ElementName=root}" Visibility="Collapsed" Foreground="#E0FFFF" Height="200" Width="200" Margin="125,-70,-245,-70"/>
+            
+        
     </Grid>
 </UserControl>

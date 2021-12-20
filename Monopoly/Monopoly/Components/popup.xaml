@@ -6,50 +6,30 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              x:Name="root"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="220">
-    <Grid>
-        <Path x:Name="Container"
-              VerticalAlignment="Top"
-              Data="M0,0
-                    L30,-10 30,-24
-                    C30,-24 35,-32 70,-32
-              
-                    L188,-32
-                    C228,-32 228,-24 228,-20
-              
-                    L228,0 228,20
-                    C228,24 228,33 188,33
-              
-                    L70,33
-                    C70,33 28,33 30,20
-              
-                    L30,10
-                    z"            
-              Fill="#3A6180"
-              Height="195"
-              Width="195"
-              Stroke="#3A6180"
-              Stretch="Fill" 
-              RenderTransformOrigin="0.5,0.5">
-            <Path.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="{Binding angle, ElementName=root}"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Path.RenderTransform>
-        </Path>
-
-        <TextBlock x:Name="PopupText"
-                   FontSize="15"
-                   Panel.ZIndex="1"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   MaxWidth="150" 
-                   TextWrapping="Wrap"
-                   TextAlignment="Justify"
-                   Margin="20 0 0 0">
-        </TextBlock>
+             d:DesignHeight="200" d:DesignWidth="200">
+    <Grid RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="{Binding angle, ElementName=root}"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/panel/panel_setup1.jpg"/>
+        </Grid.Background>
+        <Line            
+            X1="70" Y1="30"
+            X2="10" Y2="50"
+            Stroke="Black"
+            StrokeThickness="4" Height="60" Width="80" Margin="-69,106,189,34" />
+        <Ellipse
+         Width="12"
+         Height="12"
+         Stroke="Black"
+         StrokeThickness="4"
+         Margin="-69,152,257,36" />
+        <TextBlock x:Name="text" Width="140" Height="130" FontStyle="Italic" Foreground="AliceBlue"/>
     </Grid>
 </UserControl>

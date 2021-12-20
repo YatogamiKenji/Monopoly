@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -42,6 +43,14 @@ namespace Monopoly.Components
         {
             add { AddHandler(ButtonChessCellClickEvent, value); }
             remove { RemoveHandler(ButtonChessCellClickEvent, value); }
+        }
+
+        public static readonly DependencyProperty TitleProperty =
+           DependencyProperty.Register("ang", typeof(string), typeof(popup), new PropertyMetadata(string.Empty));
+        public string ang
+        {
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
         }
 
         public ContentChessCell()
@@ -124,6 +133,18 @@ namespace Monopoly.Components
             Grid starLevel = (Grid)ButChessCell.Template.FindName("gridStarLevel", ButChessCell);
             for (int i = 0; i < numStar; i++)
                 if (starLevel.Children.Count > 0) starLevel.Children.RemoveAt(starLevel.Children.Count - 1);
+        }
+
+        private void ButChessCell_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup.Visibility = Visibility.Visible;
+            
+        }
+
+        private void ButChessCell_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup.Visibility = Visibility.Collapsed;
+           
         }
     }
 }

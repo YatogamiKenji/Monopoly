@@ -549,7 +549,9 @@
     <Resource Include="Images\panel\list_card_usecardview.png" />
     <Resource Include="Images\panel\panel_center_map.png" />
     <Resource Include="Images\panel\panel_endgame.jpg" />
-    <Resource Include="Images\panel\panel_setup1.jpg" />
+    <Resource Include="Images\panel\panel_setup1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\panel\panel_setup2.jpg" />
     <Resource Include="Images\panel\panel_setup3.jpg" />
     <Resource Include="Images\planet\galaxy.jpg">

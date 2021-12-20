@@ -27,32 +27,28 @@ namespace Monopoly.Components
 
     public partial class Setup : UserControl
     {
-        MediaPlayer mp = new MediaPlayer();
-
         // List<ContentPlayer> Cont_Player;   // List các Components của ContentPlayer
         List<PlayerShow> ShowPlayers; //= new List<PlayerShow>();   // List các các Components của PlayerShow, PlayerShow là để show hình hình ảnh ngưởi chơi trên bàn cờ
-
         // Cấu hình UI người chơi 
         public PlayerShow ShowPlayer1;
         public PlayerShow ShowPlayer2;
         public PlayerShow ShowPlayer3;
         public PlayerShow ShowPlayer4;
-
+        public string[] nameplayer = new string[4];
         public int countplayer;
         bool gameMode = true; //chọn chế độ chơi (true: Unlimied, false: Setup)
         int numberTurns = 0; //số lượt chơi ở chế độ Setup
-
+        public static Setup instance;
         public Setup()
         {
             InitializeComponent();
             ShowPlayers = new List<PlayerShow>();
-          
+            instance = this;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Sound.BackButton();
-
             ViewStart start = new ViewStart();
             back.Content = start;
         }
@@ -141,12 +137,10 @@ namespace Monopoly.Components
         {
             Storyboard slide = Resources["OpenMenu"] as Storyboard;
             slide.Begin(setup_chose);
-
             chosesetup.Visibility = Visibility.Visible;
             choselimitted.Visibility = Visibility.Collapsed;
             Sound.StartButton();
             gameMode = false;
-
             //numberTurns = 3;
 
 
@@ -175,21 +169,21 @@ namespace Monopoly.Components
             rocketstart.Visibility = Visibility.Collapsed;
             rocketstart.IsOpen = false;
         }
-
+        public Player player11 = new Player();
         private void ok_Click(object sender, RoutedEventArgs e)
         {
             Sound.StartButton();
-
             Storyboard slide = Resources["CloseMenu"] as Storyboard;
             slide.Begin(createName);
-
             ShowPlayers = new List<PlayerShow>();
-
-            ShowPlayer1 = new PlayerShow { Title = nameplayer1.Text, Margin = new Thickness(10, 10, 50, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_blue.png", UriKind.Relative)) };
-            ShowPlayer2 = new PlayerShow { Title = nameplayer2.Text, Margin = new Thickness(35, 10, 25, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative)) };
-            ShowPlayer3 = new PlayerShow { Title = nameplayer3.Text, Margin = new Thickness(10, 10, 50, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_blue.png", UriKind.Relative)) };
-            ShowPlayer4 = new PlayerShow { Title = nameplayer4.Text, Margin = new Thickness(35, 10, 25, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative)) };
-
+            ShowPlayer1 = new PlayerShow { Title = "1", Margin = new Thickness(10, 10, 50, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_blue.png", UriKind.Relative)) };
+            ShowPlayer2 = new PlayerShow { Title = "2", Margin = new Thickness(35, 10, 25, 50), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative)) };
+            ShowPlayer3 = new PlayerShow { Title = "3", Margin = new Thickness(10, 50, 50, 10), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_blue.png", UriKind.Relative)) };
+            ShowPlayer4 = new PlayerShow { Title = "4", Margin = new Thickness(35, 50, 25, 10), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative)) };
+            nameplayer[0] = nameplayer1.Text;
+            nameplayer[1] = nameplayer2.Text;
+            nameplayer[2] = nameplayer3.Text;
+            nameplayer[3] = nameplayer4.Text;
         }
 
         private void TextChangedFuntion(object sender, TextChangedEventArgs e)
@@ -200,7 +194,6 @@ namespace Monopoly.Components
         private void ok1_Click(object sender, RoutedEventArgs e)
         {
             Sound.StartButton();
-
             Storyboard slide = Resources["CloseMenu"] as Storyboard;
             slide.Begin(setup_chose);
             numberTurns = int.Parse(turn.Text);
