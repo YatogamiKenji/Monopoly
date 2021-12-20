@@ -1293,6 +1293,18 @@ namespace Monopoly.Components
             }
         }
 
+        private void Setting_Click(object sender, RoutedEventArgs e)
+        {
+            Setting setting = new Setting();
+            setting.OnOkButtonClick += Setting_OnOkButtonClick;
+            centerMapView.Content = setting;
+        }
+
+        private void Setting_OnOkButtonClick(object sender, RoutedEventArgs e)
+        {
+            SwitchView(CenterMapView.Dice);
+        }
+
         #endregion
 
         #region Popup
@@ -1805,10 +1817,5 @@ namespace Monopoly.Components
         }
         #endregion
 
-        private void Setting_Click(object sender, RoutedEventArgs e)
-        {
-            SettingWindow settingWindow = new SettingWindow();
-            settingWindow.Show();
-        }
     }
 }

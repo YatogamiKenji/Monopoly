@@ -46,7 +46,7 @@ namespace Monopoly.Components
         {
             InitializeComponent();
             ShowPlayers = new List<PlayerShow>();
-          
+            choselimitted.Visibility = Visibility.Visible;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

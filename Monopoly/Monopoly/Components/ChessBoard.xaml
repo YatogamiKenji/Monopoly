@@ -38,7 +38,7 @@
             Grid.Column="1">
             <compoenent:SideBar x:Name="sideBar" Opacity="0.8"/>
         </Canvas>
-        <Button x:Name="Setting"
+        <Button x:Name="btnSetting"
                 Grid.Column="4"
                 Grid.Row="1"
                 Width="50"
