@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              xmlns:compoenent="clr-namespace:Monopoly.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1280">
+             d:DesignHeight="760" d:DesignWidth="1280">
     <UserControl.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0"/>
@@ -16,19 +16,19 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <Grid x:Name="nen" Width="1280" Height="720">
+    <Grid x:Name="nen" Width="1280" Height="760">
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="700"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="85"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="700"/>
-            <ColumnDefinition Width="85"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Image Grid.RowSpan="3" Grid.ColumnSpan="5" 
                Source="/Monopoly;component/Images/background/bg.jpg"
@@ -36,7 +36,7 @@
         <Canvas x:Name="Bor_SideBar"
             Grid.Row="1"
             Grid.Column="1">
-            <compoenent:SideBar x:Name="sideBar"/>
+            <compoenent:SideBar x:Name="sideBar" Opacity="0.8"/>
         </Canvas>
         <Canvas x:Name="Can_BanCo"  Width="auto" Height="auto" Grid.Column="3" Grid.Row ="1" Background="Transparent" >
 
@@ -79,6 +79,7 @@
 
                     <compoenent:ContentChessCell 
                             x:Name="o10"
+                             Opacity="0.8"
                             IsHitTestVisible ="False" 
                             ImageCell="/Monopoly;component/Images/SpecialCell/InPrison.jpg"
                             />
@@ -92,12 +93,13 @@
                         Height="60" Width="80" 
                         BorderThickness="1" 
                         CornerRadius="5">
-                    
-                        <compoenent:ContentChessCell 
+
+                    <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet7.jpg"
+                            Opacity="0.5"
                             />
-                    </Border>
+                </Border>
 
                 <Border x:Name="_8" 
                         Grid.Row="2" 
@@ -110,6 +112,7 @@
                     <compoenent:ContentChessCell
                         IsHitTestVisible ="False"  
                         ImageCell="/Monopoly;component/Images/planet/planet6.jpg"
+                        Opacity="0.5"
                         />
                 </Border>
 
@@ -125,6 +128,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/SpecialCell/Chance.jpg"
+                        Opacity="0.8"
                             />
                 </Border>
                 <Border  x:Name="_6"
@@ -139,6 +143,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet5.jpg"
+                            Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_5" 
@@ -153,6 +158,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet4.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_4" 
@@ -167,6 +173,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet3.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border  x:Name="_3"
@@ -181,6 +188,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/SpecialCell/Tax.jpg"
+                        Opacity="0.8"
                             />
                 </Border>
                 <Border  x:Name="_2" 
@@ -195,6 +203,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet2.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_1"
@@ -209,6 +218,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet1.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border  x:Name="_0" 
@@ -222,6 +232,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/SpecialCell/Start.jpg"
+                        Opacity="0.8"
                             />
                 </Border>
                 <Border x:Name="_11" 
@@ -236,6 +247,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet8.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_12" 
@@ -250,6 +262,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet9.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_13" 
@@ -264,6 +277,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/SpecialCell/CommunityChest.jpg" 
+                        Opacity="0.8"
                             />
                 </Border>
                 <Border x:Name="_14" 
@@ -278,6 +292,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet10.jpg" 
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_15"
@@ -292,6 +307,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet11.jpg" 
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_16" 
@@ -306,6 +322,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet12.png"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_17" 
@@ -321,6 +338,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/SpecialCell/Power.jpg"
+                        Opacity="0.8"
                             />
                 </Border>
                 <Border x:Name="_18" 
@@ -335,6 +353,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet13.jpg" 
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_19" 
@@ -349,6 +368,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet14.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border  x:Name="_20" 
@@ -361,6 +381,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/SpecialCell/ParkingLot.jpg"
+                        Opacity="0.8"
                             />
                 </Border>
                 <Border  x:Name="_39" 
@@ -372,12 +393,13 @@
                              Width="60"
                              BorderThickness="1" 
                              CornerRadius="5">
-                      
-                        <compoenent:ContentChessCell 
+
+                    <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet28.jpg"
+                            Opacity="0.5"
                             />
-                    </Border>
+                </Border>
                 <Border x:Name="_38" 
                             Grid.Row="10" 
                             Grid.Column="2" 
@@ -390,6 +412,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet27.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border  x:Name="_37" 
@@ -404,6 +427,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/SpecialCell/Tax.jpg"
+                        Opacity="0.8"
                             />
                 </Border>
                 <Border x:Name="_36"
@@ -418,6 +442,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet26.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_35"
@@ -432,6 +457,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet25.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_34" 
@@ -446,6 +472,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet24.jpg" 
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border  x:Name="_33"
@@ -460,6 +487,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/SpecialCell/Power.jpg" 
+                        Opacity="0.8"
                             />
                 </Border>
                 <Border x:Name="_32"
@@ -474,6 +502,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet23.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_31" 
@@ -488,6 +517,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet22.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_30" 
@@ -501,6 +531,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/SpecialCell/GotoPrison.jpg"
+                        Opacity="0.8"
                             />
                 </Border>
                 <Border x:Name="_21"
@@ -515,6 +546,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet15.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_22" 
@@ -529,6 +561,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet16.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_23" 
@@ -543,6 +576,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/SpecialCell/Chance.jpg"
+                        Opacity="0.8"
                             />
                 </Border>
                 <Border x:Name="_24"
@@ -557,6 +591,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet17.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_25" 
@@ -571,6 +606,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet18.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_26" 
@@ -585,6 +621,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet19.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_27" 
@@ -599,6 +636,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/SpecialCell/CommunityChest.jpg"
+                        Opacity="0.8"
                             />
                 </Border>
                 <Border x:Name="_28" 
@@ -613,6 +651,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet20.jpg"
+                        Opacity="0.5"
                             />
                 </Border>
                 <Border x:Name="_29" 
@@ -623,12 +662,13 @@
                             Height="60" Width="80" 
                             BorderThickness="1" 
                             CornerRadius="5">
-               
-                        <compoenent:ContentChessCell 
+
+                    <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet21.jpg"
+                            Opacity="0.5"
                             />
-                    </Border>
+                </Border>
 
                 <!-- Vùng hiển thị các view -->
                 <Grid Grid.RowSpan="9" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="9" Width="540">
@@ -678,7 +718,7 @@
                     </Grid>
                 </Popup>
 
-                
+
                 <!-- Vùng hiển thị thông báo -->
                 <ContentControl Grid.Row="1" 
                                 Grid.Column="1"

@@ -294,9 +294,12 @@ namespace Monopoly.Components
             //change player position
             for (int i = 0; i < dice; i++)
             {
-                playersList[PlayerTurn].position = (playersList[PlayerTurn].position + 1) % 40;
-                Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersList[PlayerTurn].position]));
-                Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersList[PlayerTurn].position]));
+                Noti.SetTimeout(() => {
+                    playersList[PlayerTurn].position = (playersList[PlayerTurn].position + 1) % 40;
+                    Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersList[PlayerTurn].position]));
+                    Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersList[PlayerTurn].position]));
+                }, 0.2);
+                
 
                 //xử lý khi đi ngang ô bắt đầu
                 if (cellManager[playersList[PlayerTurn].position].type == CellType.BatDau)
@@ -308,7 +311,7 @@ namespace Monopoly.Components
                     sideBar.update(playersList, PlayerTurn);
                 }
 
-                Wait(500);
+                Wait(200);
             }
         }
 

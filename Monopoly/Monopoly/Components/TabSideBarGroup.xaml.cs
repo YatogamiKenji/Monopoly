@@ -76,7 +76,7 @@ namespace Monopoly.Components
                 TabSideBar t = new TabSideBar
                 (
                     i,
-                    new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/" + Players[i].avatar, UriKind.Relative)),
+                    new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/avatar1" , UriKind.Relative)),
                     Players[i].name,
                     Players[i].money,
                     IconPlayers[i].BackgroundPlayer

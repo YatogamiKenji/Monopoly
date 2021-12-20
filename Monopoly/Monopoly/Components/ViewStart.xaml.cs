@@ -52,48 +52,40 @@ namespace Monopoly.Components
 
         private void Play_MouseEnter(object sender, MouseEventArgs e)
         {
-            Play.Content = "SETUP!";
-            rocketstart.PlacementTarget = Play;
-            rocketstart.Placement = PlacementMode.Right;
-            rocketstart.IsOpen = true;
+
+            Play.Margin = new Thickness(893, 152, 51, 434);
 
         }
 
         private void Play_MouseLeave(object sender, MouseEventArgs e)
         {
-            rocketstart.Visibility = Visibility.Collapsed;
-            rocketstart.IsOpen = false;
-            Play.Content = "PLAY";
+
+
+            Play.Margin = new Thickness(864, 152, 80, 434);
         }
 
         private void GUIDE_MouseEnter(object sender, MouseEventArgs e)
         {
-            rocketstart.PlacementTarget = GUIDE;
-            rocketstart.Placement = PlacementMode.Right;
-            rocketstart.IsOpen = true;
-            GUIDE.Content = "Learning!";
+            GUIDE.Margin = new Thickness(893, 360, 51, 246);
+
         }
 
         private void GUIDE_MouseLeave(object sender, MouseEventArgs e)
         {
-            GUIDE.Content = "GUIDE";
-            rocketstart.Visibility = Visibility.Collapsed;
-            rocketstart.IsOpen = false;
+
+            GUIDE.Margin = new Thickness(864, 360, 80, 246);
         }
 
         private void QUIT_MouseEnter(object sender, MouseEventArgs e)
         {
-            rocketstart.PlacementTarget = QUIT;
-            rocketstart.Placement = PlacementMode.Right;
-            rocketstart.IsOpen = true;
-            QUIT.Content = "You sure?";
+            QUIT.Margin = new Thickness(893, 546, 51, 46);
+
         }
 
         private void QUIT_MouseLeave(object sender, MouseEventArgs e)
         {
-            QUIT.Content = "QUIT";
-            rocketstart.Visibility = Visibility.Collapsed;
-            rocketstart.IsOpen = false;
+
+            QUIT.Margin = new Thickness(864, 546, 80, 46);
         }
 
         private void ABOUT_MouseEnter(object sender, MouseEventArgs e)
@@ -104,6 +96,11 @@ namespace Monopoly.Components
         private void ABOUT_MouseLeave(object sender, MouseEventArgs e)
         {
             ABOUT.Content = "ABOUT";
+        }
+
+        private void GUIDE_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

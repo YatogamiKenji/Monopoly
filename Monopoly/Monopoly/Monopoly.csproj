@@ -36,7 +36,9 @@
     <None Remove="Images\avatar\circle-avatar4.jpg" />
     <None Remove="Images\background\5509862.jpg" />
     <None Remove="Images\background\bg.jpg" />
+    <None Remove="Images\background\bg_endgame.jpg" />
     <None Remove="Images\background\bg_setup.jpg" />
+    <None Remove="Images\background\bg_startview.jpg" />
     <None Remove="Images\background\setup_bg.jpg" />
     <None Remove="Images\background\spaceImg.jpg" />
     <None Remove="Images\bg_chessBoard.jpg" />
@@ -156,7 +158,10 @@
     <None Remove="Images\panel\detail_description_card.png" />
     <None Remove="Images\panel\list_card_usecardview.png" />
     <None Remove="Images\panel\panel_center_map.png" />
+    <None Remove="Images\panel\panel_endgame.jpg" />
     <None Remove="Images\panel\panel_setup1.jpg" />
+    <None Remove="Images\panel\panel_setup2.jpg" />
+    <None Remove="Images\panel\panel_setup3.jpg" />
     <None Remove="Images\planet\galaxy.jpg" />
     <None Remove="Images\planet\planet1.jpg" />
     <None Remove="Images\planet\planet10.jpg" />
@@ -319,11 +324,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\background\bg.jpg" />
-    <Resource Include="Images\background\bg_setup.jpg" />
+    <Resource Include="Images\background\bg_endgame.jpg" />
+    <Resource Include="Images\background\bg_startview.jpg" />
     <Resource Include="Images\background\setup_bg.jpg" />
-    <Resource Include="Images\background\spaceImg.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Images\btn\style1\btn_style1_blue.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -545,7 +548,10 @@
     <Resource Include="Images\panel\detail_description_card.png" />
     <Resource Include="Images\panel\list_card_usecardview.png" />
     <Resource Include="Images\panel\panel_center_map.png" />
+    <Resource Include="Images\panel\panel_endgame.jpg" />
     <Resource Include="Images\panel\panel_setup1.jpg" />
+    <Resource Include="Images\panel\panel_setup2.jpg" />
+    <Resource Include="Images\panel\panel_setup3.jpg" />
     <Resource Include="Images\planet\galaxy.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
