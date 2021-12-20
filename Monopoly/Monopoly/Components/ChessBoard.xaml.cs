@@ -20,7 +20,7 @@ using System.IO;
 
 namespace Monopoly.Components
 {
-    enum CenterMapView { Dice, ComeEmptyLand, ComeOwnLand, ComeLuck, ComePower, ComeChance, UseCard, UseCardToAnother, PlayerUsing, Prev}
+    enum CenterMapView { Dice, ComeEmptyLand, ComeOwnLand, ComeLuck, ComePower, ComeChance, UseCard, UseCardToAnother, PlayerUsing, Prev, Setting }
 
     public partial class ChessBoard : UserControl
     {
@@ -1119,6 +1119,7 @@ namespace Monopoly.Components
                     stackView.Pop(); // pop view hiện tại
                 if (stackView.Count != 0)
                     SwitchView(stackView.Pop()); // Chuyển sang view trước
+                if (stackView.Count == 0) SwitchView(CenterMapView.Dice);
                 return;
             }
             // Dice view: xoá toàn bộ stack và chuyển view
@@ -1180,6 +1181,12 @@ namespace Monopoly.Components
                     useCardToAnotherView.OnButtonPlayerClick += UseCardToAnotherView_OnButtonPlayerClick;
                     useCardToAnotherView.OnCancleButtonClick += BackToPrevView;
                     centerMapView.Content = useCardToAnotherView;
+                    break;
+
+                case CenterMapView.Setting:
+                    Setting setting = new Setting();
+                    setting.OnOkButtonClick += Setting_OnOkButtonClick;
+                    centerMapView.Content = setting;
                     break;
 
                 default:
@@ -1295,14 +1302,12 @@ namespace Monopoly.Components
 
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
-            Setting setting = new Setting();
-            setting.OnOkButtonClick += Setting_OnOkButtonClick;
-            centerMapView.Content = setting;
+            SwitchView(CenterMapView.Setting);
         }
 
         private void Setting_OnOkButtonClick(object sender, RoutedEventArgs e)
         {
-            SwitchView(CenterMapView.Dice);
+            SwitchView(CenterMapView.Prev);
         }
 
         #endregion
