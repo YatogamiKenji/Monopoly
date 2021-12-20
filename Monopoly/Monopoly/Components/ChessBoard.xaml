@@ -38,6 +38,14 @@
             Grid.Column="1">
             <compoenent:SideBar x:Name="sideBar" Opacity="0.8"/>
         </Canvas>
+        <Button x:Name="Setting"
+                Grid.Column="4"
+                Grid.Row="1"
+                Width="50"
+                Height="50" 
+                Margin="17,0,18,650"
+                Background="White" Click="Setting_Click">Setting
+        </Button>
         <Canvas x:Name="Can_BanCo"  Width="auto" Height="auto" Grid.Column="3" Grid.Row ="1" Background="Transparent" >
 
             <Grid x:Name="BanCo" Width="700" Height="700" Grid.Column="3" Grid.Row ="1" >
