@@ -53,6 +53,7 @@ namespace Monopoly.Components
 
         private void ButChessCell_Click(object sender, RoutedEventArgs e)
         {
+            Sound.Planet();
             RaiseEvent(new RoutedEventArgs(ButtonChessCellClickEvent));
         }
 

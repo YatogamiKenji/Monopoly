@@ -85,6 +85,7 @@ namespace Monopoly.Components
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            Sound.Player();
             RaiseEvent(new BtnAnotherPlayerClickEventArgs(ClickEvent, this){ idPlayer = Id });
         }
     }

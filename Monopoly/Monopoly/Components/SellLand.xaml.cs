@@ -31,15 +31,6 @@ namespace Monopoly.Components
             remove { RemoveHandler(CancleButtonClickEvent, value); }
         }
 
-        public static readonly RoutedEvent BankruptButtonClickEvent =
-            EventManager.RegisterRoutedEvent(nameof(OnBankruptButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(SellLand));
-
-        public event RoutedEventHandler OnBankruptButtonClick
-        {
-            add { AddHandler(BankruptButtonClickEvent, value); }
-            remove { RemoveHandler(BankruptButtonClickEvent, value); }
-        }
-
         public static RoutedEvent SellLandButtonClickEvent =
            EventManager.RegisterRoutedEvent("OnSellLandButtonClick", RoutingStrategy.Bubble, typeof(SellLandButtonClickEventHandler), typeof(SellLand));
         
@@ -122,16 +113,13 @@ namespace Monopoly.Components
 
         private void CancleButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.BackButton();
             RaiseEvent(new RoutedEventArgs(CancleButtonClickEvent));
-        }
-
-        private void BankruptButtonClickFunc(object sender, RoutedEventArgs e)
-        {
-            RaiseEvent(new RoutedEventArgs(BankruptButtonClickEvent));
         }
 
         private void SellLandButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.StartButton();
             RaiseEvent(new SellLandButtonClickEventArgs(SellLandButtonClickEvent, this)
             {
                 land = player.lands[selectedIndex],

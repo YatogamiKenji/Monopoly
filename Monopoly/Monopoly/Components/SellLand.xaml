@@ -48,15 +48,6 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Grid.Row="2">
-                
-                <!--PHA SAN-->
-                <Button Style="{StaticResource BtnStyle1Blue}"
-                        Margin="0 0 4 0"
-                        Click="BankruptButtonClickFunc">
-                    <Button.Content>
-                        <TextBlock Text="PHÁ SẢN" Style="{StaticResource BtnStyle1Text}" />
-                    </Button.Content>
-                </Button>
 
                 <!-- HUY -->
                 <Button Style="{StaticResource BtnStyle1Blue}"

@@ -37,6 +37,7 @@ namespace Monopoly.Components
 
         private void ButtonCard_Click(object sender, RoutedEventArgs e)
         {
+            Sound.ButtonUsePower();
             RaiseEvent(new RoutedEventArgs(ButtonCardClickEvent));
         }
 

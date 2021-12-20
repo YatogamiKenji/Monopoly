@@ -12,6 +12,8 @@
     <None Remove="Audios\buttonBack.mp3" />
     <None Remove="Audios\buttonStart.mp3" />
     <None Remove="Audios\Buy.mp3" />
+    <None Remove="Audios\Noti.mp3" />
+    <None Remove="Audios\Planet.mp3" />
     <None Remove="Audios\Power.mp3" />
     <None Remove="Audios\spinning.mp3" />
     <None Remove="Audios\type.wav" />
@@ -245,6 +247,9 @@
     <Content Include="Audios\Buy.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Audios\Noti.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Audios\spinning.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -265,6 +270,9 @@
 
   <ItemGroup>
     <Content Include="Audios\Power.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Audios\Planet.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="CuteAstronautAndPlanet.ico">

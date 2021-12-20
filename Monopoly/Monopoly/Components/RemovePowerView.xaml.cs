@@ -109,6 +109,7 @@ namespace Monopoly.Components
 
         private void RemoveButtonClickFunc(object sender, RoutedEventArgs e)
         {
+            Sound.ButtonUsePower();
             RaiseEvent(new RemoveCardButtonClickEventArgs(RemoveCardButtonClickEvent, this)
             {
                 power = player.powers[selectedIndex],

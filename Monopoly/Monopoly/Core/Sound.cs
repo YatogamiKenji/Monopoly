@@ -61,5 +61,27 @@ namespace Monopoly
             media.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Power.mp3"));
             media.Play();
         }
+
+        public static void Notification()
+        {
+            new System.Threading.Thread(() =>
+            {
+                MediaPlayer play = new MediaPlayer();
+                play.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Noti.mp3"));
+                play.Play();
+            }).Start();
+        }
+
+        public static void Planet()
+        {
+            media.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Planet.mp3"));
+            media.Play();
+        }
+
+        public static void Player()
+        {
+            media.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Player.mp3"));
+            media.Play();
+        }
     }
 }

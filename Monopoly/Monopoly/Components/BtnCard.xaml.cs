@@ -122,6 +122,7 @@ namespace Monopoly.Components
 
         private void BtnCardClickFunc(object sender, MouseButtonEventArgs e)
         {
+            Sound.ButtonUsePower();
             RaiseEvent(new BtnCardClickEventArgs(BtnCardCLickEvent, this) { power = Power, idCard = Id });
         }
 

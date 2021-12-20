@@ -58,11 +58,13 @@ namespace Monopoly.Components
 
         private void BtnAnotherPlayer_OnClick(object sender, BtnAnotherPlayerClickEventArgs e)
         {
+            Sound.StartButton();
             RaiseEvent(new BtnAnotherPlayerClickEventArgs(ButtonPlayerClickEvent, this) { idPlayer = e.idPlayer });
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Sound.BackButton();
             RaiseEvent(new RoutedEventArgs(CancleButtonClickEvent));
 
         }

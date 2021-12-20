@@ -100,6 +100,7 @@ namespace Monopoly.Components
 
         private void BtnLandCardClickFunc(object sender, MouseButtonEventArgs e)
         {
+            Sound.Planet();
             RaiseEvent(new BtnLandCardClickEventArgs(BtnLandCardCLickEvent, this) { land = Land, idCard = Id });
         }
 

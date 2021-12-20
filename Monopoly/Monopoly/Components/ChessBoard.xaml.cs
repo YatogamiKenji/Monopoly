@@ -298,7 +298,7 @@ namespace Monopoly.Components
                 playersList[PlayerTurn].position = (playersList[PlayerTurn].position + 1) % 40;
                 Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersList[PlayerTurn].position]));
                 Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersList[PlayerTurn].position]));
-                
+
                 //xử lý khi đi ngang ô bắt đầu
                 if (cellManager[playersList[PlayerTurn].position].type == CellType.BatDau)
                 {
@@ -385,7 +385,6 @@ namespace Monopoly.Components
             //bán đến khi đủ tiền trả nợ
             Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền để trả!","Red"), 3, (s) =>{ });
             SellLand sellLand = new SellLand(playersList[PlayerTurn]);
-            sellLand.OnBankruptButtonClick += OnButtonBankruptClick;
             sellLand.OnCancleButtonClick += SellLand_OnButtonCancleClick;
             sellLand.OnSellLandButtonClick += SellLand_OnSellLandButtonClick;
 
@@ -415,6 +414,7 @@ namespace Monopoly.Components
             sideBar.update(playersList, PlayerTurn);
         }
 
+        //bán đến khi đủ tiền trả (nếu tổng giá trị tài sản có thể trả được)
         private void SellLand_OnButtonCancleClick(object sender, RoutedEventArgs e)
         {
             if (playersList[PlayerTurn].money > lands[cellManager[playersList[PlayerTurn].position].index].Tax())
@@ -426,26 +426,6 @@ namespace Monopoly.Components
             else NotEnoughMoneyToPay();
         }
 
-        //sự kiện người chơi nhấn phá sản
-        private void OnButtonBankruptClick(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("Bạn thực sự phá sản?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Người chơi " + playersList[PlayerTurn].name + " Đã phá sản", "Red"), 3, (s) =>
-                {
-                    playersList[PlayerTurn].Loser();
-                    BanCo.Children.Remove(players[PlayerTurn]);
-                    bankrupt++;
-                    if (NumberOfPlayers - bankrupt == 1)
-                    {
-                        //mở component thông báo người chiến thắng
-                        MessageBox.Show("Win");
-                    }
-                    ChangeTurn();
-                });
-            }
-        }
-
         //xử lý khi đi vào ô đất của người khác
         void PayLandRent()
         {
@@ -453,7 +433,27 @@ namespace Monopoly.Components
             if (playersList[PlayerTurn].money >= lands[cellManager[playersList[PlayerTurn].position].index].Tax()
                 || playersList[PlayerTurn].isLoseMoney) EnoughMoneyToPay();
             //nếu không đủ tiền xử lý sự kiện bán đất, bán nhà để trả nợ
-            else NotEnoughMoneyToPay();
+            else
+            {
+                int sum = playersList[PlayerTurn].money;
+                for (int i = 0; i < playersList[PlayerTurn].lands.Count; i++) sum += playersList[PlayerTurn].lands[i].landValue / 2;
+                if (sum >= lands[cellManager[playersList[PlayerTurn].position].index].Tax()) NotEnoughMoneyToPay();
+                else
+                {
+                    Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Người chơi " + playersList[PlayerTurn].name + " Đã phá sản", "Red"), 3, (s) =>
+                    {
+                        playersList[PlayerTurn].Loser();
+                        BanCo.Children.Remove(players[PlayerTurn]);
+                        bankrupt++;
+                        if (NumberOfPlayers - bankrupt == 1)
+                        {
+                            //mở component thông báo người chiến thắng
+                            MessageBox.Show("Win");
+                        }
+                        ChangeTurn();
+                    });
+                }  
+            }
         }
 
         #endregion
@@ -1108,24 +1108,17 @@ namespace Monopoly.Components
                     playersList[PlayerTurn].AddLand(lands[usingPlayer.indexLands[index]], usingPlayer.indexLands[index], usingPlayer.indexCells[index]);
                     chessCell.MarkLand(PlayerTurn);
                     sideBar.update(playersList, PlayerTurn);
+                } 
+                else  if(usingPower.GetType().Name == "PowerLandLevelReduction") chessCell.subStar(2);
 
-                    Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ "
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn bị trừ " + dice * usingPower.value + " khi sử dụng thẻ "
                   + usingPower.name + " lên hành tinh " + usingPlayer.lands[index].name + " của người chơi " + usingPlayer.name, "Green"), 2.5, (str) =>
                   {
-                      usingPower.PowerFunction(ref usingPlayer, index);        
+                      usingPower.PowerFunction(ref usingPlayer, index);
                       chessCell.AddStar(lands[index].level);
-                   
-                    ChangeTurn();
+
+                      ChangeTurn();
                   });
-                }
-
-                if(usingPower.GetType().Name == "PowerLandLevelReduction")
-                {
-                    chessCell.subStar(2);
-                    ChangeTurn();
-                }
-
-              
             }
         }
 

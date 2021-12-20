@@ -27,7 +27,7 @@ namespace Monopoly
             DoubleAnimation fadeInAnim = new DoubleAnimation(1, new Duration(TimeSpan.FromSeconds(0.25)));
             DoubleAnimation fadeOutAnim = new DoubleAnimation(0, new Duration(TimeSpan.FromSeconds(0.2)));
 
-            
+            Sound.Notification();
 
             Grid areaGrid = new Grid();
             areaGrid.Children.Add(notiBox);

@@ -41,6 +41,7 @@ namespace Monopoly.Components
 
         private void Button_OK(object sender, RoutedEventArgs e)
         {
+            Sound.StartButton();
             RaiseEvent(new RoutedEventArgs(OKButtonClickEvent));
         }
 
