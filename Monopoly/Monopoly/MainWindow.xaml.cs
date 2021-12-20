@@ -25,21 +25,12 @@ namespace Monopoly
     /// </summary>
     public partial class MainWindow : Window
     {
-        MediaPlayer mp = new MediaPlayer();
 
         public MainWindow()
         {
             InitializeComponent();
-            mp.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\background.mp3"));
-            mp.MediaEnded += Mp_MediaEnded;
-            mp.Play();
             QuitBox.Visibility = Visibility.Hidden;
-        }
-
-        private void Mp_MediaEnded(object sender, EventArgs e)
-        {
-            mp.Position = TimeSpan.Zero;
-            mp.Play();
+            Sound.PlayBGM();
         }
 
         private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -53,7 +44,7 @@ namespace Monopoly
             WindowState = WindowState.Minimized;
         }
 
-        private void Image_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
+        public void Image_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
         {
             QuitBox.Visibility = Visibility.Visible;
         }

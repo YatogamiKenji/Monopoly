@@ -10,30 +10,63 @@ namespace Monopoly
 {
     static class Sound
     {
-        static MediaPlayer media = new MediaPlayer();
-
+        static MediaPlayer SE = new MediaPlayer();
+        static MediaPlayer BGM = new MediaPlayer();
+        static double SEV = 1;
+        public static void SetSEVolume(double sev)
+        {
+            SEV = sev;
+        }
+        public static double GetSEVolume()
+        {
+            return SEV;
+        }
+        public static void SetBGMVolume(double bgmv)
+        {
+            BGM.Volume = bgmv;
+        }
+        public static double GetBGMVolume()
+        {
+            return BGM.Volume;
+        }
+        public static void PlayBGM()
+        {
+            BGM.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\background.mp3"));
+            BGM.Volume = 1;
+            BGM.MediaEnded += new EventHandler(BGM_MediaEnded);
+            BGM.Play();
+        }
+        private static void BGM_MediaEnded(object sender, EventArgs e)
+        {
+            BGM.Position = TimeSpan.Zero;
+            BGM.Play();
+        }
         public static void StartButton()
         {
-            media.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\buttonStart.mp3"));
-            media.Play();
+            SE.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\buttonStart.mp3"));
+            SE.Volume = SEV;
+            SE.Play();
         }
 
         public static void BackButton()
         {
-            media.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\buttonBack.mp3"));
-            media.Play();
+            SE.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\buttonBack.mp3"));
+            SE.Volume = SEV;
+            SE.Play();
         }
 
         public static void BuyButton()
         {
-            media.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Buy.mp3"));
-            media.Play();
+            SE.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Buy.mp3"));
+            SE.Volume = SEV;
+            SE.Play();
         }
 
         public static void Upgrade()
         {
-            media.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Upgrade.mp3"));
-            media.Play();
+            SE.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Upgrade.mp3"));
+            SE.Volume = SEV;
+            SE.Play();
         }
 
         public static void Spinning()
@@ -42,6 +75,7 @@ namespace Monopoly
             {
                 MediaPlayer play = new MediaPlayer();
                 play.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\spinning.mp3"));
+                play.Volume = SEV;
                 play.Play();
             }).Start();
         }
@@ -52,14 +86,16 @@ namespace Monopoly
             {
                 MediaPlayer play = new MediaPlayer();
                 play.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\type.wav"));
+                play.Volume = SEV;
                 play.Play();
             }).Start();
         }
 
         public static void ButtonUsePower()
         {
-            media.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Power.mp3"));
-            media.Play();
+            SE.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Power.mp3"));
+            SE.Volume = SEV;
+            SE.Play();
         }
 
         public static void Notification()
@@ -67,6 +103,7 @@ namespace Monopoly
             new System.Threading.Thread(() =>
             {
                 MediaPlayer play = new MediaPlayer();
+                play.Volume = SEV;
                 play.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Noti.mp3"));
                 play.Play();
             }).Start();
@@ -74,14 +111,16 @@ namespace Monopoly
 
         public static void Planet()
         {
-            media.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Planet.mp3"));
-            media.Play();
+            SE.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Planet.mp3"));
+            SE.Volume = SEV;
+            SE.Play();
         }
 
         public static void Player()
         {
-            media.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Player.mp3"));
-            media.Play();
+            SE.Open(new Uri(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Audios\Player.mp3"));
+            SE.Volume = SEV;
+            SE.Play();
         }
     }
 }

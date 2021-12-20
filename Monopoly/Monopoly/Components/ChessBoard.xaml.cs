@@ -1801,5 +1801,11 @@ namespace Monopoly.Components
             textright.PopupText.Text = lands[20].description;
         }
         #endregion
+
+        private void Setting_Click(object sender, RoutedEventArgs e)
+        {
+            SettingWindow settingWindow = new SettingWindow();
+            settingWindow.Show();
+        }
     }
 }

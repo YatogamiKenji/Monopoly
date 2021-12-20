@@ -38,6 +38,14 @@
             Grid.Column="1">
             <compoenent:SideBar x:Name="sideBar"/>
         </Canvas>
+        <Button x:Name="Setting"
+                Grid.Column="4"
+                Grid.Row="1"
+                Width="50"
+                Height="50" 
+                Margin="17,0,18,650"
+                Background="White" Click="Setting_Click">Setting
+        </Button>
         <Canvas x:Name="Can_BanCo"  Width="auto" Height="auto" Grid.Column="3" Grid.Row ="1" Background="Transparent" >
 
             <Grid x:Name="BanCo" Width="700" Height="700" Grid.Column="3" Grid.Row ="1" >
@@ -92,12 +100,12 @@
                         Height="60" Width="80" 
                         BorderThickness="1" 
                         CornerRadius="5">
-                    
-                        <compoenent:ContentChessCell 
+
+                    <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet7.jpg"
                             />
-                    </Border>
+                </Border>
 
                 <Border x:Name="_8" 
                         Grid.Row="2" 
@@ -372,12 +380,12 @@
                              Width="60"
                              BorderThickness="1" 
                              CornerRadius="5">
-                      
-                        <compoenent:ContentChessCell 
+
+                    <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet28.jpg"
                             />
-                    </Border>
+                </Border>
                 <Border x:Name="_38" 
                             Grid.Row="10" 
                             Grid.Column="2" 
@@ -623,12 +631,12 @@
                             Height="60" Width="80" 
                             BorderThickness="1" 
                             CornerRadius="5">
-               
-                        <compoenent:ContentChessCell 
+
+                    <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet21.jpg"
                             />
-                    </Border>
+                </Border>
 
                 <!-- Vùng hiển thị các view -->
                 <Grid Grid.RowSpan="9" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="9" Width="540">
@@ -678,7 +686,7 @@
                     </Grid>
                 </Popup>
 
-                
+
                 <!-- Vùng hiển thị thông báo -->
                 <ContentControl Grid.Row="1" 
                                 Grid.Column="1"
