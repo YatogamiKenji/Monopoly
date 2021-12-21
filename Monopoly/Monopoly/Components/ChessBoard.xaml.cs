@@ -287,17 +287,15 @@ namespace Monopoly.Components
         #endregion
 
         #region Sự kiện xử lý khi quay xúc sắc
+
         void ChangePlayerPosition()
         {
             //change player position
             for (int i = 0; i < dice; i++)
             {
-                Noti.SetTimeout(() => {
-                    playersList[PlayerTurn].position = (playersList[PlayerTurn].position + 1) % 40;
-                    Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersList[PlayerTurn].position]));
-                    Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersList[PlayerTurn].position]));
-                }, 0.2);
-                
+                playersList[PlayerTurn].position = (playersList[PlayerTurn].position + 1) % 40;
+                Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[playersList[PlayerTurn].position]));
+                Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[playersList[PlayerTurn].position]));
 
                 //xử lý khi đi ngang ô bắt đầu
                 if (cellManager[playersList[PlayerTurn].position].type == CellType.BatDau)
@@ -449,8 +447,12 @@ namespace Monopoly.Components
                         bankrupt++;
                         if (NumberOfPlayers - bankrupt == 1)
                         {
-                            //mở component thông báo người chiến thắng
-                            MessageBox.Show("Win");
+                            for (int i = 0; i < NumberOfPlayers; i++) 
+                                if (!playersList[i].isLoser)
+                                {
+                                    view.Content = new endGame(playersList[i]);
+                                    break;
+                                }    
                         }
                         ChangeTurn();
                     });
@@ -491,17 +493,27 @@ namespace Monopoly.Components
         //tổng kết chế độ setup sau khi đủ số lượt
         void GameSummary()
         {
+            List<int> moneys = new List<int>();
             //tổng kết lại tiền đang có
             for (int i = 0; i < NumberOfPlayers; i++) 
             {
+                moneys.Add(playersList[i].money);
                 for (int j = 0; j < playersList[i].lands.Count; j++)
                 {
-                    playersList[i].money += playersList[i].lands[j].value / 2;
+                    moneys[i] += playersList[i].lands[j].value / 2;
                 }
             }
 
-            //hiện màn hình người chiến thắng
-            MessageBox.Show("kết thúc");
+            int max = moneys[0];
+            int index = 0;
+            for (int i = 1; i < NumberOfPlayers; i++)
+                if (moneys[i] > max) 
+                {
+                    max = moneys[i];
+                    index = i;
+                }
+
+            view.Content = new endGame(playersList[index]);
         }
 
         //đưa nhân vật vào tù
@@ -1113,11 +1125,17 @@ namespace Monopoly.Components
             // Chuyển lại view trước đó
             if (view == CenterMapView.Prev)
             {
+                if (stackView.Count == 0)
+                {
+                    SwitchView(CenterMapView.Dice);
+                    return;
+                }
+
                 if (stackView.Count != 0)
                     stackView.Pop(); // pop view hiện tại
                 if (stackView.Count != 0)
                     SwitchView(stackView.Pop()); // Chuyển sang view trước
-                if (stackView.Count == 0) SwitchView(CenterMapView.Dice);
+                
                 return;
             }
             // Dice view: xoá toàn bộ stack và chuyển view

@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Microsoft.Win32;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Monopoly.Components
 {
@@ -195,9 +196,19 @@ namespace Monopoly.Components
         private void ok1_Click(object sender, RoutedEventArgs e)
         {
             Sound.StartButton();
-            Storyboard slide = Resources["CloseMenu"] as Storyboard;
-            slide.Begin(setup_chose);
-            numberTurns = int.Parse(turn.Text);
+            if (turn.Text != "" && int.Parse(turn.Text) > 0)
+            {
+                Storyboard slide = Resources["CloseMenu"] as Storyboard;
+                slide.Begin(setup_chose);
+                numberTurns = int.Parse(turn.Text);
+            }
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Sound.Type();
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

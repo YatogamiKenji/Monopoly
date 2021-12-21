@@ -494,8 +494,8 @@
             <TextBlock Text="Number Of Turn" Foreground="AliceBlue" FontSize="35" FontWeight="Heavy" FontStyle="Italic" Height="40" Width="300" VerticalAlignment="Top" Margin="100,48,100,0" />
             <TextBox Foreground="Tomato"
                      FontWeight="Bold"
-                     TextChanged="TextChangedFuntion"
                      Text=""
+                     PreviewTextInput="NumberValidationTextBox"
                      FontSize="30" x:Name="turn" Background="Transparent" BorderThickness="2" BorderBrush="AliceBlue" Width="340" Height="100"/>
             <Button VerticalAlignment="Bottom" Style="{DynamicResource setupSetting}" x:Name="ok1" Content="OK" FontWeight="Heavy" Foreground="AliceBlue" FontStyle="Italic" FontSize="30" Height="50" Click="ok1_Click" Margin="184,-7,184,17" BorderThickness="0">
                 <Button.Background>

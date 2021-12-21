@@ -217,6 +217,7 @@
     <None Remove="Images\Power\PowerSplitDice.jpg" />
     <None Remove="Images\Power\PowerStealLand.png" />
     <None Remove="Images\Power\PowerTeleportPersonToTheTax.jpg" />
+    <None Remove="Images\rank\camp.png" />
     <None Remove="Images\rocket-launch-icon.png" />
     <None Remove="Images\rocket.png" />
     <None Remove="Images\sidebar\list_card_sidebar.png" />
@@ -704,6 +705,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Power\PowerTeleportPersonToTheTax.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\rank\camp.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\sidebar\list_card_sidebar.png" />

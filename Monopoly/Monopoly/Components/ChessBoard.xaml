@@ -15,6 +15,7 @@
             <ThicknessAnimation BeginTime="0:0:3" Storyboard.TargetProperty="Margin" From="275,173,275,377" To="275,-175,275,35" DecelerationRatio="0.9" Duration="0:0:1"/>
         </Storyboard>
     </UserControl.Resources>
+    <ContentControl  x:Name="view">
 
     <Grid x:Name="nen" Width="1280" Height="760">
         <Grid.RowDefinitions>
@@ -664,6 +665,8 @@
             </Grid>
 
         </Canvas>
-
+        
+        
     </Grid>
+    </ContentControl>
 </UserControl>

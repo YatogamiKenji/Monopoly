@@ -20,9 +20,17 @@ namespace Monopoly.Components
     /// </summary>
     public partial class endGame : UserControl
     {
-        public endGame()
+        public endGame(Player player)
         {
             InitializeComponent();
+            ContentSideBar contentSideBar = new ContentSideBar(player);
+            SideBar.Content = contentSideBar;
+            playerName.Text = player.name;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            exit.Content = new ViewStart();
         }
     }
 }
