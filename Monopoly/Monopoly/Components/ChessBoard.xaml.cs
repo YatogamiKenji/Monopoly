@@ -456,7 +456,6 @@ namespace Monopoly.Components
                                 if (!playersList[i].isLoser)
                                 {
                                     EndGame(playersList[i]);
-                                    countDownTimer.Stop();
                                     return;
                                 }    
                         }
@@ -520,7 +519,6 @@ namespace Monopoly.Components
                 }
 
             EndGame(playersList[index]);
-            countDownTimer.Stop();
         }
 
         //đưa nhân vật vào tù
@@ -1347,6 +1345,7 @@ namespace Monopoly.Components
 
         private void EndGame(Player player)
         {
+            countDownTimer.IsEnabled = false;
             RaiseEvent(new EndGameClickEventArgs(EndGameButtonClickEvent) { player = player });
         }
 
