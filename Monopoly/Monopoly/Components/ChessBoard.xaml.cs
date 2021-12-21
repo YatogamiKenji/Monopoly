@@ -22,7 +22,7 @@ using System.Windows.Automation.Provider;
 
 namespace Monopoly.Components
 {
-    enum CenterMapView { Dice, ComeEmptyLand, ComeOwnLand, ComeLuck, ComePower, ComeChance, UseCard, UseCardToAnother, PlayerUsing, Prev, Setting }
+    enum CenterMapView { Dice, ComeEmptyLand, ComeOwnLand, ComeLuck, ComePower, ComeChance, UseCard, UseCardToAnother, PlayerUsing, Prev, Setting, CheatConsole }
 
     public delegate void BtnEndGameClickEventHandler(object sender, EndGameClickEventArgs agrs);
 
@@ -456,12 +456,13 @@ namespace Monopoly.Components
                                 if (!playersList[i].isLoser)
                                 {
                                     EndGame(playersList[i]);
+                                    PauseTimer();
                                     return;
                                 }    
                         }
                         ChangeTurn();
                     });
-                }  
+                }
             }
         }
 
@@ -519,6 +520,7 @@ namespace Monopoly.Components
                 }
 
             EndGame(playersList[index]);
+            PauseTimer();
         }
 
         //đưa nhân vật vào tù
@@ -1210,7 +1212,12 @@ namespace Monopoly.Components
                     setting.OnOkButtonClick += Setting_OnOkButtonClick;
                     centerMapView.Content = setting;
                     break;
-
+                case CenterMapView.CheatConsole:
+                    CheatConsole cheatConsole = new CheatConsole();
+                    cheatConsole.OnExitButtonClick += CheatConsole_OnExitButtonClick;
+                    cheatConsole.OnExecuteButtonClick += CheatConsole_OnExecuteButtonClick;
+                    centerMapView.Content = cheatConsole;
+                    break;
                 default:
                     MessageBox.Show("Không xác định được view");
                     break;
@@ -1325,18 +1332,89 @@ namespace Monopoly.Components
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
             SwitchView(CenterMapView.Setting);
-            countDownTimer.Stop();
+            PauseTimer();
         }
 
         private void Setting_OnOkButtonClick(object sender, RoutedEventArgs e)
         {
             SwitchView(CenterMapView.Prev);
-            countDownTimer.Start();
+            ResumeTimer();
         }
 
+        #endregion
+
+        #region Cheat
+        bool IsCheatOn = false;
+        private void KeyIsDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.OemTilde && IsCheatOn == false)
+            {
+                IsCheatOn = true;
+                SwitchView(CenterMapView.CheatConsole);
+                PauseTimer();
+            }
+        }
+        public double RemainTime;
+        private void PauseTimer()
+        {
+            RemainTime = countDown;
+            countDownTimer.Stop();
+        }
+
+        private void CheatConsole_OnExecuteButtonClick(object sender, RoutedEventArgs e)
+        {
+            CommandExe(CheatConsole.command_line);           
+        }
+        public void CommandExe(string cmd)
+        {
+            /*Hướng dẫn thêm command vào cheat console: 
+             * lệnh đánh vào khung dùng số và giữa các phần có khoảng trắng syntax: {ID} {player} {ammount}, 
+             * ID dùng để phân biệt các loại lệnh, 
+             * player là player sẽ bị ảnh hưởng bởi lệnh
+             * ammount là sô lượng hoặc số chỉ phụ (ví dụ thêm 100 tiền thì 100 là số chỉ phụ)
+             */
+            string[] CMD;
+            int ID = 0;
+            int player = 0;
+            int ammount= 0 ;
+            if (cmd == null)
+            {
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn chưa nhập command nào", "Red"), 1.5, (str) => { });
+            }
+            else 
+            {
+                CMD = cmd.Split(' ');
+                ID = Int32.Parse(CMD[0]);
+                player = Int32.Parse(CMD[1])-1;
+                
+                ammount = Int32.Parse(CMD[2]);
+                switch (ID)
+                {
+                    case 1:
+                        playersList[player].money += ammount;
+                        Noti.Show(notiCenterMapArea, new NotiBoxOnlyText($"Người chơi {player+1} đã được nhận {ammount}", "Blue"), 1.5, (str) => { });                       
+                        break;
+                    default:
+                        Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Lệnh không hợp lệ", "Red"), 1, (str) => { });
+                        break;
+                }
+                sideBar.update(playersList, PlayerTurn);
+            }       
+        }
+        private void CheatConsole_OnExitButtonClick(object sender, RoutedEventArgs e)
+        {
+            IsCheatOn = false;
+            ResumeTimer();
+            SwitchView(CenterMapView.Prev);
+        }
+
+        private void ResumeTimer()
+        {
+            countDown = RemainTime;
+            countDownTimer.Start();
+        }
         public static readonly RoutedEvent EndGameButtonClickEvent =
             EventManager.RegisterRoutedEvent(nameof(OnEndGameButtonClick), RoutingStrategy.Bubble, typeof(BtnEndGameClickEventHandler), typeof(ChessBoard));
-
         public event BtnEndGameClickEventHandler OnEndGameButtonClick
         {
             add { AddHandler(EndGameButtonClickEvent, value); }
@@ -1350,5 +1428,7 @@ namespace Monopoly.Components
         }
 
         #endregion
+
+
     }
 }
