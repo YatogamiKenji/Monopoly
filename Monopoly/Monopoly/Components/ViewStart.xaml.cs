@@ -31,17 +31,34 @@ namespace Monopoly.Components
             InitializeComponent();
         }
 
+        public static readonly RoutedEvent QuitButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnQuitButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ViewStart));
+
+        public event RoutedEventHandler OnQuitButtonClick
+        {
+            add { AddHandler(QuitButtonClickEvent, value); }
+            remove { RemoveHandler(QuitButtonClickEvent, value); }
+        }
+
         private void QUIT_Click(object sender, RoutedEventArgs e)
         {
             Sound.BackButton();
-            Window.GetWindow(this).Close();
+            RaiseEvent(new RoutedEventArgs(QuitButtonClickEvent));
+        }
+
+        public static readonly RoutedEvent PlayButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnPlayButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ViewStart));
+
+        public event RoutedEventHandler OnPlayButtonClick
+        {
+            add { AddHandler(PlayButtonClickEvent, value); }
+            remove { RemoveHandler(PlayButtonClickEvent, value); }
         }
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
             Sound.StartButton();
-            Setup setup = new Setup();
-            views.Content = setup;
+            RaiseEvent(new RoutedEventArgs(PlayButtonClickEvent));
         }
 
         private void ABOUT_Click(object sender, RoutedEventArgs e)

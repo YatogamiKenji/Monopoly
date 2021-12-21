@@ -507,11 +507,6 @@
                 </Button.Background>
             </Button>
         </Grid>
-
-
-        <ContentControl x:Name="back"  Grid.RowSpan="2"/>
-        <ContentControl x:Name="chess" Grid.RowSpan="2"/>
-
     </Grid>
 
 </UserControl>

@@ -55,7 +55,7 @@
             </Image>
         </DockPanel>
         <Grid Grid.Row="1">
-            <component:ViewStart/>
+            <ContentControl x:Name="view"/>
         </Grid>
 
         <Grid Grid.Row="2" Name="QuitBox">

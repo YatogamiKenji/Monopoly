@@ -148,8 +148,5 @@
                 <ImageBrush ImageSource="/Images/btn/style2/btn_style2_gray.png" Opacity="0.7" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-
-
-        <ContentControl x:Name="views"/>
     </Grid>
 </UserControl>

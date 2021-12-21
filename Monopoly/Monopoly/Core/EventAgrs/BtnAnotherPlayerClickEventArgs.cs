@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Monopoly.Components;
 
 namespace Monopoly
 {
@@ -18,6 +19,23 @@ namespace Monopoly
         {
         }
         public BtnAnotherPlayerClickEventArgs(RoutedEvent routedEvent, object source) : base(routedEvent, source)
+        {
+        }
+    }
+
+    public class GoClickEventArgs : RoutedEventArgs
+    {
+        public List<PlayerShow> showPlayers { get; set; }
+        public bool GameMode { get; set; }
+        public int NumberTurns { get; set; }
+
+        public GoClickEventArgs()
+        {
+        }
+        public GoClickEventArgs(RoutedEvent routedEvent) : base(routedEvent)
+        {
+        }
+        public GoClickEventArgs(RoutedEvent routedEvent, object source) : base(routedEvent, source)
         {
         }
     }

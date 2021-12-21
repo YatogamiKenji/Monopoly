@@ -24,7 +24,7 @@ namespace Monopoly.Components
     /// <summary>
     /// Interaction logic for Setup.xaml
     /// </summary>
-
+    public delegate void BtnGoClickEventHandler(object sender, GoClickEventArgs agrs);
 
     public partial class Setup : UserControl
     {
@@ -48,11 +48,28 @@ namespace Monopoly.Components
             choselimitted.Visibility = Visibility.Visible;
         }
 
+        public static readonly RoutedEvent BackButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnBackButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Setup));
+
+        public event RoutedEventHandler OnBackButtonClick
+        {
+            add { AddHandler(BackButtonClickEvent, value); }
+            remove { RemoveHandler(BackButtonClickEvent, value); }
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Sound.BackButton();
-            ViewStart start = new ViewStart();
-            back.Content = start;
+            RaiseEvent(new RoutedEventArgs(BackButtonClickEvent));
+        }
+
+        public static readonly RoutedEvent ButtonGoClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnButtonGoClick), RoutingStrategy.Bubble, typeof(BtnGoClickEventHandler), typeof(Setup));
+        
+        public event BtnGoClickEventHandler OnButtonGoClick
+        {
+            add { AddHandler(ButtonGoClickEvent, value); }
+            remove { RemoveHandler(ButtonGoClickEvent, value); }
         }
 
         //Chuyển sang giao diện bàn cờ chính
@@ -64,16 +81,12 @@ namespace Monopoly.Components
             {
                 ShowPlayers.Add(ShowPlayer1);
                 ShowPlayers.Add(ShowPlayer2);
-                ChessBoard board = new ChessBoard(ShowPlayers, gameMode, numberTurns);
-                chess.Content = board;
             }
             else if (countplayer == 3)
             {
                 ShowPlayers.Add(ShowPlayer1);
                 ShowPlayers.Add(ShowPlayer2);
                 ShowPlayers.Add(ShowPlayer3);
-                ChessBoard board = new ChessBoard(ShowPlayers, gameMode, numberTurns);
-                chess.Content = board;
             }
             else if (countplayer == 4)
             {
@@ -81,9 +94,14 @@ namespace Monopoly.Components
                 ShowPlayers.Add(ShowPlayer2);
                 ShowPlayers.Add(ShowPlayer3);
                 ShowPlayers.Add(ShowPlayer4);
-                ChessBoard board = new ChessBoard(ShowPlayers, gameMode, numberTurns);
-                chess.Content = board;
             }
+
+            RaiseEvent(new GoClickEventArgs(ButtonGoClickEvent, this) 
+            {
+                showPlayers = ShowPlayers, 
+                GameMode = gameMode, 
+                NumberTurns = numberTurns 
+            });
         }
 
         // Khởi tạo có 2 người chơi
@@ -171,6 +189,7 @@ namespace Monopoly.Components
             rocketstart.Visibility = Visibility.Collapsed;
             rocketstart.IsOpen = false;
         }
+
         public Player player11 = new Player();
         private void ok_Click(object sender, RoutedEventArgs e)
         {

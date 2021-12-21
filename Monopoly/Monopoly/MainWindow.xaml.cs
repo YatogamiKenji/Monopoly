@@ -25,12 +25,49 @@ namespace Monopoly
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public MainWindow()
         {
             InitializeComponent();
             QuitBox.Visibility = Visibility.Hidden;
             Sound.PlayBGM();
+            CreateViewStart();
+        }
+
+        void CreateViewStart()
+        {
+            ViewStart viewStart = new ViewStart();
+            viewStart.OnQuitButtonClick += ViewStart_OnQuitButtonClick;
+            viewStart.OnPlayButtonClick += ViewStart_OnPlayButtonClick;
+            view.Content = viewStart;
+        }
+
+        void CreateSetup()
+        {
+            Setup setup = new Setup();
+            setup.OnBackButtonClick += Setup_OnBackButtonClick;
+            setup.OnButtonGoClick += Setup_OnButtonGoClick;
+            view.Content = setup;
+        }    
+
+        private void ViewStart_OnPlayButtonClick(object sender, RoutedEventArgs e)
+        {
+            CreateSetup();
+        }
+
+        private void Setup_OnButtonGoClick(object sender, GoClickEventArgs e)
+        {
+            ChessBoard chessBoard = new ChessBoard(e.showPlayers, e.GameMode, e.NumberTurns);
+            view.Content = chessBoard;
+        }
+
+        private void Setup_OnBackButtonClick(object sender, RoutedEventArgs e)
+        {
+            CreateViewStart();
+        }
+
+        private void ViewStart_OnQuitButtonClick(object sender, RoutedEventArgs e)
+        {
+            QuitBox.Visibility = Visibility.Visible;
         }
 
         private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
