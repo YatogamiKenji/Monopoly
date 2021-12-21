@@ -1363,12 +1363,43 @@ namespace Monopoly.Components
 
         private void CheatConsole_OnExecuteButtonClick(object sender, RoutedEventArgs e)
         {
-            //CommandExe(CheatConsole.command_line);
-            MessageBox.Show(CheatConsole.command_line);
+            CommandExe(CheatConsole.command_line);           
         }
         public void CommandExe(string cmd)
         {
-           
+            /*Hướng dẫn thêm command vào cheat console: 
+             * lệnh đánh vào khung dùng số và giữa các phần có khoảng trắng syntax: {ID} {player} {ammount}, 
+             * ID dùng để phân biệt các loại lệnh, 
+             * player là player sẽ bị ảnh hưởng bởi lệnh
+             * ammount là sô lượng hoặc số chỉ phụ (ví dụ thêm 100 tiền thì 100 là số chỉ phụ)
+             */
+            string[] CMD;
+            int ID = 0;
+            int player = 0;
+            int ammount= 0 ;
+            if (cmd == null)
+            {
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn chưa nhập command nào", "Red"), 1.5, (str) => { });
+            }
+            else 
+            {
+                CMD = cmd.Split(' ');
+                ID = Int32.Parse(CMD[0]);
+                player = Int32.Parse(CMD[1])-1;
+                
+                ammount = Int32.Parse(CMD[2]);
+                switch (ID)
+                {
+                    case 1:
+                        playersList[player].money += ammount;
+                        Noti.Show(notiCenterMapArea, new NotiBoxOnlyText($"Người chơi {player+1} đã được nhận {ammount}", "Blue"), 1.5, (str) => { });                       
+                        break;
+                    default:
+                        Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Lệnh không hợp lệ", "Red"), 1, (str) => { });
+                        break;
+                }
+                sideBar.update(playersList, PlayerTurn);
+            }       
         }
         private void CheatConsole_OnExitButtonClick(object sender, RoutedEventArgs e)
         {

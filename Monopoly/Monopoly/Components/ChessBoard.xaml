@@ -16,7 +16,7 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <Grid x:Name="nen" Width="1280" Height="760">
+    <Grid x:Name="nen" Width="1280" Height="760" KeyDown="KeyIsDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="700"/>
@@ -47,7 +47,7 @@
                 Background="White" 
                 Click="Setting_Click">
         </Button>
-        <Canvas x:Name="Can_BanCo"  Width="auto" Height="auto" Grid.Column="3" Grid.Row ="1" Background="Transparent" KeyDown="KeyIsDown" >
+        <Canvas x:Name="Can_BanCo"  Width="auto" Height="auto" Grid.Column="3" Grid.Row ="1" Background="Transparent" >
 
             <Grid x:Name="BanCo" Width="700" Height="700" Grid.Column="3" Grid.Row ="1" >
 

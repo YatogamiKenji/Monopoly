@@ -39,14 +39,16 @@ namespace Monopoly.Components
         }
         public event RoutedEventHandler OnExecuteButtonClick
         {
-            add { AddHandler(ExitButtonClickEvent, value); }
-            remove { RemoveHandler(ExitButtonClickEvent, value); }
+            add { AddHandler(ExecuteButtonClickEvent, value); }
+            remove { RemoveHandler(ExecuteButtonClickEvent, value); }
         }
 
         private void Execute_Click(object sender, RoutedEventArgs e)
         {
             command_line = Command.Text;
+            Command.Clear();
             RaiseEvent(new RoutedEventArgs(ExecuteButtonClickEvent));
+            command_line = null;
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
