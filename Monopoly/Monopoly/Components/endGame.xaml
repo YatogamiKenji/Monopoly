@@ -37,6 +37,5 @@
             </Grid.Background>
             <ContentControl x:Name="SideBar" VerticalAlignment="Center" HorizontalAlignment="Center"></ContentControl>
         </Grid>
-        <ContentControl x:Name="exit" Grid.ColumnSpan="2"/>
     </Grid>
 </UserControl>

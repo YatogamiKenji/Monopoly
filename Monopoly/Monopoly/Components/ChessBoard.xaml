@@ -664,7 +664,5 @@
             </Grid>
 
         </Canvas>
-
-        <ContentControl  x:Name="view" Grid.ColumnSpan="5" Grid.RowSpan="3"/>
     </Grid>
 </UserControl>

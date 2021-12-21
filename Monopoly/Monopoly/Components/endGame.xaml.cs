@@ -28,9 +28,19 @@ namespace Monopoly.Components
             playerName.Text = player.name;
         }
 
+        public static readonly RoutedEvent ExitButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnExitButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(endGame));
+
+        public event RoutedEventHandler OnExitButtonClick
+        {
+            add { AddHandler(ExitButtonClickEvent, value); }
+            remove { RemoveHandler(ExitButtonClickEvent, value); }
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            exit.Content = new ViewStart();
+            Sound.BackButton();
+            RaiseEvent(new RoutedEventArgs(ExitButtonClickEvent));
         }
     }
 }

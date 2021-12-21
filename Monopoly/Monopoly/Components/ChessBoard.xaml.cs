@@ -17,10 +17,14 @@ using System.Windows.Threading;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media.Animation;
 using System.IO;
+using System.Windows.Automation.Peers;
+using System.Windows.Automation.Provider;
 
 namespace Monopoly.Components
 {
     enum CenterMapView { Dice, ComeEmptyLand, ComeOwnLand, ComeLuck, ComePower, ComeChance, UseCard, UseCardToAnother, PlayerUsing, Prev, Setting }
+
+    public delegate void BtnEndGameClickEventHandler(object sender, EndGameClickEventArgs agrs);
 
     public partial class ChessBoard : UserControl
     {
@@ -451,7 +455,7 @@ namespace Monopoly.Components
                             for (int i = 0; i < NumberOfPlayers; i++) 
                                 if (!playersList[i].isLoser)
                                 {
-                                    view.Content = new endGame(playersList[i]);
+                                    EndGame(playersList[i]);
                                     countDownTimer.Stop();
                                     return;
                                 }    
@@ -515,7 +519,7 @@ namespace Monopoly.Components
                     index = i;
                 }
 
-            view.Content = new endGame(playersList[index]);
+            EndGame(playersList[index]);
             countDownTimer.Stop();
         }
 
@@ -1330,6 +1334,21 @@ namespace Monopoly.Components
             SwitchView(CenterMapView.Prev);
             countDownTimer.Start();
         }
+
+        public static readonly RoutedEvent EndGameButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnEndGameButtonClick), RoutingStrategy.Bubble, typeof(BtnEndGameClickEventHandler), typeof(ChessBoard));
+
+        public event BtnEndGameClickEventHandler OnEndGameButtonClick
+        {
+            add { AddHandler(EndGameButtonClickEvent, value); }
+            remove { RemoveHandler(EndGameButtonClickEvent, value); }
+        }
+
+        private void EndGame(Player player)
+        {
+            RaiseEvent(new EndGameClickEventArgs(EndGameButtonClickEvent) { player = player });
+        }
+
         #endregion
     }
 }
