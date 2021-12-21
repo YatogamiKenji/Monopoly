@@ -642,9 +642,7 @@
                     <compoenent:ContentChessCell 
                             IsHitTestVisible ="False"  
                             ImageCell="/Monopoly;component/Images/planet/planet21.jpg"
-                            Opacity="0.5"
-                            ang="180"
-                            
+                            Opacity="0.5"                                
                             />
                 </Border>
 

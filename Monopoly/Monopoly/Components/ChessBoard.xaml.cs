@@ -456,12 +456,13 @@ namespace Monopoly.Components
                                 if (!playersList[i].isLoser)
                                 {
                                     EndGame(playersList[i]);
+                                    PauseTimer();
                                     return;
                                 }    
                         }
                         ChangeTurn();
                     });
-                }  
+                }
             }
         }
 
@@ -519,6 +520,7 @@ namespace Monopoly.Components
                 }
 
             EndGame(playersList[index]);
+            PauseTimer();
         }
 
         //đưa nhân vật vào tù
