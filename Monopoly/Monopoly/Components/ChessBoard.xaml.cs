@@ -441,7 +441,7 @@ namespace Monopoly.Components
                 if (sum >= lands[cellManager[playersList[PlayerTurn].position].index].Tax()) NotEnoughMoneyToPay();
                 else
                 {
-                    Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Người chơi " + playersList[PlayerTurn].name + " Đã phá sản", "Red"), 3, (s) =>
+                    Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Người chơi *" + playersList[PlayerTurn].name + "* Đã phá sản", "Red"), 3, (s) =>
                     {
                         playersList[PlayerTurn].Loser();
                         BanCo.Children.Remove(players[PlayerTurn]);
@@ -452,6 +452,7 @@ namespace Monopoly.Components
                                 if (!playersList[i].isLoser)
                                 {
                                     view.Content = new endGame(playersList[i]);
+                                    countDownTimer.Stop();
                                     return;
                                 }    
                         }
@@ -515,6 +516,7 @@ namespace Monopoly.Components
                 }
 
             view.Content = new endGame(playersList[index]);
+            countDownTimer.Stop();
         }
 
         //đưa nhân vật vào tù
