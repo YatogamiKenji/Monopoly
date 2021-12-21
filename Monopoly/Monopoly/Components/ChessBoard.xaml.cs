@@ -22,7 +22,7 @@ using System.Windows.Automation.Provider;
 
 namespace Monopoly.Components
 {
-    enum CenterMapView { Dice, ComeEmptyLand, ComeOwnLand, ComeLuck, ComePower, ComeChance, UseCard, UseCardToAnother, PlayerUsing, Prev, Setting }
+    enum CenterMapView { Dice, ComeEmptyLand, ComeOwnLand, ComeLuck, ComePower, ComeChance, UseCard, UseCardToAnother, PlayerUsing, Prev, Setting, CheatConsole }
 
     public delegate void BtnEndGameClickEventHandler(object sender, EndGameClickEventArgs agrs);
 
@@ -1212,7 +1212,12 @@ namespace Monopoly.Components
                     setting.OnOkButtonClick += Setting_OnOkButtonClick;
                     centerMapView.Content = setting;
                     break;
-
+                case CenterMapView.CheatConsole:
+                    CheatConsole cheatConsole = new CheatConsole();
+                    cheatConsole.OnExitButtonClick += CheatConsole_OnExitButtonClick;
+                    cheatConsole.OnExecuteButtonClick += CheatConsole_OnExecuteButtonClick;
+                    centerMapView.Content = cheatConsole;
+                    break;
                 default:
                     MessageBox.Show("Không xác định được view");
                     break;
@@ -1327,18 +1332,58 @@ namespace Monopoly.Components
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
             SwitchView(CenterMapView.Setting);
-            countDownTimer.Stop();
+            PauseTimer();
         }
 
         private void Setting_OnOkButtonClick(object sender, RoutedEventArgs e)
         {
             SwitchView(CenterMapView.Prev);
-            countDownTimer.Start();
+            ResumeTimer();
         }
 
+        #endregion
+
+        #region Cheat
+        bool IsCheatOn = false;
+        private void KeyIsDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.OemTilde && IsCheatOn == false)
+            {
+                IsCheatOn = true;
+                SwitchView(CenterMapView.CheatConsole);
+                PauseTimer();
+            }
+        }
+        public double RemainTime;
+        private void PauseTimer()
+        {
+            RemainTime = countDown;
+            countDownTimer.Stop();
+        }
+
+        private void CheatConsole_OnExecuteButtonClick(object sender, RoutedEventArgs e)
+        {
+            //CommandExe(CheatConsole.command_line);
+            MessageBox.Show(CheatConsole.command_line);
+        }
+        public void CommandExe(string cmd)
+        {
+           
+        }
+        private void CheatConsole_OnExitButtonClick(object sender, RoutedEventArgs e)
+        {
+            IsCheatOn = false;
+            ResumeTimer();
+            SwitchView(CenterMapView.Prev);
+        }
+
+        private void ResumeTimer()
+        {
+            countDown = RemainTime;
+            countDownTimer.Start();
+        }
         public static readonly RoutedEvent EndGameButtonClickEvent =
             EventManager.RegisterRoutedEvent(nameof(OnEndGameButtonClick), RoutingStrategy.Bubble, typeof(BtnEndGameClickEventHandler), typeof(ChessBoard));
-
         public event BtnEndGameClickEventHandler OnEndGameButtonClick
         {
             add { AddHandler(EndGameButtonClickEvent, value); }
@@ -1351,5 +1396,7 @@ namespace Monopoly.Components
         }
 
         #endregion
+
+
     }
 }

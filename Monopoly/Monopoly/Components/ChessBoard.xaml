@@ -47,7 +47,7 @@
                 Background="White" 
                 Click="Setting_Click">
         </Button>
-        <Canvas x:Name="Can_BanCo"  Width="auto" Height="auto" Grid.Column="3" Grid.Row ="1" Background="Transparent" >
+        <Canvas x:Name="Can_BanCo"  Width="auto" Height="auto" Grid.Column="3" Grid.Row ="1" Background="Transparent" KeyDown="KeyIsDown" >
 
             <Grid x:Name="BanCo" Width="700" Height="700" Grid.Column="3" Grid.Row ="1" >
 
@@ -654,12 +654,55 @@
                                     Width="500"
                                     Height="500"/>
                 </Grid>
+                <!--add the popupTop user control-->
+
+                <Popup x:Name="popup_top"
+               AllowsTransparency="True"
+               HorizontalOffset="125.5"
+               VerticalOffset="80" Grid.ColumnSpan="2" Margin="20,0,210,0">
+                    <Grid>
+                        <compoenent:popup angle="450" x:Name="texttop" Foreground="#E0FFFF"/>
+                    </Grid>
+                </Popup>
+
+                <!--add the popupBottom user control-->
+
+                <Popup x:Name="popup_bottom"
+               AllowsTransparency="True"
+               HorizontalOffset="125.5"
+               VerticalOffset="-195" Grid.ColumnSpan="2" Margin="20,0,210,0">
+                    <Grid>
+                        <compoenent:popup angle="270" x:Name="textbottom" Foreground="#E0FFFF"/>
+                    </Grid>
+                </Popup>
+                <!--add the popupRight user control-->
+
+                <Popup x:Name="popup_right"
+               AllowsTransparency="True"
+               HorizontalOffset="0"
+               VerticalOffset="-70">
+                    <Grid>
+                        <compoenent:popup angle="180" x:Name="textright" Foreground="#E0FFFF"/>
+                    </Grid>
+                </Popup>
+                <!--add the popupLeft user control-->
+
+                <Popup x:Name="popup_left"
+               AllowsTransparency="True"
+               HorizontalOffset="275"
+               VerticalOffset="-65">
+                    <Grid>
+                        <compoenent:popup x:Name="textleft" Foreground="#E0FFFF"/>
+                    </Grid>
+                </Popup>
+
                 <!-- Vùng hiển thị thông báo -->
                 <ContentControl Grid.Row="1" 
                                 Grid.Column="1"
                                 Grid.RowSpan="9"
                                 Grid.ColumnSpan="9"
-                                x:Name="notiCenterMapArea"/>
+                                x:Name="notiCenterMapArea">
+                </ContentControl>
 
             </Grid>
 
