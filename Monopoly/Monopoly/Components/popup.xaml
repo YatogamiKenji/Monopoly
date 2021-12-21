@@ -6,30 +6,40 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              x:Name="root"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="200">
-    <Grid RenderTransformOrigin="0.5,0.5">
-        <Grid.RenderTransform>
-            <TransformGroup>
-                <ScaleTransform/>
-                <SkewTransform/>
-                <RotateTransform Angle="{Binding angle, ElementName=root}"/>
-                <TranslateTransform/>
-            </TransformGroup>
-        </Grid.RenderTransform>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Images/panel/panel_setup1.jpg"/>
-        </Grid.Background>
-        <Line            
-            X1="70" Y1="30"
+             d:DesignHeight="360" d:DesignWidth="360">
+    <Grid >
+        <Grid RenderTransformOrigin="0.5,0.5" >
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="{Binding angle, ElementName=root}"/>
+                    <TranslateTransform X="0.459" Y="-0.713"/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+
+            <Image Source="/Images/panel/panel_setup1.jpg" Opacity="0.9" Width="200"/>
+
+            <Line            
+            X1="50" Y1="30"
             X2="10" Y2="50"
-            Stroke="Black"
-            StrokeThickness="4" Height="60" Width="80" Margin="-69,106,189,34" />
-        <Ellipse
-         Width="12"
-         Height="12"
-         Stroke="Black"
-         StrokeThickness="4"
-         Margin="-69,152,257,36" />
-        <TextBlock x:Name="text" Width="140" Height="130" FontStyle="Italic" Foreground="AliceBlue"/>
+            Stroke="AliceBlue"
+            StrokeThickness="2" Height="60" Width="80" Margin="11,162,269,138" />
+            <Line            
+            X1="50" Y1="30"
+            X2="70" Y2="30"
+            Stroke="AliceBlue"
+            StrokeThickness="2" Height="60" Width="80" Margin="10,162,270,138" />
+            
+            <Ellipse
+         Width="8"
+         Height="8"
+         Stroke="AliceBlue"
+         StrokeThickness="2"
+         Margin="14,209,338,143" />
+
+        </Grid>
+        <TextBlock x:Name="PopupText" Text="" Width="140" Height="130" FontStyle="Italic" HorizontalAlignment="Left"
+                   VerticalAlignment="Center" TextWrapping="Wrap" Foreground="AliceBlue" Margin="109,0,0,0"/>
     </Grid>
 </UserControl>

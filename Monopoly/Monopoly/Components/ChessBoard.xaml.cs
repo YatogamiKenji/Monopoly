@@ -1429,6 +1429,516 @@ namespace Monopoly.Components
 
         #endregion
 
+        #region Popup
+
+        private void _1_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _1;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = lands[0].description;
+        }
+
+        private void _1_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+
+        }
+
+        private void _2_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _2;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = lands[1].description;
+        }
+
+        private void _2_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _3_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _3;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = "Thuế";
+        }
+
+        private void _3_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _4_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _4;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = lands[2].description;
+        }
+
+        private void _4_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _5_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _5;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = lands[3].description;
+        }
+
+        private void _5_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _6_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _6;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = lands[4].description;
+        }
+
+        private void _6_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _7_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _7;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = "Cơ Hội";
+        }
+
+        private void _7_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _8_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _8;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = lands[5].description;
+        }
+
+        private void _8_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _9_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_left.PlacementTarget = _9;
+            popup_left.Placement = PlacementMode.Right;
+            popup_left.IsOpen = true;
+            textleft.PopupText.Text = lands[6].description;
+        }
+
+        private void _9_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_left.Visibility = Visibility.Collapsed;
+            popup_left.IsOpen = false;
+        }
+
+        private void _11_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _11;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = lands[7].description;
+        }
+
+        private void _11_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _12_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _12;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = lands[8].description;
+        }
+
+        private void _12_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _13_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _13;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = "Khí Vận";
+        }
+
+        private void _13_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _14_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _14;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = lands[9].description;
+        }
+
+        private void _14_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _15_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _15_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+            popup_top.PlacementTarget = _15;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = lands[10].description;
+        }
+
+        private void _31_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _31;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = lands[21].description;
+        }
+
+        private void _31_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _16_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _16;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = lands[11].description;
+        }
+
+        private void _16_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _17_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _17;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = "Quyền Năng";
+        }
+
+        private void _17_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _18_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _18;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = lands[12].description;
+        }
+
+        private void _18_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _19_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_top.PlacementTarget = _19;
+            popup_top.Placement = PlacementMode.Right;
+            popup_top.IsOpen = true;
+            texttop.PopupText.Text = lands[13].description;
+        }
+
+        private void _19_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_top.Visibility = Visibility.Collapsed;
+            popup_top.IsOpen = false;
+        }
+
+        private void _39_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _39;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = lands[27].description;
+        }
+
+        private void _39_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _38_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _38;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = lands[26].description;
+        }
+
+        private void _38_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _37_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _37;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = "Thuế";
+        }
+
+        private void _37_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _36_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _36;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = lands[25].description;
+        }
+
+        private void _36_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _35_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _35;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = lands[24].description;
+        }
+
+        private void _35_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _34_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _34_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _34;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = lands[23].description;
+        }
+
+        private void _33_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _33_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _33;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = "Quyền Năng";
+        }
+
+        private void _32_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_bottom.PlacementTarget = _32;
+            popup_bottom.Placement = PlacementMode.Right;
+            popup_bottom.IsOpen = true;
+            textbottom.PopupText.Text = lands[22].description;
+        }
+
+        private void _32_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_bottom.Visibility = Visibility.Collapsed;
+            popup_bottom.IsOpen = false;
+        }
+
+        private void _21_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _21_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _21;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = lands[14].description;
+        }
+
+        private void _22_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _22_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _22;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = lands[15].description;
+        }
+
+        private void _23_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _23_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _23;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = "Cơ Hội";
+        }
+
+        private void _24_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _24;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = lands[16].description;
+        }
+
+        private void _24_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _25_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _25_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _25;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = lands[17].description;
+        }
+
+        private void _26_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _26;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = lands[18].description;
+        }
+
+        private void _26_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _27_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _27;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = "Khí Vận";
+        }
+
+        private void _27_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _28_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _28;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = lands[19].description;
+        }
+
+        private void _28_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _29_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popup_right.Visibility = Visibility.Collapsed;
+            popup_right.IsOpen = false;
+        }
+
+        private void _29_MouseEnter(object sender, MouseEventArgs e)
+        {
+            popup_right.PlacementTarget = _29;
+            popup_right.Placement = PlacementMode.Right;
+            popup_right.IsOpen = true;
+            textright.PopupText.Text = lands[20].description;
+        }
+        #endregion
+
+
 
     }
 }

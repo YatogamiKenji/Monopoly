@@ -125,7 +125,7 @@
 
 
         </Button>
-        <compoenent:popup x:Name="popup" angle="{Binding ang ,ElementName=root}" Visibility="Collapsed" Foreground="#E0FFFF" Height="200" Width="200" Margin="125,-70,-245,-70"/>
+        
             
         
     </Grid>
