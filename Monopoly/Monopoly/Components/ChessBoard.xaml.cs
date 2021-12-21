@@ -187,6 +187,7 @@ namespace Monopoly.Components
             //playersList[1].AddLand(lands[6], 6, 9);
             //playersList[1].AddLand(lands[7], 7, 11);
             //playersList[1].AddLand(lands[8], 8, 12);
+            playersList[1].money = 0;
         }
 
         //khởi tạo data
@@ -451,7 +452,7 @@ namespace Monopoly.Components
                                 if (!playersList[i].isLoser)
                                 {
                                     view.Content = new endGame(playersList[i]);
-                                    break;
+                                    return;
                                 }    
                         }
                         ChangeTurn();
@@ -721,8 +722,8 @@ namespace Monopoly.Components
 
             Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn quay được *" + dice + "*", "Blue"), 1.5, (str) =>
             {
-                // nếu người chơi đang ở trong tù thì phải đổ được 1 hoặc 6 mới được phép di chuyển ra ngoài
-                if ((playersList[PlayerTurn].isInPrison && (dice == 1 || dice == 6)) || !playersList[PlayerTurn].isInPrison)
+                    // nếu người chơi đang ở trong tù thì phải đổ được 1 hoặc 6 mới được phép di chuyển ra ngoài
+                    if ((playersList[PlayerTurn].isInPrison && (dice == 1 || dice == 6)) || !playersList[PlayerTurn].isInPrison)
                 {
                     ActivationEffect();
                     if (!playersList[PlayerTurn].isTeleport) Goto();
