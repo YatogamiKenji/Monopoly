@@ -61,9 +61,19 @@ namespace Monopoly.Components
             RaiseEvent(new RoutedEventArgs(PlayButtonClickEvent));
         }
 
+        public static readonly RoutedEvent AboutButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnAboutButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ViewStart));
+
+        public event RoutedEventHandler OnAboutButtonClick
+        {
+            add { AddHandler(AboutButtonClickEvent, value); }
+            remove { RemoveHandler(AboutButtonClickEvent, value); }
+        }
+
         private void ABOUT_Click(object sender, RoutedEventArgs e)
         {
-
+            Sound.StartButton();
+            RaiseEvent(new RoutedEventArgs(AboutButtonClickEvent));
         }
 
 
@@ -115,9 +125,19 @@ namespace Monopoly.Components
             ABOUT.Content = "ABOUT";
         }
 
+        public static readonly RoutedEvent GuideButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnGuideButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ViewStart));
+
+        public event RoutedEventHandler OnGuideButtonClick
+        {
+            add { AddHandler(GuideButtonClickEvent, value); }
+            remove { RemoveHandler(GuideButtonClickEvent, value); }
+        }
+
         private void GUIDE_Click(object sender, RoutedEventArgs e)
         {
-
+            Sound.StartButton();
+            RaiseEvent(new RoutedEventArgs(GuideButtonClickEvent));
         }
     }
 }

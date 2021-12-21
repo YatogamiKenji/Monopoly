@@ -1132,14 +1132,15 @@ namespace Monopoly.Components
             // Chuyển lại view trước đó
             if (view == CenterMapView.Prev)
             {
+                if (stackView.Count != 0)
+                    stackView.Pop(); // pop view hiện tại
+
                 if (stackView.Count == 0)
                 {
                     SwitchView(CenterMapView.Dice);
                     return;
                 }
 
-                if (stackView.Count != 0)
-                    stackView.Pop(); // pop view hiện tại
                 if (stackView.Count != 0)
                     SwitchView(stackView.Pop()); // Chuyển sang view trước
                 

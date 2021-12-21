@@ -29,7 +29,7 @@
 
         <TextBlock x:Name="playerName" FontSize="50" Style="{StaticResource TitleCardText}" Width="230" Height="70" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,422,0,0" TextAlignment="Center"/>
 
-        <Button Grid.Column="0" Content="Exit" Style="{StaticResource BtnStyle1Red}" Margin="61,680,460,41" Click="Button_Click"/>
+        <Button Grid.Column="0" Content="Exit" Style="{StaticResource BtnStyle1Red}" Margin="69,642,452,78" Click="Button_Click"/>
 
         <Grid Grid.Column="1">
             <Grid.Background>

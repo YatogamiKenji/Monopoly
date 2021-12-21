@@ -41,7 +41,21 @@ namespace Monopoly
             ViewStart viewStart = new ViewStart();
             viewStart.OnQuitButtonClick += ViewStart_OnQuitButtonClick;
             viewStart.OnPlayButtonClick += ViewStart_OnPlayButtonClick;
+            viewStart.OnAboutButtonClick += ViewStart_OnAboutButtonClick;
+            viewStart.OnGuideButtonClick += ViewStart_OnGuideButtonClick;
             view.Content = viewStart;
+        }
+
+        //nút guide
+        private void ViewStart_OnGuideButtonClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        //nut about
+        private void ViewStart_OnAboutButtonClick(object sender, RoutedEventArgs e)
+        {
+            
         }
 
         //nút play

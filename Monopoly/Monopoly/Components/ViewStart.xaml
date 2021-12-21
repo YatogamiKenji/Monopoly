@@ -106,12 +106,12 @@
                 Content="GUIDE"
                 Foreground="AliceBlue"
                 FontSize="60"
-                FontWeight="Heavy"   
-               
+                FontWeight="Heavy"  
                 BorderThickness="0"
                 Margin="864,360,80,246"
                 MouseEnter="GUIDE_MouseEnter"
-                MouseLeave="GUIDE_MouseLeave" Click="GUIDE_Click">
+                MouseLeave="GUIDE_MouseLeave" 
+                Click="GUIDE_Click">
             <Button.Background >
                 <ImageBrush ImageSource="/Images/btn/style2/btn_style2_gray.png" Opacity="0.7" Stretch="Uniform"/>
             </Button.Background>
