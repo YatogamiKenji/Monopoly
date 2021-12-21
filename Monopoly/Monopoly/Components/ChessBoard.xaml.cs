@@ -324,7 +324,7 @@ namespace Monopoly.Components
                 ContentChessCell contentChessCell = (ContentChessCell)cellPos[playersList[PlayerTurn].position + i].Child;
                 contentChessCell.OnButtonChessCellClick += TeleportClick;
                 contentChessCell.StartShaking();
-                contentChessCell.IsHitTestVisible = true;
+              //  contentChessCell.IsHitTestVisible = true;
             }   
         }
 
@@ -341,7 +341,7 @@ namespace Monopoly.Components
                 ContentChessCell contentChessCell = (ContentChessCell)cellPos[playersList[PlayerTurn].position + i].Child;
                 contentChessCell.OnButtonChessCellClick -= TeleportClick;
                 contentChessCell.StopShaking();
-                contentChessCell.IsHitTestVisible = false;
+               // contentChessCell.IsHitTestVisible = false;
                 if (Grid.GetColumn(cellPos[playersList[PlayerTurn].position + i]) == Grid.GetColumn(parentChessCell) && Grid.GetRow(cellPos[playersList[PlayerTurn].position + i]) == Grid.GetRow(parentChessCell)) index = playersList[PlayerTurn].position + i;
             }
 
@@ -908,7 +908,7 @@ namespace Monopoly.Components
                         ContentChessCell contentChessCell = (ContentChessCell)cellPos[i].Child;
                         contentChessCell.OnButtonChessCellClick += MoveToAnyCellClick;
                         contentChessCell.StartShaking();
-                        contentChessCell.IsHitTestVisible = true;
+                       // contentChessCell.IsHitTestVisible = true;
                     }
                 }
 
@@ -922,7 +922,7 @@ namespace Monopoly.Components
                         ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[i]].Child;
                         contentChessCell.OnButtonChessCellClick += UsingCardOnYourselfClick;
                         contentChessCell.StartShaking();
-                        contentChessCell.IsHitTestVisible = true;
+                       // contentChessCell.IsHitTestVisible = true;
                     }
                 }
                 else
@@ -960,7 +960,7 @@ namespace Monopoly.Components
                 ContentChessCell contentChessCell = (ContentChessCell)cellPos[i].Child;
                 contentChessCell.OnButtonChessCellClick -= MoveToAnyCellClick;
                 contentChessCell.StopShaking();
-                contentChessCell.IsHitTestVisible = false;
+               // contentChessCell.IsHitTestVisible = false;
                 if (Grid.GetColumn(cellPos[i]) == Grid.GetColumn(parentChessCell) && Grid.GetRow(cellPos[i]) == Grid.GetRow(parentChessCell)) index = i;
             }
 
@@ -986,7 +986,7 @@ namespace Monopoly.Components
                     ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[i]].Child;
                     contentChessCell.OnButtonChessCellClick -= UsingCardOnYourselfClick;
                     contentChessCell.StopShaking();
-                    contentChessCell.IsHitTestVisible = false;
+                   // contentChessCell.IsHitTestVisible = false;
                     if (Grid.GetColumn(cellPos[usingPlayer.indexCells[i]]) == Grid.GetColumn(parentChessCell) && Grid.GetRow(cellPos[usingPlayer.indexCells[i]]) == Grid.GetRow(parentChessCell)) index = i;
                 }
 
@@ -1043,7 +1043,7 @@ namespace Monopoly.Components
                         ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[j]].Child;
                         contentChessCell.OnButtonChessCellClick += UseCardToAnotherClick;
                         contentChessCell.StartShaking();
-                        contentChessCell.IsHitTestVisible = true;
+                        //contentChessCell.IsHitTestVisible = true;
                     }
                 }
                 else
@@ -1099,7 +1099,7 @@ namespace Monopoly.Components
                     ContentChessCell contentChessCell = (ContentChessCell)cellPos[usingPlayer.indexCells[i]].Child;
                     contentChessCell.OnButtonChessCellClick -= UseCardToAnotherClick;
                     contentChessCell.StopShaking();
-                    contentChessCell.IsHitTestVisible = false;
+                    //contentChessCell.IsHitTestVisible = false;
                     if (Grid.GetColumn(cellPos[usingPlayer.indexCells[i]]) == Grid.GetColumn(parentChessCell) && Grid.GetRow(cellPos[usingPlayer.indexCells[i]]) == Grid.GetRow(parentChessCell)) index = i;
                 }
 

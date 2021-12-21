@@ -138,13 +138,13 @@ namespace Monopoly.Components
         private void ButChessCell_MouseEnter(object sender, MouseEventArgs e)
         {
             popup.Visibility = Visibility.Visible;
-            
+
         }
 
         private void ButChessCell_MouseLeave(object sender, MouseEventArgs e)
         {
             popup.Visibility = Visibility.Collapsed;
-           
+
         }
     }
 }

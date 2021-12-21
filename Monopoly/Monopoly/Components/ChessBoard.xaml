@@ -44,8 +44,12 @@
                 Width="50"
                 Height="50" 
                 Margin="17,0,18,650"
-                Background="White" 
                 Click="Setting_Click">
+            <!--<Button.Background>
+                <ImageBrush ImageSource="/Monopoly;component/Images/Setting/icons8-settings-500.png">                 
+                </ImageBrush>
+            </Button.Background>-->
+           
         </Button>
         <Canvas x:Name="Can_BanCo"  Width="auto" Height="auto" Grid.Column="3" Grid.Row ="1" Background="Transparent" >
 
@@ -89,7 +93,7 @@
                     <compoenent:ContentChessCell 
                             x:Name="o10"
                              Opacity="0.8"
-                            IsHitTestVisible ="False" 
+                           
                             ImageCell="/Monopoly;component/Images/SpecialCell/InPrison.jpg"
                             />
                 </Border>
@@ -103,7 +107,8 @@
                         CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                          
+                            
                             ImageCell="/Monopoly;component/Images/planet/planet7.jpg"
                             Opacity="0.5"
                             />
@@ -117,7 +122,7 @@
                         BorderThickness="1" 
                         CornerRadius="5">
                     <compoenent:ContentChessCell
-                        IsHitTestVisible ="False"  
+                      
                         ImageCell="/Monopoly;component/Images/planet/planet6.jpg"
                         Opacity="0.5"
                         />
@@ -132,7 +137,7 @@
                         CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                          
                             ImageCell="/Monopoly;component/Images/SpecialCell/Chance.jpg"
                         Opacity="0.8"
                             />
@@ -146,7 +151,7 @@
                              CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                           
                             ImageCell="/Monopoly;component/Images/planet/planet5.jpg"
                             Opacity="0.5"
                             
@@ -161,7 +166,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                          
                             ImageCell="/Monopoly;component/Images/planet/planet4.jpg"
                         Opacity="0.5"
                             />
@@ -175,7 +180,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                         
                             ImageCell="/Monopoly;component/Images/planet/planet3.jpg"
                             Opacity="0.5"
                         
@@ -190,7 +195,7 @@
                              CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                           
                             ImageCell="/Monopoly;component/Images/SpecialCell/Tax.jpg"
                         Opacity="0.8"
                             />
@@ -204,7 +209,7 @@
                              CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                            
                             ImageCell="/Monopoly;component/Images/planet/planet2.jpg"
                             Opacity="0.5"
                             
@@ -219,7 +224,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                            
                             ImageCell="/Monopoly;component/Images/planet/planet1.jpg"
                         Opacity="0.5"
                             />
@@ -233,7 +238,7 @@
                              CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                         
                             ImageCell="/Monopoly;component/Images/SpecialCell/Start.jpg"
                         Opacity="0.8"
                             />
@@ -247,7 +252,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                          
                             ImageCell="/Monopoly;component/Images/planet/planet8.jpg"
                         Opacity="0.5"
                             />
@@ -261,7 +266,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                          
                             ImageCell="/Monopoly;component/Images/planet/planet9.jpg"
                         Opacity="0.5"
                             />
@@ -275,7 +280,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                           
                             ImageCell="/Monopoly;component/Images/SpecialCell/CommunityChest.jpg" 
                         Opacity="0.8"
                             />
@@ -289,7 +294,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                          
                             ImageCell="/Monopoly;component/Images/planet/planet10.jpg" 
                         Opacity="0.5"
                             />
@@ -303,7 +308,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                         
                             ImageCell="/Monopoly;component/Images/planet/planet11.jpg" 
                         Opacity="0.5"
                             />
@@ -317,7 +322,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                           
                             ImageCell="/Monopoly;component/Images/planet/planet12.png"
                         Opacity="0.5"
                             />
@@ -332,7 +337,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                           
                             ImageCell="/Monopoly;component/Images/SpecialCell/Power.jpg"
                         Opacity="0.8"
                             />
@@ -346,7 +351,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                           
                             ImageCell="/Monopoly;component/Images/planet/planet13.jpg" 
                         Opacity="0.5"
                             />
@@ -360,7 +365,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                          
                             ImageCell="/Monopoly;component/Images/planet/planet14.jpg"
                         Opacity="0.5"
                             />
@@ -373,7 +378,7 @@
                              CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                           
                             ImageCell="/Monopoly;component/Images/SpecialCell/ParkingLot.jpg"
                         Opacity="0.8"
                             />
@@ -388,7 +393,7 @@
                              CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                          
                             ImageCell="/Monopoly;component/Images/planet/planet28.jpg"
                             Opacity="0.5"
                             />
@@ -402,7 +407,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                           
                             ImageCell="/Monopoly;component/Images/planet/planet27.jpg"
                         Opacity="0.5"
                             />
@@ -416,7 +421,7 @@
                              CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                           
                             ImageCell="/Monopoly;component/Images/SpecialCell/Tax.jpg"
                         Opacity="0.8"
                             />
@@ -430,7 +435,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                          
                             ImageCell="/Monopoly;component/Images/planet/planet26.jpg"
                         Opacity="0.5"
                             />
@@ -444,7 +449,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                            
                             ImageCell="/Monopoly;component/Images/planet/planet25.jpg"
                         Opacity="0.5"
                             />
@@ -458,7 +463,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                          
                             ImageCell="/Monopoly;component/Images/planet/planet24.jpg" 
                         Opacity="0.5"
                             />
@@ -472,7 +477,7 @@
                              CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                          
                             ImageCell="/Monopoly;component/Images/SpecialCell/Power.jpg" 
                         Opacity="0.8"
                             />
@@ -486,7 +491,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                            
                             ImageCell="/Monopoly;component/Images/planet/planet23.jpg"
                         Opacity="0.5"
                             />
@@ -500,7 +505,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                           
                             ImageCell="/Monopoly;component/Images/planet/planet22.jpg"
                         Opacity="0.5"
                             />
@@ -514,7 +519,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                           
                             ImageCell="/Monopoly;component/Images/SpecialCell/GotoPrison.jpg"
                         Opacity="0.8"
                             />
@@ -528,7 +533,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                           
                             ImageCell="/Monopoly;component/Images/planet/planet15.jpg"
                         Opacity="0.5"
                             />
@@ -542,7 +547,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                             
                             ImageCell="/Monopoly;component/Images/planet/planet16.jpg"
                         Opacity="0.5"
                             />
@@ -556,7 +561,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                            
                             ImageCell="/Monopoly;component/Images/SpecialCell/Chance.jpg"
                         Opacity="0.8"
                             />
@@ -570,7 +575,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                            
                             ImageCell="/Monopoly;component/Images/planet/planet17.jpg"
                         Opacity="0.5"
                             />
@@ -584,7 +589,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                           
                             ImageCell="/Monopoly;component/Images/planet/planet18.jpg"
                         Opacity="0.5"
                             />
@@ -598,7 +603,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                         
                             ImageCell="/Monopoly;component/Images/planet/planet19.jpg"
                         Opacity="0.5"
                             />
@@ -612,7 +617,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                          
                             ImageCell="/Monopoly;component/Images/SpecialCell/CommunityChest.jpg"
                         Opacity="0.8"
                             />
@@ -626,7 +631,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                            
                             ImageCell="/Monopoly;component/Images/planet/planet20.jpg"
                         Opacity="0.5"
                             />
@@ -640,7 +645,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            IsHitTestVisible ="False"  
+                           
                             ImageCell="/Monopoly;component/Images/planet/planet21.jpg"
                             Opacity="0.5"
                             ang="180"
