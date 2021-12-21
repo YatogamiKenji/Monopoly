@@ -654,8 +654,8 @@
 
                 <Popup x:Name="popup_top"
                AllowsTransparency="True"
-               HorizontalOffset="-180"
-               VerticalOffset="70">
+               HorizontalOffset="-155"
+               VerticalOffset="50" Grid.ColumnSpan="2" Margin="20,0,210,0">
                     <Grid>
                         <compoenent:popup angle="450" x:Name="texttop" Foreground="#E0FFFF"/>
                     </Grid>
@@ -665,8 +665,8 @@
 
                 <Popup x:Name="popup_bottom"
                AllowsTransparency="True"
-               HorizontalOffset="-245"
-               VerticalOffset="-70" Grid.ColumnSpan="2" Margin="20,0,210,0">
+               HorizontalOffset="-265"
+               VerticalOffset="-325" Grid.ColumnSpan="2" Margin="20,0,210,0">
                     <Grid>
                         <compoenent:popup angle="270" x:Name="textbottom" Foreground="#E0FFFF"/>
                     </Grid>
@@ -675,8 +675,9 @@
 
                 <Popup x:Name="popup_right"
                AllowsTransparency="True"
-               HorizontalOffset="10"
-               VerticalOffset="-115">
+               HorizontalOffset="-410"
+               VerticalOffset="-95"
+               >
                     <Grid>
                         <compoenent:popup angle="180" x:Name="textright" Foreground="#E0FFFF"/>
                     </Grid>
@@ -685,8 +686,8 @@
 
                 <Popup x:Name="popup_left"
                AllowsTransparency="True"
-               HorizontalOffset="-10"
-               VerticalOffset="-180">
+               HorizontalOffset="-30"
+               VerticalOffset="-200">
                     <Grid>
                         <compoenent:popup x:Name="textleft" Foreground="#E0FFFF"/>
                     </Grid>

@@ -7,7 +7,7 @@
              x:Name="root"
              mc:Ignorable="d" 
              d:DesignHeight="360" d:DesignWidth="360">
-    <Grid >
+    <Grid>
         <Grid RenderTransformOrigin="0.5,0.5" >
             <Grid.RenderTransform>
                 <TransformGroup>
@@ -22,21 +22,21 @@
 
             <Line            
             X1="50" Y1="30"
-            X2="10" Y2="50"
+            X2="25" Y2="70"
             Stroke="AliceBlue"
-            StrokeThickness="2" Height="60" Width="80" Margin="11,162,269,138" />
+            StrokeThickness="2" Width="80" Margin="11,162,269,124" />
             <Line            
             X1="50" Y1="30"
             X2="70" Y2="30"
             Stroke="AliceBlue"
             StrokeThickness="2" Height="60" Width="80" Margin="10,162,270,138" />
-            
+
             <Ellipse
          Width="8"
          Height="8"
          Stroke="AliceBlue"
          StrokeThickness="2"
-         Margin="14,209,338,143" />
+         Margin="31,230,321,122" />
 
         </Grid>
         <TextBlock x:Name="PopupText" Text="" Width="140" Height="130" FontStyle="Italic" HorizontalAlignment="Left"
