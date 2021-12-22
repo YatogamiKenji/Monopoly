@@ -1330,16 +1330,21 @@ namespace Monopoly.Components
             }
         }
 
+        bool isSetting = false;
+
         //nút setting
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
-            SwitchView(CenterMapView.Setting);
+            isSetting = !isSetting;
+            if (isSetting) SwitchView(CenterMapView.Setting);
+            else SwitchView(CenterMapView.Prev);
             PauseTimer();
         }
 
         //tắt setting
         private void Setting_OnOkButtonClick(object sender, RoutedEventArgs e)
         {
+            isSetting = !isSetting;
             SwitchView(CenterMapView.Prev);
             ResumeTimer();
         }
