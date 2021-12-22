@@ -14,10 +14,13 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
 using System.IO;
+using Microsoft.Win32;
 using Monopoly.Components;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using System.Windows.Media.Animation;
+
 namespace Monopoly
 {
     /// <summary>
@@ -111,13 +114,19 @@ namespace Monopoly
         void CreateEndGame(Player player)
         {
             endGame endGame = new endGame(player);
-            endGame.OnExitButtonClick += EndGame_OnExitButtonClick;
-            view.Content = endGame;
+            endGame.OnExitButtonClick += EndGame_OnExitButtonClick;            
+            endgame.Content = endGame;
+            view.Opacity = 0.7;
+            Storyboard slide = Resources["OpenMenu"] as Storyboard;
+            slide.Begin(endgame);
         }
 
         //trở về view start
         private void EndGame_OnExitButtonClick(object sender, RoutedEventArgs e)
         {
+            Storyboard slide = Resources["CloseMenu"] as Storyboard;
+            slide.Begin(endgame);
+            view.Opacity = 1;
             CreateViewStart();
         }
 

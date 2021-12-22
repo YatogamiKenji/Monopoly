@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Monopoly.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="760" d:DesignWidth="1280">
+             d:DesignHeight="500" d:DesignWidth="850">
     <UserControl.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1"/>
@@ -21,21 +21,22 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Winner" FontFamily="{StaticResource mainFont}" FontSize="50" Foreground="Red" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+        <TextBlock Text="Winner" FontFamily="{StaticResource mainFont}" FontSize="50" Foreground="Red" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,5,0,0"/>
 
-        <Image Grid.Column="0" Source="/Images/panel/panel_endgame.jpg" Opacity="0.6" Width="350" Stretch="Uniform"/>
+        <Image Grid.Column="0" Source="/Images/panel/panel_endgame.jpg" Opacity="0.6" Width="250" Height="350" Stretch="Uniform"/>
 
-        <Image Grid.Column="0" Source="/Images/rank/camp.png" Height="270" Margin="0,110,0,380" x:Name="champrank"/>
+        
+        <Image Grid.Column="0" Source="/Images/rank/camp.png" Margin="46,43,46,258" x:Name="champrank"/>
 
-        <TextBlock x:Name="playerName" FontSize="50" Style="{StaticResource TitleCardText}" Width="230" Height="70" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,422,0,0" TextAlignment="Center"/>
+        <TextBlock x:Name="playerName" FontSize="50" Style="{StaticResource TitleCardText}" Width="230" Height="70" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="96,355,0,0" TextAlignment="Center"/>
 
-        <Button Grid.Column="0" Panel.ZIndex="10" Content="Exit" Style="{StaticResource BtnStyle1Red}" Margin="61,680,460,41" Click="Button_Click"/>
+        <Button  Panel.ZIndex="10" Content="EXIT" Foreground="AliceBlue" FontSize="20" FontWeight="Heavy" FontStyle="Italic"  Style="{StaticResource BtnStyle1Red}" Margin="24,451,283,10" Click="Button_Click"/>
 
-        <Grid Grid.Column="1" Margin="0,30,0,30">
+        <Grid Grid.Column="1" Margin="32,10,38,25">
             <Grid.Background>
-                <ImageBrush ImageSource="/Monopoly;component/Images/sidebar/sidebar.png" Opacity="0.8" Stretch="Uniform"></ImageBrush>
+                <ImageBrush ImageSource="/Monopoly;component/Images/sidebar/sidebar.png" Opacity="0.8" Stretch="Fill"></ImageBrush>
             </Grid.Background>
-            <ContentControl x:Name="SideBar" VerticalAlignment="Center" HorizontalAlignment="Center"></ContentControl>
+            <ContentControl x:Name="SideBar" Width="335" Height="455" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0"/>
         </Grid>
     </Grid>
 </UserControl>
