@@ -764,5 +764,8 @@
             </Grid>
 
         </Canvas>
+
+        <Grid x:Name="Override" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="Transparent"></Grid>
+        
     </Grid>
 </UserControl>

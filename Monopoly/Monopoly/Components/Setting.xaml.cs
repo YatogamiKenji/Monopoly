@@ -48,6 +48,7 @@ namespace Monopoly.Components
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
+            Sound.BackButton();
             RaiseEvent(new RoutedEventArgs(OkButtonClickEvent));
         }
     }

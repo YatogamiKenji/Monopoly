@@ -40,12 +40,14 @@ namespace Monopoly.Components
         bool gameMode = true; //chọn chế độ chơi (true: Unlimied, false: Setup)
         int numberTurns = 0; //số lượt chơi ở chế độ Setup
         public static Setup instance;
+
         public Setup()
         {
             InitializeComponent();
             ShowPlayers = new List<PlayerShow>();
             instance = this;
             choselimitted.Visibility = Visibility.Visible;
+            Override.Visibility = Visibility.Hidden;
         }
 
         public static readonly RoutedEvent BackButtonClickEvent =
@@ -118,6 +120,7 @@ namespace Monopoly.Components
             player2.Visibility = Visibility.Visible;
             player3.Visibility = Visibility.Collapsed;
             player4.Visibility = Visibility.Collapsed;
+            Override.Visibility = Visibility.Visible;
         }
 
         // Khởi tạo có 3 người chơi
@@ -134,6 +137,7 @@ namespace Monopoly.Components
             player2.Visibility = Visibility.Visible;
             player3.Visibility = Visibility.Visible;
             player4.Visibility = Visibility.Collapsed;
+            Override.Visibility = Visibility.Visible;
         }
 
         // Khởi tạo có 4 người chơi
@@ -150,6 +154,7 @@ namespace Monopoly.Components
             player2.Visibility = Visibility.Visible;
             player3.Visibility = Visibility.Visible;
             player4.Visibility = Visibility.Visible;
+            Override.Visibility = Visibility.Visible;
         }
 
         //Khởi tạo chế độ Setup
@@ -159,11 +164,9 @@ namespace Monopoly.Components
             slide.Begin(setup_chose);
             chosesetup.Visibility = Visibility.Visible;
             choselimitted.Visibility = Visibility.Collapsed;
+            Override.Visibility = Visibility.Visible;
             Sound.StartButton();
             gameMode = false;
-            //numberTurns = 3;
-
-
         }
 
         //Khởi tạo chế độ Limited
@@ -191,6 +194,7 @@ namespace Monopoly.Components
         }
 
         public Player player11 = new Player();
+
         private void ok_Click(object sender, RoutedEventArgs e)
         {
             Sound.StartButton();
@@ -205,6 +209,7 @@ namespace Monopoly.Components
             nameplayer[1] = nameplayer2.Text;
             nameplayer[2] = nameplayer3.Text;
             nameplayer[3] = nameplayer4.Text;
+            Override.Visibility = Visibility.Hidden;
         }
 
         private void TextChangedFuntion(object sender, TextChangedEventArgs e)
@@ -221,6 +226,7 @@ namespace Monopoly.Components
                 slide.Begin(setup_chose);
                 numberTurns = int.Parse(turn.Text);
             }
+            Override.Visibility = Visibility.Hidden;
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

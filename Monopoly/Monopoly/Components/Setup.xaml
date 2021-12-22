@@ -255,8 +255,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
     </UserControl.Resources>
+    
     <Grid Width="1280" Height="760">
 
         <Grid.Background>
@@ -324,7 +324,7 @@
             </Grid>
         </Popup>
 
-        <Grid x:Name="createName" Margin="385,-617,385,787">
+        <Grid Panel.ZIndex="1" x:Name="createName" Margin="385,-617,385,787">
             <Grid.Background>
                 <ImageBrush ImageSource="/Monopoly;component/Images/panel/panel_center_map.png" Opacity="0.9"></ImageBrush>
             </Grid.Background>
@@ -490,7 +490,7 @@
                 </Button>
             </Grid>
         </Grid>
-        <Grid x:Name="setup_chose" Width="500" Height="300" Margin="395,-360,385,820">
+        <Grid Panel.ZIndex="1" x:Name="setup_chose" Width="500" Height="300" Margin="395,-360,385,820">
             <Grid.Background>
                 <ImageBrush ImageSource="/Images/panel/panel_setup3.jpg" Stretch="Uniform" Opacity="0.9"/>
             </Grid.Background>
@@ -507,6 +507,9 @@
                 </Button.Background>
             </Button>
         </Grid>
+        
+        <Grid x:Name="Override" Panel.ZIndex="0" Background="Transparent"></Grid>
+    
     </Grid>
 
 </UserControl>

@@ -82,6 +82,7 @@ namespace Monopoly.Components
         {
             InitializeComponent();
             Init();
+            Override.Visibility = Visibility.Hidden;
         }
 
         public ChessBoard(List<PlayerShow> PlayerShowFromSetup)
@@ -89,6 +90,7 @@ namespace Monopoly.Components
             InitializeComponent();
             this.players = PlayerShowFromSetup;
             Init();
+            Override.Visibility = Visibility.Hidden;
         }
 
         public ChessBoard(List<PlayerShow> PlayerShowFromSetup, bool gameMode, int numberTurns)
@@ -98,6 +100,7 @@ namespace Monopoly.Components
             this.gameMode = gameMode;
             this.numberTurns = numberTurns;
             Init();
+            Override.Visibility = Visibility.Hidden;
         }
 
         //khởi tạo giá trị
@@ -1434,6 +1437,7 @@ namespace Monopoly.Components
         {
             countDownTimer.IsEnabled = false;
             RaiseEvent(new EndGameClickEventArgs(EndGameButtonClickEvent) { player = player });
+            Override.Visibility = Visibility.Visible;
         }
 
         #endregion
