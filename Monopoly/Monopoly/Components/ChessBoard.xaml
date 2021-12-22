@@ -38,19 +38,20 @@
             Grid.Column="1">
             <compoenent:SideBar x:Name="sideBar" Opacity="0.8"/>
         </Canvas>
+        
         <Button x:Name="btnSetting"
                 Grid.Column="4"
                 Grid.Row="1"
-                Width="50"
-                Height="50" 
+                Width="25"
+                Height="25" 
                 Margin="17,0,18,650"
                 Click="Setting_Click">
-            <!--<Button.Background>
-                <ImageBrush ImageSource="/Monopoly;component/Images/Setting/icons8-settings-500.png">                 
+            <Button.Background>
+                <ImageBrush ImageSource="/Monopoly;component/Images/Setting/icons8-settings-500.png">
                 </ImageBrush>
-            </Button.Background>-->
-           
+            </Button.Background>
         </Button>
+        
         <Canvas x:Name="Can_BanCo"  Width="auto" Height="auto" Grid.Column="3" Grid.Row ="1" Background="Transparent" >
 
             <Grid x:Name="BanCo" Width="700" Height="700" Grid.Column="3" Grid.Row ="1" >
@@ -654,7 +655,7 @@
 
                 <Popup x:Name="popup_top"
                AllowsTransparency="True"
-               HorizontalOffset="-155"
+               HorizontalOffset="265"
                VerticalOffset="50" Grid.ColumnSpan="2" Margin="20,0,210,0">
                     <Grid>
                         <compoenent:popup angle="450" x:Name="texttop" Foreground="#E0FFFF"/>
@@ -665,7 +666,7 @@
 
                 <Popup x:Name="popup_bottom"
                AllowsTransparency="True"
-               HorizontalOffset="-265"
+               HorizontalOffset="155"
                VerticalOffset="-325" Grid.ColumnSpan="2" Margin="20,0,210,0">
                     <Grid>
                         <compoenent:popup angle="270" x:Name="textbottom" Foreground="#E0FFFF"/>
@@ -675,7 +676,7 @@
 
                 <Popup x:Name="popup_right"
                AllowsTransparency="True"
-               HorizontalOffset="-410"
+               HorizontalOffset="35"
                VerticalOffset="-95"
                >
                     <Grid>
@@ -686,7 +687,7 @@
 
                 <Popup x:Name="popup_left"
                AllowsTransparency="True"
-               HorizontalOffset="-30"
+               HorizontalOffset="405"
                VerticalOffset="-200">
                     <Grid>
                         <compoenent:popup x:Name="textleft" Foreground="#E0FFFF"/>

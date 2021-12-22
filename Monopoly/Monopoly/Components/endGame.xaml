@@ -35,7 +35,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/Monopoly;component/Images/sidebar/sidebar.png" Opacity="0.8" Stretch="Uniform"></ImageBrush>
             </Grid.Background>
-            <ContentControl x:Name="SideBar" VerticalAlignment="Center" HorizontalAlignment="Center"></ContentControl>
+            <ContentControl x:Name="SideBar" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 90 0 0"></ContentControl>
         </Grid>
     </Grid>
 </UserControl>

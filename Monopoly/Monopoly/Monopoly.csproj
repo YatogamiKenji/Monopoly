@@ -220,6 +220,7 @@
     <None Remove="Images\rank\camp.png" />
     <None Remove="Images\rocket-launch-icon.png" />
     <None Remove="Images\rocket.png" />
+    <None Remove="Images\Setting\icons8-settings-500.png" />
     <None Remove="Images\sidebar\list_card_sidebar.png" />
     <None Remove="Images\sidebar\list_land_sidebar.png" />
     <None Remove="Images\sidebar\money_sidebar.png" />
@@ -708,6 +709,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\rank\camp.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Setting\icons8-settings-500.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\sidebar\list_card_sidebar.png" />

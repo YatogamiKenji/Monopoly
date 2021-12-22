@@ -1311,6 +1311,7 @@ namespace Monopoly.Components
             }
         }
 
+        //hàm dừng nhưng không đóng băng chương trình
         public static void Wait(int milliseconds)
         {
             DispatcherTimer timer1 = new DispatcherTimer();
@@ -1329,12 +1330,14 @@ namespace Monopoly.Components
             }
         }
 
+        //nút setting
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
             SwitchView(CenterMapView.Setting);
             PauseTimer();
         }
 
+        //tắt setting
         private void Setting_OnOkButtonClick(object sender, RoutedEventArgs e)
         {
             SwitchView(CenterMapView.Prev);
@@ -1936,9 +1939,7 @@ namespace Monopoly.Components
             popup_right.IsOpen = true;
             textright.PopupText.Text = lands[20].description;
         }
+
         #endregion
-
-
-
     }
 }
