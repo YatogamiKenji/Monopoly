@@ -31,7 +31,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid >
+    <Grid Opacity="0.9">
         <Grid.Background>
             <ImageBrush ImageSource="/Monopoly;component/Images/panel/panel_center_map.png"></ImageBrush>
         </Grid.Background>

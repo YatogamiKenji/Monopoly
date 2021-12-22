@@ -7,7 +7,7 @@
              x:Name="root"
              mc:Ignorable="d" 
              d:DesignHeight="131" d:DesignWidth="97">
-    <Grid Width="97" Height="131">
+    <Grid Opacity="0.9" Width="97" Height="131">
         <Image Source="/Monopoly;component/Images/card/land_card_red.png"
                Stretch="Fill"/>
         <Grid>

@@ -220,7 +220,7 @@
     <None Remove="Images\rank\camp.png" />
     <None Remove="Images\rocket-launch-icon.png" />
     <None Remove="Images\rocket.png" />
-    <None Remove="Images\Setting\icons8-settings-500.png" />
+    <None Remove="Images\Setting\settings.png" />
     <None Remove="Images\sidebar\list_card_sidebar.png" />
     <None Remove="Images\sidebar\list_land_sidebar.png" />
     <None Remove="Images\sidebar\money_sidebar.png" />
@@ -325,10 +325,18 @@
     <Resource Include="Images\avatar\circle-avatar4.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\background\bg.jpg" />
-    <Resource Include="Images\background\bg_endgame.jpg" />
-    <Resource Include="Images\background\bg_startview.jpg" />
-    <Resource Include="Images\background\setup_bg.jpg" />
+    <Resource Include="Images\background\bg.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\background\bg_endgame.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\background\bg_startview.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\background\setup_bg.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\btn\style1\btn_style1_blue.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -711,7 +719,7 @@
     <Resource Include="Images\rank\camp.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Setting\icons8-settings-500.png">
+    <Resource Include="Images\Setting\settings.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\sidebar\list_card_sidebar.png" />

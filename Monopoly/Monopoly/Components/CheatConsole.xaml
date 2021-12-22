@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
-    <Grid>
+    <Grid Opacity="0.9">
         <Grid.Background>
             <ImageBrush ImageSource="/Monopoly;component/Images/panel/panel_center_map.png"></ImageBrush>
         </Grid.Background>

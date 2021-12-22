@@ -7,7 +7,7 @@
              xmlns:layout="clr-namespace:Monopoly.Layouts"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
-    <layout:PanelCenterMap x:Name="thisPanel" Title="{Binding Title}">
+    <layout:PanelCenterMap Opacity="0.9" x:Name="thisPanel" Title="{Binding Title}">
         <Grid x:Name="NoticeTakeCard" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="26"/>

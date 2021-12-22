@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="315" d:DesignWidth="255">
     <!-- Card -->
-    <Grid  Width="225" Height="315">
+    <Grid Opacity="0.9" Width="225" Height="315">
         <Grid.RowDefinitions>
             <RowDefinition Height="34"/>
             <RowDefinition Height="137"/>

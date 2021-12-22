@@ -47,7 +47,7 @@
                 Margin="17,0,18,650"
                 Click="Setting_Click">
             <Button.Background>
-                <ImageBrush ImageSource="/Monopoly;component/Images/Setting/icons8-settings-500.png">
+                <ImageBrush ImageSource="/Monopoly;component/Images/Setting/settings.png">
                 </ImageBrush>
             </Button.Background>
         </Button>
