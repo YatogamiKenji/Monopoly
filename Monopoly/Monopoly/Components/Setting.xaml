@@ -100,13 +100,13 @@
             <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
         </Style>
     </UserControl.Resources>
-    
-    <Grid>
+
+    <Grid Opacity="0.9">
         <Grid.Background>
             <ImageBrush ImageSource="/Monopoly;component/Images/panel/panel_center_map.png"></ImageBrush>
         </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
@@ -120,7 +120,6 @@
                        FontFamily="{StaticResource mainFont}" Foreground="Red" FontSize="30"/>
             <Slider Style="{StaticResource CustomSliderStyle}" Width="300" x:Name="SoundEffectSlider" IsSnapToTickEnabled="True" Margin="20" Minimum="0" Maximum="100" Cursor="Hand"
                     LargeChange="1" ValueChanged="SoundEffectSlider_ValueChanged"/>
-            
         </StackPanel>
         <Button Style="{StaticResource BtnStyle1Red}" Grid.Row="2" x:Name="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Close_Click">Close
         </Button>

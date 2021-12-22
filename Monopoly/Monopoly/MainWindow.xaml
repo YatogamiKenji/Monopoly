@@ -19,7 +19,7 @@
             <ThicknessAnimation Storyboard.TargetProperty="Margin" From="215,122,215,123" To="215,1000,215,-220" DecelerationRatio="0.9" Duration="0:0:0"/>
         </Storyboard>
     </Window.Resources>
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="35"></RowDefinition>
             <RowDefinition></RowDefinition>

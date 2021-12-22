@@ -14,6 +14,64 @@
             <DoubleAnimation BeginTime="0:0:1.5" Storyboard.TargetProperty="Opacity" From="1.0" To="0.0" Duration="0:0:1.0"/>
             <ThicknessAnimation BeginTime="0:0:3" Storyboard.TargetProperty="Margin" From="275,173,275,377" To="275,-175,275,35" DecelerationRatio="0.9" Duration="0:0:1"/>
         </Storyboard>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonSetting" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Button.Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="100" RenderingBias="Performance" Opacity="1" ShadowDepth ="0" Color ="White"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
 
     <Grid x:Name="nen" Width="1280" Height="760" KeyDown="KeyIsDown">
@@ -38,19 +96,21 @@
             Grid.Column="1">
             <compoenent:SideBar x:Name="sideBar" Opacity="0.8"/>
         </Canvas>
-        <Button x:Name="btnSetting"
+        
+        <Button Style="{DynamicResource ButtonSetting}" x:Name="btnSetting"
                 Grid.Column="4"
                 Grid.Row="1"
-                Width="50"
-                Height="50" 
-                Margin="17,0,18,650"
+                Width="40"
+                Height="40" 
+                BorderThickness="0"
+                Margin="10,5,10,655"
                 Click="Setting_Click">
-            <!--<Button.Background>
-                <ImageBrush ImageSource="/Monopoly;component/Images/Setting/icons8-settings-500.png">                 
-                </ImageBrush>
-            </Button.Background>-->
-           
+            <Button.Background>
+                <ImageBrush ImageSource="/Monopoly;component/Images/Setting/settings.png"/>
+
+            </Button.Background>
         </Button>
+        
         <Canvas x:Name="Can_BanCo"  Width="auto" Height="auto" Grid.Column="3" Grid.Row ="1" Background="Transparent" >
 
             <Grid x:Name="BanCo" Width="700" Height="700" Grid.Column="3" Grid.Row ="1" >
@@ -89,7 +149,7 @@
                             Width="80" 
                             BorderThickness="1" 
                             CornerRadius="5">
-
+                            
                     <compoenent:ContentChessCell 
                             x:Name="o10"
                             Opacity = "0.8" 
@@ -654,8 +714,8 @@
 
                 <Popup x:Name="popup_top"
                AllowsTransparency="True"
-               HorizontalOffset="-155"
-               VerticalOffset="50" Grid.ColumnSpan="2" Margin="20,0,210,0">
+               HorizontalOffset="-130"
+               VerticalOffset="85" >
                     <Grid>
                         <compoenent:popup angle="450" x:Name="texttop" Foreground="#E0FFFF"/>
                     </Grid>
@@ -665,8 +725,8 @@
 
                 <Popup x:Name="popup_bottom"
                AllowsTransparency="True"
-               HorizontalOffset="-265"
-               VerticalOffset="-325" Grid.ColumnSpan="2" Margin="20,0,210,0">
+               HorizontalOffset="-130"
+               VerticalOffset="-205">
                     <Grid>
                         <compoenent:popup angle="270" x:Name="textbottom" Foreground="#E0FFFF"/>
                     </Grid>
@@ -675,8 +735,8 @@
 
                 <Popup x:Name="popup_right"
                AllowsTransparency="True"
-               HorizontalOffset="-410"
-               VerticalOffset="-95"
+               HorizontalOffset="-285"
+               VerticalOffset="-80"
                >
                     <Grid>
                         <compoenent:popup angle="180" x:Name="textright" Foreground="#E0FFFF"/>
@@ -686,8 +746,8 @@
 
                 <Popup x:Name="popup_left"
                AllowsTransparency="True"
-               HorizontalOffset="-30"
-               VerticalOffset="-200">
+               HorizontalOffset="5"
+               VerticalOffset="-80">
                     <Grid>
                         <compoenent:popup x:Name="textleft" Foreground="#E0FFFF"/>
                     </Grid>

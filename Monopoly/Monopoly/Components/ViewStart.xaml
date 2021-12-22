@@ -74,7 +74,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Images/background/bg_startview.jpg" Stretch="Fill"/>
         </Grid.Background>
-        <TextBlock Text="MONOPOLY"
+        <TextBlock Text="King Of Galaxy"
                    
                    Height="170"
                    Width="1100" 

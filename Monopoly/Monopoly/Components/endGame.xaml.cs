@@ -24,7 +24,7 @@ namespace Monopoly.Components
         {
             InitializeComponent();
             ContentSideBar contentSideBar = new ContentSideBar(player);
-            SideBar.Content = contentSideBar;
+            Sidebar.Content = contentSideBar;
             playerName.Text = player.name;
         }
 

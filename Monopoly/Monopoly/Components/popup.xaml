@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Monopoly.Components"
              x:Name="root"
              mc:Ignorable="d" 
-             d:DesignHeight="360" d:DesignWidth="360">
+             d:DesignHeight="220" d:DesignWidth="220">
     <Grid>
         <Grid RenderTransformOrigin="0.5,0.5" >
             <Grid.RenderTransform>
@@ -14,32 +14,57 @@
                     <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform Angle="{Binding angle, ElementName=root}"/>
-                    <TranslateTransform X="0.459" Y="-0.713"/>
                 </TransformGroup>
             </Grid.RenderTransform>
-
-            <Image Source="/Images/panel/panel_setup1.jpg" Opacity="0.9" Width="200"/>
-
-            <Line            
-            X1="50" Y1="30"
-            X2="25" Y2="70"
-            Stroke="AliceBlue"
-            StrokeThickness="2" Width="80" Margin="11,162,269,124" />
-            <Line            
-            X1="50" Y1="30"
-            X2="70" Y2="30"
-            Stroke="AliceBlue"
-            StrokeThickness="2" Height="60" Width="80" Margin="10,162,270,138" />
-
+            
+            <Image Source="/Images/panel/panel_setup1.jpg" Opacity="0.9" Height="200" Width="200"/>
             <Ellipse
-         Width="8"
-         Height="8"
-         Stroke="AliceBlue"
-         StrokeThickness="2"
-         Margin="31,230,321,122" />
-
+                 Width="20"
+                 Height="20"
+                 Stroke="AliceBlue"
+                 StrokeThickness="5"
+                 Panel.ZIndex="10"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 />
+            <Ellipse
+                 Width="20"
+                 Height="20"
+                 Stroke="Gray"
+                 StrokeThickness="4"
+                 Panel.ZIndex="10"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 />
+            <Ellipse
+                 Width="20"
+                 Height="20"
+                 Stroke="CornflowerBlue"
+                 StrokeThickness="3"
+                 Panel.ZIndex="10"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 />
+            <Ellipse
+                 Width="20"
+                 Height="20"
+                 Stroke="White"
+                 StrokeThickness="2"
+                 Panel.ZIndex="10"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 />
+            <Ellipse
+                 Width="20"
+                 Height="20"
+                 Stroke="Tomato"
+                 StrokeThickness="1"
+                 Panel.ZIndex="10"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 />
         </Grid>
-        <TextBlock x:Name="PopupText" Text="" Width="140" Height="130" FontStyle="Italic" HorizontalAlignment="Left"
-                   VerticalAlignment="Center" TextWrapping="Wrap" Foreground="AliceBlue" Margin="109,0,0,0"/>
+        <TextBlock x:Name="PopupText" Text="" Width="140" Height="130" FontStyle="Italic" HorizontalAlignment="Center"
+                   VerticalAlignment="Center" TextWrapping="Wrap" Foreground="AliceBlue"/>
     </Grid>
 </UserControl>
