@@ -13,10 +13,10 @@
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5"/>
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="215,-605,215,850" To="215,122,215,123" DecelerationRatio="0.9" Duration="0:0:1"/>
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="140,-700,140,835" To="140,67,140,67" DecelerationRatio="0.9" Duration="0:0:1"/>
         </Storyboard>
         <Storyboard x:Key="CloseMenu">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="215,122,215,123" To="215,1000,215,-220" DecelerationRatio="0.9" Duration="0:0:0"/>
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="140,67,140,67" To="140,-700,140,835" DecelerationRatio="0.9" Duration="0:0:0"/>
         </Storyboard>
     </Window.Resources>
     <Grid >
@@ -67,7 +67,7 @@
             <ContentControl x:Name="view"/>
         </Grid>
         <Grid Grid.Row="1">
-            <ContentControl Width="850" Height="500" x:Name="endgame" Margin="215,-605,215,850"/>
+            <ContentControl Width="1000" Height="610" x:Name="endgame" Margin="140,-700,140,835"/>
         </Grid>
         <Grid Grid.Row="2" Name="QuitBox">
             <Grid Background="WhiteSmoke" Opacity="0.5"></Grid>
