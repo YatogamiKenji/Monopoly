@@ -7,18 +7,18 @@ using System.Windows;
 
 namespace Monopoly
 {
-    public class UseACardButtonClickEventArgs : RoutedEventArgs
+    public class RemoveCardButtonClickEventArgs : RoutedEventArgs
     {
         public Power power { get; set; }
         public bool isEnoughMoneyToUse { get; set; }
 
-        public UseACardButtonClickEventArgs()
+        public RemoveCardButtonClickEventArgs()
         {
         }
-        public UseACardButtonClickEventArgs(RoutedEvent routedEvent) : base(routedEvent)
+        public RemoveCardButtonClickEventArgs(RoutedEvent routedEvent) : base(routedEvent)
         {
         }
-        public UseACardButtonClickEventArgs(RoutedEvent routedEvent, object source) : base(routedEvent, source)
+        public RemoveCardButtonClickEventArgs(RoutedEvent routedEvent, object source) : base(routedEvent, source)
         {
         }
     }

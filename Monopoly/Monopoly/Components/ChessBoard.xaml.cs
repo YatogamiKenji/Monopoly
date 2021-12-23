@@ -123,7 +123,6 @@ namespace Monopoly.Components
             countDownTimer.Tick += CountDownTimer_Tick;
             countDownTimer.Start();
 
-
             SwitchView(CenterMapView.Dice);
         }
 
@@ -144,57 +143,6 @@ namespace Monopoly.Components
             sideBar.update(playersList, PlayerTurn);
 
             PowerStart();
-
-            playersList[0].AddPower(new PowerDoubleDice());
-            playersList[0].AddPower(new PowerDoublePriceLandForever());
-            playersList[0].AddPower(new PowerDoubleTax());
-            playersList[0].AddPower(new PowerDoubleTheValueStarting());
-            playersList[0].AddPower(new PowerExemptFromPrison());
-            playersList[0].AddPower(new PowerHalveUpgradeFee());
-            playersList[0].AddPower(new PowerMoveToAnyCell());
-            playersList[0].AddPower(new PowerRemoveAdverseEffects());
-            playersList[0].AddPower(new PowerRemoveLoseMoneyNext());
-            playersList[0].AddPower(new PowerTeleport());
-            playersList[0].AddPower(new PowerAppointPersonToPrison());
-            playersList[0].AddPower(new PowerCancelPowerCard());
-            playersList[0].AddPower(new PowerFreezeBankAccounts());
-            playersList[0].AddPower(new PowerHoldAPerson());
-            playersList[0].AddPower(new PowerLandLevelReduction());
-            playersList[0].AddPower(new PowerLandPriceHalved());
-            playersList[0].AddPower(new PowerLockAPlotOfLand());
-            playersList[0].AddPower(new PowerSplitDice());
-            playersList[0].AddPower(new PowerStealLand());
-            playersList[0].AddPower(new PowerTeleportPersonToTheTax());
-            //playersList[0].AddLand(lands[0], 0, 1);
-            //playersList[0].AddLand(lands[1], 1, 2);
-            //playersList[0].AddLand(lands[2], 2, 4);
-            //playersList[0].AddLand(lands[3], 3, 5);
-            //playersList[0].AddLand(lands[4], 4, 6);
-            //playersList[0].AddLand(lands[5], 5, 8);
-            playersList[1].AddPower(new PowerDoubleDice());
-            playersList[1].AddPower(new PowerDoublePriceLandForever());
-            playersList[1].AddPower(new PowerDoubleTax());
-            playersList[1].AddPower(new PowerDoubleTheValueStarting());
-            playersList[1].AddPower(new PowerExemptFromPrison());
-            playersList[1].AddPower(new PowerHalveUpgradeFee());
-            playersList[1].AddPower(new PowerMoveToAnyCell());
-            playersList[1].AddPower(new PowerRemoveAdverseEffects());
-            playersList[1].AddPower(new PowerRemoveLoseMoneyNext());
-            playersList[1].AddPower(new PowerTeleport());
-            playersList[1].AddPower(new PowerAppointPersonToPrison());
-            playersList[1].AddPower(new PowerCancelPowerCard());
-            playersList[1].AddPower(new PowerFreezeBankAccounts());
-            playersList[1].AddPower(new PowerHoldAPerson());
-            playersList[1].AddPower(new PowerLandLevelReduction());
-            playersList[1].AddPower(new PowerLandPriceHalved());
-            playersList[1].AddPower(new PowerLockAPlotOfLand());
-            playersList[1].AddPower(new PowerSplitDice());
-            playersList[1].AddPower(new PowerStealLand());
-            playersList[1].AddPower(new PowerTeleportPersonToTheTax());
-            //playersList[1].AddLand(lands[6], 6, 9);
-            //playersList[1].AddLand(lands[7], 7, 11);
-            //playersList[1].AddLand(lands[8], 8, 12);
-            playersList[1].money = 0;
         }
 
         //khởi tạo data
@@ -358,7 +306,7 @@ namespace Monopoly.Components
                 sideBar.update(playersList, PlayerTurn);
             }
 
-            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đã sử dụng hiệu ứng của thẻ Teleport để di\n chuyển đến ô ", "Green"), 2.5, (str) =>
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Hiệu ứng của thẻ Teleport đã kích hoạt", "Green"), 2.5, (str) =>
             {
                 playersList[PlayerTurn].position = index;
                 Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[index]));
@@ -1356,6 +1304,7 @@ namespace Monopoly.Components
         #endregion
 
         #region Cheat
+
         bool IsCheatOn = false;
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
@@ -1366,6 +1315,7 @@ namespace Monopoly.Components
                 PauseTimer();
             }
         }
+
         public double RemainTime;
         private void PauseTimer()
         {
@@ -1377,6 +1327,7 @@ namespace Monopoly.Components
         {
             CommandExe(CheatConsole.command_line);           
         }
+
         public void CommandExe(string cmd)
         {
             /*Hướng dẫn thêm command vào cheat console: 
@@ -1413,6 +1364,7 @@ namespace Monopoly.Components
                 sideBar.update(playersList, PlayerTurn);
             }       
         }
+
         private void CheatConsole_OnExitButtonClick(object sender, RoutedEventArgs e)
         {
             IsCheatOn = false;
@@ -1425,8 +1377,10 @@ namespace Monopoly.Components
             countDown = RemainTime;
             countDownTimer.Start();
         }
+
         public static readonly RoutedEvent EndGameButtonClickEvent =
             EventManager.RegisterRoutedEvent(nameof(OnEndGameButtonClick), RoutingStrategy.Bubble, typeof(BtnEndGameClickEventHandler), typeof(ChessBoard));
+        
         public event BtnEndGameClickEventHandler OnEndGameButtonClick
         {
             add { AddHandler(EndGameButtonClickEvent, value); }

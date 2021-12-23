@@ -9,7 +9,6 @@ namespace Monopoly
 {
     public class SpinnedDiceEventAgrs : RoutedEventArgs
     {
-
         public int valueOfDice { get; set; }
 
         public SpinnedDiceEventAgrs()
