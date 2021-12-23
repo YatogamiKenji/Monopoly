@@ -15,7 +15,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Cheat Console" Background="Transparent" FontFamily="{StaticResource mainFont}" Foreground="Red" FontSize="50"></TextBlock>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Cheat Console" Background="Transparent" FontFamily="{StaticResource mainFont}" Foreground="Red" FontSize="50" Height="80"></TextBlock>
         <StackPanel Grid.Row="1" Height="200" Width="500" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Enter your command"
                        FontFamily="{StaticResource mainFont}" Foreground="Red" FontSize="30"/>

@@ -117,12 +117,12 @@ namespace Monopoly.Components
 
         private void ABOUT_MouseEnter(object sender, MouseEventArgs e)
         {
-            ABOUT.Content = "OUR";
+            ABOUT.Content = "VỀ CHÚNG TÔI";
         }
 
         private void ABOUT_MouseLeave(object sender, MouseEventArgs e)
         {
-            ABOUT.Content = "ABOUT";
+            ABOUT.Content = "VỀ CHÚNG TÔI";
         }
 
         public static readonly RoutedEvent GuideButtonClickEvent =

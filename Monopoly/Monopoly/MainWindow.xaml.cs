@@ -58,7 +58,7 @@ namespace Monopoly
         //nut about
         private void ViewStart_OnAboutButtonClick(object sender, RoutedEventArgs e)
         {
-            
+            CreateAbout();
         }
 
         //nút play
@@ -130,6 +130,20 @@ namespace Monopoly
             CreateViewStart();
         }
 
+        #endregion
+
+        #region View About
+        private void CreateAbout()
+        {
+            ViewAbout viewAbout = new ViewAbout();
+            viewAbout.OnBackButtonClick += ViewAbout_OnBackButtonClick;
+            view.Content = viewAbout;
+        }
+
+        private void ViewAbout_OnBackButtonClick(object sender, RoutedEventArgs e)
+        {
+            CreateViewStart();
+        }
         #endregion
 
         #region Hàm khác

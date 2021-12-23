@@ -1348,8 +1348,7 @@ namespace Monopoly.Components
             {
                 CMD = cmd.Split(' ');
                 ID = Int32.Parse(CMD[0]);
-                player = Int32.Parse(CMD[1])-1;
-                
+                player = Int32.Parse(CMD[1])-1;               
                 ammount = Int32.Parse(CMD[2]);
                 switch (ID)
                 {

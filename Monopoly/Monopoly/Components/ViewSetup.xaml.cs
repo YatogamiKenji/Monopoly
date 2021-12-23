@@ -183,12 +183,12 @@ namespace Monopoly.Components
             rocketstart.PlacementTarget = start;
             rocketstart.Placement = PlacementMode.Right;
             rocketstart.IsOpen = true;
-            start.Content = "GO!!";
+            start.Content = "ĐI NÀO!!!";
         }
 
         private void Button_MouseLeave(object sender, MouseEventArgs e)
         {
-            start.Content = "START";
+            start.Content = "SẴN SÀNG";
             rocketstart.Visibility = Visibility.Collapsed;
             rocketstart.IsOpen = false;
         }
