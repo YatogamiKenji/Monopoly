@@ -1061,110 +1061,125 @@ namespace Monopoly.Components
 
         void SwitchView(CenterMapView view)
         {
-            // Chuyển lại view trước đó
-            if (view == CenterMapView.Prev)
-            {
-                if (stackView.Count != 0)
-                    stackView.Pop(); // pop view hiện tại
 
-                if (stackView.Count == 0)
+            try
+            {
+                if (centerMapView.Content != null)
+                    ((BaseCenterMapView)centerMapView.Content).unmoutedAnim(); // Chạy animation ẩn view
+            }
+            catch (Exception ex) { };
+
+            // Đợi 0.1s sau khi chạy xong animation ẩn view
+            Noti.SetTimeout(() =>
+            {
+
+                // Chuyển lại view trước đó
+                if (view == CenterMapView.Prev)
                 {
-                    SwitchView(CenterMapView.Dice);
+                    if (stackView.Count != 0)
+                        stackView.Pop(); // pop view hiện tại
+
+                    if (stackView.Count == 0)
+                    {
+                        SwitchView(CenterMapView.Dice);
+                        return;
+                    }
+
+                    if (stackView.Count != 0)
+                        SwitchView(stackView.Pop()); // Chuyển sang view trước
+
+                    return;
+                }
+                // Dice view: xoá toàn bộ stack và chuyển view
+                if (view == CenterMapView.Dice)
+                {
+                    stackView.Clear();
+                    DiceView diceView = new DiceView();
+                    diceView.OnSpinnedDice += HandleSpinnedDice;
+                    diceView.OnButtonClick += (s, e) => { countDownTimer.Stop(); };
+                    centerMapView.Content = diceView;
                     return;
                 }
 
-                if (stackView.Count != 0)
-                    SwitchView(stackView.Pop()); // Chuyển sang view trước
-                
-                return;
-            }
-            // Dice view: xoá toàn bộ stack và chuyển view
-            if (view == CenterMapView.Dice)
-            {
-                stackView.Clear();
-                DiceView diceView = new DiceView();
-                diceView.OnSpinnedDice += HandleSpinnedDice;
-                diceView.OnButtonClick += (s, e) => { countDownTimer.Stop(); };
-                centerMapView.Content = diceView;
-                return;
-            }
+                stackView.Push(view);
+                switch (view)
+                {
+                    case CenterMapView.ComeEmptyLand:
+                        ComeEmptyLandView comeEmptyLandView = new ComeEmptyLandView(getCurrentLand());
+                        comeEmptyLandView.OnBuyButtonClick += ComeEmptyLandView_OnBuyButtonClick;
+                        comeEmptyLandView.OnSkipButtonClick += EndTurn;
+                        comeEmptyLandView.OnUseCardButtonClick += SwitchToUseCardView;
+                        centerMapView.Content = comeEmptyLandView;
+                        break;
 
-            stackView.Push(view);
-            switch (view)
-            {
-                case CenterMapView.ComeEmptyLand:
-                    ComeEmptyLandView comeEmptyLandView = new ComeEmptyLandView(getCurrentLand());
-                    comeEmptyLandView.OnBuyButtonClick += ComeEmptyLandView_OnBuyButtonClick;
-                    comeEmptyLandView.OnSkipButtonClick += EndTurn;
-                    comeEmptyLandView.OnUseCardButtonClick += SwitchToUseCardView;
-                    centerMapView.Content = comeEmptyLandView;
-                    break;
+                    case CenterMapView.ComeOwnLand:
+                        ComeOwnLandView comeOwnLandView = new ComeOwnLandView(getCurrentLand(), 1);
+                        comeOwnLandView.OnSellButtonClick += ComeOwnLandView_OnSellButtonClick;
+                        comeOwnLandView.OnUpgradeButtonClick += ComeOwnLandView_OnUpgradeButtonClick;
+                        comeOwnLandView.OnSkipButtonClick += EndTurn;
+                        comeOwnLandView.OnUseCardButtonClick += SwitchToUseCardView;
+                        centerMapView.Content = comeOwnLandView;
+                        break;
 
-                case CenterMapView.ComeOwnLand:
-                    ComeOwnLandView comeOwnLandView = new ComeOwnLandView(getCurrentLand(), 1);
-                    comeOwnLandView.OnSellButtonClick += ComeOwnLandView_OnSellButtonClick;
-                    comeOwnLandView.OnUpgradeButtonClick += ComeOwnLandView_OnUpgradeButtonClick;
-                    comeOwnLandView.OnSkipButtonClick += EndTurn;
-                    comeOwnLandView.OnUseCardButtonClick += SwitchToUseCardView;
-                    centerMapView.Content = comeOwnLandView;
-                    break;
+                    case CenterMapView.ComePower:
+                        GotoPower();
+                        break;
 
-                case CenterMapView.ComePower:
-                    GotoPower();
-                    break;
+                    case CenterMapView.ComeLuck:
+                        GotoCommunityChest();
+                        break;
 
-                case CenterMapView.ComeLuck:
-                    GotoCommunityChest();
-                    break;
+                    case CenterMapView.ComeChance:
+                        GotoChance();
+                        break;
 
-                case CenterMapView.ComeChance:
-                    GotoChance();
-                    break;
+                    case CenterMapView.PlayerUsing:
+                        centerMapView.Content = playerUsing;
+                        break;
 
-                case CenterMapView.PlayerUsing:
-                    centerMapView.Content = playerUsing;
-                    break;
+                    case CenterMapView.UseCard:
+                        UseCardView useCardView = new UseCardView(playersList[PlayerTurn], dice);
+                        useCardView.OnCancleButtonClick += BackToPrevView;
+                        useCardView.OnUseACardButtonClick += UseCardView_OnUseACardButtonClick;
+                        centerMapView.Content = useCardView;
+                        break;
 
-                case CenterMapView.UseCard:
-                    UseCardView useCardView = new UseCardView(playersList[PlayerTurn], dice);
-                    useCardView.OnCancleButtonClick += BackToPrevView;
-                    useCardView.OnUseACardButtonClick += UseCardView_OnUseACardButtonClick;
-                    centerMapView.Content = useCardView;
-                    break;
+                    case CenterMapView.UseCardToAnother:
+                        UseCardToAnotherView useCardToAnotherView = new UseCardToAnotherView(playersList, PlayerTurn);
+                        useCardToAnotherView.OnButtonPlayerClick += UseCardToAnotherView_OnButtonPlayerClick;
+                        useCardToAnotherView.OnCancleButtonClick += BackToPrevView;
+                        centerMapView.Content = useCardToAnotherView;
+                        break;
 
-                case CenterMapView.UseCardToAnother:
-                    UseCardToAnotherView useCardToAnotherView = new UseCardToAnotherView(playersList, PlayerTurn);
-                    useCardToAnotherView.OnButtonPlayerClick += UseCardToAnotherView_OnButtonPlayerClick;
-                    useCardToAnotherView.OnCancleButtonClick += BackToPrevView;
-                    centerMapView.Content = useCardToAnotherView;
-                    break;
+                    case CenterMapView.Setting:
+                        Setting setting = new Setting();
+                        setting.OnOkButtonClick += Setting_OnOkButtonClick;
+                        centerMapView.Content = setting;
+                        break;
 
-                case CenterMapView.Setting:
-                    Setting setting = new Setting();
-                    setting.OnOkButtonClick += Setting_OnOkButtonClick;
-                    centerMapView.Content = setting;
-                    break;
+                    case CenterMapView.CheatConsole:
+                        CheatConsole cheatConsole = new CheatConsole();
+                        cheatConsole.OnExitButtonClick += CheatConsole_OnExitButtonClick;
+                        cheatConsole.OnExecuteButtonClick += CheatConsole_OnExecuteButtonClick;
+                        centerMapView.Content = cheatConsole;
+                        break;
 
-                case CenterMapView.CheatConsole:
-                    CheatConsole cheatConsole = new CheatConsole();
-                    cheatConsole.OnExitButtonClick += CheatConsole_OnExitButtonClick;
-                    cheatConsole.OnExecuteButtonClick += CheatConsole_OnExecuteButtonClick;
-                    centerMapView.Content = cheatConsole;
-                    break;
+                    case CenterMapView.PayPrison:
+                        PayPrison payPrison = new PayPrison();
+                        payPrison.OnOkButtonClick += PayPrison_OnOkButtonClick;
+                        payPrison.OnSkipButtonClick += EndTurn;
+                        centerMapView.Content = payPrison;
+                        break;
 
-                case CenterMapView.PayPrison:
-                    PayPrison payPrison = new PayPrison();
-                    payPrison.OnOkButtonClick += PayPrison_OnOkButtonClick;
-                    payPrison.OnSkipButtonClick += EndTurn;
-                    centerMapView.Content = payPrison;
-                    break;
+                    default:
+                        MessageBox.Show("Không xác định được view");
+                        break;
+                }
 
-                default:
-                    MessageBox.Show("Không xác định được view");
-                    break;
-            }
+                countDownTimer.Start();
 
-            countDownTimer.Start();
+
+            }, 0.1);
         }
 
         //Chuyển sang view sử dụng thẻ
