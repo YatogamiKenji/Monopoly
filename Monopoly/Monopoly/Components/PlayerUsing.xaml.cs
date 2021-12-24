@@ -6,7 +6,7 @@ namespace Monopoly.Components
     /// <summary>
     /// Interaction logic for PlayerUsing.xaml
     /// </summary>
-    public partial class PlayerUsing : UserControl
+    public partial class PlayerUsing : BaseCenterMapView
     {
         public static readonly RoutedEvent UseCardButtonClickEvent =
             EventManager.RegisterRoutedEvent(nameof(OnUseCardButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(PlayerUsing));
