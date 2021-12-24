@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:Monopoly"
         xmlns:component="clr-namespace:Monopoly.Components"
         mc:Ignorable="d"
-        ResizeMode="CanResize"
-        WindowState="Maximized"
+        ResizeMode="CanMinimize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Title="Monopoly" Height="780" Width="1280" Background="Black" >

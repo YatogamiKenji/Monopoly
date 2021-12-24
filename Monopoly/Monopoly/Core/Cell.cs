@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Monopoly
+﻿namespace Monopoly
 {
     // thể loại của các ô trên bàn cờ
     public enum CellType { Dat, CoHoi, KhiVan, QuyenNang, BatDau, BaiDoXe, VaoTu, OTu, Thue }

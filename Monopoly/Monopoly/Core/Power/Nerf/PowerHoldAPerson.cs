@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Monopoly
+﻿namespace Monopoly
 {
     // giữ chân 1 người trong 5 lượt
     class PowerHoldAPerson : Power

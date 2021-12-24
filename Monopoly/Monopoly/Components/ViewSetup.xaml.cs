@@ -1,22 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
-using Microsoft.Win32;
-using System.IO;
 using System.Text.RegularExpressions;
 
 namespace Monopoly.Components
@@ -98,12 +87,16 @@ namespace Monopoly.Components
                 ShowPlayers.Add(ShowPlayer4);
             }
 
-            RaiseEvent(new GoClickEventArgs(ButtonGoClickEvent, this) 
+            if (countplayer > 1)
             {
-                showPlayers = ShowPlayers, 
-                GameMode = gameMode, 
-                NumberTurns = numberTurns 
-            });
+                RaiseEvent(new GoClickEventArgs(ButtonGoClickEvent, this)
+                {
+                    showPlayers = ShowPlayers,
+                    GameMode = gameMode,
+                    NumberTurns = numberTurns
+                });
+            }
+            else Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Vui lòng chọn số người chơi!", "Red"), 2.5, (str) => { });
         }
 
         // Khởi tạo có 2 người chơi

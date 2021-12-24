@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Monopoly
+﻿namespace Monopoly
 {
     // Tăng gấp đôi giá trị khi đi qua ô bắt đầu
     class PowerDoubleTheValueStarting : Power
