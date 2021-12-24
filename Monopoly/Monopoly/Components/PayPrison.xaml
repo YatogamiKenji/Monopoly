@@ -1,45 +1,29 @@
-﻿<UserControl x:Class="Monopoly.Components.PayPrison"
+﻿<local:BaseCenterMapView x:Class="Monopoly.Components.PayPrison"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Monopoly.Components"
+             xmlns:layout="clr-namespace:Monopoly.Layouts"
              x:Name="root"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="500" d:DesignWidth="500">
 
-    <Grid Opacity="0.9">
-        <Grid.Background>
-            <ImageBrush ImageSource="/Monopoly;component/Images/panel/panel_center_map.png"></ImageBrush>
-        </Grid.Background>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- HEADING -->
-        <TextBlock 
-            Grid.Row="0"
-            Margin="18 18 18 8"
-            Text="BẠN CÓ MUỐN TRẢ 1000 ĐỂ RA TÙ KHÔNG?"
-            TextAlignment="Center"
-            TextWrapping="Wrap"
-            FontSize="18"
-            FontWeight="Bold"/>
-
-        <!-- BODY -->
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Margin="0 10" Click="OkButtonClickFunc" Style="{StaticResource BtnStyle1Blue}">
-                <Button.Content>
-                    <TextBlock Text="TRẢ TIỀN" Style="{StaticResource BtnStyle1Text}"/>
-                </Button.Content>
-            </Button>
-            <Button Margin="0 10" Click="SkipButtonClickFunc" Style="{StaticResource BtnStyle1Blue}">
-                <Button.Content>
-                    <TextBlock Text="BỎ QUA" Style="{StaticResource BtnStyle1Text}"/>
-                </Button.Content>
-            </Button>
-        </StackPanel>
-    </Grid>
-</UserControl>
+    <layout:PanelCenterMap x:Name="thisPanel" Title="TRẢ 1000 ĐỂ RA TÙ?" CountdownStr="00 : 00">
+        <Grid>
+            <!-- BODY -->
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Margin="0 10" Click="OkButtonClickFunc" Style="{StaticResource BtnStyle1Blue}">
+                    <Button.Content>
+                        <TextBlock Text="TRẢ TIỀN" Style="{StaticResource BtnStyle1Text}"/>
+                    </Button.Content>
+                </Button>
+                <Button Margin="0 10" Click="SkipButtonClickFunc" Style="{StaticResource BtnStyle1Blue}">
+                    <Button.Content>
+                        <TextBlock Text="BỎ QUA" Style="{StaticResource BtnStyle1Text}"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </layout:PanelCenterMap>
+</local:BaseCenterMapView>

@@ -6,7 +6,7 @@ namespace Monopoly.Components
     /// <summary>
     /// Interaction logic for PayPrison.xaml
     /// </summary>
-    public partial class PayPrison : UserControl
+    public partial class PayPrison : BaseCenterMapView
     {
         public static readonly RoutedEvent OkButtonClickEvent =
             EventManager.RegisterRoutedEvent(nameof(OnOkButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(PayPrison));
