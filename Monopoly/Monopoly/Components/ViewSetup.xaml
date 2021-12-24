@@ -255,8 +255,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
     </UserControl.Resources>
+
     <Grid Width="1280" Height="760">
 
         <Grid.Background>
@@ -266,56 +266,56 @@
         <Image Source="/Images/panel/panel_center_map.png" Margin="693,19,41,135" Grid.RowSpan="2" Opacity="0.7"/>
 
 
-        <Image x:Name="chose2" Source="/Images/icon/black-hole-icon.png" Margin="1103,200,94,440" Stretch="Uniform" Visibility="Collapsed"/>
-        <Image x:Name="chose4" Source="/Images/icon/black-hole-icon.png" Margin="1103,460,94,180" Stretch="Uniform" Visibility="Collapsed"/>
-        <Image x:Name="chose3" Source="/Images/icon/black-hole-icon.png" Margin="1103,329,94,311" Stretch="Uniform" Visibility="Collapsed"/>
-        <Image x:Name="chosesetup" Source="/Images/icon/black-hole-icon.png" Margin="63,250,1103,390" Stretch="Uniform" Visibility="Collapsed" />
-        <Image x:Name="choselimitted" Source="/Images/icon/black-hole-icon.png" Margin="72,411,1098,229" Stretch="Uniform" Visibility="Collapsed"/>
-        <Button Style="{DynamicResource playerStyle}" Content="2 PLAYER" Click="Button_Click_2" Foreground="AliceBlue" BorderThickness="0" FontStyle="Italic" FontWeight="Heavy" FontSize="30" Margin="846,200,194,440" x:Name="two" RenderTransformOrigin="0.5,0.5">
+        <Image x:Name="chose2" Source="/Images/icon/black-hole-icon.png" Margin="1103,175,94,466" Stretch="Uniform" Visibility="Collapsed"/>
+        <Image x:Name="chose4" Source="/Images/icon/black-hole-icon.png" Margin="1103,435,94,190" Stretch="Uniform" Visibility="Collapsed"/>
+        <Image x:Name="chose3" Source="/Images/icon/black-hole-icon.png" Margin="1103,307,94,328" Stretch="Uniform" Visibility="Collapsed"/>
+        <Image x:Name="chosesetup" Source="/Images/icon/black-hole-icon.png" Margin="63,202,1103,438" Stretch="Uniform" Visibility="Collapsed" />
+        <Image x:Name="choselimitted" Source="/Images/icon/black-hole-icon.png" Margin="70,395,1100,245" Stretch="Uniform" Visibility="Collapsed"/>
+        <Button Style="{DynamicResource playerStyle}" Content="2 NGƯỜI CHƠI" Click="Button_Click_2" Foreground="AliceBlue" BorderThickness="0" FontStyle="Italic" FontWeight="Heavy" FontSize="25" Margin="846,175,194,466" x:Name="two" RenderTransformOrigin="0.5,0.5">
             <Button.Background>
                 <ImageBrush ImageSource="/Images/btn/style1/btn_style1_blue.png" Opacity="0.7" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <Button Style="{DynamicResource playerStyle}" Click="Button_Click_3" Content="3 PLAYER" Foreground="AliceBlue" FontStyle="Italic" BorderThickness="0"  FontWeight="Heavy" FontSize="30" Margin="845,324,194,306" x:Name="three" RenderTransformOrigin="0.5,0.5">
+        <Button Style="{DynamicResource playerStyle}" Click="Button_Click_3" Content="3 NGƯỜI CHƠI" Foreground="AliceBlue" FontStyle="Italic" BorderThickness="0"  FontWeight="Heavy" FontSize="25" Margin="845,307,194,328" x:Name="three" RenderTransformOrigin="0.5,0.5">
 
             <Button.Background>
                 <ImageBrush ImageSource="/Images/btn/style1/btn_style1_blue.png" Opacity="0.7" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <Button Style="{DynamicResource playerStyle}" Click="Button_Click_4" Content="4 PLAYER" Foreground="AliceBlue" FontStyle="Italic" BorderThickness="0"  FontWeight="Heavy" FontSize="30" Margin="846,451,194,170" x:Name="four" RenderTransformOrigin="0.5,0.5">
+        <Button Style="{DynamicResource playerStyle}" Click="Button_Click_4" Content="4 NGƯỜI CHƠI" Foreground="AliceBlue" FontStyle="Italic" BorderThickness="0"  FontWeight="Heavy" FontSize="25" Margin="846,435,194,190" x:Name="four" RenderTransformOrigin="0.5,0.5">
 
             <Button.Background>
                 <ImageBrush ImageSource="/Images/btn/style1/btn_style1_blue.png" Opacity="0.7" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <Button Style="{DynamicResource setupSetting}" BorderThickness="0" Content="LIMITTED" Foreground="AliceBlue" FontStyle="Italic" FontWeight="Heavy" FontSize="30" Margin="182,381,828,199" RenderTransformOrigin="0.465,0.324" Click="Button_Click_6" >
+        <Button Style="{DynamicResource setupSetting}" BorderThickness="0" Content="THÔNG THƯỜNG" Foreground="AliceBlue" FontStyle="Italic" FontWeight="Heavy" FontSize="25" Margin="182,366,828,215" RenderTransformOrigin="0.465,0.324" Click="Button_Click_6" >
             <Button.Background >
                 <ImageBrush ImageSource="/Images/btn/style1/btn_style1_red.png" Opacity="0.7" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <TextBlock Text="SETTING" FontSize="40" FontWeight="Heavy" FontStyle="Italic" Foreground="OrangeRed" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="231,68,0,0"/>
-        <TextBlock Text="PLAYER" FontSize="40" FontWeight="Heavy" FontStyle="Italic" Foreground="Blue" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="889,68,0,0"/>
-        <Button Style="{DynamicResource setupSetting}" BorderThickness="0" Content="SETUP" Foreground="AliceBlue" FontStyle="Italic" FontWeight="Heavy" FontSize="30" Margin="182,233,828,373" RenderTransformOrigin="0.5,0.5" Click="Button_Click_5" >
+        <TextBlock Text="CHỌN CHẾ ĐỘ" FontSize="30" TextAlignment="Center" FontWeight="Heavy" FontStyle="Italic" Foreground="OrangeRed" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="59,70,0,0" Width="518" Height="51"/>
+        <TextBlock Text="SỐ LƯỢNG NGƯỜI CHƠI" FontSize="30" TextAlignment="Center" FontWeight="Heavy" FontStyle="Italic" Foreground="Blue" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="709,70,0,0" Height="51" Width="517"/>
+        <Button Style="{DynamicResource setupSetting}" BorderThickness="0" Content="GIỚI HẠN LƯỢT" Foreground="AliceBlue" FontStyle="Italic" FontWeight="Heavy" FontSize="25" Margin="182,183,828,420" RenderTransformOrigin="0.5,0.5" Click="Button_Click_5" >
             <Button.Background >
                 <ImageBrush ImageSource="/Images/btn/style1/btn_style1_red.png" Opacity="0.7" Stretch="Uniform"/>
             </Button.Background>
         </Button>
 
 
-        <Button Style="{DynamicResource setupSetting}" Content="BACK" FontSize="35" Margin="44,644,1013,24" Click="Button_Click" BorderThickness="0" Foreground="Azure" FontStyle="Italic" FontWeight="Heavy">
+        <Button Style="{DynamicResource setupSetting}" Content="QUAY LẠI" FontSize="35" Margin="44,624,1013,44" Click="Button_Click" BorderThickness="0" Foreground="Azure" FontStyle="Italic" FontWeight="Heavy">
             <Button.Background >
                 <ImageBrush ImageSource="/Images/btn/style1/btn_style1_red.png" Opacity="0.7" Stretch="Fill"/>
             </Button.Background>
         </Button>
 
 
-        <Button Style="{DynamicResource setup_Start}" FontStyle="Italic" Content="START" x:Name="start" FontSize="45" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" BorderThickness="0" Foreground="Azure" FontWeight="Heavy" Margin="1004,644,41,24" Click="Button_Click_1" RenderTransformOrigin="0.5,0.5">
+        <Button Style="{DynamicResource setup_Start}" FontStyle="Italic" Content="SẴN SÀNG" x:Name="start" FontSize="35" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" BorderThickness="0" Foreground="Azure" FontWeight="Heavy" Margin="1004,626,41,42" Click="Button_Click_1" RenderTransformOrigin="0.5,0.5">
             <Button.Background>
                 <ImageBrush ImageSource="/Images/btn/style1/btn_style1_blue.png" Opacity="0.7" Stretch="Fill"/>
             </Button.Background>
         </Button>
         <Popup x:Name="rocketstart"
-               AllowsTransparency="True"
+               AllowsTransparency="true"
                HorizontalOffset="-360"
                VerticalOffset="-15" 
                Opacity="0.9">
@@ -324,7 +324,7 @@
             </Grid>
         </Popup>
 
-        <Grid x:Name="createName" Margin="385,-617,385,787">
+        <Grid Panel.ZIndex="1" x:Name="createName" Margin="385,-617,385,787">
             <Grid.Background>
                 <ImageBrush ImageSource="/Monopoly;component/Images/panel/panel_center_map.png" Opacity="0.9"></ImageBrush>
             </Grid.Background>
@@ -386,7 +386,7 @@
                     </Grid>
 
                     <Grid Background="Transparent" Grid.Row="1" x:Name="player3" Margin="10,0,10,20">
-                        
+
                         <Image  Source="/Monopoly;component/Images/avatar/avatar2.jpg"
                                 Width="100"
                                 Height="100" 
@@ -422,7 +422,7 @@
                     </Grid.RowDefinitions>
 
                     <Grid Background="Transparent" Grid.Row="0" x:Name="player2" Margin="10,30,10,0" Height="195" VerticalAlignment="Top">
-                        
+
                         <Image  Source="/Monopoly;component/Images/avatar/avatar3.jpg"
                                 Width="100"
                                 Height="100" 
@@ -451,7 +451,7 @@
                     </Grid>
 
                     <Grid Background="Transparent" x:Name="player4" Margin="10,0,10,20" Grid.Row="1">
-                        
+
                         <Image  Source="/Monopoly;component/Images/avatar/avatar4.jpg"
                         Width="100"
                         Height="100" 
@@ -490,23 +490,33 @@
                 </Button>
             </Grid>
         </Grid>
-        <Grid x:Name="setup_chose" Width="500" Height="300" Margin="395,-360,385,820">
+        <Grid Panel.ZIndex="1" x:Name="setup_chose" Width="500" Height="300" Margin="395,-360,385,820">
             <Grid.Background>
                 <ImageBrush ImageSource="/Images/panel/panel_setup3.jpg" Stretch="Uniform" Opacity="0.9"/>
             </Grid.Background>
 
-            <TextBlock Text="Number Of Turn" Foreground="AliceBlue" FontSize="35" FontWeight="Heavy" FontStyle="Italic" Height="40" Width="300" VerticalAlignment="Top" Margin="100,48,100,0" />
+            <TextBlock Text="Số lượt chơi" Foreground="AliceBlue" FontSize="30" FontWeight="Heavy" FontStyle="Italic" Height="40" Width="300" VerticalAlignment="Top" TextAlignment="Center" Margin="100,48,100,0" />
             <TextBox Foreground="Tomato"
                      FontWeight="Bold"
                      Text=""
+                     MaxLength="4"
+                     TextAlignment="Center"
                      PreviewTextInput="NumberValidationTextBox"
-                     FontSize="30" x:Name="turn" Background="Transparent" BorderThickness="2" BorderBrush="AliceBlue" Width="340" Height="100"/>
+                     FontSize="45" x:Name="turn" 
+                     Background="Transparent" 
+                     BorderThickness="2" BorderBrush="AliceBlue" 
+                     Width="340" Height="100"/>
             <Button VerticalAlignment="Bottom" Style="{DynamicResource setupSetting}" x:Name="ok1" Content="OK" FontWeight="Heavy" Foreground="AliceBlue" FontStyle="Italic" FontSize="30" Height="50" Click="ok1_Click" Margin="184,-7,184,17" BorderThickness="0">
                 <Button.Background>
                     <ImageBrush ImageSource="/Images/btn/style1/btn_style1_blue.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
         </Grid>
+
+        <ContentControl x:Name="notiCenterMapArea"/>
+
+        <Grid x:Name="Override" Panel.ZIndex="0" Background="Transparent"></Grid>
+
     </Grid>
 
 </UserControl>

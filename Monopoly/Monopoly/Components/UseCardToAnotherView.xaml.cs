@@ -1,17 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Monopoly.Components
 {
@@ -46,7 +36,7 @@ namespace Monopoly.Components
                     BtnAnotherPlayer btnAnotherPlayer =
                         new BtnAnotherPlayer(
                             i,
-                            new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/avatar/" + players[i].avatar, UriKind.Relative)),
+                            new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/avatar" + (i + 1) + ".jpg", UriKind.Relative)),
                             players[i].name,
                             players[i].money
                         );

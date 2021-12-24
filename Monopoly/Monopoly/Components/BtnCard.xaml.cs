@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Monopoly.Components
 {
@@ -91,6 +80,7 @@ namespace Monopoly.Components
             InitializeComponent();
             
         }
+
         public BtnCard(Power power, int idCard, bool enoughMoneyToUse)
         {
             InitializeComponent();
@@ -106,6 +96,23 @@ namespace Monopoly.Components
             {
                 cantUseLayer.Opacity = 0.3;
             }
+        }
+
+        public Chance Chance
+        {
+            get { return (Chance)GetValue(chanceProperty); }
+            set { SetValue(powerProperty, value); }
+        }
+        // Using a DependencyProperty as the backing store for power.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty chanceProperty =
+            DependencyProperty.Register("chance", typeof(Chance), typeof(BtnCard));
+
+        public BtnCard(Chance chance, int idCard)
+        {
+            InitializeComponent();
+            Id = idCard;
+            powerCard.Children.Add(new ChanceCard(chance));
+            cantUseLayer.Opacity = 0;
         }
 
         void setHighLight()

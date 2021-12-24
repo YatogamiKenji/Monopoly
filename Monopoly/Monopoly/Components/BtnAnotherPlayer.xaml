@@ -60,10 +60,10 @@
                         Foreground="Yellow"
                         FontSize="14"/>
                 <Image 
-                    Source="/Monopoly;component/Image/coinIcon.png"
-                    Height="10"
-                    Width="10"
-                    Margin="0 1 0  0"/>
+                    Source="/Monopoly;component/Images/coin/coin2.png"
+                    Height="12"
+                    Width="12"
+                    Margin="2 1 0  0"/>
             </StackPanel>
 
         </StackPanel>

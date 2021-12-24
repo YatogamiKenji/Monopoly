@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Monopoly
 {
@@ -108,7 +104,7 @@ namespace Monopoly
         public Player()
         {
             _name = "";
-            _money = 10000000;
+            _money = 10000;
             _position = 0;
             _isOutPrisonCard = false;
             _powers = new List<Power>();

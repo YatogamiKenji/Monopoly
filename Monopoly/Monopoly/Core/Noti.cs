@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -26,6 +22,19 @@ namespace Monopoly
         {
             DoubleAnimation fadeInAnim = new DoubleAnimation(1, new Duration(TimeSpan.FromSeconds(0.25)));
             DoubleAnimation fadeOutAnim = new DoubleAnimation(0, new Duration(TimeSpan.FromSeconds(0.2)));
+            DoubleAnimation scaleInY = new DoubleAnimation()
+            {
+                From = 0.5,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(0.2),
+            };
+            DoubleAnimation scaleOutY = new DoubleAnimation()
+            {
+                From = 1,
+                To = 0.5,
+                Duration = TimeSpan.FromSeconds(0.15),
+            };
+
 
             Sound.Notification();
 
@@ -33,9 +42,12 @@ namespace Monopoly
             areaGrid.Children.Add(notiBox);
             areaGrid.Background = new SolidColorBrush(Colors.Transparent);
             notiBox.Opacity = 0;
+            notiBox.RenderTransform = new ScaleTransform();
+            notiBox.RenderTransformOrigin = new Point(0.5, 0.5);
             area.Content = areaGrid;
 
             notiBox.BeginAnimation(OpacityProperty, fadeInAnim);
+            notiBox.RenderTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleInY);
 
             DispatcherTimer timer = new DispatcherTimer();
 
@@ -49,6 +61,7 @@ namespace Monopoly
                     actionAfter("timeout");
                 }, 0.2);
                 notiBox.BeginAnimation(OpacityProperty, fadeOutAnim);
+                notiBox.RenderTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleOutY);
                 area.MouseLeftButtonDown -= handler;
             };
             area.MouseLeftButtonDown += handler;
@@ -62,6 +75,7 @@ namespace Monopoly
                     actionAfter("timeout");
                 }, 0.2);
                 notiBox.BeginAnimation(OpacityProperty, fadeOutAnim);
+                notiBox.RenderTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleOutY);
             }, existTime);
         }
 

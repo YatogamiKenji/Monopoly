@@ -3,11 +3,11 @@
 namespace Monopoly.Components
 {
     /// <summary>
-    /// Interaction logic for rocket.xaml
+    /// Interaction logic for ViewGuide.xaml
     /// </summary>
-    public partial class rocket : UserControl
+    public partial class ViewGuide : UserControl
     {
-        public rocket()
+        public ViewGuide()
         {
             InitializeComponent();
         }

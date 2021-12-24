@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Automation.Provider;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Monopoly.Components
 {
@@ -91,20 +81,39 @@ namespace Monopoly.Components
         // Cheat: Trong Diceview, khi ấn các phím số số từ 1 đến 6 sẽ cho ra kết quả xúc xắc tương ứng
         private void addEventCheat()
         {
+
             KeyDown += (s, e) =>
             {
                 if (e.Key == Key.D1)
+                {
                     RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = 1 });
+                    btnSpin.Click -= btnSpin_Click;
+                }
                 if (e.Key == Key.D2)
+                {
                     RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = 2 });
+                    btnSpin.Click -= btnSpin_Click;
+                }
                 if (e.Key == Key.D3)
+                {
                     RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = 3 });
+                    btnSpin.Click -= btnSpin_Click;
+                }
                 if (e.Key == Key.D4)
+                {
                     RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = 4 });
+                    btnSpin.Click -= btnSpin_Click;
+                }
                 if (e.Key == Key.D5)
+                {
                     RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = 5 });
+                    btnSpin.Click -= btnSpin_Click;
+                }
                 if (e.Key == Key.D6)
+                {
                     RaiseEvent(new SpinnedDiceEventAgrs(SpinnedDiceEvent, this) { valueOfDice = 6 });
+                    btnSpin.Click -= btnSpin_Click;
+                }
             };
         }
     }

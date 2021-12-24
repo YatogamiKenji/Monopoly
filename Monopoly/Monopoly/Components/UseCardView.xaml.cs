@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Monopoly.Components
 {
@@ -81,6 +69,9 @@ namespace Monopoly.Components
                     listBtnCard.Add(new BtnCard(powers[i], i, isEnoughMoneyToUse));
                 }
 
+                if (player.isOutPrisonCard)
+                    listBtnCard.Add(new BtnCard(new ChanceOutPrison(), powers.Count));
+
                 for (int i = 0; i < listBtnCard.Count; i++)
                 {
                     listBtnCard[i].OnBtnCardClick += UseCardView_OnBtnCardClick;
@@ -112,8 +103,20 @@ namespace Monopoly.Components
 
         void updatePowerDetailInfo ()
         {
-            currentPriceCard = player.powers[selectedIndex].value * _valueOfDice;
-            mainDescription.Text = player.powers[selectedIndex].description;
+            if (selectedIndex == player.powers.Count)
+            {
+                if (player.isInPrison)
+                {
+                    currentPriceCard = 0;
+                }
+                else currentPriceCard = 1000;
+                mainDescription.Text = new ChanceOutPrison().description;
+            }
+            else
+            {
+                currentPriceCard = player.powers[selectedIndex].value * _valueOfDice;
+                mainDescription.Text = player.powers[selectedIndex].description;
+            }
         }
 
         private void CancleButtonClickFunc(object sender, RoutedEventArgs e)
@@ -122,14 +125,23 @@ namespace Monopoly.Components
             RaiseEvent(new RoutedEventArgs(CancleButtonClickEvent));
         }
 
+        Chance chance = new Chance();
+        Power power = new Power();
+
         private void UseACardButtonClickFunc(object sender, RoutedEventArgs e)
         {
             Sound.ButtonUsePower();
+            if (selectedIndex == player.powers.Count)
+            {
+                chance = new ChanceOutPrison();
+            }
+            else power = player.powers[selectedIndex];
             RaiseEvent(new UseACardButtonClickEventArgs(UseACardButtonClickEvent, this)
             {
-                power = player.powers[selectedIndex],
-                isEnoughMoneyToUse = currentPriceCard <= player.money ? true : false
-            }) ;
+                power = power,
+                isEnoughMoneyToUse = currentPriceCard <= player.money ? true : false,
+                chance = chance
+            });
         }
     }
 }

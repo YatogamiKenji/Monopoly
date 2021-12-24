@@ -1,23 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
-using Microsoft.Win32;
-using System.IO;
 using System.Text.RegularExpressions;
+using System.Windows.Threading;
 
 namespace Monopoly.Components
 {
@@ -40,12 +30,14 @@ namespace Monopoly.Components
         bool gameMode = true; //chọn chế độ chơi (true: Unlimied, false: Setup)
         int numberTurns = 0; //số lượt chơi ở chế độ Setup
         public static Setup instance;
+
         public Setup()
         {
             InitializeComponent();
             ShowPlayers = new List<PlayerShow>();
             instance = this;
             choselimitted.Visibility = Visibility.Visible;
+            Override.Visibility = Visibility.Hidden;
         }
 
         public static readonly RoutedEvent BackButtonClickEvent =
@@ -96,12 +88,16 @@ namespace Monopoly.Components
                 ShowPlayers.Add(ShowPlayer4);
             }
 
-            RaiseEvent(new GoClickEventArgs(ButtonGoClickEvent, this) 
+            if (countplayer > 1)
             {
-                showPlayers = ShowPlayers, 
-                GameMode = gameMode, 
-                NumberTurns = numberTurns 
-            });
+                RaiseEvent(new GoClickEventArgs(ButtonGoClickEvent, this)
+                {
+                    showPlayers = ShowPlayers,
+                    GameMode = gameMode,
+                    NumberTurns = numberTurns
+                });
+            }
+            else Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Vui lòng chọn số người chơi!", "Red"), 2.5, (str) => { });
         }
 
         // Khởi tạo có 2 người chơi
@@ -118,6 +114,7 @@ namespace Monopoly.Components
             player2.Visibility = Visibility.Visible;
             player3.Visibility = Visibility.Collapsed;
             player4.Visibility = Visibility.Collapsed;
+            Override.Visibility = Visibility.Visible;
         }
 
         // Khởi tạo có 3 người chơi
@@ -134,6 +131,7 @@ namespace Monopoly.Components
             player2.Visibility = Visibility.Visible;
             player3.Visibility = Visibility.Visible;
             player4.Visibility = Visibility.Collapsed;
+            Override.Visibility = Visibility.Visible;
         }
 
         // Khởi tạo có 4 người chơi
@@ -150,6 +148,7 @@ namespace Monopoly.Components
             player2.Visibility = Visibility.Visible;
             player3.Visibility = Visibility.Visible;
             player4.Visibility = Visibility.Visible;
+            Override.Visibility = Visibility.Visible;
         }
 
         //Khởi tạo chế độ Setup
@@ -159,11 +158,9 @@ namespace Monopoly.Components
             slide.Begin(setup_chose);
             chosesetup.Visibility = Visibility.Visible;
             choselimitted.Visibility = Visibility.Collapsed;
+            Override.Visibility = Visibility.Visible;
             Sound.StartButton();
             gameMode = false;
-            //numberTurns = 3;
-
-
         }
 
         //Khởi tạo chế độ Limited
@@ -180,17 +177,18 @@ namespace Monopoly.Components
             rocketstart.PlacementTarget = start;
             rocketstart.Placement = PlacementMode.Right;
             rocketstart.IsOpen = true;
-            start.Content = "GO!!";
+            start.Content = "ĐI NÀO!!!";
         }
 
         private void Button_MouseLeave(object sender, MouseEventArgs e)
         {
-            start.Content = "START";
+            start.Content = "SẴN SÀNG";
             rocketstart.Visibility = Visibility.Collapsed;
             rocketstart.IsOpen = false;
         }
 
         public Player player11 = new Player();
+
         private void ok_Click(object sender, RoutedEventArgs e)
         {
             Sound.StartButton();
@@ -205,6 +203,7 @@ namespace Monopoly.Components
             nameplayer[1] = nameplayer2.Text;
             nameplayer[2] = nameplayer3.Text;
             nameplayer[3] = nameplayer4.Text;
+            Override.Visibility = Visibility.Hidden;
         }
 
         private void TextChangedFuntion(object sender, TextChangedEventArgs e)
@@ -221,11 +220,12 @@ namespace Monopoly.Components
                 slide.Begin(setup_chose);
                 numberTurns = int.Parse(turn.Text);
             }
+            Override.Visibility = Visibility.Hidden;
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Sound.Type();
+            Sound.Type();  
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }

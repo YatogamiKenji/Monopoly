@@ -1,28 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Windows.Controls.Primitives;
-using System.Windows.Media.Animation;
-using System.IO;
-using System.Windows.Automation.Peers;
-using System.Windows.Automation.Provider;
 
 namespace Monopoly.Components
 {
-    enum CenterMapView { Dice, ComeEmptyLand, ComeOwnLand, ComeLuck, ComePower, ComeChance, UseCard, UseCardToAnother, PlayerUsing, Prev, Setting, CheatConsole }
+    enum CenterMapView { Dice, ComeEmptyLand, ComeOwnLand, ComeLuck, ComePower, ComeChance, UseCard, UseCardToAnother, PlayerUsing, Prev, Setting, CheatConsole, PayPrison }
 
     public delegate void BtnEndGameClickEventHandler(object sender, EndGameClickEventArgs agrs);
 
@@ -82,6 +69,7 @@ namespace Monopoly.Components
         {
             InitializeComponent();
             Init();
+            Override.Visibility = Visibility.Hidden;
         }
 
         public ChessBoard(List<PlayerShow> PlayerShowFromSetup)
@@ -89,6 +77,7 @@ namespace Monopoly.Components
             InitializeComponent();
             this.players = PlayerShowFromSetup;
             Init();
+            Override.Visibility = Visibility.Hidden;
         }
 
         public ChessBoard(List<PlayerShow> PlayerShowFromSetup, bool gameMode, int numberTurns)
@@ -98,6 +87,7 @@ namespace Monopoly.Components
             this.gameMode = gameMode;
             this.numberTurns = numberTurns;
             Init();
+            Override.Visibility = Visibility.Hidden;
         }
 
         //khởi tạo giá trị
@@ -120,7 +110,6 @@ namespace Monopoly.Components
             countDownTimer.Tick += CountDownTimer_Tick;
             countDownTimer.Start();
 
-
             SwitchView(CenterMapView.Dice);
         }
 
@@ -130,7 +119,14 @@ namespace Monopoly.Components
             for (int i = 0; i < players.Count; i++)
             {
                 Player player = new Player();
-                player.name = Setup.instance.nameplayer[i];
+                if (Setup.instance.nameplayer[i] == "")
+                {
+                    player.name = "Player " + (i+1).ToString();
+                }
+                else
+                {
+                    player.name = Setup.instance.nameplayer[i];
+                }
                 player.position = 0;
                 playersList.Add(player);
             }
@@ -141,57 +137,7 @@ namespace Monopoly.Components
             sideBar.update(playersList, PlayerTurn);
 
             PowerStart();
-
-            playersList[0].AddPower(new PowerDoubleDice());
-            playersList[0].AddPower(new PowerDoublePriceLandForever());
-            playersList[0].AddPower(new PowerDoubleTax());
-            playersList[0].AddPower(new PowerDoubleTheValueStarting());
-            playersList[0].AddPower(new PowerExemptFromPrison());
-            playersList[0].AddPower(new PowerHalveUpgradeFee());
-            playersList[0].AddPower(new PowerMoveToAnyCell());
-            playersList[0].AddPower(new PowerRemoveAdverseEffects());
-            playersList[0].AddPower(new PowerRemoveLoseMoneyNext());
-            playersList[0].AddPower(new PowerTeleport());
-            playersList[0].AddPower(new PowerAppointPersonToPrison());
-            playersList[0].AddPower(new PowerCancelPowerCard());
-            playersList[0].AddPower(new PowerFreezeBankAccounts());
-            playersList[0].AddPower(new PowerHoldAPerson());
-            playersList[0].AddPower(new PowerLandLevelReduction());
-            playersList[0].AddPower(new PowerLandPriceHalved());
-            playersList[0].AddPower(new PowerLockAPlotOfLand());
-            playersList[0].AddPower(new PowerSplitDice());
-            playersList[0].AddPower(new PowerStealLand());
-            playersList[0].AddPower(new PowerTeleportPersonToTheTax());
-            //playersList[0].AddLand(lands[0], 0, 1);
-            //playersList[0].AddLand(lands[1], 1, 2);
-            //playersList[0].AddLand(lands[2], 2, 4);
-            //playersList[0].AddLand(lands[3], 3, 5);
-            //playersList[0].AddLand(lands[4], 4, 6);
-            //playersList[0].AddLand(lands[5], 5, 8);
-            playersList[1].AddPower(new PowerDoubleDice());
-            playersList[1].AddPower(new PowerDoublePriceLandForever());
-            playersList[1].AddPower(new PowerDoubleTax());
-            playersList[1].AddPower(new PowerDoubleTheValueStarting());
-            playersList[1].AddPower(new PowerExemptFromPrison());
-            playersList[1].AddPower(new PowerHalveUpgradeFee());
-            playersList[1].AddPower(new PowerMoveToAnyCell());
-            playersList[1].AddPower(new PowerRemoveAdverseEffects());
-            playersList[1].AddPower(new PowerRemoveLoseMoneyNext());
-            playersList[1].AddPower(new PowerTeleport());
-            playersList[1].AddPower(new PowerAppointPersonToPrison());
-            playersList[1].AddPower(new PowerCancelPowerCard());
-            playersList[1].AddPower(new PowerFreezeBankAccounts());
-            playersList[1].AddPower(new PowerHoldAPerson());
-            playersList[1].AddPower(new PowerLandLevelReduction());
-            playersList[1].AddPower(new PowerLandPriceHalved());
-            playersList[1].AddPower(new PowerLockAPlotOfLand());
-            playersList[1].AddPower(new PowerSplitDice());
-            playersList[1].AddPower(new PowerStealLand());
-            playersList[1].AddPower(new PowerTeleportPersonToTheTax());
-            //playersList[1].AddLand(lands[6], 6, 9);
-            //playersList[1].AddLand(lands[7], 7, 11);
-            //playersList[1].AddLand(lands[8], 8, 12);
-            playersList[1].money = 0;
+            playersList[0].isOutPrisonCard = true;
         }
 
         //khởi tạo data
@@ -355,7 +301,7 @@ namespace Monopoly.Components
                 sideBar.update(playersList, PlayerTurn);
             }
 
-            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đã sử dụng hiệu ứng của thẻ Teleport để di\n chuyển đến ô ", "Green"), 2.5, (str) =>
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Hiệu ứng của thẻ Teleport đã kích hoạt", "Green"), 2.5, (str) =>
             {
                 playersList[PlayerTurn].position = index;
                 Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[index]));
@@ -456,7 +402,7 @@ namespace Monopoly.Components
                                 if (!playersList[i].isLoser)
                                 {
                                     EndGame(playersList[i]);
-                                    PauseTimer();
+                                    countDownTimer.Stop();
                                     return;
                                 }    
                         }
@@ -520,7 +466,7 @@ namespace Monopoly.Components
                 }
 
             EndGame(playersList[index]);
-            PauseTimer();
+            countDownTimer.Stop();
         }
 
         //đưa nhân vật vào tù
@@ -728,20 +674,14 @@ namespace Monopoly.Components
 
             Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn quay được *" + dice + "*", "Blue"), 1.5, (str) =>
             {
-                    // nếu người chơi đang ở trong tù thì phải đổ được 1 hoặc 6 mới được phép di chuyển ra ngoài
-                    if ((playersList[PlayerTurn].isInPrison && (dice == 1 || dice == 6)) || !playersList[PlayerTurn].isInPrison)
+                // nếu người chơi đang ở trong tù thì phải đổ được 1 hoặc 6 mới được phép di chuyển ra ngoài
+                if ((playersList[PlayerTurn].isInPrison && (dice == 1 || dice == 6)) || !playersList[PlayerTurn].isInPrison)
                 {
                     ActivationEffect();
                     if (!playersList[PlayerTurn].isTeleport) Goto();
                     sideBar.update(playersList, PlayerTurn);
                 }
-                else
-                {
-                    PayPrison payPrison = new PayPrison();
-                    payPrison.OnOkButtonClick += PayPrison_OnOkButtonClick;
-                    payPrison.OnSkipButtonClick += EndTurn;
-                    centerMapView.Content = payPrison;
-                }
+                else SwitchView(CenterMapView.PayPrison);
             });
         }
 
@@ -1006,14 +946,25 @@ namespace Monopoly.Components
         // Sử dụng 1 thẻ
         private void UseCardView_OnUseACardButtonClick(object sender, UseACardButtonClickEventArgs e)
         {
-            usingPower = e.power;
-            if (e.isEnoughMoneyToUse)
+            if (e.power.GetType().Name == "Power")
             {
-                if (e.power.type) UsingCardOnYourself(e.power); //thẻ sử dụng lên bản thân   
-                else SwitchView(CenterMapView.UseCardToAnother); //thẻ sử dụng lên người khác
+                if (playersList[PlayerTurn].isInPrison) playersList[PlayerTurn].isInPrison = false;
+                else playersList[PlayerTurn].money += 1000;
+                playersList[PlayerTurn].isOutPrisonCard = false;
+                SwitchView(CenterMapView.Prev);
+                sideBar.update(playersList, PlayerTurn);
             }
             else
-                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền", "Red"), 1, (str) => { });
+            {
+                usingPower = e.power;
+                if (e.isEnoughMoneyToUse)
+                {
+                    if (e.power.type) UsingCardOnYourself(e.power); //thẻ sử dụng lên bản thân   
+                    else SwitchView(CenterMapView.UseCardToAnother); //thẻ sử dụng lên người khác
+                }
+                else
+                    Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền", "Red"), 1, (str) => { });
+            }
         }
 
         // Chọn một người để sử dụng
@@ -1129,102 +1080,178 @@ namespace Monopoly.Components
 
         void SwitchView(CenterMapView view)
         {
-            // Chuyển lại view trước đó
-            if (view == CenterMapView.Prev)
+            try
             {
-                if (stackView.Count != 0)
-                    stackView.Pop(); // pop view hiện tại
+                if (centerMapView.Content != null)
+                    ((BaseCenterMapView)centerMapView.Content).unmoutedAnim(); // Chạy animation ẩn view
+            }
+            catch (Exception ex) { };
 
-                if (stackView.Count == 0)
+            // Đợi 0.1s sau khi chạy xong animation ẩn view
+            Noti.SetTimeout(() =>
+            {
+                // Chuyển lại view trước đó
+                if (view == CenterMapView.Prev)
                 {
-                    SwitchView(CenterMapView.Dice);
+                    if (stackView.Count != 0)
+                        stackView.Pop(); // pop view hiện tại
+
+                    if (stackView.Count == 0)
+                    {
+                        SwitchView(CenterMapView.Dice);
+                        return;
+                    }
+
+                    if (stackView.Count != 0)
+                        SwitchView(stackView.Pop()); // Chuyển sang view trước
+
                     return;
                 }
 
-                if (stackView.Count != 0)
-                    SwitchView(stackView.Pop()); // Chuyển sang view trước
+                // Dice view: xoá toàn bộ stack và chuyển view
+                if (view == CenterMapView.Dice)
+                {
+                    stackView.Clear();
+                    CreateDiceView();
+                    return;
+                }
+
+                stackView.Push(view);
+                switch (view)
+                {
+                    case CenterMapView.ComeEmptyLand:
+                        CreateComeEmptyLand();
+                        countDownTimer.Start();
+                        break;
+
+                    case CenterMapView.ComeOwnLand:
+                        CreateComeOwnLand();
+                        countDownTimer.Start();
+                        break;
+
+                    case CenterMapView.ComePower:
+                        GotoPower();
+                        countDownTimer.Start();
+                        break;
+
+                    case CenterMapView.ComeLuck:
+                        GotoCommunityChest();
+                        countDownTimer.Start();
+                        break;
+
+                    case CenterMapView.ComeChance:
+                        GotoChance();
+                        countDownTimer.Start();
+                        break;
+
+                    case CenterMapView.PlayerUsing:
+                        centerMapView.Content = playerUsing;
+                        countDownTimer.Start();
+                        break;
+
+                    case CenterMapView.UseCard:
+                        CreateUseCard();
+                        countDownTimer.Start();
+                        break;
+
+                    case CenterMapView.UseCardToAnother:
+                        CreateUseCardToAnother();
+                        countDownTimer.Start();
+                        break;
+
+                    case CenterMapView.Setting:
+                        CreateSetting();
+                        break;
+
+                    case CenterMapView.CheatConsole:
+                        CreateCheatConsole();
+                        break;
+
+                    case CenterMapView.PayPrison:
+                        CreatePayPrison();
+                        countDownTimer.Start();
+                        break;
+
+                    default:
+                        MessageBox.Show("Không xác định được view");
+                        break;
+                }    
                 
-                return;
-            }
-            // Dice view: xoá toàn bộ stack và chuyển view
-            if (view == CenterMapView.Dice)
-            {
-                stackView.Clear();
-                DiceView diceView = new DiceView();
-                diceView.OnSpinnedDice += HandleSpinnedDice;
-                diceView.OnButtonClick += (s, e) => { countDownTimer.Stop(); };
-                centerMapView.Content = diceView;
-                return;
-            }
-
-            stackView.Push(view);
-            switch (view)
-            {
-                case CenterMapView.ComeEmptyLand:
-                    ComeEmptyLandView comeEmptyLandView = new ComeEmptyLandView(getCurrentLand());
-                    comeEmptyLandView.OnBuyButtonClick += ComeEmptyLandView_OnBuyButtonClick;
-                    comeEmptyLandView.OnSkipButtonClick += EndTurn;
-                    comeEmptyLandView.OnUseCardButtonClick += SwitchToUseCardView;
-                    centerMapView.Content = comeEmptyLandView;
-                    break;
-
-                case CenterMapView.ComeOwnLand:
-                    ComeOwnLandView comeOwnLandView = new ComeOwnLandView(getCurrentLand(), 1);
-                    comeOwnLandView.OnSellButtonClick += ComeOwnLandView_OnSellButtonClick;
-                    comeOwnLandView.OnUpgradeButtonClick += ComeOwnLandView_OnUpgradeButtonClick;
-                    comeOwnLandView.OnSkipButtonClick += EndTurn;
-                    comeOwnLandView.OnUseCardButtonClick += SwitchToUseCardView;
-                    centerMapView.Content = comeOwnLandView;
-                    break;
-
-                case CenterMapView.ComePower:
-                    GotoPower();
-                    break;
-
-                case CenterMapView.ComeLuck:
-                    GotoCommunityChest();
-                    break;
-
-                case CenterMapView.ComeChance:
-                    GotoChance();
-                    break;
-
-                case CenterMapView.PlayerUsing:
-                    centerMapView.Content = playerUsing;
-                    break;
-
-                case CenterMapView.UseCard:
-                    UseCardView useCardView = new UseCardView(playersList[PlayerTurn], dice);
-                    useCardView.OnCancleButtonClick += BackToPrevView;
-                    useCardView.OnUseACardButtonClick += UseCardView_OnUseACardButtonClick;
-                    centerMapView.Content = useCardView;
-                    break;
-
-                case CenterMapView.UseCardToAnother:
-                    UseCardToAnotherView useCardToAnotherView = new UseCardToAnotherView(playersList, PlayerTurn);
-                    useCardToAnotherView.OnButtonPlayerClick += UseCardToAnotherView_OnButtonPlayerClick;
-                    useCardToAnotherView.OnCancleButtonClick += BackToPrevView;
-                    centerMapView.Content = useCardToAnotherView;
-                    break;
-
-                case CenterMapView.Setting:
-                    Setting setting = new Setting();
-                    setting.OnOkButtonClick += Setting_OnOkButtonClick;
-                    centerMapView.Content = setting;
-                    break;
-                case CenterMapView.CheatConsole:
-                    CheatConsole cheatConsole = new CheatConsole();
-                    cheatConsole.OnExitButtonClick += CheatConsole_OnExitButtonClick;
-                    cheatConsole.OnExecuteButtonClick += CheatConsole_OnExecuteButtonClick;
-                    centerMapView.Content = cheatConsole;
-                    break;
-                default:
-                    MessageBox.Show("Không xác định được view");
-                    break;
-            }
-
-            countDownTimer.Start();
+            }, 0.1);
         }
+
+        void CreateDiceView()
+        {
+            DiceView diceView = new DiceView();
+            diceView.OnSpinnedDice += HandleSpinnedDice;
+            diceView.OnButtonClick += (s, e) => { countDownTimer.Stop(); };
+            centerMapView.Content = diceView;
+        }    
+
+        //tạo view PayPrison
+        void CreatePayPrison()
+        {
+            PayPrison payPrison = new PayPrison();
+            payPrison.OnOkButtonClick += PayPrison_OnOkButtonClick;
+            payPrison.OnSkipButtonClick += EndTurn;
+            centerMapView.Content = payPrison;
+        }
+
+        //tạo view CheatConsole
+        void CreateCheatConsole()
+        {
+            CheatConsole cheatConsole = new CheatConsole();
+            cheatConsole.OnExitButtonClick += CheatConsole_OnExitButtonClick;
+            cheatConsole.OnExecuteButtonClick += CheatConsole_OnExecuteButtonClick;
+            centerMapView.Content = cheatConsole;
+        }
+
+        //tạo view UseCardToAnother
+        void CreateUseCardToAnother()
+        {
+            UseCardToAnotherView useCardToAnotherView = new UseCardToAnotherView(playersList, PlayerTurn);
+            useCardToAnotherView.OnButtonPlayerClick += UseCardToAnotherView_OnButtonPlayerClick;
+            useCardToAnotherView.OnCancleButtonClick += BackToPrevView;
+            centerMapView.Content = useCardToAnotherView;
+        }
+
+        //tạo view UseCard
+        void CreateUseCard()
+        {
+            UseCardView useCardView = new UseCardView(playersList[PlayerTurn], dice);
+            useCardView.OnCancleButtonClick += BackToPrevView;
+            useCardView.OnUseACardButtonClick += UseCardView_OnUseACardButtonClick;
+            centerMapView.Content = useCardView;
+        }
+
+        //tạo view ComeOwnLand
+        void CreateComeOwnLand()
+        {
+            ComeOwnLandView comeOwnLandView = new ComeOwnLandView(getCurrentLand(), 1);
+            comeOwnLandView.OnSellButtonClick += ComeOwnLandView_OnSellButtonClick;
+            comeOwnLandView.OnUpgradeButtonClick += ComeOwnLandView_OnUpgradeButtonClick;
+            comeOwnLandView.OnSkipButtonClick += EndTurn;
+            comeOwnLandView.OnUseCardButtonClick += SwitchToUseCardView;
+            centerMapView.Content = comeOwnLandView;
+        }
+
+        //tạo view ComeEmptyLand
+        void CreateComeEmptyLand()
+        {
+            ComeEmptyLandView comeEmptyLandView = new ComeEmptyLandView(getCurrentLand());
+            comeEmptyLandView.OnBuyButtonClick += ComeEmptyLandView_OnBuyButtonClick;
+            comeEmptyLandView.OnSkipButtonClick += EndTurn;
+            comeEmptyLandView.OnUseCardButtonClick += SwitchToUseCardView;
+            centerMapView.Content = comeEmptyLandView;
+        }
+
+        //tạo view Setting
+        void CreateSetting()
+        {
+            Setting setting = new Setting();
+            setting.OnOkButtonClick += Setting_OnOkButtonClick;
+            centerMapView.Content = setting;
+        }    
 
         //Chuyển sang view sử dụng thẻ
         private void SwitchToUseCardView(object sender, RoutedEventArgs e)
@@ -1259,7 +1286,7 @@ namespace Monopoly.Components
         public Power RandomPower()
         {
             Random random = new Random();
-            int x = random.Next(200);
+            int x = random.Next() % 200;
             if (x >= 0 && x < 13) return new PowerRemoveLoseMoneyNext();
             if (x > 13 && x < 27) return new PowerTeleport();
             if (x > 27 && x < 33 || x > 61 && x < 66) return new PowerAppointPersonToPrison();
@@ -1336,23 +1363,49 @@ namespace Monopoly.Components
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
             Sound.StartButton();
-            isSetting = !isSetting;
-            if (isSetting) SwitchView(CenterMapView.Setting);
-            else SwitchView(CenterMapView.Prev);
-            PauseTimer();
+            if (isSetting == false)
+            {
+                isSetting = true;
+                SwitchView(CenterMapView.Setting);
+                countDownTimer.Stop();
+            }
+
+            else
+            {
+                isSetting = false;
+                SwitchView(CenterMapView.Prev);
+                countDownTimer.Start();
+            }
         }
 
         //tắt setting
         private void Setting_OnOkButtonClick(object sender, RoutedEventArgs e)
         {
-            isSetting = !isSetting;
+            isSetting = false;
             SwitchView(CenterMapView.Prev);
-            ResumeTimer();
+            countDownTimer.Start();
+        }
+
+        public static readonly RoutedEvent EndGameButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnEndGameButtonClick), RoutingStrategy.Bubble, typeof(BtnEndGameClickEventHandler), typeof(ChessBoard));
+
+        public event BtnEndGameClickEventHandler OnEndGameButtonClick
+        {
+            add { AddHandler(EndGameButtonClickEvent, value); }
+            remove { RemoveHandler(EndGameButtonClickEvent, value); }
+        }
+
+        private void EndGame(Player player)
+        {
+            countDownTimer.IsEnabled = false;
+            RaiseEvent(new EndGameClickEventArgs(EndGameButtonClickEvent) { player = player });
+            Override.Visibility = Visibility.Visible;
         }
 
         #endregion
 
         #region Cheat
+
         bool IsCheatOn = false;
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
@@ -1360,20 +1413,14 @@ namespace Monopoly.Components
             {
                 IsCheatOn = true;
                 SwitchView(CenterMapView.CheatConsole);
-                PauseTimer();
+                countDownTimer.Stop();
             }
         }
-        public double RemainTime;
-        private void PauseTimer()
-        {
-            RemainTime = countDown;
-            countDownTimer.Stop();
-        }
-
         private void CheatConsole_OnExecuteButtonClick(object sender, RoutedEventArgs e)
         {
             CommandExe(CheatConsole.command_line);           
         }
+
         public void CommandExe(string cmd)
         {
             /*Hướng dẫn thêm command vào cheat console: 
@@ -1394,8 +1441,7 @@ namespace Monopoly.Components
             {
                 CMD = cmd.Split(' ');
                 ID = Int32.Parse(CMD[0]);
-                player = Int32.Parse(CMD[1])-1;
-                
+                player = Int32.Parse(CMD[1])-1;               
                 ammount = Int32.Parse(CMD[2]);
                 switch (ID)
                 {
@@ -1410,30 +1456,12 @@ namespace Monopoly.Components
                 sideBar.update(playersList, PlayerTurn);
             }       
         }
+
         private void CheatConsole_OnExitButtonClick(object sender, RoutedEventArgs e)
         {
             IsCheatOn = false;
-            ResumeTimer();
-            SwitchView(CenterMapView.Prev);
-        }
-
-        private void ResumeTimer()
-        {
-            countDown = RemainTime;
             countDownTimer.Start();
-        }
-        public static readonly RoutedEvent EndGameButtonClickEvent =
-            EventManager.RegisterRoutedEvent(nameof(OnEndGameButtonClick), RoutingStrategy.Bubble, typeof(BtnEndGameClickEventHandler), typeof(ChessBoard));
-        public event BtnEndGameClickEventHandler OnEndGameButtonClick
-        {
-            add { AddHandler(EndGameButtonClickEvent, value); }
-            remove { RemoveHandler(EndGameButtonClickEvent, value); }
-        }
-
-        private void EndGame(Player player)
-        {
-            countDownTimer.IsEnabled = false;
-            RaiseEvent(new EndGameClickEventArgs(EndGameButtonClickEvent) { player = player });
+            SwitchView(CenterMapView.Prev);
         }
 
         #endregion

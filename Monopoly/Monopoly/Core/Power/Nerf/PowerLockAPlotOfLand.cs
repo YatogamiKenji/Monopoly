@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Monopoly
+﻿namespace Monopoly
 {
     //khóa 1 ô đất trong 2 lượt
     class PowerLockAPlotOfLand : Power

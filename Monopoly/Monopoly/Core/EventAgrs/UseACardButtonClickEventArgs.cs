@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Monopoly
 {
@@ -11,6 +6,7 @@ namespace Monopoly
     {
         public Power power { get; set; }
         public bool isEnoughMoneyToUse { get; set; }
+        public Chance chance { get; set; }
 
         public UseACardButtonClickEventArgs()
         {
@@ -19,38 +15,6 @@ namespace Monopoly
         {
         }
         public UseACardButtonClickEventArgs(RoutedEvent routedEvent, object source) : base(routedEvent, source)
-        {
-        }
-    }
-
-    public class RemoveCardButtonClickEventArgs : RoutedEventArgs
-    {
-        public Power power { get; set; }
-        public bool isEnoughMoneyToUse { get; set; }
-
-        public RemoveCardButtonClickEventArgs()
-        {
-        }
-        public RemoveCardButtonClickEventArgs(RoutedEvent routedEvent) : base(routedEvent)
-        {
-        }
-        public RemoveCardButtonClickEventArgs(RoutedEvent routedEvent, object source) : base(routedEvent, source)
-        {
-        }
-    }
-
-    public class SellLandButtonClickEventArgs : RoutedEventArgs
-    {
-        public Land land { get; set; }
-        public int index { get; set; }
-
-        public SellLandButtonClickEventArgs()
-        {
-        }
-        public SellLandButtonClickEventArgs(RoutedEvent routedEvent) : base(routedEvent)
-        {
-        }
-        public SellLandButtonClickEventArgs(RoutedEvent routedEvent, object source) : base(routedEvent, source)
         {
         }
     }
