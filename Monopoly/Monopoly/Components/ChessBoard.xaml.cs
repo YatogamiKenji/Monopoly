@@ -252,8 +252,8 @@ namespace Monopoly.Components
                 if (cellManager[playersList[PlayerTurn].position].type == CellType.BatDau)
                 {
                     //thưởng tiền khi đi qua ô bắt đầu
-                    if (playersList[PlayerTurn].isDoubleStart) playersList[PlayerTurn].money += 2000 * (turn[PlayerTurn] / 2 + 1);
-                    else playersList[PlayerTurn].money += 1000 * (turn[PlayerTurn] / 2 + 1);
+                    if (playersList[PlayerTurn].isDoubleStart) playersList[PlayerTurn].money += 4000 * (turn[PlayerTurn] / 2 + 1);
+                    else playersList[PlayerTurn].money += 2000 * (turn[PlayerTurn] / 2 + 1);
                     if (turn[PlayerTurn] / 2 + 1 < 10) turn[PlayerTurn]++;
                     sideBar.update(playersList, PlayerTurn);
                 }
@@ -673,6 +673,7 @@ namespace Monopoly.Components
         private void HandleSpinnedDice(object sender, SpinnedDiceEventAgrs e)
         {
             dice = e.valueOfDice;
+            dice = 30;
 
             Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn quay được *" + dice + "*", "Blue"), 1.5, (str) =>
             {
@@ -691,7 +692,7 @@ namespace Monopoly.Components
         private void PayPrison_OnOkButtonClick(object sender, RoutedEventArgs e)
         {
             Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đã trả 1000 tiền bảo lãnh để ra khỏi tù", "Blue"), 1.5, (str) => { });
-           playersList[PlayerTurn].money -= 1000;
+            playersList[PlayerTurn].money -= 1000;
             sideBar.update(playersList, PlayerTurn);
             ActivationEffect();
             if (!playersList[PlayerTurn].isTeleport) Goto();
@@ -1317,7 +1318,7 @@ namespace Monopoly.Components
         // Kết thúc lượt
         private void EndTurn(object sender, RoutedEventArgs e)
         {
-            if (playersList[PlayerTurn].position == 30)
+            if (playersList[PlayerTurn].position == 30 && playersList[PlayerTurn].isInPrison)
             {
                 SwitchView(CenterMapView.Prev);
                 PlayerToPrison(false);

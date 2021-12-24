@@ -167,7 +167,7 @@
                         CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                         
                             ImageCell="/Monopoly;component/Images/planet/planet7.jpg"
                             />
@@ -182,7 +182,7 @@
                         BorderThickness="1" 
                         CornerRadius="5">
                     <compoenent:ContentChessCell
-                        Opacity = "0.5"  
+                        Opacity = "0.75"  
                         ImageCell="/Monopoly;component/Images/planet/planet6.jpg"
                         />
                 </Border>
@@ -211,7 +211,7 @@
                              CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet5.jpg"
                             />
                 </Border>
@@ -225,7 +225,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet4.jpg"
                             />
                 </Border>
@@ -239,7 +239,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet3.jpg"
                             />
                 </Border>
@@ -267,7 +267,7 @@
                              CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet2.jpg"
                             />
                 </Border>
@@ -281,7 +281,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet1.jpg"
                             />
                 </Border>
@@ -308,7 +308,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet8.jpg"
                             />
                 </Border>
@@ -322,7 +322,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet9.jpg"
                             />
                 </Border>
@@ -350,7 +350,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet10.jpg" 
                             />
                 </Border>
@@ -364,7 +364,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet11.jpg" 
                             />
                 </Border>
@@ -378,7 +378,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet12.png"
                             />
                 </Border>
@@ -407,7 +407,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet13.jpg" 
                             />
                 </Border>
@@ -421,7 +421,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet14.jpg"
                             />
                 </Border>
@@ -448,7 +448,7 @@
                              CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet28.jpg"
                             />
                 </Border>
@@ -462,7 +462,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet27.jpg"
                             />
                 </Border>
@@ -490,7 +490,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet26.jpg"
                             />
                 </Border>
@@ -504,7 +504,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet25.jpg"
                             />
                 </Border>
@@ -518,7 +518,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet24.jpg" 
                             />
                 </Border>
@@ -546,7 +546,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet23.jpg"
                             />
                 </Border>
@@ -560,7 +560,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet22.jpg"
                             />
                 </Border>
@@ -587,7 +587,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet15.jpg"
                             />
                 </Border>
@@ -601,7 +601,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet16.jpg"
                             />
                 </Border>
@@ -629,7 +629,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet17.jpg"
                             />
                 </Border>
@@ -643,7 +643,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet18.jpg"
                             />
                 </Border>
@@ -657,7 +657,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet19.jpg"
                             />
                 </Border>
@@ -685,7 +685,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet20.jpg"
                             />
                 </Border>
@@ -699,7 +699,7 @@
                             CornerRadius="5">
 
                     <compoenent:ContentChessCell 
-                            Opacity = "0.5"  
+                            Opacity = "0.75"  
                             ImageCell="/Monopoly;component/Images/planet/planet21.jpg"
                             />
                 </Border>

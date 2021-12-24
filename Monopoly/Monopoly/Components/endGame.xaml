@@ -28,7 +28,7 @@
 
         <Image Grid.Column="0" Source="/Images/rank/camp.png" Margin="78,60,77,310" x:Name="champrank"/>
 
-        <TextBlock x:Name="playerName" FontSize="50" Style="{StaticResource TitleCardText}" Width="230" Height="70" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="96,355,0,0" TextAlignment="Center"/>
+        <TextBlock x:Name="playerName" FontSize="50" Style="{StaticResource TitleCardText}" Width="230" Height="70" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Heavy" Foreground="Red" Margin="0,150,0,0" TextAlignment="Center"/>
 
         <Button  Panel.ZIndex="10" Content="THOÁT" Foreground="AliceBlue" FontSize="20" FontWeight="Heavy" FontStyle="Italic"  Style="{StaticResource BtnStyle1Red}" Margin="56,542,318,25" Click="Button_Click"/>
 

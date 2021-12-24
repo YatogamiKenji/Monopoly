@@ -51,10 +51,7 @@ namespace Monopoly.Components
             }
             if (isPrison)
             {
-                LuckCard luckCard = new LuckCard();
-                luckCard.Title = "Ra tù";
-                luckCard.Description = "Ra tù";
-                //luckCard.ImgSource =;
+                ChanceCard luckCard = new ChanceCard(new ChanceOutPrison());
                 luckCard.Width = 101;
                 luckCard.Height = 131;
                 luckCard.Margin = new Thickness(2, 0, 2, 0);
