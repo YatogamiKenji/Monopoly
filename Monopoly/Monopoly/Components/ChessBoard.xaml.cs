@@ -119,7 +119,14 @@ namespace Monopoly.Components
             for (int i = 0; i < players.Count; i++)
             {
                 Player player = new Player();
-                player.name = Setup.instance.nameplayer[i];
+                if (Setup.instance.nameplayer[i] == "")
+                {
+                    player.name = "Player " + (i+1).ToString();
+                }
+                else
+                {
+                    player.name = Setup.instance.nameplayer[i];
+                }
                 player.position = 0;
                 playersList.Add(player);
             }
