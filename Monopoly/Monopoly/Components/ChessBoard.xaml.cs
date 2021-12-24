@@ -137,7 +137,6 @@ namespace Monopoly.Components
             sideBar.update(playersList, PlayerTurn);
 
             PowerStart();
-            playersList[PlayerTurn].isOutPrisonCard = true;
         }
 
         //khởi tạo data
@@ -673,7 +672,6 @@ namespace Monopoly.Components
         private void HandleSpinnedDice(object sender, SpinnedDiceEventAgrs e)
         {
             dice = e.valueOfDice;
-            dice = 30;
 
             Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn quay được *" + dice + "*", "Blue"), 1.5, (str) =>
             {
