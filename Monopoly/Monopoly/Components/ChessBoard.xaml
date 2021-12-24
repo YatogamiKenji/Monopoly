@@ -94,7 +94,7 @@
         <Canvas x:Name="Bor_SideBar"
             Grid.Row="1"
             Grid.Column="1">
-            <compoenent:SideBar x:Name="sideBar" Opacity="0.8"/>
+            <compoenent:SideBar x:Name="sideBar"/>
         </Canvas>
         
         <Button Style="{DynamicResource ButtonSetting}" x:Name="btnSetting"

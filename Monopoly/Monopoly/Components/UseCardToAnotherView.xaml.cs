@@ -46,7 +46,7 @@ namespace Monopoly.Components
                     BtnAnotherPlayer btnAnotherPlayer =
                         new BtnAnotherPlayer(
                             i,
-                            new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/avatar/" + players[i].avatar, UriKind.Relative)),
+                            new BitmapImage(new Uri(@"/Monopoly;component/Images/avatar/avatar" + (i + 1) + ".jpg", UriKind.Relative)),
                             players[i].name,
                             players[i].money
                         );

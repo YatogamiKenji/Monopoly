@@ -10,7 +10,8 @@
     <Grid Width="94" Height="116">
         <Image Source="/Monopoly;component/Images/sidebar/tab_sidebar.png" 
                Stretch="Fill"
-               x:Name="imgBg"/>
+               x:Name="imgBg"
+               Opacity="0.8"/>
         <StackPanel>
             <!-- Avatar -->
             <Border Background="Brown"
