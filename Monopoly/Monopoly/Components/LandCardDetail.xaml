@@ -29,7 +29,7 @@
             Padding="4 0 2 0"/>
 
         <StackPanel Grid.Row="1" Margin="2 0 2 0">
-            <Image Source="{Binding ImgSource}" Stretch="UniformToFill"/>
+            <Image Source="{Binding ImgSource}" Stretch="UniformToFill" Height="137"/>
         </StackPanel>
 
 
