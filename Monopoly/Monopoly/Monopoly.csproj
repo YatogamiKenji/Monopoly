@@ -755,8 +755,4 @@
     </Resource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Themes\" />
-  </ItemGroup>
-
 </Project>
