@@ -125,22 +125,17 @@ namespace Monopoly.Components
             RaiseEvent(new RoutedEventArgs(CancleButtonClickEvent));
         }
 
-        Chance chance = new Chance();
         Power power = new Power();
 
         private void UseACardButtonClickFunc(object sender, RoutedEventArgs e)
         {
             Sound.ButtonUsePower();
-            if (selectedIndex == player.powers.Count)
-            {
-                chance = new ChanceOutPrison();
-            }
-            else power = player.powers[selectedIndex];
+            if (selectedIndex < player.powers.Count) power = player.powers[selectedIndex];
+
             RaiseEvent(new UseACardButtonClickEventArgs(UseACardButtonClickEvent, this)
             {
                 power = power,
                 isEnoughMoneyToUse = currentPriceCard <= player.money ? true : false,
-                chance = chance
             });
         }
     }

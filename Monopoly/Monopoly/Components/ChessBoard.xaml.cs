@@ -137,7 +137,6 @@ namespace Monopoly.Components
             sideBar.update(playersList, PlayerTurn);
 
             PowerStart();
-            playersList[0].isOutPrisonCard = true;
         }
 
         //khởi tạo data
@@ -470,13 +469,13 @@ namespace Monopoly.Components
         }
 
         //đưa nhân vật vào tù
-        void PlayerToPrison()
+        void PlayerToPrison(bool check)
         {
             playersList[PlayerTurn].position = 10;
-            playersList[PlayerTurn].isInPrison = true;
             Grid.SetRow(players[PlayerTurn], Grid.GetRow(cellPos[10]));
             Grid.SetColumn(players[PlayerTurn], Grid.GetColumn(cellPos[10]));
-
+            if (check) SwitchView(CenterMapView.PlayerUsing);
+            else ChangeTurn();
             sideBar.update(playersList, PlayerTurn);
         }
 
@@ -614,13 +613,15 @@ namespace Monopoly.Components
         //đi đến ô vào tù
         void GotoPrison()
         {
-            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đi đến ô vào tù và bị đưa đến ô ở tù ", "Red"), 2.5, (str) =>
-            {
-                //đưa player đến ô vào tù
-                if (!playersList[PlayerTurn].isOutPrison) PlayerToPrison();
+            playersList[PlayerTurn].isInPrison = true;
 
-                SwitchView(CenterMapView.PlayerUsing);
-            });
+            //đưa player đến ô vào tù
+            if (!playersList[PlayerTurn].isOutPrison && !playersList[PlayerTurn].isOutPrisonCard) 
+                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn đi đến ô vào tù và bị đưa đến ô ở tù ", "Red"), 2.5, (str) =>
+                {
+                    PlayerToPrison(true);
+                });
+            else SwitchView(CenterMapView.PlayerUsing);
         }
 
         //đi đến ô bắt đầu
@@ -1313,7 +1314,15 @@ namespace Monopoly.Components
         private void BackToPrevView(object sender, RoutedEventArgs e) { SwitchView(CenterMapView.Prev); }
 
         // Kết thúc lượt
-        private void EndTurn(object sender, RoutedEventArgs e) { ChangeTurn(); }
+        private void EndTurn(object sender, RoutedEventArgs e)
+        {
+            if (playersList[PlayerTurn].position == 30)
+            {
+                SwitchView(CenterMapView.Prev);
+                PlayerToPrison(false);
+            }
+            else ChangeTurn();
+        }
 
         private void CountDownTimer_Tick(object sender, EventArgs e)
         {
