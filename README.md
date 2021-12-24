@@ -37,11 +37,11 @@ Xây dựng game cờ tỷ phú trên wpf bằng ngôn ngữ c#
 [Lên đầu trang](#top)
 ### Tính năng chính <a name="main-feature"></a>
   #### Cơ chế:
-  - Offline, nhiều người trên 1 máy
+  - Offline, nhiều người chơi trên 1 máy
   - Điều kiện chiến thắng
     - Chế độ giới hạn: Sau một số lượt nhất định không ai phá sản, người nhiều tiền nhất chiến thắng
     - Chế độ thông thường: Các người chơi đều phá sản hết và còn duy nhất một người chơi trên bàn cờ
-    - Đi qua ô bắt đầu: 1000 * số lần qua ô bắt đầu, max 10000
+  - Đi qua ô bắt đầu: 1000 * số lần qua ô bắt đầu, max 10000
 
   #### Tính năng:
   - Mua hành tinh, xây nhà (4 căn, 1 khách sạn)
