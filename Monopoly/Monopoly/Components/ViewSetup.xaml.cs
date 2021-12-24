@@ -195,10 +195,10 @@ namespace Monopoly.Components
             Storyboard slide = Resources["CloseMenu"] as Storyboard;
             slide.Begin(createName);
             ShowPlayers = new List<PlayerShow>();
-            ShowPlayer1 = new PlayerShow { Title = "1", Margin = new Thickness(10, 15, 50, 45), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_blue.png", UriKind.Relative)) };
-            ShowPlayer2 = new PlayerShow { Title = "2", Margin = new Thickness(40, 15, 20, 45), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative)) };
-            ShowPlayer3 = new PlayerShow { Title = "3", Margin = new Thickness(10, 45, 50, 15), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_red.png", UriKind.Relative)) };
-            ShowPlayer4 = new PlayerShow { Title = "4", Margin = new Thickness(40, 45, 20, 15), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_yellow.png", UriKind.Relative)) };
+            ShowPlayer1 = new PlayerShow { Title = "1", Margin = new Thickness(10, 10, 50, 30), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_blue.png", UriKind.Relative)) };
+            ShowPlayer2 = new PlayerShow { Title = "2", Margin = new Thickness(40, 10, 20, 30), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_green.png", UriKind.Relative)) };
+            ShowPlayer3 = new PlayerShow { Title = "3", Margin = new Thickness(10, 30, 50, 10), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_red.png", UriKind.Relative)) };
+            ShowPlayer4 = new PlayerShow { Title = "4", Margin = new Thickness(40, 30, 20, 10), BackgroundPlayer = new BitmapImage(new Uri(@"/Monopoly;component/Images/player/player_yellow.png", UriKind.Relative)) };
             nameplayer[0] = nameplayer1.Text;
             nameplayer[1] = nameplayer2.Text;
             nameplayer[2] = nameplayer3.Text;

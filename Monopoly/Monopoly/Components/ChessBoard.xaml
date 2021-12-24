@@ -736,7 +736,7 @@
                 <Popup x:Name="popup_right"
                AllowsTransparency="True"
                HorizontalOffset="-285"
-               VerticalOffset="-80"
+               VerticalOffset="-70"
                >
                     <Grid>
                         <compoenent:popup angle="180" x:Name="textright" Foreground="#E0FFFF"/>
@@ -747,7 +747,7 @@
                 <Popup x:Name="popup_left"
                AllowsTransparency="True"
                HorizontalOffset="5"
-               VerticalOffset="-80">
+               VerticalOffset="-70">
                     <Grid>
                         <compoenent:popup x:Name="textleft" Foreground="#E0FFFF"/>
                     </Grid>
