@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Text.RegularExpressions;
+using System.Windows.Threading;
 
 namespace Monopoly.Components
 {
@@ -224,7 +225,7 @@ namespace Monopoly.Components
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Sound.Type();
+            Sound.Type();  
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }

@@ -1061,7 +1061,6 @@ namespace Monopoly.Components
 
         void SwitchView(CenterMapView view)
         {
-
             try
             {
                 if (centerMapView.Content != null)
@@ -1072,7 +1071,6 @@ namespace Monopoly.Components
             // Đợi 0.1s sau khi chạy xong animation ẩn view
             Noti.SetTimeout(() =>
             {
-
                 // Chuyển lại view trước đó
                 if (view == CenterMapView.Prev)
                 {
@@ -1090,14 +1088,12 @@ namespace Monopoly.Components
 
                     return;
                 }
+
                 // Dice view: xoá toàn bộ stack và chuyển view
                 if (view == CenterMapView.Dice)
                 {
                     stackView.Clear();
-                    DiceView diceView = new DiceView();
-                    diceView.OnSpinnedDice += HandleSpinnedDice;
-                    diceView.OnButtonClick += (s, e) => { countDownTimer.Stop(); };
-                    centerMapView.Content = diceView;
+                    CreateDiceView();
                     return;
                 }
 
@@ -1105,20 +1101,11 @@ namespace Monopoly.Components
                 switch (view)
                 {
                     case CenterMapView.ComeEmptyLand:
-                        ComeEmptyLandView comeEmptyLandView = new ComeEmptyLandView(getCurrentLand());
-                        comeEmptyLandView.OnBuyButtonClick += ComeEmptyLandView_OnBuyButtonClick;
-                        comeEmptyLandView.OnSkipButtonClick += EndTurn;
-                        comeEmptyLandView.OnUseCardButtonClick += SwitchToUseCardView;
-                        centerMapView.Content = comeEmptyLandView;
+                        CreateComeEmptyLand();
                         break;
 
                     case CenterMapView.ComeOwnLand:
-                        ComeOwnLandView comeOwnLandView = new ComeOwnLandView(getCurrentLand(), 1);
-                        comeOwnLandView.OnSellButtonClick += ComeOwnLandView_OnSellButtonClick;
-                        comeOwnLandView.OnUpgradeButtonClick += ComeOwnLandView_OnUpgradeButtonClick;
-                        comeOwnLandView.OnSkipButtonClick += EndTurn;
-                        comeOwnLandView.OnUseCardButtonClick += SwitchToUseCardView;
-                        centerMapView.Content = comeOwnLandView;
+                        CreateComeOwnLand();
                         break;
 
                     case CenterMapView.ComePower:
@@ -1138,37 +1125,23 @@ namespace Monopoly.Components
                         break;
 
                     case CenterMapView.UseCard:
-                        UseCardView useCardView = new UseCardView(playersList[PlayerTurn], dice);
-                        useCardView.OnCancleButtonClick += BackToPrevView;
-                        useCardView.OnUseACardButtonClick += UseCardView_OnUseACardButtonClick;
-                        centerMapView.Content = useCardView;
+                        CreateUseCard();
                         break;
 
                     case CenterMapView.UseCardToAnother:
-                        UseCardToAnotherView useCardToAnotherView = new UseCardToAnotherView(playersList, PlayerTurn);
-                        useCardToAnotherView.OnButtonPlayerClick += UseCardToAnotherView_OnButtonPlayerClick;
-                        useCardToAnotherView.OnCancleButtonClick += BackToPrevView;
-                        centerMapView.Content = useCardToAnotherView;
+                        CreateUseCardToAnother();
                         break;
 
                     case CenterMapView.Setting:
-                        Setting setting = new Setting();
-                        setting.OnOkButtonClick += Setting_OnOkButtonClick;
-                        centerMapView.Content = setting;
+                        CreateSetting();
                         break;
 
                     case CenterMapView.CheatConsole:
-                        CheatConsole cheatConsole = new CheatConsole();
-                        cheatConsole.OnExitButtonClick += CheatConsole_OnExitButtonClick;
-                        cheatConsole.OnExecuteButtonClick += CheatConsole_OnExecuteButtonClick;
-                        centerMapView.Content = cheatConsole;
+                        CreateCheatConsole();
                         break;
 
                     case CenterMapView.PayPrison:
-                        PayPrison payPrison = new PayPrison();
-                        payPrison.OnOkButtonClick += PayPrison_OnOkButtonClick;
-                        payPrison.OnSkipButtonClick += EndTurn;
-                        centerMapView.Content = payPrison;
+                        CreatePayPrison();
                         break;
 
                     default:
@@ -1177,10 +1150,81 @@ namespace Monopoly.Components
                 }
 
                 countDownTimer.Start();
-
-
             }, 0.1);
         }
+
+        void CreateDiceView()
+        {
+            DiceView diceView = new DiceView();
+            diceView.OnSpinnedDice += HandleSpinnedDice;
+            diceView.OnButtonClick += (s, e) => { countDownTimer.Stop(); };
+            centerMapView.Content = diceView;
+        }    
+
+        //tạo view PayPrison
+        void CreatePayPrison()
+        {
+            PayPrison payPrison = new PayPrison();
+            payPrison.OnOkButtonClick += PayPrison_OnOkButtonClick;
+            payPrison.OnSkipButtonClick += EndTurn;
+            centerMapView.Content = payPrison;
+        }
+
+        //tạo view CheatConsole
+        void CreateCheatConsole()
+        {
+            CheatConsole cheatConsole = new CheatConsole();
+            cheatConsole.OnExitButtonClick += CheatConsole_OnExitButtonClick;
+            cheatConsole.OnExecuteButtonClick += CheatConsole_OnExecuteButtonClick;
+            centerMapView.Content = cheatConsole;
+        }
+
+        //tạo view UseCardToAnother
+        void CreateUseCardToAnother()
+        {
+            UseCardToAnotherView useCardToAnotherView = new UseCardToAnotherView(playersList, PlayerTurn);
+            useCardToAnotherView.OnButtonPlayerClick += UseCardToAnotherView_OnButtonPlayerClick;
+            useCardToAnotherView.OnCancleButtonClick += BackToPrevView;
+            centerMapView.Content = useCardToAnotherView;
+        }
+
+        //tạo view UseCard
+        void CreateUseCard()
+        {
+            UseCardView useCardView = new UseCardView(playersList[PlayerTurn], dice);
+            useCardView.OnCancleButtonClick += BackToPrevView;
+            useCardView.OnUseACardButtonClick += UseCardView_OnUseACardButtonClick;
+            centerMapView.Content = useCardView;
+        }
+
+        //tạo view ComeOwnLand
+        void CreateComeOwnLand()
+        {
+            ComeOwnLandView comeOwnLandView = new ComeOwnLandView(getCurrentLand(), 1);
+            comeOwnLandView.OnSellButtonClick += ComeOwnLandView_OnSellButtonClick;
+            comeOwnLandView.OnUpgradeButtonClick += ComeOwnLandView_OnUpgradeButtonClick;
+            comeOwnLandView.OnSkipButtonClick += EndTurn;
+            comeOwnLandView.OnUseCardButtonClick += SwitchToUseCardView;
+            centerMapView.Content = comeOwnLandView;
+        }
+
+        //tạo view ComeEmptyLand
+        void CreateComeEmptyLand()
+        {
+            ComeEmptyLandView comeEmptyLandView = new ComeEmptyLandView(getCurrentLand());
+            comeEmptyLandView.OnBuyButtonClick += ComeEmptyLandView_OnBuyButtonClick;
+            comeEmptyLandView.OnSkipButtonClick += EndTurn;
+            comeEmptyLandView.OnUseCardButtonClick += SwitchToUseCardView;
+            centerMapView.Content = comeEmptyLandView;
+        }
+
+        //tạo view Setting
+        void CreateSetting()
+        {
+            Setting setting = new Setting();
+            setting.OnOkButtonClick += Setting_OnOkButtonClick;
+            centerMapView.Content = setting;
+        }    
 
         //Chuyển sang view sử dụng thẻ
         private void SwitchToUseCardView(object sender, RoutedEventArgs e)
@@ -1215,7 +1259,7 @@ namespace Monopoly.Components
         public Power RandomPower()
         {
             Random random = new Random();
-            int x = random.Next(200);
+            int x = random.Next() % 200;
             if (x >= 0 && x < 13) return new PowerRemoveLoseMoneyNext();
             if (x > 13 && x < 27) return new PowerTeleport();
             if (x > 27 && x < 33 || x > 61 && x < 66) return new PowerAppointPersonToPrison();
@@ -1306,6 +1350,22 @@ namespace Monopoly.Components
             ResumeTimer();
         }
 
+        public static readonly RoutedEvent EndGameButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnEndGameButtonClick), RoutingStrategy.Bubble, typeof(BtnEndGameClickEventHandler), typeof(ChessBoard));
+
+        public event BtnEndGameClickEventHandler OnEndGameButtonClick
+        {
+            add { AddHandler(EndGameButtonClickEvent, value); }
+            remove { RemoveHandler(EndGameButtonClickEvent, value); }
+        }
+
+        private void EndGame(Player player)
+        {
+            countDownTimer.IsEnabled = false;
+            RaiseEvent(new EndGameClickEventArgs(EndGameButtonClickEvent) { player = player });
+            Override.Visibility = Visibility.Visible;
+        }
+
         #endregion
 
         #region Cheat
@@ -1380,22 +1440,6 @@ namespace Monopoly.Components
         {
             countDown = RemainTime;
             countDownTimer.Start();
-        }
-
-        public static readonly RoutedEvent EndGameButtonClickEvent =
-            EventManager.RegisterRoutedEvent(nameof(OnEndGameButtonClick), RoutingStrategy.Bubble, typeof(BtnEndGameClickEventHandler), typeof(ChessBoard));
-        
-        public event BtnEndGameClickEventHandler OnEndGameButtonClick
-        {
-            add { AddHandler(EndGameButtonClickEvent, value); }
-            remove { RemoveHandler(EndGameButtonClickEvent, value); }
-        }
-
-        private void EndGame(Player player)
-        {
-            countDownTimer.IsEnabled = false;
-            RaiseEvent(new EndGameClickEventArgs(EndGameButtonClickEvent) { player = player });
-            Override.Visibility = Visibility.Visible;
         }
 
         #endregion
