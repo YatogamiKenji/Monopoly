@@ -509,6 +509,8 @@
             </Button>
         </Grid>
 
+        <ContentControl x:Name="notiCenterMapArea"/>
+
         <Grid x:Name="Override" Panel.ZIndex="0" Background="Transparent"></Grid>
 
     </Grid>

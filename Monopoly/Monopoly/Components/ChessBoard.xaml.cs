@@ -1,28 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Windows.Controls.Primitives;
-using System.Windows.Media.Animation;
-using System.IO;
-using System.Windows.Automation.Peers;
-using System.Windows.Automation.Provider;
 
 namespace Monopoly.Components
 {
-    enum CenterMapView { Dice, ComeEmptyLand, ComeOwnLand, ComeLuck, ComePower, ComeChance, UseCard, UseCardToAnother, PlayerUsing, Prev, Setting, CheatConsole }
+    enum CenterMapView { Dice, ComeEmptyLand, ComeOwnLand, ComeLuck, ComePower, ComeChance, UseCard, UseCardToAnother, PlayerUsing, Prev, Setting, CheatConsole, PayPrison }
 
     public delegate void BtnEndGameClickEventHandler(object sender, EndGameClickEventArgs agrs);
 
@@ -679,20 +666,14 @@ namespace Monopoly.Components
 
             Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn quay được *" + dice + "*", "Blue"), 1.5, (str) =>
             {
-                    // nếu người chơi đang ở trong tù thì phải đổ được 1 hoặc 6 mới được phép di chuyển ra ngoài
-                    if ((playersList[PlayerTurn].isInPrison && (dice == 1 || dice == 6)) || !playersList[PlayerTurn].isInPrison)
+                // nếu người chơi đang ở trong tù thì phải đổ được 1 hoặc 6 mới được phép di chuyển ra ngoài
+                if ((playersList[PlayerTurn].isInPrison && (dice == 1 || dice == 6)) || !playersList[PlayerTurn].isInPrison)
                 {
                     ActivationEffect();
                     if (!playersList[PlayerTurn].isTeleport) Goto();
                     sideBar.update(playersList, PlayerTurn);
                 }
-                else
-                {
-                    PayPrison payPrison = new PayPrison();
-                    payPrison.OnOkButtonClick += PayPrison_OnOkButtonClick;
-                    payPrison.OnSkipButtonClick += EndTurn;
-                    centerMapView.Content = payPrison;
-                }
+                else SwitchView(CenterMapView.PayPrison);
             });
         }
 
@@ -1163,12 +1144,21 @@ namespace Monopoly.Components
                     setting.OnOkButtonClick += Setting_OnOkButtonClick;
                     centerMapView.Content = setting;
                     break;
+
                 case CenterMapView.CheatConsole:
                     CheatConsole cheatConsole = new CheatConsole();
                     cheatConsole.OnExitButtonClick += CheatConsole_OnExitButtonClick;
                     cheatConsole.OnExecuteButtonClick += CheatConsole_OnExecuteButtonClick;
                     centerMapView.Content = cheatConsole;
                     break;
+
+                case CenterMapView.PayPrison:
+                    PayPrison payPrison = new PayPrison();
+                    payPrison.OnOkButtonClick += PayPrison_OnOkButtonClick;
+                    payPrison.OnSkipButtonClick += EndTurn;
+                    centerMapView.Content = payPrison;
+                    break;
+
                 default:
                     MessageBox.Show("Không xác định được view");
                     break;
