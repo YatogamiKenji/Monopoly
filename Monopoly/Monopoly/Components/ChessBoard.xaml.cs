@@ -137,6 +137,7 @@ namespace Monopoly.Components
             sideBar.update(playersList, PlayerTurn);
 
             PowerStart();
+            playersList[PlayerTurn].isOutPrisonCard = true;
         }
 
         //khởi tạo data

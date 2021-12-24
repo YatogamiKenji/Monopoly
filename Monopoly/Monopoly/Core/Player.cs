@@ -304,7 +304,6 @@ namespace Monopoly
             _isInPrison = false;
             _isDoubleStart = false;
             _isLoseMoney = false;
-            _isLoser = false;
             Init();
         }    
     }
