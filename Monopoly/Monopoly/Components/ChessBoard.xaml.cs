@@ -394,7 +394,7 @@ namespace Monopoly.Components
                                 if (!playersList[i].isLoser)
                                 {
                                     EndGame(playersList[i]);
-                                    PauseTimer();
+                                    countDownTimer.Stop();
                                     return;
                                 }    
                         }
@@ -458,7 +458,7 @@ namespace Monopoly.Components
                 }
 
             EndGame(playersList[index]);
-            PauseTimer();
+            countDownTimer.Stop();
         }
 
         //đưa nhân vật vào tù
@@ -1102,34 +1102,42 @@ namespace Monopoly.Components
                 {
                     case CenterMapView.ComeEmptyLand:
                         CreateComeEmptyLand();
+                        countDownTimer.Start();
                         break;
 
                     case CenterMapView.ComeOwnLand:
                         CreateComeOwnLand();
+                        countDownTimer.Start();
                         break;
 
                     case CenterMapView.ComePower:
                         GotoPower();
+                        countDownTimer.Start();
                         break;
 
                     case CenterMapView.ComeLuck:
                         GotoCommunityChest();
+                        countDownTimer.Start();
                         break;
 
                     case CenterMapView.ComeChance:
                         GotoChance();
+                        countDownTimer.Start();
                         break;
 
                     case CenterMapView.PlayerUsing:
                         centerMapView.Content = playerUsing;
+                        countDownTimer.Start();
                         break;
 
                     case CenterMapView.UseCard:
                         CreateUseCard();
+                        countDownTimer.Start();
                         break;
 
                     case CenterMapView.UseCardToAnother:
                         CreateUseCardToAnother();
+                        countDownTimer.Start();
                         break;
 
                     case CenterMapView.Setting:
@@ -1142,14 +1150,14 @@ namespace Monopoly.Components
 
                     case CenterMapView.PayPrison:
                         CreatePayPrison();
+                        countDownTimer.Start();
                         break;
 
                     default:
                         MessageBox.Show("Không xác định được view");
                         break;
-                }
-
-                countDownTimer.Start();
+                }    
+                
             }, 0.1);
         }
 
@@ -1336,18 +1344,27 @@ namespace Monopoly.Components
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
             Sound.StartButton();
-            isSetting = !isSetting;
-            if (isSetting) SwitchView(CenterMapView.Setting);
-            else SwitchView(CenterMapView.Prev);
-            PauseTimer();
+            if (isSetting == false)
+            {
+                isSetting = true;
+                SwitchView(CenterMapView.Setting);
+                countDownTimer.Stop();
+            }
+
+            else
+            {
+                isSetting = false;
+                SwitchView(CenterMapView.Prev);
+                countDownTimer.Start();
+            }
         }
 
         //tắt setting
         private void Setting_OnOkButtonClick(object sender, RoutedEventArgs e)
         {
-            isSetting = !isSetting;
+            isSetting = false;
             SwitchView(CenterMapView.Prev);
-            ResumeTimer();
+            countDownTimer.Start();
         }
 
         public static readonly RoutedEvent EndGameButtonClickEvent =
@@ -1377,17 +1394,9 @@ namespace Monopoly.Components
             {
                 IsCheatOn = true;
                 SwitchView(CenterMapView.CheatConsole);
-                PauseTimer();
+                countDownTimer.Stop();
             }
         }
-
-        public double RemainTime;
-        private void PauseTimer()
-        {
-            RemainTime = countDown;
-            countDownTimer.Stop();
-        }
-
         private void CheatConsole_OnExecuteButtonClick(object sender, RoutedEventArgs e)
         {
             CommandExe(CheatConsole.command_line);           
@@ -1432,14 +1441,8 @@ namespace Monopoly.Components
         private void CheatConsole_OnExitButtonClick(object sender, RoutedEventArgs e)
         {
             IsCheatOn = false;
-            ResumeTimer();
-            SwitchView(CenterMapView.Prev);
-        }
-
-        private void ResumeTimer()
-        {
-            countDown = RemainTime;
             countDownTimer.Start();
+            SwitchView(CenterMapView.Prev);
         }
 
         #endregion
