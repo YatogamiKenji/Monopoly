@@ -137,6 +137,7 @@ namespace Monopoly.Components
             sideBar.update(playersList, PlayerTurn);
 
             PowerStart();
+            playersList[0].isOutPrisonCard = true;
         }
 
         //khởi tạo data
@@ -945,14 +946,25 @@ namespace Monopoly.Components
         // Sử dụng 1 thẻ
         private void UseCardView_OnUseACardButtonClick(object sender, UseACardButtonClickEventArgs e)
         {
-            usingPower = e.power;
-            if (e.isEnoughMoneyToUse)
+            if (e.power.GetType().Name == "Power")
             {
-                if (e.power.type) UsingCardOnYourself(e.power); //thẻ sử dụng lên bản thân   
-                else SwitchView(CenterMapView.UseCardToAnother); //thẻ sử dụng lên người khác
+                if (playersList[PlayerTurn].isInPrison) playersList[PlayerTurn].isInPrison = false;
+                else playersList[PlayerTurn].money += 1000;
+                playersList[PlayerTurn].isOutPrisonCard = false;
+                SwitchView(CenterMapView.Prev);
+                sideBar.update(playersList, PlayerTurn);
             }
             else
-                Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền", "Red"), 1, (str) => { });
+            {
+                usingPower = e.power;
+                if (e.isEnoughMoneyToUse)
+                {
+                    if (e.power.type) UsingCardOnYourself(e.power); //thẻ sử dụng lên bản thân   
+                    else SwitchView(CenterMapView.UseCardToAnother); //thẻ sử dụng lên người khác
+                }
+                else
+                    Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Bạn không đủ tiền", "Red"), 1, (str) => { });
+            }
         }
 
         // Chọn một người để sử dụng

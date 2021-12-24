@@ -6,6 +6,7 @@ namespace Monopoly
     {
         public Power power { get; set; }
         public bool isEnoughMoneyToUse { get; set; }
+        public Chance chance { get; set; }
 
         public UseACardButtonClickEventArgs()
         {
