@@ -7,7 +7,7 @@
              xmlns:layout="clr-namespace:Monopoly.Layouts"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
-    <layout:PanelCenterMap Opacity="0.9" x:Name="thisPanel" Title="SỬ DỤNG THẺ LÊN NGƯỜI KHÁC">
+    <layout:PanelCenterMap x:Name="thisPanel" Title="SỬ DỤNG THẺ LÊN NGƯỜI KHÁC">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="300"/>
