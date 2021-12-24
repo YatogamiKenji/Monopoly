@@ -10,6 +10,8 @@
                 <ResourceDictionary Source="/Styles/CardStyle.xaml" />
                 <ResourceDictionary Source="/Styles/NotiStyle.xaml" />
                 <ResourceDictionary Source="/Styles/ScrollBarStyle.xaml" />
+                <ResourceDictionary Source="/Layouts/PanelCenterMap.xaml"/>
+                <ResourceDictionary Source="/Layouts/NotiBoxFrame.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="mainFont">/Monopoly;component/font/HP-Yard Regular.ttf#HP-Yard</FontFamily>
         </ResourceDictionary>
