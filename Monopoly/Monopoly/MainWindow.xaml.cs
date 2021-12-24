@@ -34,7 +34,7 @@ namespace Monopoly
         //nút guide
         private void ViewStart_OnGuideButtonClick(object sender, RoutedEventArgs e)
         {
-            
+            CreateGuide();
         }
 
         //nut about
@@ -88,6 +88,19 @@ namespace Monopoly
             CreateViewStart();
         }
 
+        #endregion
+        #region View Guide
+        private void CreateGuide()
+        {
+            ViewGuide viewGuide = new ViewGuide();
+            viewGuide.OnBackButtonClick += ViewGuide_OnBackButtonClick;
+            view.Content = viewGuide;
+        }
+
+        private void ViewGuide_OnBackButtonClick(object sender, RoutedEventArgs e)
+        {
+            CreateViewStart();
+        }
         #endregion
 
         #region View EndGame

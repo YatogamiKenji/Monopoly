@@ -192,7 +192,7 @@ namespace Monopoly.Components
             sideBar.update(playersList, 0);
         }
 
-        //khởi tạo compoenent Player Using
+        //khởi tạo component Player Using
         void InitPlayerUsing()
         {
             playerUsing.OnUseCardButtonClick += SwitchToUseCardView;

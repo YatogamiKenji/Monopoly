@@ -134,6 +134,12 @@
     <None Remove="Images\dice\needle.png" />
     <None Remove="Images\dice\wheel.png" />
     <None Remove="Images\falling-star-icon.png" />
+    <None Remove="Images\Guide\1.png" />
+    <None Remove="Images\Guide\2.png" />
+    <None Remove="Images\Guide\3.png" />
+    <None Remove="Images\Guide\4.png" />
+    <None Remove="Images\Guide\5.png" />
+    <None Remove="Images\Guide\6.png" />
     <None Remove="Images\icon\alien-ship-icon.png" />
     <None Remove="Images\icon\black-hole-icon.png" />
     <None Remove="Images\icon\falling-star-icon.png" />
@@ -531,6 +537,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\dice\wheel.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Guide\1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Guide\2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Guide\3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Guide\4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Guide\5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Guide\6.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\icon\alien-ship-icon.png" />
