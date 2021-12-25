@@ -89,7 +89,9 @@ namespace Monopoly
         }
 
         #endregion
+
         #region View Guide
+
         private void CreateGuide()
         {
             ViewGuide viewGuide = new ViewGuide();

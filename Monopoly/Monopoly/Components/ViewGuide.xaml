@@ -126,6 +126,6 @@
                 <ImageBrush ImageSource="/Images/btn/style2/btn_style2_gray.png" Opacity="0.7" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <Image x:Name="GuidePic" Source="/Images/Guide/1.png" Grid.Row="1" Grid.Column="1" Stretch="None" />
+        <Image x:Name="GuidePic" Opacity="0.9" Source="/Images/Guide/1.png" Grid.Row="1" Grid.Column="1" Stretch="None" />
     </Grid>
 </UserControl>

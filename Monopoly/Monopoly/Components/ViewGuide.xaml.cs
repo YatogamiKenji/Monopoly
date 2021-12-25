@@ -16,17 +16,20 @@ namespace Monopoly.Components
             InitializeComponent();
             CurPic = 1;
         }
-        public static readonly RoutedEvent BackButtonClickEvent =
-           EventManager.RegisterRoutedEvent(nameof(OnBackButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ViewStart));
+
+        public static readonly RoutedEvent BackButtonGuideClickEvent =
+           EventManager.RegisterRoutedEvent(nameof(OnBackButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ViewGuide));
+        
         public event RoutedEventHandler OnBackButtonClick
         {
-            add { AddHandler(BackButtonClickEvent, value); }
-            remove { RemoveHandler(BackButtonClickEvent, value); }
+            add { AddHandler(BackButtonGuideClickEvent, value); }
+            remove { RemoveHandler(BackButtonGuideClickEvent, value); }
         }
+
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             Sound.BackButton();
-            RaiseEvent(new RoutedEventArgs(BackButtonClickEvent));
+            RaiseEvent(new RoutedEventArgs(BackButtonGuideClickEvent));
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
