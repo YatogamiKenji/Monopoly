@@ -147,4 +147,7 @@ Xây dựng game cờ tỷ phú trên wpf bằng ngôn ngữ c#
   - Số lượng người chơi: 2 -> 4
 
 ## Demo <a name="demo"></a>
+  
+  [![Video Demo](https://user-images.githubusercontent.com/79617804/147375447-bd93d0e7-6038-4d5a-8209-76b21178f650.png)](https://youtu.be/W7ebzDKlsE4)
+  
 [Lên đầu trang](#top)
