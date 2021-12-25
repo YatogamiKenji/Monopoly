@@ -26,19 +26,34 @@ namespace Monopoly.Components
             Sound.SetSEVolume(SoundEffectSlider.Value / 100);
         }
 
-        public static readonly RoutedEvent OkButtonClickEvent =
-            EventManager.RegisterRoutedEvent(nameof(OnOkButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Setting));
+        public static readonly RoutedEvent CloseButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnCloseButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Setting));
 
-        public event RoutedEventHandler OnOkButtonClick
+        public event RoutedEventHandler OnCloseButtonClick
         {
-            add { AddHandler(OkButtonClickEvent, value); }
-            remove { RemoveHandler(OkButtonClickEvent, value); }
+            add { AddHandler(CloseButtonClickEvent, value); }
+            remove { RemoveHandler(CloseButtonClickEvent, value); }
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Sound.BackButton();
-            RaiseEvent(new RoutedEventArgs(OkButtonClickEvent));
+            RaiseEvent(new RoutedEventArgs(CloseButtonClickEvent));
+        }
+
+        public static readonly RoutedEvent HomeButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnHomeButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Setting));
+
+        public event RoutedEventHandler OnHomeButtonClick
+        {
+            add { AddHandler(HomeButtonClickEvent, value); }
+            remove { RemoveHandler(HomeButtonClickEvent, value); }
+        }
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            Sound.BackButton();
+            RaiseEvent(new RoutedEventArgs(HomeButtonClickEvent));
         }
     }
 }

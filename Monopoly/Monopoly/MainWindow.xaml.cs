@@ -63,7 +63,7 @@ namespace Monopoly
         void CreateSetup()
         {
             Setup setup = new Setup();
-            setup.OnBackButtonClick += Setup_OnBackButtonClick;
+            setup.OnBackButtonClick += OnViewStart;
             setup.OnButtonGoClick += Setup_OnButtonGoClick;
             view.Content = setup;
         }    
@@ -73,6 +73,7 @@ namespace Monopoly
         {
             ChessBoard chessBoard = new ChessBoard(e.showPlayers, e.GameMode, e.NumberTurns);
             chessBoard.OnEndGameButtonClick += ChessBoard_OnEndGameButtonClick;
+            chessBoard.OnHomeButtonClick += OnViewStart;
             view.Content = chessBoard;
         }
 
@@ -83,7 +84,7 @@ namespace Monopoly
         }
 
         //trở về view start
-        private void Setup_OnBackButtonClick(object sender, RoutedEventArgs e)
+        private void OnViewStart(object sender, RoutedEventArgs e)
         {
             CreateViewStart();
         }

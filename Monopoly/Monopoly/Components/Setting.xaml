@@ -110,17 +110,30 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
+        
         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Setting" Background="Transparent" FontFamily="{StaticResource mainFont}" Foreground="Red" FontSize="50"></TextBlock>
-        <StackPanel Grid.Row="1" Height="200" VerticalAlignment="Center" HorizontalAlignment="Center">
+        
+        <StackPanel Grid.Row="1" Height="300" VerticalAlignment="Center" HorizontalAlignment="Center">
+            
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Music"
                        FontFamily="{StaticResource mainFont}" Foreground="Red" FontSize="30"/>
+            
             <Slider Style="{StaticResource CustomSliderStyle}" Width="300" x:Name="MusicSlider" IsSnapToTickEnabled="True" Margin="20" Minimum="0" Maximum="100" Cursor="Hand"
                     Background="DarkBlue" LargeChange="10" ValueChanged="MusicSlider_ValueChanged"/>
+            
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Sound Effect"
                        FontFamily="{StaticResource mainFont}" Foreground="Red" FontSize="30"/>
+            
             <Slider Style="{StaticResource CustomSliderStyle}" Width="300" x:Name="SoundEffectSlider" IsSnapToTickEnabled="True" Margin="20" Minimum="0" Maximum="100" Cursor="Hand"
                     LargeChange="1" ValueChanged="SoundEffectSlider_ValueChanged"/>
+            
+            <Button Style="{StaticResource BtnStyle1Red}" x:Name="Home" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="Home_Click">
+                <Button.Content>
+                    <TextBlock Text="Home" Style="{StaticResource BtnStyle1Text}"/>
+                </Button.Content>
+            </Button>
         </StackPanel>
+        
         <Button Style="{StaticResource BtnStyle1Red}" Grid.Row="2" x:Name="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Close_Click">
             <Button.Content>
                 <TextBlock Text="Close" Style="{StaticResource BtnStyle1Text}"/>

@@ -1250,9 +1250,27 @@ namespace Monopoly.Components
         void CreateSetting()
         {
             Setting setting = new Setting();
-            setting.OnOkButtonClick += Setting_OnOkButtonClick;
+            setting.OnCloseButtonClick += Setting_OnOkButtonClick;
+            setting.OnHomeButtonClick += Setting_OnHomeButtonClick;
             centerMapView.Content = setting;
-        }    
+        }
+
+        public static readonly RoutedEvent HomeButtonClickEvent =
+            EventManager.RegisterRoutedEvent(nameof(OnHomeButtonClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ChessBoard));
+
+        public event RoutedEventHandler OnHomeButtonClick
+        {
+            add { AddHandler(HomeButtonClickEvent, value); }
+            remove { RemoveHandler(HomeButtonClickEvent, value); }
+        }
+
+        private void Setting_OnHomeButtonClick(object sender, RoutedEventArgs e)
+        {
+            Noti.Show(notiCenterMapArea, new NotiBoxOnlyText("Trở về màn hình chính", "Green"), 1.5, (str) =>
+            {
+                RaiseEvent(new RoutedEventArgs(HomeButtonClickEvent));
+            });
+        }
 
         //Chuyển sang view sử dụng thẻ
         private void SwitchToUseCardView(object sender, RoutedEventArgs e)
