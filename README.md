@@ -148,6 +148,6 @@ Xây dựng game cờ tỷ phú trên wpf bằng ngôn ngữ c#
 
 ## Demo <a name="demo"></a>
   
-  [![Video Demo](https://user-images.githubusercontent.com/79617804/147375447-bd93d0e7-6038-4d5a-8209-76b21178f650.png)](https://youtu.be/W7ebzDKlsE4)
+  https://user-images.githubusercontent.com/79617804/147715333-cf583767-ca9e-43a3-a7c3-35a5d1e63327.mp4
   
 [Lên đầu trang](#top)
